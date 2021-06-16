@@ -2,7 +2,7 @@ import {Account} from './account';
 import {Ward} from './ward';
 
 export interface User {
-  user_id: number;
+  userId: number;
   name: string;
   birthday: string;
   gender: number;

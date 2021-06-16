@@ -4,12 +4,11 @@ import { CommonModule } from '@angular/common';
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeePageComponent } from './employee-page/employee-page.component';
 
-
 @NgModule({
-  declarations: [EmployeePageComponent],
+  declarations: [EmployeePageComponent ],
   imports: [
     CommonModule,
-    EmployeeRoutingModule
+    EmployeeRoutingModule,
   ]
 })
 export class EmployeeModule { }
