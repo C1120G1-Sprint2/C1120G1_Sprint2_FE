@@ -1,0 +1,46 @@
+<div class="container-fluid" id="fluid">
+  <div id="follow-div">
+    <div class="follow">
+      <p class="follow-title">Chi tiết phòng chiếu PC01</p>
+    </div>
+    <a href="#" class="btn btn-success mt-4">Thêm mới ghế</a>
+  </div>
+  <div id="seat-show" class="row m-0 p-0 mt-4">
+    <div class="col-lg-2 space-div"></div>
+    <div class="col-lg-8 col-md-12">
+      <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
+        <div>
+          <i class="fas fa-2x fa-couch normal-seat"></i>
+          <span class="instructor-label mr-lg-3 mr-md-1">Ghế thường</span>
+        </div>
+        <div>
+          <i class="fas fa-2x fa-couch vip-seat"></i>
+          <span class="instructor-label mr-lg-0 mr-md-1">Ghế VIP</span>
+        </div>
+
+      </div>
+      <i class="fas fa-desktop mt-4" style="font-size: 100px;color: gray;margin-left: 420px"></i>
+      <table class="table table-borderless mt-4">
+        <tbody>
+        <tr *ngFor='let col of counter(6) ;let x = index'>
+          <td>
+            <span class="col-title" *ngIf="x == 0">A</span>
+            <span class="col-title" *ngIf="x == 1">B</span>
+            <span class="col-title" *ngIf="x == 2">C</span>
+            <span class="col-title" *ngIf="x == 3">D</span>
+            <span class="col-title" *ngIf="x == 4">E</span>
+            <span class="col-title" *ngIf="x == 5">F</span>
+          </td>
+          <td *ngFor='let row of counter(10) ;let y = index'>
+            <a href=""><i *ngIf="x != 5 && y == 0" class="fas fa-2x fa-couch normal-seat" ></i></a>
+            <i *ngIf="x != 5 && y != 0" class="fas fa-2x fa-couch normal-seat" id="{{x + y}}"
+               (click)="changeColor(x, y)"></i>
+            <i *ngIf="x == 5" class="fas fa-2x fa-couch vip-seat"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-2 space-div"></div>
+  </div>
+</div>
