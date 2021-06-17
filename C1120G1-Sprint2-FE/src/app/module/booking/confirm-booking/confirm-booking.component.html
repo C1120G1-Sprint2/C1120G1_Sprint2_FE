@@ -1,0 +1,128 @@
+<div class="container-fluid" id="fluid">
+  <div id="follow-div">
+    <div class="follow">
+      <p class="follow-title">vui lòng xác nhận</p>
+    </div>
+  </div>
+
+  <hr class="d-inline-block"
+      style="width: 99%; height: 1px; background-color: lightgray">
+
+  <div class="container-fluid row p-0 m-0">
+    <div class="col-lg-3 col-md-4" id="img-div">
+      <p class="movie-picked-title" style="font-size: 1.3rem">Thông tin đặt vé</p>
+      <img src="https://i.pinimg.com/originals/6f/76/99/6f769926be26c81307d4d7c869c1abb5.jpg"
+           alt="img">
+    </div>
+    <div class="col-lg-7 col-md-8 pl-3">
+      <table class="table table-hover" id="table-booking-infor">
+        <thead class="text-center">
+        <tr>
+          <td colspan="2">
+            <span class="movie-picked-title">Spider Man 2</span>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Rạp</td>
+          <td>
+            <p>RẠP 01</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Ngày chiếu</td>
+          <td>15-06-2021</td>
+        </tr>
+        <tr>
+          <td>Giờ chiếu</td>
+          <td>15:20</td>
+        </tr>
+        <tr>
+          <td>Ghế</td>
+          <td>A3 A4 A5 A6</td>
+        </tr>
+        <tr>
+          <td>Vé</td>
+          <td>
+            <div class="col-12 row m-0 p-0">
+              <div class="col-6">
+                <p>
+                  <strong>Số ghế</strong>
+                </p>
+                <p *ngFor="let seat of listChoseSeat">{{seat}}</p>
+                <p>
+                  <strong>Tổng cộng</strong>
+                </p>
+              </div>
+              <div class="col-6">
+                <p>
+                  <strong>Giá vé</strong>
+                </p>
+                <p *ngFor="let seat of listChoseSeat">45,000 VND</p>
+                <p>
+                  <strong>180,000 VND</strong>
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-hover" id="table-personal-info">
+        <thead>
+        <tr>
+          <td colspan="2">
+            <p class="movie-picked-title" style="font-size: 1.3rem">kiểm tra thông tin cá nhân</p>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Họ và tên</td>
+          <td class="text-uppercase">Trần Quốc Hoàng</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>sorenisme2009@gmail.com</td>
+        </tr>
+        <tr>
+          <td>CMND</td>
+          <td>205874115</td>
+        </tr>
+        <tr>
+          <td>Số điện thoại</td>
+          <td>0905126987</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+
+  <div id="btnConfirm" *ngIf="!isConfirmed" class="text-center">
+    <a routerLink="seat">
+      <button class="btn btn-outline-primary rounded-pill" type="button">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-left"></i>
+        </span>
+      </button>
+    </a>
+    <button class="btn btn-outline-primary rounded-pill" type="button" (click)="confirm()">
+        <span class="ticket">
+          <img src="../../assets/img/cinema-ticket.png" height="34" width="34"/>
+        </span>
+      Xác nhận đặt vé
+    </button>
+  </div>
+  <div *ngIf="isConfirmed" class="pleasure text-center">
+    <p>Vui lòng đến lấy vé trước thời gian chiếu phim 30 phút. Sau thời gian đó vé sẽ tự động hủy</p>
+    <div class="mb-4">
+      <a routerLink="home" role="button">
+        <button class="btn btn-outline-primary rounded-pill">Trang chủ</button>
+      </a>
+    </div>
+  </div>
+</div>
+
