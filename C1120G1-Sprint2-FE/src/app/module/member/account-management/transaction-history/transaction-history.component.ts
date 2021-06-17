@@ -11,5 +11,4 @@ export class TransactionHistoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
