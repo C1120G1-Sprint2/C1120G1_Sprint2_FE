@@ -142,179 +142,103 @@
 <!--  </div>-->
 <!--</div>-->
 
-<div class="row">
-  <div class="menu">
-    <div class=".logo col-2 text-center float-left">
-      <a>
-        <div class="row">
-          <h4 class="text-light mt-2 pt-1 ml-5">C1120G1</h4>
-          <img
-            src=""
-            width="50px" class="mt-1">
-        </div>
-      </a>
-    </div>
 
-    <div class="col-2 float-right mt-2">
-      <a class="float-left text-light mr-1 mt-2">Quang</a>
-      <a role="button" class="float-left btn btn-light mt-1 btnLogOut">Đăng xuất</a>
-    </div>
-  </div>
-  <div class="col-2 float-left menu-left-admin">
-    <div class="row">
-      <ul class="col-12">
-
-        <li class=" pt-2 pb-2 menu-var">
-          <a class="text-decoration-none text-dark  pt-2 pb-2">
-            <i class="fas fa-money-bill-wave mr-2 col-1"></i>Quản Lý Bán Vé
-          </a>
-        </li>
-        <li class=" pt-2 pb-2 menu-var">
-          <a class="text-decoration-none text-dark  pt-2 pb-2">
-            <i class="fas fa-ticket-alt mr-2 col-1"></i>Quản Lý Đặt Vé
-          </a>
-        </li>
-
-        <li class=" pt-2 pb-2 menu-var">
-          <a class="text-decoration-none text-dark  pt-2 pb-2">
-            <i class="fas fa-user-cog mr-2 col-1"></i>Quản Lý  Nhân Viên
-          </a>
-        </li>
-
-        <li class=" pt-2 pb-2 menu-var">
-          <a class="text-decoration-none text-dark  pt-2 pb-2">
-
-            <i class="fas fa-video mr-2 col-1"></i>Quản Lý  Phòng Chiếu
-          </a>
-        </li>
-        <li class=" pt-2 pb-2 menu-var">
-          <a class="text-decoration-none text-dark  pt-2 pb-2">
-            <i class="fas fa-users mr-2 col-1"></i>Quản Lý Thành Viên
-          </a>
-        </li>
-        <li class=" pt-2 pb-2 menu-var">
-          <a class="text-decoration-none text-dark  pt-2 pb-2">
-            <i class="fas fa-film mr-2 col-1"></i> Quản Lý Phim
-          </a>
-        </li>
-        <li class=" pt-2 pb-2 menu-var">
-          <a class="text-decoration-none text-dark  pt-2 pb-2">
-            <i class="fas fa-gifts mr-2 col-1"></i> Quản Lý Khuyến Mãi
-          </a>
-        </li>
-        <li class=" pt-2 pb-2 menu-var">
-          <a class="text-decoration-none text-dark  pt-2 pb-2">
-            <i class="fas fa-chart-bar mr-2 col-1"></i>Thống Kê
-          </a>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-  <div class="col-9">
-    <div class="input-group col-7 my-3">
-      <select [(ngModel)]="optionSearch" class="form-control mx-2">
-        <option value="1">Tìm kiếm theo Mã đặt vé</option>
-        <option value="2">Tìm kiếm theo Mã tài khoản</option>
-        <option value="3">Tìm kiếm theo Số điện thoại</option>
-        <option value="4">Tìm kiếm theo CMND</option>
-      </select>
-      <input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Search"
-             aria-describedby="search-addon" [(ngModel)]="keySearch">
-      <button type="button" class="btn btn-outline-success mx-2" (click)="search()">Tìm kiếm</button>
-    </div>
-    <div class="card border-success">
-      <h3 class="title" style="color: #FF8C00">Quản lý đặt vé</h3>
-      <div>
-        <div *ngIf="ticketBookedList">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>#</th>
-              <th>Mã đặt vé</th>
-              <th>Mã thành viên</th>
-              <th>Họ tên</th>
-              <th>CMND</th>
-              <th>Phim</th>
-              <th>Xuất chiếu</th>
-              <th>Nhận vé</th>
-              <th>Huỷ vé</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>BV00001</td>
-              <td>TV00001</td>
-              <td>Hoàng Lê Quang</td>
-              <td>201675587</td>
-              <td>Harry Potter</td>
-              <td>20/08/2021 9:00</td>
-              <td>
-                <button class="btn btn-success" routerLink="get-ticket">
-                  <i class="far fa-check-square"></i>
-                </button>
-              </td>
-              <td>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#cancelTicketModal">
-                  <i class="far fa-window-close"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>BV00002</td>
-              <td>TV00002</td>
-              <td>Nguyễn Ngọc Thuần</td>
-              <td>109876521</td>
-              <td>Trốn Tìm</td>
-              <td>20/08/2021 20:10</td>
-              <td>
-                <button class="btn btn-success" routerLink="get-ticket">
-                  <i class="far fa-check-square"></i>
-                </button>
-              </td>
-              <td>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#cancelTicketModal">
-                  <i class="far fa-window-close"></i>
-                </button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Trước</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Sau</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <!--                <ng-template #nodata>-->
-        <!--                    <p style="color: red">Không có khách hàng đặt vé</p>-->
-        <!--                </ng-template>-->
-      </div>
-      <div class="modal fade" id="cancelTicketModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <app-cancel-ticket [cancelId]="cancelId" (cancelComplete)="cancelSuccess()"></app-cancel-ticket>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="input-group col-7 my-3">
+  <select [(ngModel)]="optionSearch" class="form-control mx-2">
+    <option value="1">Tìm kiếm theo Mã đặt vé</option>
+    <option value="2">Tìm kiếm theo Mã tài khoản</option>
+    <option value="3">Tìm kiếm theo Số điện thoại</option>
+    <option value="4">Tìm kiếm theo CMND</option>
+  </select>
+  <input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Search"
+         aria-describedby="search-addon" [(ngModel)]="keySearch">
+  <button type="button" class="btn btn-outline-success mx-2" (click)="search()">Tìm kiếm</button>
 </div>
-<footer style="background-color: #FF8C00">
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold">Made by C1120G1</a>
+<div class="card border-success">
+  <h3 class="title" style="color: #FF8C00">Quản lý đặt vé</h3>
+  <div>
+    <div *ngIf="ticketBookedList">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Mã đặt vé</th>
+          <th>Mã thành viên</th>
+          <th>Họ tên</th>
+          <th>CMND</th>
+          <th>Phim</th>
+          <th>Xuất chiếu</th>
+          <th>Nhận vé</th>
+          <th>Huỷ vé</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td>BV00001</td>
+          <td>TV00001</td>
+          <td>Hoàng Lê Quang</td>
+          <td>201675587</td>
+          <td>Harry Potter</td>
+          <td>20/08/2021 9:00</td>
+          <td>
+            <button class="btn btn-success" routerLink="get-ticket">
+              <i class="far fa-check-square"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#cancelTicketModal">
+              <i class="far fa-window-close"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>BV00002</td>
+          <td>TV00002</td>
+          <td>Nguyễn Ngọc Thuần</td>
+          <td>109876521</td>
+          <td>Trốn Tìm</td>
+          <td>20/08/2021 20:10</td>
+          <td>
+            <button class="btn btn-success" routerLink="get-ticket">
+              <i class="far fa-check-square"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#cancelTicketModal">
+              <i class="far fa-window-close"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Trước</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!--                <ng-template #nodata>-->
+    <!--                    <p style="color: red">Không có khách hàng đặt vé</p>-->
+    <!--                </ng-template>-->
   </div>
-</footer>
+  <div class="modal fade" id="cancelTicketModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <app-cancel-ticket [cancelId]="cancelId" (cancelComplete)="cancelSuccess()"></app-cancel-ticket>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
