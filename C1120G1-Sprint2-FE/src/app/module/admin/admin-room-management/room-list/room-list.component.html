@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <p class="title">Danh sách phòng chiếu</p>
+      <a href="" class="btn btn-success btn-rounded mb-4" routerLink="create" data-toggle="modal"
+         data-target="#modalCreateFatherCategories"><i
+        class="fas fa-plus"></i> Thêm phòng chiếu </a>
+      <table class="table table-hover" [hidden]="roomList === null">
+        <tr>
+          <th>STT</th>
+          <th>Mã phòng</th>
+          <th>Tên phòng</th>
+          <th>Tổng số ghế</th>
+          <th>Thao tác</th>
+          <th>Chi tiết ghế</th>
+        </tr>
+        <tr *ngFor="let item of roomList;let i = index">
+          <td>{{i+1}}</td>
+          <td>{{item.roomId}}</td>
+          <td>{{item.roomName}}</td>
+          <td></td>
+          <td>
+            <a [routerLink]="['edit',item.roomId]"
+               class="btn btn-warning"><i class="fas fa-edit"></i></a>
+            <a data-toggle="modal" data-target="#exampleModal"
+               (click)="deleteId = item.roomId; deleteName = item.roomName" class="btn btn-danger ml-2"><i class="fas fa-trash-alt"></i></a>
+          </td>
+          <td>
+            <a routerLink="/admin/room/seat" class="btn btn-info"><i class="fas fa-eye"></i></a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-room-delete [deleteId]="deleteId" [deleteName]="deleteName" (deleteComplete)="deleteSuccess()"></app-room-delete>
+      </div>
+    </div>
+  </div>
+</div>

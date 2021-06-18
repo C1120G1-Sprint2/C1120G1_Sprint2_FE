@@ -1,12 +1,12 @@
 import {SeatStatus} from './seatStatus';
 import {Row} from './row';
-import {Column} from './column';
+import {Columns} from './columns';
 import {SeatType} from './seatType';
 
 export interface Seat {
   seatId: number;
   seatStatus: SeatStatus;
   row: Row;
-  column: Column;
+  columns: Columns;
   seatType: SeatType;
 }
