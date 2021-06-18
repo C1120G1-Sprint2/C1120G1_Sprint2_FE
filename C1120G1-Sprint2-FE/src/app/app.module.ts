@@ -14,6 +14,10 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {BookingModule} from './module/booking/booking.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { LoadingComponent } from './module/loading/loading.component';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    HttpClientModule,
+    FormsModule,
+    BookingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
