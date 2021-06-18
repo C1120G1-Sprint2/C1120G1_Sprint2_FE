@@ -15,11 +15,15 @@ export class StatisticalManagementService {
     return this._httpClient.get<any>(`${this.API_URL}/movie-date?startDate=${startDate}&endDate=${endDate}`);
   }
 
-  getMovieStatisticsByMonth(month: Number, year: Number): Observable<any> {
+  getMovieStatisticsByMonth(month: number, year: number): Observable<any> {
     return this._httpClient.get<any>(`${this.API_URL}/movie-month?month=${month}&year=${year}`);
   }
 
-  getMovieStatisticsByYear(year: Number): Observable<any> {
+  getMovieStatisticsByYear(year: number): Observable<any> {
     return this._httpClient.get<any>(`${this.API_URL}/movie-year?year=${year}`);
+  }
+
+  getTopMember(limit: number): Observable<any> {
+    return this._httpClient.get<any>(`${this.API_URL}/member-top?limit=${limit}`);
   }
 }
