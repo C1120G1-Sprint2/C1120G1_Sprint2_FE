@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,11 +14,14 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
+import {ToastrModule} from 'ngx-toastr';
+import {AdminMovieTicketModule} from './module/admin/admin-movie-ticket/admin-movie-ticket.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,10 +31,13 @@ import { LoadingComponent } from './module/loading/loading.component';
     MemberModule,
     MainModule,
     SecurityModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ToastrModule.forRoot(),
+    AdminMovieTicketModule
   ],
   providers: [],
   bootstrap: [AppComponent]

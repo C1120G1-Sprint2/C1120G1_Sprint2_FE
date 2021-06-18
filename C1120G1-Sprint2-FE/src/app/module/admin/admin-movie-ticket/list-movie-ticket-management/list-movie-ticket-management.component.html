@@ -1,0 +1,318 @@
+<div>
+  <div style="width: 1100px">
+    <div class="table-header">
+      <p class="title">Quản Lý Suất Chiếu Trong Hệ Thống</p>
+    </div>
+    <div class="row p-0 m-0">
+      <div class="col-3">
+        <a href="" class="btn btn-success addUser" data-toggle="modal" data-target="#exampleModal3">
+          <i class="fas fa-plus"></i>
+          <span>Thêm mới suat chieu</span>
+        </a>
+      </div>
+      <div class="col-5"></div>
+      <div class="col-4 float-right d-inline-flex">
+        <input type="text" [(ngModel)]="keySearch"
+               (keyup.enter)="searchEnter()"
+               placeholder="Nhập thông tin mà bạn muốn tìm kiếm "
+               class="form-control rounded-pill inputSearch" style="width: 80%">
+        <button class="btn btnSearch"
+                (click)="search()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+    <table class="table table-hover">
+      <thead class="theadTable">
+      <th>#</th>
+      <th>Tên Phim</th>
+      <th>Rap Chieu</th>
+      <th>Ngày Chiếu</th>
+      <th>Suất Chiếu</th>
+      <th>Loại Chiếu</th>
+      <th>Giá Vé</th>
+      <th>Tuỳ Chọn</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let movieTicket of movieTickets; let i = index"  class="inputTable">
+        <td>{{i+1}}</td>
+        <td>{{movieTicket.movie.movieName}}</td>
+        <td>{{movieTicket.room.roomName}}</td>
+        <td>{{movieTicket.showDate}}</td>
+        <td>{{movieTicket.showTime.showTime}}</td>
+        <td>{{movieTicket.projectionType.projectionName}}</td>
+        <td>{{movieTicket.ticketPrice}}</td>
+        <td>
+          <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"
+                  (click)="deleteId = movieTicket.movieTicketId; deleteName = movieTicket.showTime.showTime"><i class="fas fa-trash"></i></button>
+          <a (click)="openDialog(movieTicket['id'])"><button class="btn btn-warning"><i class="far fa-edit"></i></button></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+<!--    modal them moi -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header flex-column" style="background-color: #f26b39">
+            <div class="icon-box">
+            </div>
+            <h4 class="modal-title w-100 text-center" style="color: aliceblue;">Thêm Xuất Chiếu</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <app-create-movie-ticket-management></app-create-movie-ticket-management>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pagination -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Trước</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Sau</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- end pagination -->
+
+<!--    modal delete-->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header flex-column">
+            <div class="icon-box">
+            </div>
+            <h4 class="modal-title w-100">Bạn có chắc chắn chứ ? </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <app-delete-movie-ticket-management [deleteId]="deleteId" [deleteName]="deleteName"
+                                                (deleteComplete) = "deleteSuccess()">
+
+            </app-delete-movie-ticket-management>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!--        <div class="row">-->
+<!--          <div class="col-3">-->
+<!--            <a href="" class="btn btn-success addUser" [routerLink]="['/admin/movie-ticket/create']" >-->
+<!--              <i class="fas fa-plus"></i>-->
+<!--              <span>Thêm mới Giá Vé</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="col-6"></div>-->
+<!--          <div class="col-3 float-right d-inline-flex">-->
+<!--            <input type="text"  placeholder="Tìm kiếm" class="form-control rounded-pill inputSearch"-->
+<!--                   style="width: 80%">-->
+<!--            <button class="btn btnSearch"><i class="fas fa-search"></i></button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div id="side-a">-->
+<!--            <div class="card">-->
+<!--              <div class="card-header" style="background-color: #f26b39; color: white;">Quản Lý Suất Chiếu-->
+<!--              </div>-->
+<!--              <div class="card-body">-->
+<!--                <table class="table table-hover">-->
+<!--                  <thead class="theadTable">-->
+<!--                  <th>#</th>-->
+<!--                  <th>Tên Phim</th>-->
+<!--                  <th>Rap Chieu</th>-->
+<!--                  <th>Ngày Chiếu</th>-->
+<!--                  <th>Suất Chiếu</th>-->
+<!--                  <th>Loại Chiếu</th>-->
+<!--                  <th>Giá Vé</th>-->
+<!--                  <th>Tuỳ Chọn</th>-->
+<!--                  </thead>-->
+<!--                  <tbody>-->
+<!--                  <tr *ngFor="let movieTicket from movieTickets; let i = index"  class="inputTable">-->
+<!--                    <td>{{i+1}}</td>-->
+<!--                    <td>{{movieTicket.movie.movieName}}</td>-->
+<!--                    <td>{{movieTicket.room.roomName}}</td>-->
+<!--                    <td>{{movieTicket.showDate}}</td>-->
+<!--                    <td>{{movieTicket.showTime.showTime}}</td>-->
+<!--                    <td>{{movieTicket.projectionType.projectionName}}</td>-->
+<!--                    <td>{{movieTicket.ticketPrice}}</td>-->
+<!--                    <td>-->
+<!--                      <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"-->
+<!--                              (click)="deleteId = movieTicket.movieTicketId; deleteName = movieTicket.showTime"><i class="fas fa-trash"></i></button>-->
+<!--                      <a (click)="openDialog(movieTicket['id'])"><button class="btn btn-warning"><i class="far fa-edit"></i></button></a>-->
+<!--                    </td>-->
+<!--                  </tr>-->
+<!--                  </tbody>-->
+<!--                </table>-->
+
+<!--                -->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+<!--        &lt;!&ndash; Modal  delete&ndash;&gt;-->
+<!--        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"-->
+<!--             aria-hidden="true">-->
+<!--          <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--              <div class="modal-header flex-column">-->
+<!--                <div class="icon-box">-->
+<!--                </div>-->
+<!--                <h4 class="modal-title w-100">Bạn có chắc chắn chứ ? </h4>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+<!--              </div>-->
+<!--              <div class="modal-body">-->
+<!--                <app-delete-movie-ticket-management [deleteId]="deleteId" [deleteName]="deleteName"-->
+<!--                                                    (deleteComplete) = "deleteSuccess()">-->
+
+<!--                </app-delete-movie-ticket-management>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; end delete  &ndash;&gt;-->
+
+
+<!--    &lt;!&ndash;    &lt;!&ndash;        edit suat chieu&ndash;&gt;&ndash;&gt;-->
+<!--    &lt;!&ndash;    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">&ndash;&gt;-->
+<!--    &lt;!&ndash;      <div class="modal-dialog">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <div class="modal-content">&ndash;&gt;-->
+<!--    &lt;!&ndash;          <div class="modal-header flex-column" style="background-color: #f26b39">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <div class="icon-box">&ndash;&gt;-->
+<!--    &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <h4 class="modal-title w-100 text-center" style="color: aliceblue;">Chỉnh Sửa Suất Chiếu</h4>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>&ndash;&gt;-->
+<!--    &lt;!&ndash;          </div>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <div class="modal-body">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <app-edit-movie-ticket-management [editId]="editId"></app-edit-movie-ticket-management>&ndash;&gt;-->
+<!--    &lt;!&ndash;          </div>&ndash;&gt;-->
+<!--    &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--    &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;        <&#45;&#45; Modal tao moi&ndash;&gt;-->
+<!--    -->
+<!--    &lt;!&ndash;        End modal tao moi &ndash;&gt;-->
+
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+<!--<div id="listUserId">-->
+<!--  <div style="width: 100%">-->
+<!--    <div class="table-header">-->
+<!--      <p class="text-center text-uppercase title">Danh Sách Thành Viên Trong Hệ Thống</p>-->
+<!--    </div>-->
+<!--    <div class="row p-0 m-0">-->
+<!--      <div class="col-3">-->
+<!--        <a href="" class="btn btn-success addUser" [routerLink]="['/admin/users/create']">-->
+<!--          <i class="fas fa-plus"></i>-->
+<!--          <span>Thêm mới thành viên</span>-->
+<!--        </a>-->
+<!--      </div>-->
+<!--      <div class="col-5"></div>-->
+<!--      <div class="col-4 float-right d-inline-flex">-->
+<!--        <input type="text" [(ngModel)]="keySearch"-->
+<!--               (keyup.enter)="searchEnter()"-->
+<!--               placeholder="Nhập thông tin mà bạn muốn tìm kiếm "-->
+<!--               class="form-control rounded-pill inputSearch" style="width: 80%">-->
+<!--        <button class="btn btnSearch"-->
+<!--                (click)="search()">-->
+<!--          <i class="fas fa-search"></i>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <table class="table table-hover" matSort (matSortChange)="sortData($event)">-->
+<!--      <thead class="theadTable">-->
+<!--      <th>#</th>-->
+<!--      <th mat-sort-header="name">-->
+<!--        Tên Thành Viên&nbsp;-->
+<!--        <i class="fas fa-sort-alpha-up"></i>-->
+<!--      </th>-->
+<!--      &lt;!&ndash;      <th mat-sort-header="username">&ndash;&gt;-->
+<!--      &lt;!&ndash;        Tên Đăng Nhập&ndash;&gt;-->
+<!--      &lt;!&ndash;        <i class="fas fa-sort-alpha-up"></i>&ndash;&gt;-->
+<!--      &lt;!&ndash;      </th>&ndash;&gt;-->
+<!--      <th mat-sort-header="email">Email&nbsp;-->
+<!--        <i class="fas fa-sort-alpha-up"></i>-->
+<!--      </th>-->
+<!--      <th mat-sort-header="phone">Phone&nbsp;-->
+<!--        <i class="fas fa-sort-numeric-up"></i>-->
+<!--      </th>-->
+<!--      <th mat-sort-header="address">Địa chỉ&nbsp;-->
+<!--        <i class="fas fa-sort-alpha-up"></i>-->
+<!--      </th>-->
+<!--      <th>Các Tuỳ Chọn</th>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr class="inputTable"-->
+<!--          *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: page }; let i = index">-->
+<!--        <td>{{ i + 1 }}</td>-->
+<!--        <td>{{user.name}}</td>-->
+<!--        &lt;!&ndash;        <td>{{user.account.username}}</td>&ndash;&gt;-->
+<!--        <td>{{user.email}}</td>-->
+<!--        <td>{{user.phone}}</td>-->
+<!--        <td>-->
+<!--          <span>{{user.ward.wardName}}</span>,-->
+<!--          <span>{{user.ward.district.districtName}}</span>,-->
+<!--          <span>{{user.ward.district.province.provinceName}}</span>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--          <a [routerLink]="['edit', user.userId]">-->
+<!--            <button class="editButton btn btn-warning"><i class="far fa-edit"></i></button>-->
+<!--          </a>-->
+<!--          <button class="btn btn-danger ml-2" data-toggle="modal" data-target="#exampleModal"-->
+<!--                  (click)="deleteId = user.userId; deleteName = user.name"><i class="far fa-trash-alt"></i></button>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--    &lt;!&ndash; Modal &ndash;&gt;-->
+<!--    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--      <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--          <div class="modal-header flex-column">-->
+<!--            <div class="icon-box">-->
+<!--            </div>-->
+<!--            <h4 class="modal-title w-100">Are you sure?</h4>-->
+<!--            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+<!--          </div>-->
+<!--          <div class="modal-body">-->
+<!--            <app-delete-user [deleteId]="deleteId" [deleteName]="deleteName"-->
+<!--                             (deleteComplete)="deleteSuccess()"></app-delete-user>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; End modal &ndash;&gt;-->
+<!--    &lt;!&ndash; pagination &ndash;&gt;-->
+
+
+<!--    &lt;!&ndash;      *ngIf="lengthListBanner !== 0"&ndash;&gt;-->
+
+<!--    <pagination-controls maxSize="3" nextLabel="Sau" previousLabel="Trước"-->
+<!--                         (pageChange)="page = $event"></pagination-controls>-->
+
+
+
+<!--  </div>-->
+<!--</div>-->
