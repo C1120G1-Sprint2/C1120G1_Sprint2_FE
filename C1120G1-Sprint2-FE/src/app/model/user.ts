@@ -8,7 +8,7 @@ export interface User {
   gender: number;
   email: string;
   phone: string;
-  cardId: string;
+  idCard: string;
   avatarUrl: string;
   account: Account;
   ward: Ward;

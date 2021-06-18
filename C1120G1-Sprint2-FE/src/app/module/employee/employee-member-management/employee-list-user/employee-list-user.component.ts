@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../../../model/user';
 import {Ward} from '../../../../model/ward';
 import {ToastrService} from 'ngx-toastr';
 import {EmployeeManagementService} from '../../../../service/admin/employee-management/employee-management.service';
 import {Sort} from '@angular/material/sort';
+import {MemberManagementService} from '../../../../service/employee/member-management/member-management.service';
 
 @Component({
   selector: 'app-employee-list-user',
@@ -13,29 +14,35 @@ import {Sort} from '@angular/material/sort';
 export class EmployeeListUserComponent implements OnInit {
 
   users: User[] = [];
-  public account: Account[] = [];
+  public accounts: Account[] = [];
   public wards: Ward[] = [];
-  keySearch: string = "";
+  keySearch: string = '';
   deleteId: number;
   deleteName: string;
   p: number = 1;
   page: number = 1;
 
-  constructor(private employeeService: EmployeeManagementService,
+  constructor(private memberManagementService: MemberManagementService,
               private toastr: ToastrService) {
     this.users = this.users.slice();
   }
 
   ngOnInit(): void {
-    this.employeeService.getAllUsers().subscribe(data => {
+    this.memberManagementService.getAllUsers().subscribe(data => {
       this.users = data;
+      console.log(this.users);
       if (data === null) {
-        this.toastr.warning("Không tìm thấy dữ liệu", "Thông báo", {
+        this.toastr.warning('Không tìm thấy dữ liệu', 'Thông báo', {
           timeOut: 5000,
-          progressAnimation: "increasing"
+          progressAnimation: 'increasing'
         });
       }
-    })
+    });
+  }
+
+  deleteSuccess() {
+    this.ngOnInit();
+    this.toastr.success('Xoá Thành Công' , 'Thông Báo');
   }
 }
 
