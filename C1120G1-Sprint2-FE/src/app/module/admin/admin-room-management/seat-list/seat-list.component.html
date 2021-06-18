@@ -1,46 +1,46 @@
-<div class="container-fluid" id="fluid">
-  <div id="follow-div">
-    <div class="follow">
-      <p class="follow-title">Chi tiết phòng chiếu PC01</p>
-    </div>
-    <a href="#" class="btn btn-success mt-4">Thêm mới ghế</a>
-  </div>
-  <div id="seat-show" class="row m-0 p-0 mt-4">
-    <div class="col-lg-2 space-div"></div>
-    <div class="col-lg-8 col-md-12">
-      <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
-        <div>
-          <i class="fas fa-2x fa-couch normal-seat"></i>
-          <span class="instructor-label mr-lg-3 mr-md-1">Ghế thường</span>
+<div class="container-fluid body">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <p class="title">Chi tiết của phòng PC01</p>
+          <a href="#" class="btn btn-success"><i class="fas fa-plus-circle"></i> Thêm ghế</a>
+          <a routerLink='/admin/room' class="btn btn-secondary mt-3">Trở về danh sách phòng chiếu</a>
         </div>
-        <div>
-          <i class="fas fa-2x fa-couch vip-seat"></i>
-          <span class="instructor-label mr-lg-0 mr-md-1">Ghế VIP</span>
+        <div class="col-md-6 mt-3">
+          <button class="btn" style="background-color: greenyellow">Ghế thường</button>
+          <button class="btn ml-4" style="background-color: red">Ghế vip</button>
+          <br>
+          <div class="table table-responsive" style="text-align: center">
+            <button class="mt-4" style=";padding: 20px 200px 20px 200px;color: gray;">Màn hình</button>
+            <table class="table table-borderless mt-4" style="border: 1px solid dodgerblue">
+              <tr *ngFor="let row of rowList">
+                <td *ngFor="let col of columnList">
+                  <div class="dropdown show">
+                    <a class="btn dropdown-toggle" *ngIf="row.rowId == 5; else elseBlock"
+                       style="background-color: red;color: white" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                      {{row.rowName + col.columnName}}
+                    </a>
+                    <ng-template #elseBlock>
+                      <a class="btn dropdown-toggle" data-toggle="dropdown"
+                         style="background-color: greenyellow;">{{row.rowName + col.columnName}}</a>
+                    </ng-template>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" (click)="changeColor(row.rowId,col.columnId)">Chuyển trạng thái ghế</a>
+                      <a class="dropdown-item" href="#">Xóa ghế</a>
+                    </div>
+                  </div>
+                  <!--                  <a href="" *ngIf="x == 5" class="btn" style="background-color: blue"></a>-->
+                  <!--                  <a href="" *ngIf="x!=5 && y !=0" class="btn" style="background-color: blue" id="{{x + y}}"-->
+                  <!--                     (click)="changeColor(x,y)"></a>-->
+                </td>
+              </tr>
+            </table>
+            <i class="fas fa-door-open" style="margin-left: 900px; font-size: 70px;color: green"></i>
+          </div>
         </div>
-
       </div>
-      <i class="fas fa-desktop mt-4" style="font-size: 100px;color: gray;margin-left: 420px"></i>
-      <table class="table table-borderless mt-4">
-        <tbody>
-        <tr *ngFor='let col of counter(6) ;let x = index'>
-          <td>
-            <span class="col-title" *ngIf="x == 0">A</span>
-            <span class="col-title" *ngIf="x == 1">B</span>
-            <span class="col-title" *ngIf="x == 2">C</span>
-            <span class="col-title" *ngIf="x == 3">D</span>
-            <span class="col-title" *ngIf="x == 4">E</span>
-            <span class="col-title" *ngIf="x == 5">F</span>
-          </td>
-          <td *ngFor='let row of counter(10) ;let y = index'>
-            <a href=""><i *ngIf="x != 5 && y == 0" class="fas fa-2x fa-couch normal-seat" ></i></a>
-            <i *ngIf="x != 5 && y != 0" class="fas fa-2x fa-couch normal-seat" id="{{x + y}}"
-               (click)="changeColor(x, y)"></i>
-            <i *ngIf="x == 5" class="fas fa-2x fa-couch vip-seat"></i>
-          </td>
-        </tr>
-        </tbody>
-      </table>
     </div>
-    <div class="col-lg-2 space-div"></div>
   </div>
 </div>
