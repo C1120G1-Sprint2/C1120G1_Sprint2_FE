@@ -1,0 +1,83 @@
+<div class="input-group col-7 my-3">
+  <select [(ngModel)]="optionSearch" class="form-control mx-2">
+    <option value="1">Tìm kiếm theo Mã đặt vé</option>
+    <option value="2">Tìm kiếm theo Mã thành viên</option>
+    <option value="3">Tìm kiếm theo Số điện thoại</option>
+    <option value="4">Tìm kiếm theo CMND</option>
+  </select>
+  <input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Search"
+         aria-describedby="search-addon" [(ngModel)]="keySearch">
+  <button type="button" class="btn btn-outline-success mx-2" (click)="search()">Tìm kiếm</button>
+</div>
+<div class="card border-success">
+  <h3 class="title" style="color: #FF8C00">Quản lý đặt vé</h3>
+  <div>
+    <div *ngIf="bookedTicketList.length > 0; else nodata">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Mã đặt vé</th>
+          <th>Mã thành viên</th>
+          <th>Họ tên</th>
+          <th>CMND</th>
+          <th>Phim</th>
+          <th>Xuất chiếu</th>
+          <th>Nhận vé</th>
+          <th>Huỷ vé</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <tr *ngFor="let item of bookedTicketList">
+          <td>{{item.ticketId}}</td>
+          <td>{{item.user.userId}}</td>
+          <td>{{item.user.name}}</td>
+          <td>{{item.user.idCard}}</td>
+          <td>{{item.movieTicket.movie.movieName}}</td>
+          <td>{{item.movieTicket.showDate}} / {{item.movieTicket.showTime.showTime}}</td>
+          <td>
+            <button class="btn btn-success" [routerLink]="[item.ticketId]">
+              <i class="far fa-check-square"></i>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#cancelTicketModal"
+                    (click)="cancelId = item.ticketId">
+              <i class="far fa-window-close"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Trước</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <ng-template #nodata>
+      <p style="color: red" class="text-center">----------Không có khách hàng đặt vé----------</p>
+    </ng-template>
+  </div>
+</div>
+
+<div class="modal fade" id="cancelTicketModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-cancel-ticket [cancelId]="cancelId" (cancelComplete)="cancelSuccess()"></app-cancel-ticket>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

@@ -19,6 +19,8 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BookingModule} from './module/booking/booking.module';
 
+import {ToastrModule} from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,10 @@ import {BookingModule} from './module/booking/booking.module';
     AngularFireDatabaseModule,
     HttpClientModule,
     FormsModule,
-    BookingModule
+    BookingModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
