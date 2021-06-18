@@ -15,6 +15,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {ToastrModule} from 'ngx-toastr';
     AngularFireDatabaseModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

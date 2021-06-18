@@ -7,7 +7,10 @@ import { GetTicketComponent } from './get-ticket/get-ticket.component';
 import { CancelTicketComponent } from './cancel-ticket/cancel-ticket.component';
 import { ConfirmTicketComponent } from './confirm-ticket/confirm-ticket.component';
 import { PrintTicketComponent } from './print-ticket/print-ticket.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
+import {AppRoutingModule} from '../../../app-routing.module';
 
 
 @NgModule({
@@ -16,7 +19,9 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     EmployeeBookTicketsManagementRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    ReactiveFormsModule,
   ]
 })
 export class EmployeeBookTicketsManagementModule { }
