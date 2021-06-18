@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MemberManagementService {
+export class MemberManagementService implements OnInit{
 
   constructor() { }
+
+  ngOnInit(): void {
+  }
+
 }

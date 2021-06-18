@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {BookTicketsService} from '../../../service/member/book-tickets/book-tickets.service';
+import {Ticket} from '../../../model/ticket';
+import {MovieTicket} from '../../../model/movieTicket';
+import {Seat} from '../../../model/seat';
 
 @Component({
   selector: 'app-seat-selection',
@@ -6,33 +10,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./seat-selection.component.scss']
 })
 export class SeatSelectionComponent implements OnInit {
+  listCol:number[] = [];
+  listRow:string[] = [];
 
-  listCol:string[] = ["A", "B", "C", "D", "E", "F"];
-  listRow:string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-  seatNumber:number = 2;
+  listSeat: Seat[] = [];
+  seatNumber:number;
+  ticket:Ticket;
+  movieTicket:MovieTicket;
 
-  constructor() { }
+  constructor(private bookTicketsService:BookTicketsService) { }
 
   ngOnInit(): void {
+    this.ticket = this.bookTicketsService.ticket;
+    this.movieTicket = this.ticket.movieTicket;
+    this.getAllSeat(this.movieTicket.room.roomId);
   }
 
-  chooseSeat(col:string, row:string) {
-    let seat = col + row;
-    let color = document.getElementById(seat).style.color;
-
-    if (this.seatNumber > 0) {
-      if (color == 'gray' || color == 'purple') {
-        color = 'green';
-        this.seatNumber--;
-      } else if (color == 'green') {
-        color = 'gray';
-        this.seatNumber++;
+  getAllSeat(roomId:number){
+    this.bookTicketsService.getAllSeat(roomId).subscribe(data => {
+      this.listSeat = data;
+      console.log(this.listSeat)
+      for(let seat of this.listSeat) {
+        if (this.listCol.indexOf(seat.column.columnName) == -1) {
+          this.listCol.push(seat.column.columnName);
+        }
+        if (this.listRow.indexOf(seat.row.rowName) == -1) {
+          this.listRow.push(seat.row.rowName);
+        }
       }
-    } else if (this.seatNumber == 0 && color == 'green') {
-      color = 'gray';
-      this.seatNumber++;
-    }
-    document.getElementById(seat).style.color = color;
+      console.log(this.listRow);
+      console.log(this.listCol);
+
+    }, error =>  {
+      console.log("get "+error+" at getAllSeat() on SeatSelectionComponent");
+    })
   }
+
+  chooseSeat(col:number, row:string) {
+    let seat = col + row;
+    document.getElementById(seat).style.backgroundColor;
+  }
+
+
 
 }

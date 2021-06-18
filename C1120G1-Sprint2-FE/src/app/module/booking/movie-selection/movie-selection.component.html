@@ -43,10 +43,10 @@
         </tbody>
         <tbody *ngIf="listDateTime">
         <tr>
-          <select class="form-control bg-white">
+          <select class="form-control bg-white" (change)="getShowTimeList($event.target.value)">
             <option value="" selected disabled>Vui lòng chọn ngày chiếu</option>
-            <option *ngFor="let date of listDateTime">
-              <td>{{date | date: 'dd-MM'}}</td>
+            <option *ngFor="let date of listDateTime" [ngValue]="date">
+              <td>{{date}}</td>
             </option>
           </select>
         </tr>
@@ -63,16 +63,16 @@
         <tbody *ngIf="!listShowtime">
         <tr class="disabled-hover">
           <td>
-            <span class="theater">Vui lòng chọn suất</span>
+            <span class="theater">Chưa có suất chiếu</span>
           </td>
         </tr>
         </tbody>
         <tbody *ngIf="listShowtime">
         <tr>
-          <select class="form-control bg-white">
+          <select class="form-control bg-white" [(ngModel)]="showTimeId">
             <option value="" selected disabled>Vui lòng chọn suất chiếu</option>
-            <option *ngFor="let show of listShowtime">
-              <td>{{show}}</td>
+            <option *ngFor="let show of listShowtime" [value]="show.showTimeId">
+              <td>{{show.showTime}}</td>
             </option>
           </select>
         </tr>
@@ -82,13 +82,11 @@
   </div>
 
   <div id="btnContinue" class="text-center mb-4">
-    <a routerLink="seat">
-      <button class="btn btn-outline-success rounded-pill" type="button">
+    <button class="btn btn-outline-success rounded-pill" type="button" (click)="getMovieTicket()">
         <span class="arrow">
           <i class="fas fa-2x fa-arrow-right"></i>
         </span>
-      </button>
-    </a>
+    </button>
   </div>
 </div>
 

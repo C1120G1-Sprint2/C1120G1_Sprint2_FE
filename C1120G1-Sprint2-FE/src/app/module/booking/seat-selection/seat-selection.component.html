@@ -11,53 +11,51 @@
   <div class="container-fluid p-0">
     <p id="movie-picked-title">Bạn đã chọn</p>
     <div id="movie-picked-content" class="row m-0 p-0">
-      <p>Phim : Spider Man 2</p>
-      <p>Ngày chiếu : 15-06-2021</p>
-      <p>Suất chiếu : 15:20</p>
+      <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
+      <p>Ngày chiếu : <span>{{movieTicket.showDate}}</span></p>
+      <p>Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
     </div>
     <div class="container-fluid justify-content-center align-items-center">
-      <div class="text-left col-6 d-inline-flex align-items-center pl-0 mb-4">
-        <label for="seatNumber">Nhập số vé cần mua</label>
-        <input type="number" id="seatNumber"
-               class="form-control col-3 ml-3"
-               min="1" [max]="listRow.length * listCol.length">
-      </div>
+
+<!--      choose seat-->
       <div id="seat-show" class="row m-0 p-0">
         <div class="col-lg-2 space-div"></div>
         <div class="col-lg-8 col-md-12">
-          <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
-            <div>
-              <i class="fas fa-2x fa-couch empty-seat"></i>
-              <span class="instructor-label mr-lg-3 mr-md-1">Ghế trống</span>
-            </div>
-            <div>
-              <i class="fas fa-2x fa-couch selecting-seat"></i>
-              <span class="instructor-label mr-lg-3 mr-md-1">Ghế đang chọn</span>
-            </div>
-            <div>
-              <i class="fas fa-2x fa-couch ordered-seat"></i>
-              <span class="instructor-label mr-lg-3 mr-md-1">Ghế đã có người đặt</span>
-            </div>
-            <div>
-              <i class="fas fa-2x fa-couch vip-seat"></i>
-              <span class="instructor-label mr-lg-0 mr-md-1">Ghế VIP</span>
-            </div>
-          </div>
           <table class="table table-borderless" id="seat">
-            <tbody class="text-center">
+            <tbody class="text-center justify-content-center align-items-center">
             <tr *ngFor='let col of listCol'>
-              <td>
-                <span class="col-title">{{col}}</span>
-              </td>
-              <td *ngFor='let row of listRow'>
-                <i [id]="col+row" class="fas fa-2x fa-couch" style="color: gray"
-                   (click)="chooseSeat(col,row)"></i>
+              <td *ngFor='let row of listRow'
+                  [id]="col+row"
+                  (click)="chooseSeat(col,row)"
+                  class="td-seat m-1 p-0">
+                <span>{{col}}{{row}}</span>
               </td>
             </tr>
             </tbody>
           </table>
         </div>
         <div class="col-lg-2 space-div"></div>
+      </div>
+
+<!--      instructor-->
+      <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
+        <div>
+          <i class="fas fa-2x fa-couch empty-seat"></i>
+          <span class="instructor-label mr-lg-3 mr-md-1">Ghế trống</span>
+        </div>
+        <div>
+          <i class="fas fa-2x fa-couch selecting-seat"></i>
+          <span class="instructor-label mr-lg-3 mr-md-1">Ghế đang chọn</span>
+        </div>
+        <br>
+        <div>
+          <i class="fas fa-2x fa-couch ordered-seat"></i>
+          <span class="instructor-label mr-lg-3 mr-md-1">Ghế đã có người đặt</span>
+        </div>
+        <div>
+          <i class="fas fa-2x fa-couch vip-seat"></i>
+          <span class="instructor-label mr-lg-0 mr-md-1">Ghế VIP</span>
+        </div>
       </div>
     </div>
   </div>

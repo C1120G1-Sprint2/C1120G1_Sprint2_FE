@@ -97,4 +97,11 @@ hr {
 .fa-arrow-right, .fa-arrow-left {
   width: 5rem;
 }
-
+.td-seat{
+  width: 36px;
+  height: 36px;
+  border: 1px solid green;
+}
+.td-seat:hover {
+  cursor: pointer;
+}
