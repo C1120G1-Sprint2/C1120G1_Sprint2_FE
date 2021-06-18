@@ -27,6 +27,11 @@ const routes: Routes = [
         // tslint:disable-next-line:max-line-length
         loadChildren: () => import('./admin-statistical-management/admin-statistical-management.module').then(module => module.AdminStatisticalManagementModule)
       },
+      {
+        path:'movie-ticket',
+        // tslint:disable-next-line:max-line-length
+        loadChildren: () => import('./admin-movie-ticket/admin-movie-ticket.module').then(module => module.AdminMovieTicketModule)
+      },
       {path: '', redirectTo: '', pathMatch: 'full'},
       {path: '**', redirectTo: '', pathMatch: 'full'}
     ]

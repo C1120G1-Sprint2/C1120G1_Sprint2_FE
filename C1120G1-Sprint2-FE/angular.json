@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "C1120G1-Sprint2-FE"
+  "defaultProject": "C1120G1-Sprint2-FE",
+  "cli": {
+    "analytics": "cadd94a8-c52b-4f24-93dc-27a3f54b8478"
+  }
 }

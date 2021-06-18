@@ -4,6 +4,7 @@ import {MainHomePageComponent} from './module/main/main-home-page/main-home-page
 import {RegisterComponent} from './module/security/register/register.component';
 import {LoginComponent} from './module/security/login/login.component';
 import {LogoutComponent} from './module/security/logout/logout.component';
+import {DetailMovieComponent} from './module/main/detail-movie/detail-movie.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: '', component: MainHomePageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'detail-movie/:id', component: DetailMovieComponent}
 ];
 
 @NgModule({
