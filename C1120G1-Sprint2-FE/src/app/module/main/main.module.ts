@@ -8,9 +8,13 @@ import {MainContentComponent} from './main-content/main-content.component';
 
 
 @NgModule({
-  declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent, MainContentComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent, MainContentComponent],
+  exports: [
+    MainHeaderComponent,
+    MainFooterComponent
+  ],
+    imports: [
+        CommonModule
+    ]
 })
 export class MainModule { }
