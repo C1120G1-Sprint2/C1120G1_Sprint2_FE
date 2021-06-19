@@ -1,1 +1,88 @@
-<p>main-header works!</p>
+<div class="header">
+  <div class="header-wrap clearfix d-flex">
+    <div class="logo-wrap img">
+      <a routerLink="/" title="Trang chủ">
+        <img src="../../../../assets/layout-images/logo.png" alt="Logo C11" class="img-logo">
+      </a>
+    </div>
+    <div class="header-content">
+      <div class="topbar-wrap">
+        <div class="topbar-group clearfix">
+          <div class="topbar-left">
+            <!--Search box-->
+            <div class="search-box">
+              <form class="navbar-form w-100" role="search">
+                <div class="input-group">
+                  <input type="text" class="input-search form-control" placeholder="Search" name="q">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default shadow-none" type="submit"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- <div class="search-box">
+              <label>
+                <input type="text" class="form-control shadow-none" placeholder="Tìm tên phim, diễn viên,...">
+              </label>
+              <button class="btn btn-search"><i class="fas fa-search"></i></button>
+            </div> -->
+          </div>
+          <div class="topbar-right" id="welcome-header">
+            <!--Member register-->
+            <div class="member-register">
+              <div id="pnlNotLogin">
+                <div class="register-icon">
+                  <ul class="clearfix">
+                    <li>
+                      <a class="register" routerLink="/register">Đăng ký</a>
+                    </li>
+                    <li>
+                      <a class="login" routerLink="/login">Đăng nhập</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-wrap">
+        <div class="menu">
+          <ul>
+            <li>
+              <a routerLink="/mua-ve" title="Mua vé">
+                <span class="item-ticket">Mua vé</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/rap" title="Rạp & Giá vé">
+                <span class="item-fare">Rạp & Giá vé</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/goc-dien-anh" title="Góc điện ảnh">
+                <span class="item-cinema-corner">Góc điện ảnh</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/su-kien" title="Sự kiện">
+                <span class="item-event">Sự kiện</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/huong-dan" title="Hướng dẫn">
+                <span class="item-instruction">Hướng dẫn</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/chinh-sach" title="Chính sách">
+                <span class="item-policy">Chính sách</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

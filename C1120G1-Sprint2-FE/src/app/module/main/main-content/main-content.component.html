@@ -1,1 +1,588 @@
-<p>main-content works!</p>
+<div id="home-contents">
+  <!--Carousel-->
+  <div id="main-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
+    <ol class="carousel-indicators">
+      <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#main-carousel" data-slide-to="1" class=""></li>
+      <li data-target="#main-carousel" data-slide-to="2" class=""></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active" role="option">
+        <a routerLink="/phim/cruella">
+          <img src="../../../../assets/banners/cruella-1.jpg" alt="">
+        </a>
+<!--        <a class="video-btn video" data-toggle="modal"-->
+<!--           data-video="https://www.youtube.com/embed/aB6aDO87pBE" data-target="#videoModal">-->
+<!--          <i class="icon-play"></i>-->
+<!--        </a>-->
+<!--        <div class="play_trainer">-->
+<!--          <div id="video-view"></div>-->
+<!--        </div>-->
+      </div>
+<!--      <a class="carousel-item" role="option" routerLink="/phim/lat-mat-48h">-->
+<!--        <img src="../../../../assets/banners/lat-mat.jpg" alt="">-->
+<!--        <div class="container content-wrap">-->
+<!--          <div class="play-bt trailer-bt-banner">-->
+<!--            <galaxy-watch-trailer ng-trailer="&quot;https://www.youtube.com/watch?v=jox0zmGyHLU&quot;"-->
+<!--                                  data-title="&quot;Lật Mặt 48H&quot;" class="ng-isolate-scope">-->
+<!--              <a class="btn primary animated fadeInUp" (click)="submit()"> trailer</a>-->
+<!--            </galaxy-watch-trailer>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </a>-->
+      <a class="carousel-item" role="option" routerLink="/phim/thien-than-ho-menh">
+        <img src="../../../../assets/banners/thien-than-ho-menh.png" alt="">
+      </a>
+    </div>
+    <a href="#main-carousel" class="left carousel-control-prev" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a href="#main-carousel" class="right carousel-control-next" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <div class="top-list">
+    <div class="top-sale">
+      <div class="top-sale-header">
+        <div class="title">
+          <i class="fal fa-star mx-1"></i>
+          <i class="fal fa-star mx-1"></i>
+          <i class="fal fa-star mx-1"></i>
+          <p class="mx-1">TOP 3 DOANH THU </p>
+          <i class="fal fa-star mx-1"></i>
+          <i class="fal fa-star mx-1"></i>
+          <i class="fal fa-star mx-1"></i>
+        </div>
+      </div>
+      <div class="top-movies">
+        <div class="row m-0 h-100">
+          <div class="col h-100 px-2">
+            <div class="last top-2">
+              <a routerLink="/phim/cruella---chi-tiet-phim-9634" title="caption">
+                <img src="../../../../assets/posters/cruella.jpeg" alt="cruella.jpeg" title="cruella.jpeg">
+                <img class="tag" src="../../../../assets/layout-images/top-2.png" alt="top-2">
+              </a>
+              <!-- <div class="movie_hover" onclick="location.href='/phim/cruella---chi-tiet-phim-9634'">
+                      <p href="/phim/cruella-(2d)--chi-tiet-phim-9634" class="tx_black">Cruella (2D)</p>
+                      <p class="font_light">
+                          Thể loại: Hài<br>
+                          Khởi chiếu: 25/06/2021
+                      </p>
+                      <a href="/dat-ve?movieId=9634" class="btn-datve">ĐẶT VÉ</a>
+                  </div> -->
+            </div>
+          </div>
+          <div class="col h-100 px-2">
+            <div class="last top-1">
+              <a routerLink="/phim/fast-furious-9-(2d)---chi-tiet-phim-9360" title="caption">
+                <img src="../../../../assets/posters/fast-furious.jpeg" alt="fast-furious.jpeg"
+                     title="fast-furious.jpeg">
+                <img class="tag" src="../../../../assets/layout-images/top-1.png" alt="top-1">
+              </a>
+              <!-- <div class="movie_hover"
+                      onclick="location.href='/phim/fast-furious-9-(2d)---chi-tiet-phim-9360'">
+                      <p href="/phim/fast-furious-9-(2d)---chi-tiet-phim-9360" class="tx_black">FAST &amp;
+                          FURIOUS
+                          9 (2D)</p>
+                      <p class="font_light">
+                          Thể loại: Hành động<br>
+                          Khởi chiếu: 25/06/2021
+                      </p>
+                      <a href="/dat-ve?movieId=9360" class="btn-datve">ĐẶT VÉ</a>
+                  </div> -->
+            </div>
+          </div>
+          <div class="col h-100 px-2">
+            <div class="last top-3">
+              <a routerLink="/phim/doraemon-luon-ben-ban-2---chi-tiet-phim-9641" title="caption">
+                <img src="../../../../assets/posters/doraemon.jpeg" alt="doraemon.jpeg" title="doraemon.jpeg">
+                <img class="tag" src="../../../../assets/layout-images/top-3.png" alt="top-3">
+              </a>
+              <!-- <div class="movie_hover"
+                      onclick="location.href='/phim/doraemon-luon-ben-ban-2---chi-tiet-phim-9641'">
+                      <p href="/phim/doraemon-luon-ben-ban-2---chi-tiet-phim-9641" class="tx_black">Doraemon:
+                          Luôn
+                          bên bạn 2</p>
+                      <p class="font_light">
+                          Thể loại: Hoạt hình<br>
+                          Khởi chiếu: 25/06/2021
+                      </p>
+                      <a href="/dat-ve?movieId=9641" class="btn-datve">ĐẶT VÉ</a>
+                  </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contents-page">
+    <div class="movie-wrapper row">
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <div id="tab-movies">
+          <div class="tabs-movie-line">
+            <ul class="nav nav-tabs movie-home">
+              <li class="active">
+                <a href="#tab_onshowing" data-toggle="tab" aria-expanded="true">Phim đang chiếu</a>
+              </li>
+              <li class="">
+                <a href="#tab_upcoming" data-toggle="tab" aria-expanded="false">Phim sắp chiếu</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_onshowing">
+                <div class="row movies-group animated fadeInUp mx-0">
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home">
+                      <img
+                        src="https://www.galaxycine.vn/media/2019/12/19/aqp2-intl-tsr-dgtl-1-sht-imax-vie---copy-2_1576723481323.jpg"
+                        data-src="https://www.galaxycine.vn/media/2019/12/19/aqp2-intl-tsr-dgtl-1-sht-imax-vie---copy-2_1576723481323.jpg"
+                        class="lazy">
+                      <a routerLink="/phim/a-quiet-place-2">
+                        <div class="decription-hover overlay">
+                          <div class="movie-content"><i></i>
+                            <div class="group">
+                              <div class="btn secondary-white">mua vé</div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">A Quiet Place 2</h4>
+                      <h4 class="vn upper-text">Vùng Đất Câm Lặng 2</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home"><img
+                      src="https://www.galaxycine.vn/media/2019/12/6/450x300_1575618265112.jpg"
+                      data-src="https://www.galaxycine.vn/media/2019/12/6/450x300_1575618265112.jpg"
+                      class="lazy loaded" data-was-processed="true"><a
+                      routerLink="/phim/black-widow">
+                      <div class="decription-hover overlay">
+                        <div class="movie-content"><i></i>
+                          <div class="group">
+                            <div class="btn secondary-white">mua vé</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a></div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">Black Widow</h4>
+                      <h4 class="vn upper-text">Góa Phụ Đen</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home"><img
+                      src="https://www.galaxycine.vn/media/2021/3/29/450-chia_1617003814923.jpg"
+                      data-src="https://www.galaxycine.vn/media/2021/3/29/450-chia_1617003814923.jpg"
+                      class="lazy loaded" data-was-processed="true"><a
+                      routerLink="/phim/chia-khoa-tram-ty">
+                      <div class="decription-hover overlay">
+                        <div class="movie-content"><i></i>
+                          <div class="group">
+                            <div class="btn secondary-white">mua vé</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a></div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">Chìa Khóa Trăm Tỷ</h4>
+                      <h4 class="vn upper-text"></h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home"><img
+                      src="https://www.galaxycine.vn/media/2019/7/18/kingsman5_1563422515152.jpg"
+                      data-src="https://www.galaxycine.vn/media/2019/7/18/kingsman5_1563422515152.jpg"
+                      class="lazy loaded" data-was-processed="true"><a
+                      routerLink="/phim/kings-man">
+                      <div class="decription-hover overlay">
+                        <div class="movie-content"><i></i>
+                          <div class="group">
+                            <div class="btn secondary-white">mua vé</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a></div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">The King's Man</h4>
+                      <h4 class="vn upper-text">Kingsman: Khởi Nguồn</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home"><img
+                      src="https://www.galaxycine.vn/media/2020/8/7/1350wx90d0h_1596782997827.jpg"
+                      data-src="https://www.galaxycine.vn/media/2020/8/7/1350wx90d0h_1596782997827.jpg"
+                      class="lazy loaded" data-was-processed="true"><a
+                      routerLink="/phim/candyman">
+                      <div class="decription-hover overlay">
+                        <div class="movie-content"><i></i>
+                          <div class="group">
+                            <div class="btn secondary-white">mua vé</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a></div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">Candyman</h4>
+                      <h4 class="vn upper-text">Sát Nhân Trong Gương</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home"><img
+                      src="https://www.galaxycine.vn/media/2021/4/20/shang-chi-and-ten-rings-9_1618891846641.jpg"
+                      data-src="https://www.galaxycine.vn/media/2021/4/20/shang-chi-and-ten-rings-9_1618891846641.jpg"
+                      class="lazy loaded" data-was-processed="true"><a
+                      routerLink="/phim/shang-chi-and-the-legend-of-the-ten-rings">
+                      <div class="decription-hover overlay">
+                        <div class="movie-content"><i></i>
+                          <div class="group">
+                            <div class="btn secondary-white">mua vé</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a></div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">Shang-Chi And The Legend Of The Ten Rings</h4>
+                      <h4 class="vn upper-text">Shang-Chi Và Huyền Thoại Thập Nhẫn</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mx-0">
+                  <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                    <a routerLink="/phim-dang-chieu" class="btn secondary btn-load-more">Xem thêm</a>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab_default_2">
+                <div class="row movies-group animated fadeInUp mx-0">
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home"><img
+                      src="https://www.galaxycine.vn/media/2021/4/20/shang-chi-and-ten-rings-9_1618891846641.jpg"
+                      data-src="https://www.galaxycine.vn/media/2021/4/20/shang-chi-and-ten-rings-9_1618891846641.jpg"
+                      class="lazy loaded" data-was-processed="true"><a
+                      routerLink="/phim/shang-chi-and-the-legend-of-the-ten-rings">
+                      <div class="decription-hover overlay">
+                        <div class="movie-content"><i></i>
+                          <div class="group">
+                            <div class="btn secondary-white">mua vé</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a></div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">Shang-Chi And The Legend Of The Ten Rings</h4>
+                      <h4 class="vn upper-text">Shang-Chi Và Huyền Thoại Thập Nhẫn</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home"><img
+                      src="https://www.galaxycine.vn/media/2021/4/20/shang-chi-and-ten-rings-9_1618891846641.jpg"
+                      data-src="https://www.galaxycine.vn/media/2021/4/20/shang-chi-and-ten-rings-9_1618891846641.jpg"
+                      class="lazy loaded" data-was-processed="true"><a
+                      routerLink="/phim/shang-chi-and-the-legend-of-the-ten-rings">
+                      <div class="decription-hover overlay">
+                        <div class="movie-content"><i></i>
+                          <div class="group">
+                            <div class="btn secondary-white">mua vé</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a></div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">Shang-Chi And The Legend Of The Ten Rings</h4>
+                      <h4 class="vn upper-text">Shang-Chi Và Huyền Thoại Thập Nhẫn</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <div class="article-movie-home"><img
+                      src="https://www.galaxycine.vn/media/2021/4/20/shang-chi-and-ten-rings-9_1618891846641.jpg"
+                      data-src="https://www.galaxycine.vn/media/2021/4/20/shang-chi-and-ten-rings-9_1618891846641.jpg"
+                      class="lazy loaded" data-was-processed="true"><a
+                      routerLink="/phim/shang-chi-and-the-legend-of-the-ten-rings">
+                      <div class="decription-hover overlay">
+                        <div class="movie-content"><i></i>
+                          <div class="group">
+                            <div class="btn secondary-white">mua vé</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a></div>
+                    <div class="title-movie">
+                      <h4 class="upper-text">Shang-Chi And The Legend Of The Ten Rings</h4>
+                      <h4 class="vn upper-text">Shang-Chi Và Huyền Thoại Thập Nhẫn</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mx-0">
+                  <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                    <a routerLink="/phim-sap-chieu" class="btn secondary btn-load-more">Xem thêm</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div id="buyTicket">
+          <div class="tabs-buy-ticket">
+            <div class="label-tabs-buy-ticket">mua vé nhanh</div>
+            <div class="content-movie btn-box-select-ticket">
+              <form>
+                <select class="form-control mb-3" name="movie" id="movie">
+                  <option value="">Chọn phim</option>
+                  <option value="1">Cruella</option>
+                  <option value="2">Lật mặt 48h</option>
+                  <option value="3">Thiên thần hộ mệnh</option>
+                </select>
+                <select class="form-control mb-3" name="theater" id="theater">
+                  <option value="">Chọn rạp</option>
+                  <option value="1">C11 Hà Nội</option>
+                  <option value="2">C11 Đà Nẵng</option>
+                  <option value="3">C11 Hồ Chí Minh</option>
+                </select>
+                <select class="form-control mb-3" name="date" id="date">
+                  <option value="">Chọn ngày</option>
+                  <option value="11-06-2021">11-06-2021</option>
+                  <option value="12-06-2021">12-06-2021</option>
+                  <option value="13-06-2021">13-06-2021</option>
+                </select>
+                <select class="form-control mb-3" name="time" id="time">
+                  <option value="">Chọn suất</option>
+                  <option value="1">10h</option>
+                  <option value="2">14h</option>
+                  <option value="3">19h</option>
+                </select>
+                <button class="btn-buy-ticket">mua vé</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div id="movieSidebar">
+
+        </div>
+      </div>
+    </div>
+    <div class="benefit-wrapper col-md-12 col-xs-12">
+      <section id="promotion"><a routerLink="/khuyen-mai" class="title-block">
+        <h3>Tin khuyến mãi</h3>
+      </a>
+        <div class="row promotion">
+          <div class="col-md-3 col-sm-4 col-xs-6 promotion-item">
+            <div class="promotion-item-home"><a routerLink="/khuyen-mai/thong-tin-ung-dung-galaxy-cinema"><img
+              src="https://www.galaxycine.vn/media/2021/5/27/glx_1622105624120.png"
+              data-src="https://www.galaxycine.vn/media/2021/5/27/glx_1622105624120.png"
+              class="lazy loaded" data-was-processed="true"></a>
+              <div class="decription-hover overlay hidden-xs"><a
+                routerLink="/khuyen-mai/thong-tin-ung-dung-galaxy-cinema">
+                <div class="info">
+                  <h2>Thông Tin Ứng Dụng Galaxy Cinema</h2>
+                  <p>
+                    <!--| -->
+                  </p>
+                </div>
+              </a>
+                <div class="group"><a routerLink="/khuyen-mai/thong-tin-ung-dung-galaxy-cinema"></a><a
+                  routerLink="/khuyen-mai/thong-tin-ung-dung-galaxy-cinema"
+                  class="btn secondary-white">chi tiết</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 promotion-item">
+            <div class="promotion-item-home"><a routerLink="/khuyen-mai/nhan-ve-mien-phi-rinh-bap-ve-nha"><img
+              src="https://www.galaxycine.vn/media/2021/4/12/300x450_1618212644894.jpg"
+              data-src="https://www.galaxycine.vn/media/2021/4/12/300x450_1618212644894.jpg"
+              class="lazy loaded" data-was-processed="true"></a>
+              <div class="decription-hover overlay hidden-xs"><a
+                routerLink="/khuyen-mai/nhan-ve-mien-phi-rinh-bap-ve-nha">
+                <div class="info">
+                  <h2>Nhận Vé Miễn Phí, Rinh Bắp Về Nhà</h2>
+                  <p></p>
+                  <p><span style="font-size:14px;"><span
+                    style="font-family:Arial,Helvetica,sans-serif;"><span
+                    style="line-height:115%"><span style="line-height:115%">Rất
+                                                                nhiều vé xem phim miễn phí và bắp ngọt tại Galaxy Linh
+                                                                Trung đang chờ các Stars rinh
+                                                                về...</span></span></span></span>
+                    <!--| -->
+                  </p>
+                  <p></p>
+                </div>
+              </a>
+                <div class="group"><a routerLink="/khuyen-mai/nhan-ve-mien-phi-rinh-bap-ve-nha"></a><a
+                  routerLink="/khuyen-mai/nhan-ve-mien-phi-rinh-bap-ve-nha"
+                  class="btn secondary-white">chi tiết</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 promotion-item">
+            <div class="promotion-item-home"><a routerLink="/khuyen-mai/ngay-thanh-vien---milo-day"><img
+              src="https://www.galaxycine.vn/media/2021/4/20/300x450_1618909082647.jpg"
+              data-src="https://www.galaxycine.vn/media/2021/4/20/300x450_1618909082647.jpg"
+              class="lazy loaded" data-was-processed="true"></a>
+              <div class="decription-hover overlay hidden-xs"><a
+                routerLink="/khuyen-mai/ngay-thanh-vien---milo-day">
+                <div class="info">
+                  <h2>Ngày Thành Viên - Milo Day</h2>
+                  <p></p>
+                  <p>Bước sang năm mới, Galaxy dành tặng các Stars thêm một ngày tràn đầy “yêu
+                    thương” – Milo Day.
+                    <!--| -->
+                  </p>
+                  <p></p>
+                </div>
+              </a>
+                <div class="group"><a routerLink="/khuyen-mai/ngay-thanh-vien---milo-day"></a><a
+                  routerLink="/khuyen-mai/ngay-thanh-vien---milo-day"
+                  class="btn secondary-white">chi tiết</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 promotion-item">
+            <div class="promotion-item-home"><a routerLink="/khuyen-mai/galaxy-cinema-tri-an-thanh-vien"><img
+              src="https://www.galaxycine.vn/media/2021/1/18/300x450_1610956359573.png"
+              data-src="https://www.galaxycine.vn/media/2021/1/18/300x450_1610956359573.png"
+              class="lazy loaded" data-was-processed="true"></a>
+              <div class="decription-hover overlay hidden-xs"><a
+                routerLink="/khuyen-mai/galaxy-cinema-tri-an-thanh-vien">
+                <div class="info">
+                  <h2>Galaxy Cinema Tri Ân Thành Viên</h2>
+                  <p></p>
+                  <p><span style="font-size:14px;"><span
+                    style="font-family:Arial,Helvetica,sans-serif;"><span
+                    style="line-height:107%"><span
+                    style="line-height:107%"><span style="color:#222222">Tri
+                                                                    ân tình cảm của các Stars, <b>Galaxy Cinema</b> dành
+                                                                    tặng hàng loạt ưu đãi chưa – từng – có mừng
+                                                                    2021.</span></span></span></span></span>
+                    <!--| -->
+                  </p>
+                  <p></p>
+                </div>
+              </a>
+                <div class="group"><a routerLink="/khuyen-mai/galaxy-cinema-tri-an-thanh-vien"></a><a
+                  routerLink="/khuyen-mai/galaxy-cinema-tri-an-thanh-vien"
+                  class="btn secondary-white">chi tiết</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 promotion-item">
+            <div class="promotion-item-home"><a
+              routerLink="/khuyen-mai/app-galaxy-cinema--chi-mat-nua-giay-den-ngay-phong-chieu"><img
+              src="https://www.galaxycine.vn/media/2020/9/24/300x450_1600914057388.jpg"
+              data-src="https://www.galaxycine.vn/media/2020/9/24/300x450_1600914057388.jpg"
+              class="lazy loaded" data-was-processed="true"></a>
+              <div class="decription-hover overlay hidden-xs"><a
+                routerLink="/khuyen-mai/app-galaxy-cinema--chi-mat-nua-giay-den-ngay-phong-chieu">
+                <div class="info">
+                  <h2>Ứng Dụng Galaxy: Chọn Lối Đi Riêng, Vào Thẳng Rạp Phim</h2>
+                  <p></p>
+                  <p>
+                    <!--| --><span style="font-family:Arial,Helvetica,sans-serif;"><span
+                    style="font-size:14px;"><span style="line-height:normal">Galaxy
+                                                            Cinema ra mắt app mới, việc đặt vé online <b>dễ dàng</b> hơn
+                                                            bao giờ hết. Chỉ với một thao tác nhỏ là các Stars có thể
+                                                            đến thẳng phòng chiếu xem phim <b>ngay lập
+                                                                tức</b>.</span></span></span>
+                  </p>
+                  <p></p>
+                </div>
+              </a>
+                <div class="group"><a
+                  routerLink="/khuyen-mai/app-galaxy-cinema--chi-mat-nua-giay-den-ngay-phong-chieu"></a><a
+                  routerLink="/khuyen-mai/app-galaxy-cinema--chi-mat-nua-giay-den-ngay-phong-chieu"
+                  class="btn secondary-white">chi tiết</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 promotion-item">
+            <div class="promotion-item-home"><a
+              routerLink="/khuyen-mai/tung-bung-hai-sao--nhan-uu-dai-khung"><img
+              src="https://www.galaxycine.vn/media/2019/12/9/300x450_1575874237175.jpg"
+              data-src="https://www.galaxycine.vn/media/2019/12/9/300x450_1575874237175.jpg"
+              class="lazy loaded" data-was-processed="true"></a>
+              <div class="decription-hover overlay hidden-xs"><a
+                routerLink="/khuyen-mai/tung-bung-hai-sao--nhan-uu-dai-khung">
+                <div class="info">
+                  <h2>TƯNG BỪNG HÁI "SAO" – NHẬN ƯU ĐÃI KHỦNG</h2>
+                  <p></p>
+                  <p>Galaxy Cinema ra mắt hệ thống tích điểm thành viên hoàn toàn mới!
+                    <!--| -->
+                  </p>
+                  <p></p>
+                </div>
+              </a>
+                <div class="group"><a routerLink="/khuyen-mai/tung-bung-hai-sao--nhan-uu-dai-khung"></a><a
+                  routerLink="/khuyen-mai/tung-bung-hai-sao--nhan-uu-dai-khung"
+                  class="btn secondary-white">chi tiết</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 promotion-item">
+            <div class="promotion-item-home"><a
+              routerLink="/khuyen-mai/ngay-tri-an-cua-galaxy-cinema---ngay-thu-hai-dau-tien-moi-thang">
+              <img src="https://www.galaxycine.vn/media/2021/4/22/1200x1800_1619064936544.jpg"
+                   data-src="https://www.galaxycine.vn/media/2021/4/22/1200x1800_1619064936544.jpg"
+                   class="lazy loaded" data-was-processed="true"></a>
+              <div class="decription-hover overlay hidden-xs"><a
+                routerLink="/khuyen-mai/ngay-tri-an-cua-galaxy-cinema---ngay-thu-hai-dau-tien-moi-thang">
+                <div class="info">
+                  <h2>Ngày Tri Ân Của Galaxy Cinema - Ngày Thứ Hai ĐẦU TIÊN Mỗi Tháng</h2>
+                  <p></p>
+                  <p>
+                    <!--| --><span style="font-size:11pt"><span
+                    style="line-height:115%"><span
+                    style="font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><span
+                    style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Từ
+                                                                lâu, chương trình Ngày Tri Ân Nhằm tạo điều kiện thuận
+                                                                lợi hơn cho các khách hàng thả ga xem phim đã trở nên
+                                                                quen thuộc với các khách hàng thân yêu của Galaxy
+                                                                Cinema.</span></span></span></span>
+                  </p>
+                  <p></p>
+                </div>
+              </a>
+                <div class="group"><a
+                  routerLink="/khuyen-mai/ngay-tri-an-cua-galaxy-cinema---ngay-thu-hai-dau-tien-moi-thang"></a><a
+                  routerLink="/khuyen-mai/ngay-tri-an-cua-galaxy-cinema---ngay-thu-hai-dau-tien-moi-thang"
+                  class="btn secondary-white">chi tiết</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 promotion-item">
+            <div class="promotion-item-home"><a routerLink="/khuyen-mai/x2-thanh-vien-x2-quyen-loi">
+              <img src="https://www.galaxycine.vn/media/2020/7/1/galaxy-website-1_1593573807717.jpg"
+                   data-src="https://www.galaxycine.vn/media/2020/7/1/galaxy-website-1_1593573807717.jpg"
+                   class="lazy loaded" data-was-processed="true"></a>
+              <div class="decription-hover overlay hidden-xs"><a
+                routerLink="/khuyen-mai/x2-thanh-vien-x2-quyen-loi">
+                <div class="info">
+                  <h2>X2 Thành Viên - X2 Quyền Lợi</h2>
+                  <p></p>
+                  <p><span style="font-size:14px;"><span
+                    style="font-family:Arial,Helvetica,sans-serif;">Mở rộng quyền
+                                                        lợi thành viên Galaxy Cinema với tính năng đổi điểm mới dành cho
+                                                        các Stars thân yêu. Tự do quy đổi SAO sang điểm VUI của TAPTAP
+                                                        để có thêm nhiều lựa chọn ưu đãi hấp dẫn với đa dạng lĩnh vực từ
+                                                        ăn uống, mua sắm, giải trí cho đến du lịch.</span></span></p>
+
+                  <p>
+                    <!--| -->
+                  </p>
+                  <p></p>
+                </div>
+              </a>
+                <div class="group"><a routerLink="/khuyen-mai/x2-thanh-vien-x2-quyen-loi"></a><a
+                  routerLink="/khuyen-mai/x2-thanh-vien-x2-quyen-loi"
+                  class="btn secondary-white">chi tiết</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
