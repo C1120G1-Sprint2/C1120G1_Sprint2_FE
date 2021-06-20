@@ -1,6 +1,6 @@
-<div class="container">
-  <div class="row mt-3">
-    <div class="col- mx-3">
+<div class="container border">
+  <div class="row ml-2 mt-3">
+    <div class="col- mr-3">
       <div class="form-group">
         <label>Thống kê theo</label>
         <select class="form-control" [(ngModel)]="statBy">
@@ -68,9 +68,27 @@
         đầu</span>
     </div>
   </div>
-  <div class="card p-3">
+  <div class="card p-3 m-2">
     <h5>Thống kê tổng doanh thu và vé phim</h5>
     <p-chart type="line" [data]="multiAxisData" [options]="multiAxisOptions" *ngIf="chartHide == false; else nodata">
+    </p-chart>
+    <ng-template #nodata>
+      <div class="small text-danger text-center">Không có dữ liệu thống kê</div>
+    </ng-template>
+  </div>
+
+  <div class="form-group row">
+    <div class="col- ml-4 mt-3">
+      <select class="form-control" [(ngModel)]="movieTop" (change)="onMovieTop()">
+        <option [ngValue]="5">Top 5</option>
+        <option [ngValue]="10">Top 10</option>
+        <option [ngValue]="15">Top 15</option>
+      </select>
+    </div>
+  </div>
+  <div class="card p-3 m-2">
+    <h5>Top {{movieTop}} phim được xem nhiều nhất</h5>
+    <p-chart type="bar" [data]="multiAxisDataTop" [options]="multiAxisOptionsTop" *ngIf="chartHideTop == false; else nodata">
     </p-chart>
     <ng-template #nodata>
       <div class="small text-danger text-center">Không có dữ liệu thống kê</div>

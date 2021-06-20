@@ -18,7 +18,11 @@ export class MovieStatisticsComponent implements OnInit {
   year: number;
   curDate = new Date();
   chartHide: boolean = false;
+  chartHideTop: boolean = false;
   dateValidate: boolean = false;
+  multiAxisDataTop: any;
+  multiAxisOptionsTop: any;
+  movieTop: number = 5;
 
   constructor(private _statisticalService: StatisticalManagementService) { }
 
@@ -28,6 +32,7 @@ export class MovieStatisticsComponent implements OnInit {
     this.month = this.curDate.getMonth() + 1;
     this.year = this.curDate.getFullYear();
     this.onStatByYear();
+    this.onMovieTop();
   }
 
   onStatByDate() {
@@ -102,6 +107,23 @@ export class MovieStatisticsComponent implements OnInit {
     this.initMultiAxisOptions();
   }
 
+  onMovieTop() {
+    this._statisticalService.getTopMovie(this.movieTop).subscribe(data => {
+      this.initDataTop();
+      if (data != null) {
+        for (let item of data) {
+          this.multiAxisDataTop.labels.push(item.movieName);
+          this.multiAxisDataTop.datasets[0].data.push(item.ticketQuantity);
+          this.multiAxisDataTop.datasets[1].data.push(item.revenue);
+        }
+        this.chartHideTop = false;
+      } else {
+        this.chartHideTop = true;
+      }
+    })
+    this.initMultiAxisOptionsTop();
+  }
+
   initData() {
     this.multiAxisData = {
       labels: [],
@@ -115,6 +137,23 @@ export class MovieStatisticsComponent implements OnInit {
         label: 'Số vé (Vé)',
         fill: false,
         borderColor: '#FFA726',
+        yAxisID: 'y-axis-2',
+        data: []
+      }]
+    };
+  }
+
+  initDataTop() {
+    this.multiAxisDataTop = {
+      labels: [],
+      datasets: [{
+        label: 'Số vé (Vé)',
+        backgroundColor: '#42A5F5',
+        yAxisID: 'y-axis-1',
+        data: []
+      }, {
+        label: 'Doanh thu (VND)',
+        backgroundColor: '#FFA726',
         yAxisID: 'y-axis-2',
         data: []
       }]
@@ -137,6 +176,41 @@ export class MovieStatisticsComponent implements OnInit {
             precision: 0
           }
         }, {
+          type: 'linear',
+          display: true,
+          position: 'right',
+          id: 'y-axis-2',
+          gridLines: {
+            drawOnChartArea: false
+          },
+          ticks: {
+            min: 0,
+            precision: 0
+          }
+        }]
+      }
+    };
+  }
+
+  initMultiAxisOptionsTop() {
+    this.multiAxisOptionsTop = {
+      responsive: true,
+      tooltips: {
+        mode: 'index',
+        intersect: true
+      },
+      scales: {
+        yAxes: [{
+          type: 'linear',
+          display: true,
+          position: 'left',
+          id: 'y-axis-1',
+          ticks: {
+            min: 0,
+            precision: 0
+          }
+        },
+        {
           type: 'linear',
           display: true,
           position: 'right',

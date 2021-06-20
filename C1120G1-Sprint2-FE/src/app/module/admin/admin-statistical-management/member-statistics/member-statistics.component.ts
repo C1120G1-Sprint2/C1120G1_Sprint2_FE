@@ -26,7 +26,7 @@ export class MemberStatisticsComponent implements OnInit {
         for (let item of data) {
           this.multiAxisData.labels.push(item.name);
           this.multiAxisData.datasets[0].data.push(item.totalMoney);
-          this.multiAxisData.datasets[1].data.push(parseInt(item.point));
+          this.multiAxisData.datasets[1].data.push(item.point);
         }
         this.chartHide = false;
       } else {

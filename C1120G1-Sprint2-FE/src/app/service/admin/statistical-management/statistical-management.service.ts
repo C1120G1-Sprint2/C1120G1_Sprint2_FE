@@ -23,7 +23,19 @@ export class StatisticalManagementService {
     return this._httpClient.get<any>(`${this.API_URL}/movie-year?year=${year}`);
   }
 
+  getTopMovie(limit: number): Observable<any> {
+    return this._httpClient.get<any>(`${this.API_URL}/movie-top?limit=${limit}`);
+  }
+
   getTopMember(limit: number): Observable<any> {
     return this._httpClient.get<any>(`${this.API_URL}/member-top?limit=${limit}`);
+  }
+
+  getTopMovieCategory(limit: number): Observable<any> {
+    return this._httpClient.get<any>(`${this.API_URL}/category-top?limit=${limit}`);
+  }
+
+  getTopShowtime(limit: number): Observable<any> {
+    return this._httpClient.get<any>(`${this.API_URL}/showtime-top?limit=${limit}`);
   }
 }

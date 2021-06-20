@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StatisticalManagementService } from 'src/app/service/admin/statistical-management/statistical-management.service';
 
 @Component({
   selector: 'app-category-statistics',
@@ -9,31 +10,47 @@ export class CategoryStatisticsComponent implements OnInit {
 
   basicData: any;
   basicOptions: any;
+  categoryTop: number = 5;
+  chartHide: boolean = false;
 
-  constructor() { }
+  constructor(private _statisticalService: StatisticalManagementService) { }
 
   ngOnInit(): void {
+    this.onCategoryTop();
+  }
+
+  onCategoryTop() {
+    this._statisticalService.getTopMovieCategory(this.categoryTop).subscribe(data => {
+      this.initData();
+      if (data != null) {
+        for (let item of data) {
+          const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+          this.basicData.labels.push(item.categoryName);
+          this.basicData.datasets[0].backgroundColor.push(randomColor);
+          this.basicData.datasets[0].data.push(item.ticketQuantity);
+        }
+        this.chartHide = false;
+      } else {
+        this.chartHide = true;
+      }
+    })
+    this.initBasicOptions();
+  }
+
+  initData() {
     this.basicData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'January', 'February', 'March', 'April', 'May'],
+      labels: [],
       datasets: [
         {
-          label: 'Số vé (vé)',
-          backgroundColor: [
-            '#EC407A',
-            '#AB47BC',
-            '#42A5F5',
-            '#7E57C2',
-            '#66BB6A',
-            '#EC407A',
-            '#AB47BC',
-            '#42A5F5',
-            '#7E57C2',
-            '#66BB6A'
-          ],
-          data: [65, 59, 80, 81, 56, 65, 59, 80, 81, 56]
+          label: 'Số vé (Vé)',
+          backgroundColor: [],
+          data: [],
         }
       ]
     };
+  }
+
+  initBasicOptions() {
     this.basicOptions = {
       legend: {
         labels: {
@@ -43,8 +60,9 @@ export class CategoryStatisticsComponent implements OnInit {
       scales: {
         xAxes: [{
           ticks: {
-            fontColor: '#495057'
-          }
+            fontColor: '#495057',
+          },
+          barPercentage: 0.5
         }],
         yAxes: [{
           ticks: {
