@@ -1,1 +1,82 @@
-<p>select-seat works!</p>
+<div class="container-fluid" id="fluid">
+  <div id="follow-div">
+    <div class="follow">
+      <p class="follow-title">vui lòng chọn ghế</p>
+    </div>
+  </div>
+
+  <hr class="d-inline-block"
+      style="width: 99%; height: 1px; background-color: lightgray">
+
+  <div class="container-fluid p-0">
+    <p id="movie-picked-title">Bạn đã chọn</p>
+    <div id="movie-picked-content" class="row m-0 p-0">
+      <p>Phim : Spider Man 2</p>
+      <p>Ngày chiếu : 15-06-2021</p>
+      <p>Suất chiếu : 15:20</p>
+    </div>
+    <div class="container-fluid justify-content-center align-items-center">
+      <div class="text-left col-6 d-inline-flex align-items-center pl-0 mb-4">
+        <label for="seatNumber">Nhập số vé cần mua</label>
+        <input type="number" id="seatNumber"
+               [(ngModel)]="seatNumber"
+               class="form-control col-3 ml-3"
+               min="1" [max]="listRow.length * listCol.length">
+      </div>
+      <div id="seat-show" class="row m-0 p-0">
+        <div class="col-lg-2 space-div"></div>
+        <div class="col-lg-8 col-md-12">
+          <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
+            <div>
+              <i class="fas fa-2x fa-couch empty-seat"></i>
+              <span class="instructor-label mr-lg-3 mr-md-1">Ghế trống</span>
+            </div>
+            <div>
+              <i class="fas fa-2x fa-couch selecting-seat"></i>
+              <span class="instructor-label mr-lg-3 mr-md-1">Ghế đang chọn</span>
+            </div>
+            <div>
+              <i class="fas fa-2x fa-couch ordered-seat"></i>
+              <span class="instructor-label mr-lg-3 mr-md-1">Ghế đã có người đặt</span>
+            </div>
+            <div>
+              <i class="fas fa-2x fa-couch vip-seat"></i>
+              <span class="instructor-label mr-lg-0 mr-md-1">Ghế VIP</span>
+            </div>
+          </div>
+          <table class="table table-borderless" id="seat">
+            <tbody class="text-center">
+            <tr *ngFor='let col of listCol'>
+              <td>
+                <span class="col-title">{{col}}</span>
+              </td>
+              <td *ngFor='let row of listRow'>
+                <i [id]="col+row" class="fas fa-2x fa-couch" style="color: gray"
+                   (click)="chooseSeat(col,row)"></i>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-2 space-div"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="btnContinue" class="text-center">
+    <a routerLink="/" class="ml-5">
+      <button class="btn btn-outline-primary rounded-pill mb-1" type="button">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-left"></i>
+        </span>
+      </button>
+    </a>
+    <a routerLink="/confirm" class="ml-5">
+      <button class="btn btn-outline-success rounded-pill mb-1" type="button">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-right"></i>
+        </span>
+      </button>
+    </a>
+  </div>
+</div>
