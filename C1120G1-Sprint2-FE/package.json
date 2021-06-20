@@ -23,9 +23,11 @@
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
     "bootstrap": "^4.6.0",
+    "chart.js": "^2.9.4",
     "firebase": "^8.6.7",
     "jquery": "^3.6.0",
     "ngx-toastr": "^14.0.0",
+    "primeng": "^11.4.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
