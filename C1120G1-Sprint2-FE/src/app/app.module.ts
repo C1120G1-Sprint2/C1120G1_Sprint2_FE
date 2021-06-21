@@ -14,8 +14,12 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
-import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {BookingModule} from './module/booking/booking.module';
+
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,9 +38,12 @@ import {HttpClientModule} from '@angular/common/http';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    HttpClientModule,
+    FormsModule,
+    BookingModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

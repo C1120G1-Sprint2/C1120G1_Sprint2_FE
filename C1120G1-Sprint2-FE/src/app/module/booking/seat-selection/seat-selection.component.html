@@ -1,0 +1,80 @@
+<div class="container-fluid" id="fluid">
+  <div id="follow-div">
+    <div class="follow">
+      <p class="follow-title">vui lòng chọn ghế</p>
+    </div>
+  </div>
+
+  <hr class="d-inline-block"
+      style="width: 99%; height: 1px; background-color: lightgray">
+
+  <div class="container-fluid p-0">
+    <p id="movie-picked-title">Bạn đã chọn</p>
+    <div id="movie-picked-content" class="row m-0 p-0">
+      <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
+      <p>Ngày chiếu : <span>{{movieTicket.showDate}}</span></p>
+      <p>Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
+    </div>
+    <div class="container-fluid justify-content-center align-items-center">
+
+<!--      choose seat-->
+      <div id="seat-show" class="row m-0 p-0">
+        <div class="col-lg-2 space-div"></div>
+        <div class="col-lg-8 col-md-12">
+          <table class="table table-borderless" id="seat">
+            <tbody class="text-center justify-content-center align-items-center">
+            <tr *ngFor='let col of listCol'>
+              <td *ngFor='let row of listRow'
+                  [id]="col+row"
+                  (click)="chooseSeat(col,row)"
+                  class="td-seat m-1 p-0">
+                <span>{{col}}{{row}}</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-2 space-div"></div>
+      </div>
+
+<!--      instructor-->
+      <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
+        <div>
+          <i class="fas fa-2x fa-couch empty-seat"></i>
+          <span class="instructor-label mr-lg-3 mr-md-1">Ghế trống</span>
+        </div>
+        <div>
+          <i class="fas fa-2x fa-couch selecting-seat"></i>
+          <span class="instructor-label mr-lg-3 mr-md-1">Ghế đang chọn</span>
+        </div>
+        <br>
+        <div>
+          <i class="fas fa-2x fa-couch ordered-seat"></i>
+          <span class="instructor-label mr-lg-3 mr-md-1">Ghế đã có người đặt</span>
+        </div>
+        <div>
+          <i class="fas fa-2x fa-couch vip-seat"></i>
+          <span class="instructor-label mr-lg-0 mr-md-1">Ghế VIP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="btnContinue" class="text-center">
+    <a routerLink="/">
+      <button class="btn btn-outline-primary rounded-pill" type="button">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-left"></i>
+        </span>
+      </button>
+    </a>
+    <a routerLink="/confirm">
+      <button class="btn btn-outline-success rounded-pill" type="button">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-right"></i>
+        </span>
+      </button>
+    </a>
+  </div>
+</div>
+
