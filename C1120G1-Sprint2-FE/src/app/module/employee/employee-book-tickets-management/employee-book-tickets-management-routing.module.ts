@@ -9,10 +9,10 @@ import {ConfirmTicketComponent} from './confirm-ticket/confirm-ticket.component'
 
 const routes: Routes = [
   {path: 'book-ticket-list', component: BookTicketListComponent},
-  {path: 'book-ticket-list/get-ticket/:{ticketId}', component: GetTicketComponent},
-  {path: 'book-ticket-list/get-ticket/confirm-ticket/:{ticketId}', component: ConfirmTicketComponent},
-  {path: 'book-ticket-list/cancel-ticket/:{ticketId}', component: CancelTicketComponent},
-  {path: 'book-ticket-list/get-ticket/print-ticket', component: PrintTicketComponent},
+  {path: 'book-ticket-list/get-ticket/:ticketId', component: GetTicketComponent},
+  {path: 'book-ticket-list/get-ticket/confirm-ticket/:ticketId', component: ConfirmTicketComponent},
+  {path: 'book-ticket-list/cancel-ticket/:ticketId', component: CancelTicketComponent},
+  {path: 'book-ticket-list/get-ticket/print-ticket/:ticketId', component: PrintTicketComponent},
 ];
 
 @NgModule({

@@ -23,7 +23,11 @@ export class CancelTicketComponent implements OnInit {
   }
 
   onCancel() {
-
+    this.bookTicketService.cancelTicket(this.cancelId).subscribe(data  => {
+      document.getElementById('closeModal').click();
+      this.cancelComplete.emit(true);
+    });
+    this.toastr.success('Huỷ Thành Công', 'Vé Đã Đặt');
   }
 
 }
