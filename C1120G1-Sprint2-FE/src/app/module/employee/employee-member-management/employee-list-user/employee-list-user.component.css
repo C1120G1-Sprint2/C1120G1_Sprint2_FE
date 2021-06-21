@@ -51,14 +51,17 @@ body {
 
 .text-info {
   color: #62c9e8;
+
 }
 
 .text-warning {
   color: #FFC107;
+
 }
 
 .text-danger {
   color: #ff5b5b;
+  font-style: italic;
 }
 
 .table-responsive {
@@ -75,8 +78,7 @@ body {
 
 .table-title {
   padding-bottom: 15px;
-  background: #435d7d;
-  color: #fff;
+  color: #f26b38;
   padding: 16px 30px;
   min-width: 100%;
   margin: -20px -25px 10px;
@@ -179,44 +181,6 @@ table.table .avatar {
   margin-right: 10px;
 }
 
-.pagination {
-  float: right;
-  margin: 0 0 5px;
-}
-
-.pagination li a {
-  border: none;
-  font-size: 13px;
-  min-width: 30px;
-  min-height: 30px;
-  color: #999;
-  margin: 0 2px;
-  line-height: 30px;
-  border-radius: 2px !important;
-  text-align: center;
-  padding: 0 6px;
-}
-
-.pagination li a:hover {
-  color: #666;
-}
-
-.pagination li.active a, .pagination li.active a.page-link {
-  background: #03A9F4;
-}
-
-.pagination li.active a:hover {
-  background: #0397d6;
-}
-
-.pagination li.disabled i {
-  color: #ccc;
-}
-
-.pagination li i {
-  font-size: 16px;
-  padding-top: 6px
-}
 
 .hint-text {
   float: left;
@@ -442,3 +406,71 @@ div.item-social {
   box-shadow: 0 0 0 0.2rem rgba(255, 145, 0, 0.39) !important;
 }
 
+
+.pagination {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin-top: 10px;
+}
+.pagination li {
+  display: inline;
+  text-align: center;
+}
+.pagination a {
+  float: left;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px 12px;
+  color: #fff;
+  margin-left: -1px;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+.pagination a.active {
+  cursor: default;
+}
+.pagination a:active {
+  outline: none;
+
+}
+.modal-4 a {
+  margin: 0 5px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  background-color: #FF8C00;
+}
+.modal-4 a.prev {
+  -moz-border-radius: 50px 0 0 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px 0 0 50px;
+  width: 100px;
+}
+.modal-4 a.next {
+  -moz-border-radius: 0 50px 50px 0;
+  -webkit-border-radius: 0;
+  border-radius: 0 50px 50px 0;
+  width: 100px;
+}
+.modal-4 a:hover {
+  background-color: #f26b38;
+}
+.modal-4 a.active, .modal-4 a:active {
+  background-color: #f26b38;
+}
+
+.btnSearch {
+  padding-top: 10px;
+  padding-left: 10px;
+  background-color: white;
+}
+.inputSearch {
+  font-size: 13px;
+  margin: 20px 5px 20px 10px;
+}

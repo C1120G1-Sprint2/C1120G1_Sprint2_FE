@@ -11,19 +11,21 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import { EmployeeEditUserComponent } from './employee-edit-user/employee-edit-user.component';
 import { EmployeeDeleteUserComponent } from './employee-delete-user/employee-delete-user.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
   declarations: [EmployeeListUserComponent, EmployeeCreateUserComponent, EmployeeEditUserComponent, EmployeeDeleteUserComponent],
-  imports: [
-    CommonModule,
-    EmployeeMemberManagementRoutingModule,
-    MatSortModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatRadioModule,
-  ]
+    imports: [
+        CommonModule,
+        EmployeeMemberManagementRoutingModule,
+        MatSortModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatPaginatorModule,
+    ]
 })
 export class EmployeeMemberManagementModule { }
