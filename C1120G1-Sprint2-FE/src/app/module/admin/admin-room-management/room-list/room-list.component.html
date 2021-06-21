@@ -2,9 +2,19 @@
   <div class="card">
     <div class="card-body">
       <p class="title">Danh sách phòng chiếu</p>
-      <a href="" class="btn btn-success btn-rounded mb-4" routerLink="create" data-toggle="modal"
-         data-target="#modalCreateFatherCategories"><i
-        class="fas fa-plus"></i> Thêm phòng chiếu </a>
+      <a class="btn btn-success btn-rounded mb-4" routerLink="create"><i class="fas fa-plus"></i> Thêm phòng chiếu</a>
+      <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 text-center">
+        <div class="col-xl-2 col-md-2">
+          <label>Tên phòng chiếu</label>
+          <input [(ngModel)]="roomName" class="form-control" type="text"
+                 placeholder="Tên phòng chiếu">
+        </div>
+        <div class="col-xl-2 col-4 mt-xl-4 mt-md-3 mt-2 d-xl-flex justify-content-x-end">
+          <button (click)="getSearch()" class="btn mt-2" style="background-color: #0D5DB6; color: white"><i
+            class="fa fa-search"></i> Tìm kiếm
+          </button>
+        </div>
+      </div>
       <table class="table table-hover" [hidden]="roomList === null">
         <tr>
           <th>STT</th>

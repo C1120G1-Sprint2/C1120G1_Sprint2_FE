@@ -12,6 +12,7 @@ export class RoomListComponent implements OnInit {
   roomList: Room[] = [];
   deleteId: number;
   deleteName: string;
+  roomName: string = '';
 
   constructor(private roomManagement: RoomManagementService,
               private toast: ToastrService ) { }
@@ -33,4 +34,14 @@ export class RoomListComponent implements OnInit {
     this.ngOnInit();
   }
 
+  getSearch() {
+    console.log(this.roomName);
+    this.roomManagement.searchRoom(this.roomName).subscribe(data => {
+      if (data === null) {
+        this.toast.warning('Thông tin bạn tìm kiếm hiện không có trong hệ thống ', 'Thông báo !');
+      } else {
+        this.roomList = data;
+      }
+    });
+  }
 }
