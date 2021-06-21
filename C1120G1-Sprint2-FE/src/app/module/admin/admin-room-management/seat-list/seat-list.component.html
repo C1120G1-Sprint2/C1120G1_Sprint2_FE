@@ -9,25 +9,27 @@
         </div>
         <div class="col-md-6 mt-3">
           <button class="btn" style="background-color: greenyellow">Ghế thường</button>
-          <button class="btn ml-4" style="background-color: red">Ghế vip</button>
+          <button class="btn ml-4" style="background-color: red; color: white">Ghế vip</button>
           <br>
           <div class="table table-responsive" style="text-align: center">
             <button class="mt-4" style=";padding: 20px 200px 20px 200px;color: gray;">Màn hình</button>
             <table class="table table-borderless mt-4" style="border: 1px solid dodgerblue">
-              <tr *ngFor="let row of rowList">
-                <td *ngFor="let col of columnList">
+              <tr *ngFor="let listSeat of arrayListSeat">
+                <td *ngFor="let seat of listSeat">
                   <div class="dropdown show">
-                    <a class="btn dropdown-toggle" *ngIf="row.rowId == 5; else elseBlock"
+                    <a class="btn dropdown-toggle" *ngIf="seat.seatType.seatTypeId == 2; else elseBlock"
                        style="background-color: red;color: white" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
-                      {{row.rowName + col.columnName}}
+                      {{seat.row.rowName + seat.column.columnName}}
                     </a>
                     <ng-template #elseBlock>
                       <a class="btn dropdown-toggle" data-toggle="dropdown"
-                         style="background-color: greenyellow;">{{row.rowName + col.columnName}}</a>
+                         style="background-color: greenyellow;">
+                        {{seat.row.rowName + seat.column.columnName}}
+                    </a>
                     </ng-template>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" (click)="changeColor(row.rowId,col.columnId)">Chuyển trạng thái ghế</a>
+                      <a class="dropdown-item" (click)="changeColor(seat)">Chuyển trạng thái ghế</a>
                       <a class="dropdown-item" href="#">Xóa ghế</a>
                     </div>
                   </div>

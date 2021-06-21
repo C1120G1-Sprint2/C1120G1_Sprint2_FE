@@ -12,15 +12,18 @@ import { SeatEditComponent } from './seat-edit/seat-edit.component';
 import { SeatDeleteComponent } from './seat-delete/seat-delete.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [RoomListComponent, RoomCreateComponent, RoomEditComponent, RoomDeleteComponent, SeatListComponent, SeatCreateComponent, SeatEditComponent, SeatDeleteComponent],
-  imports: [
-    CommonModule,
-    AdminRoomManagementRoutingModule,
-    HttpClientModule,
-    ToastrModule,
-  ]
+    imports: [
+        CommonModule,
+        AdminRoomManagementRoutingModule,
+        HttpClientModule,
+        ToastrModule,
+        ReactiveFormsModule,
+        FormsModule,
+    ]
 })
 export class AdminRoomManagementModule { }

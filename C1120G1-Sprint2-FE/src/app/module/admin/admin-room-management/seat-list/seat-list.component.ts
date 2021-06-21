@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Row} from '../../../../model/row';
 import {Columns} from '../../../../model/columns';
 import {Seat} from '../../../../model/seat';
+import {RoomManagementService} from '../../../../service/admin/room-management/room-management.service';
+import {ToastrService} from 'ngx-toastr';
+import {SeatType} from '../../../../model/seatType';
 
 @Component({
   selector: 'app-seat-list',
@@ -10,41 +13,80 @@ import {Seat} from '../../../../model/seat';
 })
 export class SeatListComponent implements OnInit {
 
+  rowList: Row[] = [];
+  columnList: Columns[] = [];
+  seat: Seat;
+  seatTypeList: SeatType[];
+  seatList : Seat[];
+  arrayListSeat = [];
 
-  public rowList: Row[] = [
-    new Row(1, 'A'),
-    new Row(2, 'B'),
-    new Row(3, 'C'),
-    new Row(4, 'D'),
-    new Row(5, 'E'),
-    new Row(6, 'F'),
-    new Row(7, 'G'),
-  ];
-
-  public columnList: Columns[] = [
-    new Columns(1, '1'),
-    new Columns(2, '2'),
-    new Columns(3, '3'),
-    new Columns(4, '4'),
-    new Columns(5, '5'),
-    new Columns(6, '6'),
-    new Columns(7, '7'),
-  ];
-
-
-  constructor() {
+  constructor(private roomManagement: RoomManagementService,
+              private toast: ToastrService) {
   }
 
   ngOnInit(): void {
+    this.getDataColumn();
+    this.getDataRow();
+    this.getDataSeatType();
+    this.getDataSeat();
   }
 
-  changeColor(x: number, y: number) {
-    console.log(x);
-    console.log(y);
-    let row = document.getElementById(x.toString());
-    let col = document.getElementById(y.toString());
-    console.log(row);
+  getDataRow() {
+    this.roomManagement.getAllRow().subscribe(data => {
+      this.rowList = data;
+      if (this.rowList === null) {
+        this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống', 'Thông báo');
+      }
+    });
   }
 
+  getDataColumn() {
+    this.roomManagement.getAllColumn().subscribe(data => {
+      this.columnList = data;
+      if (this.columnList === null) {
+        this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống', 'Thông báo');
+      }
+    });
+  }
+
+  getDataSeatType(){
+    this.roomManagement.getAllSeatType().subscribe(data =>{
+      this.seatTypeList = data;
+      if (this.seatTypeList === null) {
+        this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống', 'Thông báo');
+      }
+      console.log(this.seatTypeList)
+    })
+  }
+
+  getDataSeat(){
+    this.roomManagement.getAllSeat().subscribe(data=>{
+      this.seatList = data;
+      if (this.seatList === null) {
+        this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống', 'Thông báo');
+      }
+      for (let i = 0; i < this.rowList.length ; i++) {
+        this.arrayListSeat[i] = this.seatList.filter(x => x.row.rowId == this.rowList[i].rowId)
+      }
+    })
+  }
+
+  changeColor(seatChange: Seat) {
+    for (let i = 0; i < this.arrayListSeat.length ; i++) {
+      for (let j = 0; j < this.arrayListSeat[i].length ; j++) {
+        this.seat = this.arrayListSeat[i][j];
+        if (this.arrayListSeat[i][j].seatId == seatChange.seatId) {
+          if (this.arrayListSeat[i][j].seatType.seatTypeId == 1) {
+            this.arrayListSeat[i][j].seatType = this.seatTypeList.filter(x => x.seatTypeId == 2)[0]
+          } else {
+            this.arrayListSeat[i][j].seatType = this.seatTypeList.filter(x => x.seatTypeId == 1)[0]
+          }
+          this.roomManagement.updateSeat(this.arrayListSeat[i][j]).subscribe(data =>{
+            console.log("thanh cong")
+          });
+        }
+      }
+    }
+  }
 }
 
