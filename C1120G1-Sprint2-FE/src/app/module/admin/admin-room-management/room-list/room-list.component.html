@@ -36,7 +36,7 @@
                (click)="deleteId = item.roomId; deleteName = item.roomName" class="btn btn-danger ml-2"><i class="fas fa-trash-alt"></i></a>
           </td>
           <td>
-            <a routerLink="/admin/room/seat" class="btn btn-info"><i class="fas fa-eye"></i></a>
+            <a [routerLink]="['seat',item.roomId]" class="btn btn-info"><i class="fas fa-eye"></i></a>
           </td>
         </tr>
       </table>

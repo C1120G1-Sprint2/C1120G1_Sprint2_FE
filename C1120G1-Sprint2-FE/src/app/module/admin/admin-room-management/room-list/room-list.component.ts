@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Room} from '../../../../model/room';
 import {ToastrService} from 'ngx-toastr';
 import {RoomManagementService} from '../../../../service/admin/room-management/room-management.service';
@@ -15,19 +15,20 @@ export class RoomListComponent implements OnInit {
   roomName: string = '';
 
   constructor(private roomManagement: RoomManagementService,
-              private toast: ToastrService ) { }
+              private toast: ToastrService) {
+  }
 
   ngOnInit(): void {
     this.getData();
   }
 
-  getData(){
-    this.roomManagement.getAllRoom().subscribe(data=>{
+  getData() {
+    this.roomManagement.getAllRoom().subscribe(data => {
       this.roomList = data;
-      if (this.roomList === null){
-        this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống','Thông báo')
+      if (this.roomList === null) {
+        this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống', 'Thông báo');
       }
-    })
+    });
   }
 
   deleteSuccess() {
