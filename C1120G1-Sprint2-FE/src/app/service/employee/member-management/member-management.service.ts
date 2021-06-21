@@ -2,12 +2,13 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {User} from '../../../model/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {UserEditPreview} from '../../../model/userEditPreview';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MemberManagementService {
-  API_URL_ADDRESS: string = 'http://localhost:8080/api/address';
+  API_URL_ADDRESS: string = 'http://localhost:8080/';
   private API_URL_USER = 'http://localhost:8080/employee/listUser';
   httpOptions: any;
 
@@ -27,20 +28,16 @@ export class MemberManagementService {
    * Sang
    */
 
-  getAllUsers(): Observable<any> {
-    return this.httpClient.get(this.API_URL_USER);
+  getAllUsers(index : number): Observable<any> {
+    return this.httpClient.get(this.API_URL_USER +"/?index=" + index);
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.httpClient.get<User>(this.API_URL_USER + '/' + id);
+  getUserById(id: number): Observable<UserEditPreview> {
+    return this.httpClient.get<UserEditPreview>(this.API_URL_USER + '/' + id);
   }
 
-  editUser(user: User, id: number): Observable<User> {
-    return this.httpClient.put<User>(this.API_URL_USER + '/edit/' + id, user);
-  }
-
-  deleteUser(id: number , user :User): Observable<any> {
-    return this.httpClient.put<any>(this.API_URL_USER + '/delete/' + id,user);
+  deleteUser(id: number ): Observable<any> {
+    return this.httpClient.put<any>(this.API_URL_USER + '/delete/' + id,{});
   }
 
 
@@ -58,6 +55,10 @@ export class MemberManagementService {
 
   createUser(user: User): Observable<User> {
     return this.httpClient.post<User>(this.API_URL_USER + '/create', user);
+  }
+
+  editUser(user: UserEditPreview): Observable<UserEditPreview> {
+    return this.httpClient.put<UserEditPreview>(this.API_URL_USER + '/edit', user);
   }
 
   searchUserBySomething(keySearch: string): Observable<any> {

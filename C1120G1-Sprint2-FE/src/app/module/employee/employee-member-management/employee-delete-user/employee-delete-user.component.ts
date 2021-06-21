@@ -30,12 +30,9 @@ export class EmployeeDeleteUserComponent implements OnInit {
   }
 
   deletePatient() {
-    this.user = this.memberService.getUserById(this.deleteId).subscribe(data =>{
-      this.user =data ;
-    this.memberService.deleteUser(this.deleteId,this.user).subscribe(data => {
+    this.memberService.deleteUser(this.deleteId).subscribe(data => {
       document.getElementById('closeModal').click();
       this.deleteComplete.emit(true);
-    });
     });
   }
 }
