@@ -6,7 +6,7 @@
 }
 #fluid {
   padding-left: 2rem;
-  margin-top: 3rem;
+  margin: 1.5rem 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 0.9rem;
 }
@@ -96,4 +96,7 @@ hr {
 }
 .fa-arrow-right {
   width: 5rem;
+}
+.chooseFilm {
+  background-color: lightgray !important;
 }

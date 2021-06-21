@@ -8,7 +8,7 @@
   <hr class="d-inline-block"
       style="width: 99%; height: 1px; background-color: lightgray">
 
-  <div id="pick-div" class="container-fluid p-0 row">
+  <div id="pick-div" class="container-fluid row">
     <div class="pick col-lg-4" style="padding-left: 0">
       <table class="table table-hover table-bordered border border-secondary" id="pick-movie">
         <thead class="tb-head">
@@ -18,7 +18,8 @@
         </thead>
         <tbody class="border border-secondary">
         <tr class="border border-light" *ngFor="let movieTicket of listMovie">
-          <td id="movie{{movieTicket.movieTicketId}}" class="bg-white" (click)="changeShowDate(movieTicket.movie.movieId)">
+          <td [class.chooseFilm]="activeId && activeId===movieTicket.movie.movieId"
+              (click)="changeShowDate(movieTicket.movie.movieId)">
             <img class="img" [src]="movieTicket.movie.posterMovie" alt="img" width="80" height="60">
             <span class="movie-title">{{movieTicket.movie.movieName}}</span>
           </td>
@@ -33,15 +34,16 @@
           <td class="border border-secondary" colspan="2">Chọn ngày chiếu</td>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="border border-secondary">
         <tr class="disabled-hover">
         </tr>
         </tbody>
         <tbody>
         <tr>
-          <select (click)="changeShowTime($event.target.value)" [disabled]="listShowDate === null" class="form-control bg-white" style="cursor: pointer">
-            <option class="form-control" [selected]="showDate === null">Vui lòng chọn ngày chiếu</option>
-            <option  *ngFor="let movieTicket of listShowDate" [value]="movieTicket.showDate">
+          <select (change)="changeShowTime($event.target.value)" [disabled]="listShowDate === null"
+                  class="custom-select bg-white" style="cursor: pointer">
+            <option class="form-control" disabled [selected]="showDate === null">Vui lòng chọn ngày chiếu</option>
+            <option *ngFor="let movieTicket of listShowDate" [value]="movieTicket.showDate">
               <td>{{movieTicket.showDate| date: 'dd/MM/yyyy'}}</td>
             </option>
           </select>
@@ -60,8 +62,9 @@
         </tbody>
         <tbody>
         <tr>
-          <select (click)="changeShowTimeId($event.target.value)"  [disabled]="listShowTime === null" style="cursor: pointer" class="form-control bg-white">
-            <option [selected]="showTimeId === null">Vui lòng chọn suất chiếu</option>
+          <select (change)="changeShowTimeId($event.target.value)" [disabled]="listShowTime === null"
+                  style="cursor: pointer"  class="custom-select bg-white">
+            <option [selected]="showTimeId === null" disabled >Vui lòng chọn suất chiếu</option>
             <option *ngFor="let movieTicket of listShowTime" [value]="movieTicket.showTime.showTimeId">
               <td>{{movieTicket.showTime.showTime}}</td>
             </option>
@@ -72,9 +75,10 @@
     </div>
   </div>
 
-  <div id="btnContinue" class="text-center mb-4 mt-4">
+  <div id="btnContinue" class="text-center mt-4">
     <a>
-      <button (click)="checkMovieTicket()" class="btn btn-outline-success rounded-pill" type="button"><span class="arrow">
+      <button (click)="checkMovieTicket()" class="btn btn-outline-success rounded-pill" type="button"><span
+        class="arrow">
         <i class="fas fa-2x fa-arrow-right"></i>
       </span>
       </button>

@@ -17,6 +17,7 @@ export class MovieSelectionComponent implements OnInit {
   public showDate: string = null;
   public showTimeId: number = null;
   public movieTicket: MovieTicket;
+  public activeId = null;
 
   constructor(private saleTicketService: SalesTicketsManagementService,
               private toast: ToastrService,
@@ -30,11 +31,12 @@ export class MovieSelectionComponent implements OnInit {
   }
 
   changeShowDate(movieId: number) {
+    this.activeId = movieId;
     this.listShowTime = null;
     this.movieId = movieId;
     this.showDate = null;
     this.showTimeId = null;
-    this.saleTicketService.showAllMovieTicketById(movieId).subscribe((data) => {
+    this.saleTicketService.showAllMovieTicketByMovieId(movieId).subscribe((data) => {
       this.listShowDate = data;
     });
   }
@@ -56,7 +58,13 @@ export class MovieSelectionComponent implements OnInit {
       this.saleTicketService.findMovieTicketBySelect(this.movieId, this.showDate, this.showTimeId).subscribe((data) => {
         this.movieTicket = data;
         console.log(this.movieTicket);
-        this.route.navigate(['employee/sale/tickets/seat'], {queryParams: {movieTicketId: this.movieTicket.movieTicketId}});
+        this.route.navigate(['employee/sale/tickets/seat'], {
+            queryParams: {
+              movieTicketId: this.movieTicket.movieTicketId,
+              roomId: this.movieTicket.room.roomId
+            }
+          }
+        );
       });
     } else {
       this.toast.warning('Bạn chưa chọn đầy đủ thông tin để tiếp tục', 'Thông Báo', {timeOut: 3000});

@@ -15,7 +15,7 @@ export class SalesTicketsManagementService {
     return this.http.get(this.API_MOVIE_TICKET + '/listMovieTicket');
   }
 
-  public showAllMovieTicketById(movieId: number): Observable<any> {
+  public showAllMovieTicketByMovieId(movieId: number): Observable<any> {
     return this.http.get(this.API_MOVIE_TICKET + '/listMovieTicket/' + movieId);
   }
 
@@ -25,5 +25,12 @@ export class SalesTicketsManagementService {
 
   public findMovieTicketBySelect(movieId: number, showDate: string, showTime: number): Observable<any> {
     return this.http.get(this.API_MOVIE_TICKET + '/movieTicket/' + movieId + '/' + showDate + '/' + showTime);
+  }
+  public findMovieTicketById(movieTicketId: number): Observable<any> {
+    return this.http.get(this.API_MOVIE_TICKET + '/movieTicket/' + movieTicketId);
+  }
+
+  public showAllSeatByRoomId(roomId: number): Observable<any> {
+    return this.http.get(this.API_MOVIE_TICKET + '/listSeat/' + roomId);
   }
 }
