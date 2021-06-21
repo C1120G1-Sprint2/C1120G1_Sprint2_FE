@@ -5,6 +5,8 @@ import {Seat} from '../../../../model/seat';
 import {RoomManagementService} from '../../../../service/admin/room-management/room-management.service';
 import {ToastrService} from 'ngx-toastr';
 import {SeatType} from '../../../../model/seatType';
+import {Room} from '../../../../model/room';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-seat-list',
@@ -19,9 +21,12 @@ export class SeatListComponent implements OnInit {
   seatTypeList: SeatType[];
   seatList : Seat[];
   arrayListSeat = [];
+  roomId;
+  roomDetail: Room;
 
   constructor(private roomManagement: RoomManagementService,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private active: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -29,6 +34,17 @@ export class SeatListComponent implements OnInit {
     this.getDataRow();
     this.getDataSeatType();
     this.getDataSeat();
+
+    this.active.paramMap.subscribe((data: ParamMap) => {
+      this.roomId = data.get('id');
+      this.roomManagement.getRoomById(this.roomId).subscribe((data: Room) => {
+        if (data === null) {
+          this.toast.warning('Dữ liệu không có', 'Thông báo');
+        } else {
+          this.roomDetail = data;
+        }
+      });
+    });
   }
 
   getDataRow() {
