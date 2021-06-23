@@ -57,17 +57,15 @@ export class MovieSelectionComponent implements OnInit {
     if (this.movieId !== null && this.showDate !== null && this.showTimeId !== null) {
       this.saleTicketService.findMovieTicketBySelect(this.movieId, this.showDate, this.showTimeId).subscribe((data) => {
         this.movieTicket = data;
-        console.log(this.movieTicket);
         this.route.navigate(['employee/sale/tickets/seat'], {
             queryParams: {
-              movieTicketId: this.movieTicket.movieTicketId,
-              roomId: this.movieTicket.room.roomId
+              movieTicketId: this.movieTicket.movieTicketId
             }
           }
         );
       });
     } else {
-      this.toast.warning('Bạn chưa chọn đầy đủ thông tin để tiếp tục', 'Thông Báo', {timeOut: 3000});
+      this.toast.warning('Bạn chưa chọn đầy đủ thông tin để tiếp tục', 'Thông Báo', {timeOut: 2000});
     }
   }
 }

@@ -3,14 +3,12 @@
     <div class="follow">
       <p class="follow-title">vui lòng chọn ghế</p>
     </div>
-  </div>
-  ​
+  </div>​
   <hr class="d-inline-block"
       style="width: 99%; height: 1px; background-color: lightgray">
-  ​
-  <div class="container-fluid p-0">
+  ​<div class="container-fluid p-0" >
     <p id="movie-picked-title">Bạn đã chọn</p>
-    <div id="movie-picked-content" class="row m-0 p-0">
+    <div id="movie-picked-content" class="row m-0 p-0" *ngIf="movieTicket">
       <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
       <p>Ngày chiếu : <span>{{movieTicket.showDate}}</span></p>
       <p>Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
@@ -21,27 +19,13 @@
         <div class="col-lg-2 space-div"></div>
         <div class="col-lg-8 col-md-12" id="seat">
           <table class="table table-borderless">
-            <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-            </thead>
             <tbody class="text-center justify-content-center align-items-center">
             <tr *ngFor="let index of listRow">
-              <td  *ngFor="let seat of listSeat| slice:(index-1)*10:(index)*10">
+              <td *ngFor="let seat of listSeat| slice:(index-1)*10:(index)*10">
                 <div *ngIf="seat.row.rowId === index" class="text-center td-seat align-items-center"
                      [id]="seat.row.rowName+seat.column.columnName"
                      (click)="chooseSeat(seat)"
-                     [ngClass]="((seat.seatType.seatTypeId == 2) ? 'vip-seat' : 'empty-seat')"
+                     [ngClass]="checkSeatClass(seat)"
                      style="padding-top: 0.3125rem">
                   {{seat.row.rowName}}{{seat.column.columnName}}
                 </div>

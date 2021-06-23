@@ -7,8 +7,7 @@
 
   <hr class="d-inline-block"
       style="width: 99%; height: 1px; background-color: lightgray">
-
-  <div id="pick-div" class="container-fluid row">
+  <div *ngIf="movieTicket !== null" id="pick-div" class="container-fluid row">
     <div class="pick col-lg-4" style="padding-left: 0">
       <table class="table table-hover table-bordered border border-secondary" id="pick-movie">
         <thead class="tb-head">
