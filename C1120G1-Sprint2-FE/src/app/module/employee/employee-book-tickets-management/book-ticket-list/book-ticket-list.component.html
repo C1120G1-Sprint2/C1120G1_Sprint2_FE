@@ -14,6 +14,7 @@
       <h3 class="title" style="color: #FF8C00">Quản lý đặt vé</h3>
     <div>
       <div *ngIf="bookedTicketList.length > 0; else nodata">
+<!--        <div>-->
         <table class="table table-hover">
           <thead>
           <tr>
@@ -29,7 +30,8 @@
           </thead>
           <tbody>
           <tr>
-          <tr *ngFor="let item of bookedTicketList | paginate: {itemsPerPage: 3, currentPage: p}">
+          <tr *ngFor="let item of bookedTicketList | paginate: {itemsPerPage: 3, currentPage: p, totalItems:totalLength}">
+<!--          <tr *ngFor="let item of bookedTicketList">-->
             <td *ngIf="item.ticketId < 10">
               <span>BV000{{item.ticketId}}</span>
             </td>
@@ -75,6 +77,19 @@
         <div>
           <pagination-controls (pageChange)="p = $event" nextLabel="Sau" previousLabel="Trước"></pagination-controls>
         </div>
+<!--        <ul class="pagination modal-4">-->
+<!--          <li><a (click)="firstPage()" class="prev"><i class="fa fa-chevron-left"></i> Đầu</a></li>-->
+<!--          <li><a (click)="previousPage()"><i class="fa fa-chevron-left"></i></a></li>-->
+<!--          <li> <a  class="active">{{indexPagination}}</a></li>-->
+<!--          <li> <a  class="active">{{totalPagination}}</a></li>-->
+<!--          <li> <a (click)="nextPage()"><i class="fa fa-chevron-right"></i></a></li>-->
+<!--          <li><a (click)="lastPage()" class="next">Cuối <i class="fa fa-chevron-right"></i></a></li>-->
+<!--          <li><label>-->
+<!--            <input type="number" class="input-group-prepend" style="width: 40px ;height: 20px" [(ngModel)]="selectPagination">-->
+<!--          </label></li>-->
+<!--          <li><a (click)="selectPage()">Đi</a></li>-->
+<!--        </ul>-->
+
       </div>
       <ng-template #nodata>
         <p style="color: red" class="text-center">----------Không có khách hàng đặt vé----------</p>

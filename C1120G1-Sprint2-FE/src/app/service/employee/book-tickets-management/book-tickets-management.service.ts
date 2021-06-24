@@ -20,7 +20,11 @@ export class BookTicketsManagementService {
   }
 
   getAllBookedTicketList(): Observable<any> {
-    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/', this.httpOptions);
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list', this.httpOptions);
+  }
+
+  getAllBookedTicketListNoPage(): Observable<any> {
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list-no-page', this.httpOptions);
   }
 
   getBookedTicketByIndex(ticketId: number): Observable<any> {

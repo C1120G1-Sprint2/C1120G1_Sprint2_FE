@@ -10,11 +10,15 @@ import {BookTicketsManagementService} from '../../../../service/employee/book-ti
 })
 export class BookTicketListComponent implements OnInit {
   p: number = 1;
+  totalLength: any;
   optionSearch = 1;
   keySearch: any;
   bookedTicketList: Ticket[] = [];
+  bookedTicketListNoPage: Ticket[] = [];
   cancelId: number;
-  ticketCheck: Ticket;
+  indexPagination: number = 1;
+  selectPagination: number;
+  totalPagination: number;
 
   constructor(private bookTicketManagementService: BookTicketsManagementService,
               private toastr: ToastrService) { }
@@ -28,9 +32,16 @@ export class BookTicketListComponent implements OnInit {
       if (data == null) {
         this.bookedTicketList = [];
       } else {
-        this.bookedTicketList = data.content;
+        this.bookedTicketList = data;
+        this.totalLength = data.length;
       }
     });
+    // this.bookTicketManagementService.getAllBookedTicketListNoPage().subscribe(data => {
+    //   this.bookedTicketListNoPage = data;
+    //   if ((this.bookedTicketListNoPage.length % 3) != 0) {
+    //     this.totalPagination = (Math.round(this.bookedTicketListNoPage.length / 3)) + 1;
+    //   }
+    // });
   }
 
   search() {
@@ -72,4 +83,56 @@ export class BookTicketListComponent implements OnInit {
   cancelSuccess() {
     this.getBookTicketList();
   }
+
+
+  // firstPage() {
+  //   this.indexPagination = 1;
+  //   this.getBookTicketList();
+  // }
+  //
+  // previousPage() {
+  //   this.indexPagination = this.indexPagination - 1;
+  //   if (this.indexPagination == 0) {
+  //     this.indexPagination = 1;
+  //     this.getBookTicketList();
+  //   } else {
+  //     this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 3) - 3).subscribe(data => {
+  //       this.bookedTicketList = data;
+  //     });
+  //   }
+  // }
+  //
+  // nextPage() {
+  //   this.indexPagination = this.indexPagination + 1;
+  //   if (this.indexPagination > this.totalPagination) {
+  //       this.indexPagination = this.indexPagination - 1;
+  //   }
+  //   this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 3) - 3).subscribe(data => {
+  //     this.bookedTicketList = data;
+  //     if (data == null) {
+  //       this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+  //     }
+  //   });
+  // }
+  //
+  // lastPage() {
+  //   this.indexPagination = this.bookedTicketListNoPage.length / 3;
+  //   this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 3) - 3).subscribe(data =>{
+  //     this.bookedTicketList = data;
+  //     if (data == null) {
+  //       this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+  //     }
+  //   });
+  // }
+  //
+  // selectPage() {
+  //   this.bookTicketManagementService.getAllBookedTicketList((this.selectPagination * 3) - 3).subscribe(data =>{
+  //     this.bookedTicketList = data;
+  //     if (data == null) {
+  //       this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+  //       this.firstPage();
+  //     }
+  //   });
+  // }
+
 }
