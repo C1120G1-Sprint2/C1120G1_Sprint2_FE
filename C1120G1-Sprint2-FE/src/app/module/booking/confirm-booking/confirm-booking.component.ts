@@ -67,7 +67,7 @@ export class ConfirmBookingComponent implements OnInit {
       this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
     }
 
-    
+
   }
 
   back() {
