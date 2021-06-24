@@ -1,12 +1,21 @@
 <div class="container-fluid" id="fluid">
-  <div id="follow-div">
-    <div class="follow">
-      <p class="follow-title">vui lòng chọn phim</p>
+  <div id="follow-div" class="row m-0 p-0">
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title" id="active">chọn phim</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">chọn ghế</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">xác nhận đặt vé</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">thông tin đặt vé</p>
     </div>
   </div>
 
-  <hr class="d-inline-block"
-      style="width: 99%; height: 1px; background-color: lightgray">
+<!--  <hr class="d-inline-block"-->
+<!--      style="width: 99%; height: 1px; background-color: lightgray">-->
 
   <div id="pick-div" class="container-fluid p-0 row">
     <div class="pick col-lg-4" style="padding-left: 0">
@@ -43,7 +52,8 @@
         </tbody>
         <tbody *ngIf="listDateTime">
         <tr>
-          <select class="form-control bg-white" (change)="getShowTimeList($event.target.value)">
+          <select class="form-control bg-white"
+                  (change)="getShowTimeList($event.target.value)">
             <option value="" selected disabled>Vui lòng chọn ngày chiếu</option>
             <option *ngFor="let date of listDateTime" [ngValue]="date">
               <td>{{date}}</td>

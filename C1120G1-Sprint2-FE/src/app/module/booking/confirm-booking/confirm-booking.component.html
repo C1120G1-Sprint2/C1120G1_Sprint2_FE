@@ -1,20 +1,29 @@
 <div class="container-fluid" id="fluid">
-  <div id="follow-div">
-    <div class="follow">
-      <p class="follow-title">vui lòng xác nhận</p>
+  <div id="follow-div" class="row m-0 p-0">
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">chọn phim</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title" (click)="back()">chọn ghế</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title" id="active">xác nhận đặt vé</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">thông tin đặt vé</p>
     </div>
   </div>
 
-  <hr class="d-inline-block"
-      style="width: 99%; height: 1px; background-color: lightgray">
+<!--  <hr class="d-inline-block"-->
+<!--      style="width: 99%; height: 1px; background-color: lightgray">-->
 
-  <div class="container-fluid row p-0 m-0">
+  <div class="container-fluid row p-0 m-0 mt-3">
     <div class="col-lg-3 col-md-4" id="img-div">
       <p class="movie-picked-title" style="font-size: 1.3rem">Thông tin đặt vé</p>
-      <img src="https://i.pinimg.com/originals/6f/76/99/6f769926be26c81307d4d7c869c1abb5.jpg"
+      <img [src]="movieTicket.movie.posterMovie"
            alt="img">
     </div>
-    <div class="col-lg-7 col-md-8 pl-3">
+    <div class="col-lg-7 col-md-8 pl-3" *ngIf="movieTicket">
       <table class="table table-hover" id="table-booking-infor">
         <thead class="text-center">
         <tr>
@@ -27,41 +36,51 @@
         <tr>
           <td>Rạp</td>
           <td>
-            <p>RẠP 01</p>
+            <p class="red">{{movieTicket.room.roomName}}</p>
           </td>
         </tr>
         <tr>
           <td>Ngày chiếu</td>
-          <td>18-06-2021</td>
+          <td class="red">{{movieTicket.showDate | date:'dd-MM-yyyy'}}</td>
         </tr>
         <tr>
           <td>Giờ chiếu</td>
-          <td>14:45</td>
+          <td class="red">{{movieTicket.showTime.showTime}}</td>
         </tr>
         <tr>
           <td>Ghế</td>
-          <td>A3 A4 A5 A6</td>
+          <td>
+            <span *ngFor="let roomSeat of listChoseSeat; let i = index">
+              {{roomSeat.seat.row.rowName}}{{roomSeat.seat.column.columnName}}
+              <span *ngIf="i != listChoseSeat.length - 1">,</span>
+            </span>
+          </td>
         </tr>
         <tr>
           <td>Vé</td>
           <td>
             <div class="col-12 row m-0 p-0">
-              <div class="col-6">
+              <div class="col-lg-6 col-md-5 col-sm-5 col-5">
                 <p>
                   <strong>Số ghế</strong>
                 </p>
-                <p *ngFor="let seat of listChoseSeat">{{seat}}</p>
+                <p *ngFor="let roomSeat of listChoseSeat">
+                  {{roomSeat.seat.row.rowName}}{{roomSeat.seat.column.columnName}}
+                </p>
                 <p>
-                  <strong>Tổng cộng</strong>
+                  <strong>Tổng tiền</strong>
                 </p>
               </div>
-              <div class="col-6">
+              <div class="col-lg-6 col-md-7 col-sm-7 col-7">
                 <p>
                   <strong>Giá vé</strong>
                 </p>
-                <p *ngFor="let seat of listChoseSeat">45,000 VND</p>
+                <div *ngFor="let roomSeat of listChoseSeat">
+                  <p *ngIf="roomSeat.seat.seatType.seatTypeId == 1">{{movieTicket.ticketPrice | number}} VND</p>
+                  <p *ngIf="roomSeat.seat.seatType.seatTypeId == 2">{{movieTicket.ticketPrice * (4 / 3) | number}} VND</p>
+                </div>
                 <p>
-                  <strong>180,000 VND</strong>
+                  <strong>{{totalMoney | number}} VND</strong>
                 </p>
               </div>
             </div>
@@ -70,7 +89,7 @@
         </tbody>
       </table>
 
-      <table class="table table-hover" id="table-personal-info">
+      <table class="table table-hover" id="table-personal-info" *ngIf="user">
         <thead>
         <tr>
           <td colspan="2">
@@ -81,45 +100,19 @@
         <tbody>
         <tr>
           <td>Họ và tên</td>
-          <td class="text-uppercase">Tran Quoc Hung</td>
+          <td class="text-uppercase">{{user.name}}</td>
         </tr>
         <tr>
           <td>Email</td>
-          <td>roflovidle@gmail.com</td>
+          <td>{{user.email}}</td>
         </tr>
         <tr>
           <td>CMND</td>
-          <td>205668551</td>
+          <td>{{user.idCard}}</td>
         </tr>
         <tr>
           <td>Số điện thoại</td>
-          <td>0905223651</td>
-        </tr>
-        </tbody>
-        <tbody hidden>
-        <tr>
-          <td>Họ và tên</td>
-          <td>
-            <input type="text" class="form-control">
-          </td>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td>
-            <input type="text" class="form-control">
-          </td>
-        </tr>
-        <tr>
-          <td>CMND</td>
-          <td>
-            <input type="text" class="form-control">
-          </td>
-        </tr>
-        <tr>
-          <td>Số điện thoại</td>
-          <td>
-            <input type="text" class="form-control">
-          </td>
+          <td>{{user.phone}}</td>
         </tr>
         </tbody>
       </table>
@@ -128,8 +121,8 @@
   </div>
 
   <div id="btnConfirm" *ngIf="!isConfirmed" class="text-center">
-    <a routerLink="seat">
-      <button class="btn btn-outline-primary rounded-pill" type="button">
+    <a>
+      <button class="btn btn-outline-primary rounded-pill" type="button" (click)="back()">
         <span class="arrow">
           <i class="fas fa-2x fa-arrow-left"></i>
         </span>
