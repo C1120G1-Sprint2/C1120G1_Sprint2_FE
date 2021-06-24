@@ -71,10 +71,21 @@
         <div class="table-wrapper">
           <div class="table-title">
             <div class="row">
-              <div class="col-sm-6">
-                <h2>Quản lý <b>Thành viên</b></h2>
+              <div class="col-sm-3">
+                <h2>Quản lý Thành viên</h2>
               </div>
               <div class="col-sm-6">
+                <div>
+                <input type="text" [(ngModel)]="keySearch"
+                       (keyup.enter)="searchEnter()"
+                       placeholder="Nhập thông tin mà bạn muốn tìm kiếm "
+                       class="form-control rounded-pill inputSearch" style="width: 80%">
+                </div>
+                  <button class="btnSearch">
+                    <i (click)="search()" class="fas fa-search" style="color: #f26b38"></i>
+                  </button>
+              </div>
+              <div class="col-sm-3">
                 <a routerLink="/employee/member/management/create" class="btn btn-success"><i
                   class="material-icons">&#xE147;</i> <span>Thêm Thành Viên</span></a>
               </div>
@@ -94,7 +105,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let user of users ; let i=index ">
+            <tr *ngFor="let user of users  ; let i=index ">
               <td>{{ i + 1}}</td>
               <td *ngIf="user.userId < 10">
                 <span>TV000{{user.userId}}</span>
@@ -108,34 +119,52 @@
               <td *ngIf="user.userId >=1000 && user.userId <= 9999 ">
                 <span>TV0{{user.userId}}</span>
               </td>
-              <!--              <td>{{user.account.username}}</td>-->
+<!--                            <td>{{user.account.username}}</td>-->
               <td>{{user.name}}</td>
               <td>{{user.email}}</td>
               <td>
-                <span>{{user.ward.wardName}}</span>,
-                <span>{{user.ward.district.districtName}}</span>,
-                <span>{{user.ward.district.province.provinceName}}</span>
+                <span>{{getAddress(user.address)}}</span>
               </td>
-              <td *ngIf="user.account.accountStatus.accountStatusId ==1" class="text-success">
-                {{user.account.accountStatus.accountStatusName}}
+              <td *ngIf="user.accountStatus.accountStatusId ==1" class="text-success">
+                {{user.accountStatus.accountStatusName}}
               </td>
-              <td *ngIf="user.account.accountStatus.accountStatusId ==3" class="text-danger">
-                {{user.account.accountStatus.accountStatusName}}
+              <td *ngIf="user.accountStatus.accountStatusId ==2" class="text-info">
+                {{user.accountStatus.accountStatusName}}
+              </td>
+              <td *ngIf="user.accountStatus.accountStatusId ==3" class="text-danger">
+                {{user.accountStatus.accountStatusName}}
               </td>
               <td>
                 <a [routerLink]="['edit',user.userId]" class="edit" data-toggle="modal"><i
                   class="material-icons"
                   data-toggle="tooltip"
                   title="Edit">&#xE254;</i></a>
-                <a (click)="deleteId = user.userId; deleteName = user.name" class="delete" data-target="#deletedModal" data-toggle="modal"><i
-                  class="material-icons"  title="Delete">&#xE872;</i></a>
+                <a (click)="deleteId = user.userId; deleteName = user.name" class=" delete" data-target="#deletedModal" data-toggle="modal"><i
+                  class="material-icons"  title="Delete" >&#xE872;</i></a>
               </td>
             </tr>
 
             </tbody>
           </table>
 
-
+          <ul class="pagination modal-4">
+            <li><a (click)="firstPage()" class="prev">
+              <i class="fa fa-chevron-left"></i>
+              Đầu
+            </a>
+            </li>
+            <li><a (click)="previousPage()"><i class="fa fa-chevron-left"></i></a></li>
+            <li> <a  class="active">{{indexPagination}}</a></li>
+            <li> <a (click)="nextPage()"><i class="fa fa-chevron-right"></i></a></li>
+            <li><a class="next"> Cuối
+              <i class="fa fa-chevron-right"></i>
+            </a></li>
+            <li><label>
+              <input type="number" class="input-group-prepend" style="width: 40px ;height: 20px" [(ngModel)]="selectPagination">
+            </label></li>
+            <li><a (click)="selectPage()">Chọn</a></li>
+          </ul>
+<!--  Modal      -->
           <div class="modal fade" id="deletedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -152,19 +181,7 @@
               </div>
             </div>
           </div>
-
-          <div class="clearfix">
-            <div class="hint-text">Đang xem <b>5</b> / <b>25</b> Trang</div>
-            <ul class="pagination">
-              <li class="page-item disabled"><a href="#">Trước</a></li>
-              <li class="page-item"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item active"><a href="#" class="page-link">3</a></li>
-              <li class="page-item"><a href="#" class="page-link">4</a></li>
-              <li class="page-item"><a href="#" class="page-link">5</a></li>
-              <li class="page-item"><a href="#" class="page-link">Sau</a></li>
-            </ul>
-          </div>
+<!--   Modal       -->
         </div>
       </div>
     </div>
