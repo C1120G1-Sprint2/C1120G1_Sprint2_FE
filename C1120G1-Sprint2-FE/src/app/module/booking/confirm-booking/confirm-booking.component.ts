@@ -32,39 +32,8 @@ export class ConfirmBookingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.user = this.tokenStorageService.getUser();
-    this.user = {
-      userId: 1,
-      name: 'Tran Quoc Hung',
-      email: 'roflovidle@gmail.com',
-      idCard: '205668551',
-      phone: '0905223651',
-      gender: 1,
-      account: {
-        username: 'hungtran123',
-        password: '$2y$12$VUGca2AknkSCRkYByHb/Y.KEcy6eUl.rpxLIOnp34KwmJYb1q9qJ.',
-        accountStatus: {
-          accountStatusId: 2,
-          accountStatusName: 'Đang hoạt động'
-        },
-        point: '0',
-        registerDay: '2021-02-05'
-      },
-      ward: {
-        wardId: 3,
-        wardName: 'La Thành',
-        district: {
-          districtId: 3,
-          districtName: 'Hoàn Kiếm',
-          province: {
-            provinceId: 1,
-            provinceName: 'Hà Nội'
-          }
-        }
-      },
-      birthday: '1995-06-18',
-      avatarUrl: 'https://firebasestorage.googleapis.com/v0/b/c1120g1.appspot.com/o/login%2Fuser.jpg?alt=media&token=d3149a38-f6f3-42d2-b8bf-b79d78049b89'
-    };
+    this.user = this.tokenStorageService.getUser().user;
+
     if (this.bookTicketsService.listChoseSeat.length != 0) {
       this.listChoseSeat = this.bookTicketsService.listChoseSeat;
       this.movieTicket = this.bookTicketsService.movieTicket;
@@ -75,36 +44,30 @@ export class ConfirmBookingComponent implements OnInit {
   }
 
   confirm() {
-    this.bookTicketsService.payViaPaypal(this.totalMoney).subscribe(data => {
-      if (data) {
-        let flag: boolean = true;
-        for (let roomSeat of this.listChoseSeat) {
-          this.ticketDTO = new MemberTicketDTO(this.movieTicket.movieTicketId,
-            this.user.userId, roomSeat.seat.seatId);
-          console.log(this.ticketDTO);
 
-          this.bookTicketsService.createTicketDTO(this.movieTicket.movieTicketId,
-            this.user.userId, roomSeat.seat.seatId).subscribe(data => {
-            console.log('OK ' + data);
-          }, error => {
-            console.log("get "+error+" at createTicketDTO() on ConfirmBookingComponent");
-            flag = false;
-          });
+    let flag: boolean = true;
+    for (let roomSeat of this.listChoseSeat) {
+      this.ticketDTO = new MemberTicketDTO(this.movieTicket.movieTicketId,
+        this.user.userId, roomSeat.seat.seatId);
+      console.log(this.ticketDTO);
 
-        }
-        if (flag) {
-          this.router.navigateByUrl('login').then();
-          this.isConfirmed = true;
-        } else {
-          this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
-        }
-      } else {
-        this.toastrService.warning('Đã có lỗi xảy ra trong quá trình giao dịch!', 'Thông báo!');
-      }
-    }, error => {
-      // this.router.navigateByUrl("/login").then();
-      console.log('get ' + error + ' at payViaPaypal() on ConfirmBookingComponent');
-    });
+      this.bookTicketsService.createTicketDTO(this.movieTicket.movieTicketId,
+        this.user.userId, roomSeat.seat.seatId).subscribe(data => {
+        console.log('OK ' + data);
+      }, error => {
+        console.log("get "+error+" at createTicketDTO() on ConfirmBookingComponent");
+        flag = false;
+      });
+
+    }
+    if (flag) {
+      this.router.navigateByUrl('admin').then();
+      this.isConfirmed = true;
+    } else {
+      this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
+    }
+
+    
   }
 
   back() {

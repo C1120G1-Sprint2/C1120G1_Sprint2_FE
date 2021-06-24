@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {Movie} from '../../../model/movie';
 import {ShowTime} from '../../../model/showTime';
 import {MovieTicket} from '../../../model/movieTicket';
-import {Seat} from '../../../model/seat';
 import {User} from '../../../model/user';
 import {RoomSeat} from '../../../model/roomSeat';
 
@@ -64,6 +63,6 @@ export class BookTicketsService {
   }
 
   payViaPaypal(totalMoney: number): Observable<any> {
-    return this.http.post(API_PAYPAL + '/pay?price=' + 5, this.httpOptions);
+    return this.http.post(API_PAYPAL + '/pay', 5, this.httpOptions);
   }
 }

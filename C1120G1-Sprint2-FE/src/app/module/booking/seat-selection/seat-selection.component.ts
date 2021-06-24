@@ -40,11 +40,6 @@ export class SeatSelectionComponent implements OnInit {
   getAllSeat(roomId:number){
     this.bookTicketsService.getAllSeat(roomId).subscribe(data => {
       this.listSeat = data;
-      for(let roomSeat of this.listSeat) {
-        if (this.listRow.indexOf(parseInt(roomSeat.seat.row.rowName)) == -1) {
-          this.listRow.push(parseInt(roomSeat.seat.row.rowName));
-        }
-      }
     }, error =>  {
       console.log("get "+error+" at getAllSeat() on SeatSelectionComponent");
     })

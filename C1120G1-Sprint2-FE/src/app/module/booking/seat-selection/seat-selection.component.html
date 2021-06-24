@@ -1,30 +1,49 @@
 <div class="container-fluid" id="fluid">
-  <div id="follow-div">
-    <div class="follow">
-      <p class="follow-title">vui lòng chọn ghế</p>
+  <div id="follow-div" class="row m-0 p-0">
+    <div class="follow col-lg-3 col-md-3">
+      <a routerLink="/booking">
+        <p class="follow-title">chọn phim</p>
+      </a>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title" id="active">chọn ghế</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">xác nhận đặt vé</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">thông tin đặt vé</p>
     </div>
   </div>
   ​
-  <hr class="d-inline-block"
-      style="width: 99%; height: 1px; background-color: lightgray">
+<!--  <hr class="d-inline-block"-->
+<!--      style="width: 99%; height: 1px; background-color: lightgray">-->
   ​
   <div class="container-fluid p-0" *ngIf="movieTicket">
     <p id="movie-picked-title">Bạn đã chọn</p>
     <div id="movie-picked-content" class="row m-0 p-0">
       <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
-      <p>Ngày chiếu : <span>{{movieTicket.showDate}}</span></p>
+      <p>Ngày chiếu : <span>{{movieTicket.showDate | date:'dd-MM-yyyy'}}</span></p>
       <p>Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
     </div>
+
     <div class="container-fluid justify-content-center align-items-center">
       <!--      choose seat-->
       <div id="seat-show" class="row m-0 p-0">
         <div class="col-lg-2 space-div"></div>
         <div class="col-lg-8 col-md-12" id="seat">
+          <!--    screen-->
+          <div class="container-fluid mb-3">
+            <img src="../../../../assets/img/screen-bg-transparent.png"
+                 style="height: 6rem; width: 100%" alt="bg"/>
+          </div>
+
           <table class="table table-borderless">
             <tbody class="text-center justify-content-center align-items-center">
             <tr *ngFor="let index of listRow">
-              <td  *ngFor="let roomSeat of listSeat| slice:(index-1)*10:(index)*10">
-                <div *ngIf="roomSeat.seat.row.rowId == index" class="text-center td-seat align-items-center"
+              <td *ngFor="let roomSeat of listSeat | slice:(index-1)*10:(index)*10">
+                <div *ngIf="roomSeat.seat.row.rowId == index"
+                     class="text-center td-seat align-items-center"
                      [id]="roomSeat.seat.row.rowName+roomSeat.seat.column.columnName"
                      (click)="chooseSeat(roomSeat)"
                      [ngClass]="((roomSeat.seatStatus.seatStatusId == 2) ?
@@ -64,7 +83,7 @@
   </div>
 
   <div id="btnContinue" class="text-center">
-    <a routerLink="/employee/sale/tickets">
+    <a routerLink="/booking">
       <button class="btn btn-outline-primary rounded-pill" type="button">
         <span class="arrow">
           <i class="fas fa-2x fa-arrow-left"></i>

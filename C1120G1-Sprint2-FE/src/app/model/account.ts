@@ -1,5 +1,4 @@
 import {AccountStatus} from './accountStatus';
-import {User} from './user';
 
 export interface Account {
   username: string;
@@ -7,5 +6,4 @@ export interface Account {
   registerDay: string;
   point: string;
   accountStatus: AccountStatus;
-  user :User;
 }

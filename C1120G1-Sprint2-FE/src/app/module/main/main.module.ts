@@ -4,6 +4,7 @@ import {MainHomePageComponent} from './main-home-page/main-home-page.component';
 import {MainHeaderComponent} from './main-header/main-header.component';
 import {MainFooterComponent} from './main-footer/main-footer.component';
 import {MainContentComponent} from './main-content/main-content.component';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -14,7 +15,8 @@ import {MainContentComponent} from './main-content/main-content.component';
     MainFooterComponent
   ],
     imports: [
-        CommonModule
+        CommonModule,
+        RouterModule
     ]
 })
 export class MainModule { }

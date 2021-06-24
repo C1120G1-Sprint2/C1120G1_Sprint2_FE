@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]+$'),
+      username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]+$'),
         Validators.minLength(6), Validators.maxLength(45)]],
       password: ['', [Validators.required,
         Validators.minLength(6), Validators.maxLength(45)]],

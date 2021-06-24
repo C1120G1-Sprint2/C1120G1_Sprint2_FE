@@ -1,17 +1,26 @@
 <div class="container-fluid" id="fluid">
-  <div id="follow-div">
-    <div class="follow">
-      <p class="follow-title">vui lòng xác nhận</p>
+  <div id="follow-div" class="row m-0 p-0">
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">chọn phim</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title" (click)="back()">chọn ghế</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title" id="active">xác nhận đặt vé</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">thông tin đặt vé</p>
     </div>
   </div>
 
-  <hr class="d-inline-block"
-      style="width: 99%; height: 1px; background-color: lightgray">
+<!--  <hr class="d-inline-block"-->
+<!--      style="width: 99%; height: 1px; background-color: lightgray">-->
 
-  <div class="container-fluid row p-0 m-0">
+  <div class="container-fluid row p-0 m-0 mt-3">
     <div class="col-lg-3 col-md-4" id="img-div">
       <p class="movie-picked-title" style="font-size: 1.3rem">Thông tin đặt vé</p>
-      <img src="https://i.pinimg.com/originals/6f/76/99/6f769926be26c81307d4d7c869c1abb5.jpg"
+      <img [src]="movieTicket.movie.posterMovie"
            alt="img">
     </div>
     <div class="col-lg-7 col-md-8 pl-3" *ngIf="movieTicket">
@@ -32,7 +41,7 @@
         </tr>
         <tr>
           <td>Ngày chiếu</td>
-          <td class="red">{{movieTicket.showDate}}</td>
+          <td class="red">{{movieTicket.showDate | date:'dd-MM-yyyy'}}</td>
         </tr>
         <tr>
           <td>Giờ chiếu</td>
@@ -41,8 +50,8 @@
         <tr>
           <td>Ghế</td>
           <td>
-            <span *ngFor="let seat of listChoseSeat; let i = index">
-              {{seat.row.rowName}}{{seat.column.columnName}}
+            <span *ngFor="let roomSeat of listChoseSeat; let i = index">
+              {{roomSeat.seat.row.rowName}}{{roomSeat.seat.column.columnName}}
               <span *ngIf="i != listChoseSeat.length - 1">,</span>
             </span>
           </td>
@@ -51,22 +60,24 @@
           <td>Vé</td>
           <td>
             <div class="col-12 row m-0 p-0">
-              <div class="col-6">
+              <div class="col-lg-6 col-md-5 col-sm-5 col-5">
                 <p>
                   <strong>Số ghế</strong>
                 </p>
-                <p *ngFor="let seat of listChoseSeat">{{seat.row.rowName}}{{seat.column.columnName}}</p>
+                <p *ngFor="let roomSeat of listChoseSeat">
+                  {{roomSeat.seat.row.rowName}}{{roomSeat.seat.column.columnName}}
+                </p>
                 <p>
                   <strong>Tổng tiền</strong>
                 </p>
               </div>
-              <div class="col-6">
+              <div class="col-lg-6 col-md-7 col-sm-7 col-7">
                 <p>
                   <strong>Giá vé</strong>
                 </p>
-                <div *ngFor="let seat of listChoseSeat">
-                  <p *ngIf="seat.seatType.seatTypeId == 1">{{movieTicket.ticketPrice | number}} VND</p>
-                  <p *ngIf="seat.seatType.seatTypeId == 2">{{movieTicket.ticketPrice * (4 / 3) | number}} VND</p>
+                <div *ngFor="let roomSeat of listChoseSeat">
+                  <p *ngIf="roomSeat.seat.seatType.seatTypeId == 1">{{movieTicket.ticketPrice | number}} VND</p>
+                  <p *ngIf="roomSeat.seat.seatType.seatTypeId == 2">{{movieTicket.ticketPrice * (4 / 3) | number}} VND</p>
                 </div>
                 <p>
                   <strong>{{totalMoney | number}} VND</strong>
