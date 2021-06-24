@@ -23,31 +23,39 @@ export class BookTicketsManagementService {
     return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list', this.httpOptions);
   }
 
+  getAllBookedTicketListNoPage(): Observable<any> {
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list-no-page', this.httpOptions);
+  }
+
   getBookedTicketByIndex(ticketId: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list' + ticketId, this.httpOptions);
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/get-ticket/' + ticketId, this.httpOptions);
   }
 
   searchTicketByTicketId(ticketId: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-ticketId?ticketId=' + ticketId, this.httpOptions);
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-ticketId' + '?ticketId=' + ticketId, this.httpOptions);
   }
 
   searchTicketByUserId(userId: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-userId?user_id=' + userId, this.httpOptions);
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-userId' + '?userId=' + userId, this.httpOptions);
   }
 
   searchTicketByIdCard(idCard: string): Observable<any> {
-    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-idCard?cardId=' + idCard, this.httpOptions);
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-idCard' + '?idCard=' + idCard, this.httpOptions);
   }
 
   searchTicketByPhone(phone: string): Observable<any> {
-    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-phone?phone=' + phone, this.httpOptions);
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-phone' + '?phone=' + phone, this.httpOptions);
   }
 
-  receiveTicket(ticketId: number): Observable<any> {
-    return this.httpClient.put<any>(this.API_BASE_URL + '/booked-ticket-list/receive-ticket' + ticketId, this.httpOptions);
+  confirmTicket(ticketId: number): Observable<any> {
+    return this.httpClient.put<any>(this.API_BASE_URL + '/booked-ticket-list/get-ticket/confirm-ticket/' + ticketId, this.httpOptions);
+  }
+
+  printTicketByTicketId(ticketId: number): Observable<any> {
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/get-ticket/print-ticket/' + ticketId, this.httpOptions);
   }
 
   cancelTicket(ticketId: number): Observable<any> {
-    return this.httpClient.put<any>(this.API_BASE_URL + '/booked-ticket-list/cancel-ticket' + ticketId, this.httpOptions);
+    return this.httpClient.put<any>(this.API_BASE_URL + '/booked-ticket-list/cancel-ticket/' + ticketId, this.httpOptions);
   }
 }
