@@ -14,7 +14,7 @@
       <img src="https://i.pinimg.com/originals/6f/76/99/6f769926be26c81307d4d7c869c1abb5.jpg"
            alt="img">
     </div>
-    <div class="col-lg-7 col-md-8 pl-3">
+    <div class="col-lg-7 col-md-8 pl-3" *ngIf="movieTicket">
       <table class="table table-hover" id="table-booking-infor">
         <thead class="text-center">
         <tr>
@@ -27,20 +27,25 @@
         <tr>
           <td>Rạp</td>
           <td>
-            <p>RẠP 01</p>
+            <p class="red">{{movieTicket.room.roomName}}</p>
           </td>
         </tr>
         <tr>
           <td>Ngày chiếu</td>
-          <td>18-06-2021</td>
+          <td class="red">{{movieTicket.showDate}}</td>
         </tr>
         <tr>
           <td>Giờ chiếu</td>
-          <td>14:45</td>
+          <td class="red">{{movieTicket.showTime.showTime}}</td>
         </tr>
         <tr>
           <td>Ghế</td>
-          <td>A3 A4 A5 A6</td>
+          <td>
+            <span *ngFor="let seat of listChoseSeat; let i = index">
+              {{seat.row.rowName}}{{seat.column.columnName}}
+              <span *ngIf="i != listChoseSeat.length - 1">,</span>
+            </span>
+          </td>
         </tr>
         <tr>
           <td>Vé</td>
@@ -50,18 +55,21 @@
                 <p>
                   <strong>Số ghế</strong>
                 </p>
-                <p *ngFor="let seat of listChoseSeat">{{seat}}</p>
+                <p *ngFor="let seat of listChoseSeat">{{seat.row.rowName}}{{seat.column.columnName}}</p>
                 <p>
-                  <strong>Tổng cộng</strong>
+                  <strong>Tổng tiền</strong>
                 </p>
               </div>
               <div class="col-6">
                 <p>
                   <strong>Giá vé</strong>
                 </p>
-                <p *ngFor="let seat of listChoseSeat">45,000 VND</p>
+                <div *ngFor="let seat of listChoseSeat">
+                  <p *ngIf="seat.seatType.seatTypeId == 1">{{movieTicket.ticketPrice | number}} VND</p>
+                  <p *ngIf="seat.seatType.seatTypeId == 2">{{movieTicket.ticketPrice * (4 / 3) | number}} VND</p>
+                </div>
                 <p>
-                  <strong>180,000 VND</strong>
+                  <strong>{{totalMoney | number}} VND</strong>
                 </p>
               </div>
             </div>
@@ -70,7 +78,7 @@
         </tbody>
       </table>
 
-      <table class="table table-hover" id="table-personal-info">
+      <table class="table table-hover" id="table-personal-info" *ngIf="user">
         <thead>
         <tr>
           <td colspan="2">
@@ -81,45 +89,19 @@
         <tbody>
         <tr>
           <td>Họ và tên</td>
-          <td class="text-uppercase">Tran Quoc Hung</td>
+          <td class="text-uppercase">{{user.name}}</td>
         </tr>
         <tr>
           <td>Email</td>
-          <td>roflovidle@gmail.com</td>
+          <td>{{user.email}}</td>
         </tr>
         <tr>
           <td>CMND</td>
-          <td>205668551</td>
+          <td>{{user.idCard}}</td>
         </tr>
         <tr>
           <td>Số điện thoại</td>
-          <td>0905223651</td>
-        </tr>
-        </tbody>
-        <tbody hidden>
-        <tr>
-          <td>Họ và tên</td>
-          <td>
-            <input type="text" class="form-control">
-          </td>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td>
-            <input type="text" class="form-control">
-          </td>
-        </tr>
-        <tr>
-          <td>CMND</td>
-          <td>
-            <input type="text" class="form-control">
-          </td>
-        </tr>
-        <tr>
-          <td>Số điện thoại</td>
-          <td>
-            <input type="text" class="form-control">
-          </td>
+          <td>{{user.phone}}</td>
         </tr>
         </tbody>
       </table>
@@ -128,8 +110,8 @@
   </div>
 
   <div id="btnConfirm" *ngIf="!isConfirmed" class="text-center">
-    <a routerLink="seat">
-      <button class="btn btn-outline-primary rounded-pill" type="button">
+    <a>
+      <button class="btn btn-outline-primary rounded-pill" type="button" (click)="back()">
         <span class="arrow">
           <i class="fas fa-2x fa-arrow-left"></i>
         </span>

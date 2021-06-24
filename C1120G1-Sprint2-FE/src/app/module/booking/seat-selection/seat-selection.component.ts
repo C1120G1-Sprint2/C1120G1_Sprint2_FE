@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {BookTicketsService} from '../../../service/member/book-tickets/book-tickets.service';
 import {Ticket} from '../../../model/ticket';
 import {MovieTicket} from '../../../model/movieTicket';
-import {Seat} from '../../../model/seat';
+import {ToastrService} from 'ngx-toastr';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RoomSeat} from '../../../model/roomSeat';
 
 @Component({
   selector: 'app-seat-selection',
@@ -10,47 +12,75 @@ import {Seat} from '../../../model/seat';
   styleUrls: ['./seat-selection.component.scss']
 })
 export class SeatSelectionComponent implements OnInit {
-  listCol:number[] = [];
-  listRow:string[] = [];
+  listRow:number[] = [1,2,3,4,5,6,7];
 
-  listSeat: Seat[] = [];
-  seatNumber:number;
+  listSeat: RoomSeat[] = [];
+  listChoseSeat: RoomSeat[] = [];
   ticket:Ticket;
   movieTicket:MovieTicket;
+  movieTicketId:number;
 
-  constructor(private bookTicketsService:BookTicketsService) { }
+  constructor(private bookTicketsService:BookTicketsService,
+              private router:Router,
+              private activatedRoute: ActivatedRoute,
+              private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    this.ticket = this.bookTicketsService.ticket;
-    this.movieTicket = this.ticket.movieTicket;
-    this.getAllSeat(this.movieTicket.room.roomId);
+    this.movieTicketId = parseInt(this.activatedRoute.snapshot.queryParamMap.get("movieTicketId"));
+
+    this.bookTicketsService.getMovieTicketById(this.movieTicketId).subscribe(data => {
+      this.movieTicket = data;
+      this.bookTicketsService.movieTicket = this.movieTicket;
+      this.getAllSeat(this.movieTicket.room.roomId);
+    }, error => {
+      console.log("get "+error+" at getMovieTicketById() on SeatSelectionComponent");
+    })
   }
 
   getAllSeat(roomId:number){
     this.bookTicketsService.getAllSeat(roomId).subscribe(data => {
       this.listSeat = data;
-      console.log(this.listSeat)
-      for(let seat of this.listSeat) {
-        if (this.listCol.indexOf(seat.column.columnName) == -1) {
-          this.listCol.push(seat.column.columnName);
-        }
-        if (this.listRow.indexOf(seat.row.rowName) == -1) {
-          this.listRow.push(seat.row.rowName);
+      for(let roomSeat of this.listSeat) {
+        if (this.listRow.indexOf(parseInt(roomSeat.seat.row.rowName)) == -1) {
+          this.listRow.push(parseInt(roomSeat.seat.row.rowName));
         }
       }
-      console.log(this.listRow);
-      console.log(this.listCol);
-
     }, error =>  {
       console.log("get "+error+" at getAllSeat() on SeatSelectionComponent");
     })
   }
 
-  chooseSeat(col:number, row:string) {
-    let seat = col + row;
-    document.getElementById(seat).style.backgroundColor;
+  chooseSeat(roomSeat: RoomSeat) {
+    if (roomSeat.seatStatus.seatStatusId == 1) {
+      const seatStyle = document.getElementById(roomSeat.seat.row.rowName + roomSeat.seat.column.columnName);
+      if (!this.listChoseSeat.includes(roomSeat)) {
+        if (this.listChoseSeat.length < 8) {
+          seatStyle.style.backgroundColor = 'green';
+          seatStyle.style.color = 'white';
+          this.listChoseSeat.push(roomSeat);
+        } else {
+          this.toastrService.error('Bạn chỉ có thể chọn tối đa 8 vé!', 'Thông báo!');
+        }
+      } else {
+        if (roomSeat.seat.seatType.seatTypeId === 2) {
+          seatStyle.style.backgroundColor = 'lightpink';
+        } else {
+          seatStyle.style.backgroundColor = '#f0f0f0';
+        }
+        seatStyle.style.color = 'black';
+        this.listChoseSeat.splice(this.listChoseSeat.indexOf(roomSeat), 1);
+      }
+    } else {
+      this.toastrService.warning("Ghế này đã có người đặt rồi!","Thông báo!")
+    }
   }
 
-
-
+  continue() {
+    if (this.listChoseSeat.length != 0 ){
+      this.bookTicketsService.listChoseSeat = this.listChoseSeat;
+      this.router.navigateByUrl("confirm");
+    } else {
+      this.toastrService.error("Bạn chưa chọn vé!", "Lỗi!")
+    }
+  }
 }

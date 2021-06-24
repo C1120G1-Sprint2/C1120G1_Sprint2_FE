@@ -7,7 +7,11 @@ $color : #f26c39;
     grid-template-columns: 50% 50%;
     text-align: center;
   }
+  #movie-picked-content {
+    display: block;
+  }
 }
+
 #fluid {
   padding-left: 2rem;
   margin: 3rem 0;
@@ -54,16 +58,16 @@ hr {
   margin-right: 1.2rem;
 }
 .empty-seat {
-  color: gray;
+  background-color: #f0f0f0;
 }
 .ordered-seat {
-  color: red;
+  background-color: $color;
 }
 .selecting-seat {
-  color: green;
+  background-color: green;
 }
 .vip-seat {
-  color: purple;
+  background-color: lightpink;
 }
 #seat-show {
   margin-top: 2rem;
@@ -81,7 +85,7 @@ hr {
   margin-left: 0.5rem;
 }
 #btnContinue {
-  margin-top: 1rem;
+  margin: 1rem;
 }
 #btnContinue a {
   margin: 1rem;
@@ -91,8 +95,36 @@ hr {
 }
 #seat td {
   display: inline-block;
-  padding: 0 0.75rem;
-  margin: 0.5rem 0;
+  padding: 0 0.45rem;
+  margin: 0.325rem 0;
+}
+@media screen and (max-width: 630px){
+  #seat {
+    margin: 0;
+    padding: 0;
+  }
+  #seat td {
+    display: inline-block;
+    padding: 0 0.25rem;
+    margin: 0.15rem 0;
+  }
+  .td-seat{
+    width: 32px;
+    height: 32px;
+    border: 1px solid green;
+  }
+}
+@media screen and (max-width: 535px){
+  #seat td {
+    display: inline-block;
+    padding: 0 0.05rem;
+    margin: 0.05rem 0;
+  }
+  .td-seat{
+    width: 28px;
+    height: 28px;
+    border: 1px solid green;
+  }
 }
 .fa-arrow-right, .fa-arrow-left {
   width: 5rem;
@@ -101,6 +133,9 @@ hr {
   width: 36px;
   height: 36px;
   border: 1px solid green;
+}
+.fa-arrow-left {
+  margin-right: 0.5rem;
 }
 .td-seat:hover {
   cursor: pointer;

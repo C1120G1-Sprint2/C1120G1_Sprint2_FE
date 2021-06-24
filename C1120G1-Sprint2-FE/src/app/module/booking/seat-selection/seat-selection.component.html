@@ -4,11 +4,11 @@
       <p class="follow-title">vui lòng chọn ghế</p>
     </div>
   </div>
-
+  ​
   <hr class="d-inline-block"
       style="width: 99%; height: 1px; background-color: lightgray">
-
-  <div class="container-fluid p-0">
+  ​
+  <div class="container-fluid p-0" *ngIf="movieTicket">
     <p id="movie-picked-title">Bạn đã chọn</p>
     <div id="movie-picked-content" class="row m-0 p-0">
       <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
@@ -16,19 +16,23 @@
       <p>Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
     </div>
     <div class="container-fluid justify-content-center align-items-center">
-
-<!--      choose seat-->
+      <!--      choose seat-->
       <div id="seat-show" class="row m-0 p-0">
         <div class="col-lg-2 space-div"></div>
-        <div class="col-lg-8 col-md-12">
-          <table class="table table-borderless" id="seat">
+        <div class="col-lg-8 col-md-12" id="seat">
+          <table class="table table-borderless">
             <tbody class="text-center justify-content-center align-items-center">
-            <tr *ngFor='let col of listCol'>
-              <td *ngFor='let row of listRow'
-                  [id]="col+row"
-                  (click)="chooseSeat(col,row)"
-                  class="td-seat m-1 p-0">
-                <span>{{col}}{{row}}</span>
+            <tr *ngFor="let index of listRow">
+              <td  *ngFor="let roomSeat of listSeat| slice:(index-1)*10:(index)*10">
+                <div *ngIf="roomSeat.seat.row.rowId == index" class="text-center td-seat align-items-center"
+                     [id]="roomSeat.seat.row.rowName+roomSeat.seat.column.columnName"
+                     (click)="chooseSeat(roomSeat)"
+                     [ngClass]="((roomSeat.seatStatus.seatStatusId == 2) ?
+                      'ordered-seat' :
+                       ((roomSeat.seat.seatType.seatTypeId == 2) ? ' vip-seat' : ' empty-seat'))"
+                     style="padding-top: 0.3125rem">
+                  {{roomSeat.seat.row.rowName}}{{roomSeat.seat.column.columnName}}
+                </div>
               </td>
             </tr>
             </tbody>
@@ -36,40 +40,42 @@
         </div>
         <div class="col-lg-2 space-div"></div>
       </div>
-
-<!--      instructor-->
+      ​
+      <!--      instructor-->
       <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
-        <div>
-          <i class="fas fa-2x fa-couch empty-seat"></i>
-          <span class="instructor-label mr-lg-3 mr-md-1">Ghế trống</span>
+        <div class="row m-1 p-0 align-items-center">
+          <div class="td-seat empty-seat"></div>
+          <span class="instructor-label mr-lg-3 ml-1">Ghế trống</span>
         </div>
-        <div>
-          <i class="fas fa-2x fa-couch selecting-seat"></i>
-          <span class="instructor-label mr-lg-3 mr-md-1">Ghế đang chọn</span>
+        <div class="row m-1 p-0 align-items-center">
+          <div class="td-seat selecting-seat"></div>
+          <span class="instructor-label mr-lg-3 ml-1">Ghế đang chọn</span>
         </div>
-        <br>
-        <div>
-          <i class="fas fa-2x fa-couch ordered-seat"></i>
-          <span class="instructor-label mr-lg-3 mr-md-1">Ghế đã có người đặt</span>
+        <div class="row m-1 p-0 align-items-center">
+          <div class="td-seat ordered-seat"></div>
+          <span class="instructor-label mr-lg-3 ml-1">Ghế đã có người đặt</span>
         </div>
-        <div>
-          <i class="fas fa-2x fa-couch vip-seat"></i>
-          <span class="instructor-label mr-lg-0 mr-md-1">Ghế VIP</span>
+        <div class="row m-1 p-0 align-items-center">
+          <div class="td-seat vip-seat"></div>
+          <span class="instructor-label mr-lg-0 ml-1">Ghế VIP</span>
         </div>
       </div>
     </div>
   </div>
 
   <div id="btnContinue" class="text-center">
-    <a routerLink="/">
+    <a routerLink="/employee/sale/tickets">
       <button class="btn btn-outline-primary rounded-pill" type="button">
         <span class="arrow">
           <i class="fas fa-2x fa-arrow-left"></i>
         </span>
       </button>
     </a>
-    <a routerLink="/confirm">
-      <button class="btn btn-outline-success rounded-pill" type="button">
+    <a>
+      <button class="btn btn-outline-success rounded-pill"
+              type="button"
+              (click)="continue()"
+              [disabled]="listChoseSeat.length == 0">
         <span class="arrow">
           <i class="fas fa-2x fa-arrow-right"></i>
         </span>
@@ -77,4 +83,3 @@
     </a>
   </div>
 </div>
-

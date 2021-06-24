@@ -43,7 +43,8 @@
         </tbody>
         <tbody *ngIf="listDateTime">
         <tr>
-          <select class="form-control bg-white" (change)="getShowTimeList($event.target.value)">
+          <select class="form-control bg-white"
+                  (change)="getShowTimeList($event.target.value)">
             <option value="" selected disabled>Vui lòng chọn ngày chiếu</option>
             <option *ngFor="let date of listDateTime" [ngValue]="date">
               <td>{{date}}</td>
