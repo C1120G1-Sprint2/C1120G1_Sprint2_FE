@@ -8,9 +8,11 @@ import { CancelTicketComponent } from './cancel-ticket/cancel-ticket.component';
 import { ConfirmTicketComponent } from './confirm-ticket/confirm-ticket.component';
 import { PrintTicketComponent } from './print-ticket/print-ticket.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
-import {AppRoutingModule} from '../../../app-routing.module';
+import {MainModule} from '../../main/main.module';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {NgxPrintModule} from 'ngx-print';
+
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import {AppRoutingModule} from '../../../app-routing.module';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+    NgxPrintModule
   ]
 })
 export class EmployeeBookTicketsManagementModule { }
