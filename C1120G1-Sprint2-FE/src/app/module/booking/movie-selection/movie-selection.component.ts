@@ -3,8 +3,11 @@ import {Movie} from '../../../model/movie';
 import {BookTicketsService} from '../../../service/member/book-tickets/book-tickets.service';
 import {MovieManagementService} from '../../../service/admin/movie-management/movie-management.service';
 import {ShowTime} from '../../../model/showTime';
-import {MovieTicket} from '../../../model/movieTicket';
 import {Router} from '@angular/router';
+import {MovieTicket} from '../../../model/movieTicket';
+import {TokenStorageService} from '../../../service/security/token-storage.service';
+import {User} from '../../../model/user';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,23 +21,38 @@ export class MovieSelectionComponent implements OnInit {
   listDateTime: string[] = [];
   listShowtime: ShowTime[] = [];
   listMovie: Movie[] = [];
+  user:User;
   movie:Movie;
+
   date:string = '';
   showTimeId:number;
   startDate:Date;
   endDate:Date;
   diff:number;
 
-
   constructor(private bookTicketsService: BookTicketsService,
               private movieManagementService:MovieManagementService,
+              private tokenStorageService:TokenStorageService,
               private router:Router) { }
 
   ngOnInit(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.user = this.tokenStorageService.getUser();
+
+      this.bookTicketsService.getAllMovie().subscribe(data => {
+        this.listMovie = data;
+      }, error => {
+        console.log("get " + error + " at getAllMovie() on MovieSelectionComponent");
+      })
+    } else {
+      this.router.navigateByUrl("login");
+    }
+
+    this.user = this.tokenStorageService.getUser();
     this.bookTicketsService.getAllMovie().subscribe(data => {
       this.listMovie = data;
     }, error => {
-      console.log("get "+error+" at getAllMovie() on MovieSelectionComponent");
+      console.log("get " + error + " at getAllMovie() on MovieSelectionComponent");
     })
   }
 
@@ -73,9 +91,13 @@ export class MovieSelectionComponent implements OnInit {
 
   getMovieTicket() {
     this.bookTicketsService.getMovieTicket(this.movie.movieId, this.date, this.showTimeId).subscribe(data => {
-      this.bookTicketsService.ticket.movieTicket = data;
-      console.log(this.bookTicketsService.ticket)
-      this.router.navigateByUrl("seat");
+      this.bookTicketsService.movieTicket = data;
+      this.router.navigate(['seat'], {
+          queryParams: {
+            movieTicketId: data.movieTicketId
+          }
+        }
+      ).then();
     }, error => {
       console.log("get "+error+" at getMovieTicket() on MovieSelectionComponent");
     });
