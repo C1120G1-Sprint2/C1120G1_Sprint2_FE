@@ -4,6 +4,9 @@ import {Seat} from '../../../../model/seat';
 import {Location} from '@angular/common';
 import {MovieTicket} from '../../../../model/movieTicket';
 import {MemberTicketDTO} from '../../../../model/memberTicketDTO';
+import {ToastrService} from 'ngx-toastr';
+import {User} from '../../../../model/user';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,17 +17,25 @@ import {MemberTicketDTO} from '../../../../model/memberTicketDTO';
 export class ConfirmSaleTicketComponent implements OnInit {
   public listSeat: Seat[];
   public movieTicket: MovieTicket;
+  public listTicketDTO: MemberTicketDTO[] = [];
+  public user: User = null;
 
   constructor(private saleTicketService: SalesTicketsManagementService,
-              private location: Location) {
+              private location: Location,
+              private toast: ToastrService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.saleTicketService.listSeatCurrent.subscribe((data) => {
       this.listSeat = data;
+      console.log(this.listSeat);
       if (this.listSeat.length === 0) {
         this.location.back();
       }
+    });
+    this.saleTicketService.currentUser.subscribe((data) => {
+      this.user = data;
     });
     this.saleTicketService.currentMovieTicket.subscribe((data) => {
       this.movieTicket = data;
@@ -59,19 +70,23 @@ export class ConfirmSaleTicketComponent implements OnInit {
   }
 
   createTicket() {
-    const ticketDTO: MemberTicketDTO = {
-      ticketId: null,
-      movieTicketId: this.movieTicket.movieTicketId,
-      seatId: 0,
-      userId: 1,
-      timeCreate: '',
-      ticketStatusId: 2
-    };
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.listSeat.length; i++) {
-      ticketDTO.seatId = this.listSeat[i].seatId;
-      this.saleTicketService.createTicket(ticketDTO).subscribe((data) => {
-      });
+      const ticketDTO: MemberTicketDTO = {
+        ticketId: null,
+        movieTicketId: this.movieTicket.movieTicketId,
+        seatId: this.listSeat[i].seatId,
+        userId: this.user.userId,
+        timeCreate: '',
+        ticketStatusId: 2
+      };
+      this.listTicketDTO.push(ticketDTO);
     }
+    this.saleTicketService.createTicket(this.movieTicket.room.roomId, this.listTicketDTO).subscribe((data) => {
+      this.saleTicketService.changeListChoseSeat(this.listSeat);
+      this.saleTicketService.changeUser(this.user);
+      this.saleTicketService.changeMovieTicket(this.movieTicket);
+    });
+    this.router.navigateByUrl('/employee/sale/tickets/info');
   }
 }

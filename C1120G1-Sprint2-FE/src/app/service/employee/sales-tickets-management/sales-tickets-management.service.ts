@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {Seat} from '../../../model/seat';
 import {MovieTicket} from '../../../model/movieTicket';
 import {MemberTicketDTO} from '../../../model/memberTicketDTO';
+import {User} from '../../../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class SalesTicketsManagementService {
   public movieTicket = new BehaviorSubject<MovieTicket>(null);
   public currentMovieTicket = this.movieTicket.asObservable();
   public API_MOVIE_TICKET = 'http://localhost:8080/api/employee/saleTicket';
+  public user = new BehaviorSubject<User>(null);
+  public currentUser = this.user.asObservable();
 
   constructor(private http: HttpClient) {
   }
@@ -24,6 +27,9 @@ export class SalesTicketsManagementService {
 
   changeMovieTicket(movieTicket: MovieTicket) {
     this.movieTicket.next(movieTicket);
+  }
+  changeUser(user: User) {
+    this.user.next(user);
   }
 
   public showAllMovieTicket(): Observable<any> {
@@ -47,10 +53,14 @@ export class SalesTicketsManagementService {
   }
 
   public showAllSeatByRoomId(roomId: number): Observable<any> {
-    return this.http.get(this.API_MOVIE_TICKET + '/listSeat/' + roomId);
+    return this.http.get(this.API_MOVIE_TICKET + '/listRoomSeat/' + roomId);
   }
 
-  public createTicket(ticketDTO: MemberTicketDTO): Observable<any> {
-    return this.http.post(this.API_MOVIE_TICKET + '/createTicket', ticketDTO);
+  public createTicket(roomId: number, listTicketDTO: MemberTicketDTO[]): Observable<any> {
+    return this.http.post(this.API_MOVIE_TICKET + '/createTicket/' + roomId, listTicketDTO);
+  }
+
+  public findUserByCardId(cardId: string): Observable<any> {
+    return this.http.get(this.API_MOVIE_TICKET + '/user/' + cardId);
   }
 }

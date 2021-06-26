@@ -1,1 +1,112 @@
-<p>infor-sale-ticket works!</p>
+<div class="container-fluid" id="fluid">
+  <div id="follow-div">
+    <div class="follow">
+      <p class="follow-title">thông tin vé bán</p>
+    </div>
+  </div>
+
+  <hr class="d-inline-block"
+      style="width: 99%; height: 1px; background-color: lightgray">
+  <div class="container-fluid row p-0 m-0" *ngIf="movieTicket">
+    <div class="col-lg-3 col-md-4" id="img-div">
+      <p class="movie-picked-title" style="font-size: 1.3rem">Thông tin đặt vé</p>
+      <img class="border border-secondary" [src]="movieTicket.movie.posterMovie"
+           alt="img">
+    </div>
+    <div class="col-lg-7 col-md-8 pl-3">
+      <table class="table table-hover" id="table-booking-infor">
+        <thead class="text-center">
+        <tr>
+          <td colspan="2">
+            <span style="color: red" class="movie-picked-title">{{movieTicket.movie.movieName}}</span>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Rạp</td>
+          <td>
+            <p style="color: red">{{movieTicket.room.roomName}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Ngày chiếu</td>
+          <td style="color: red">{{movieTicket.showDate}}</td>
+        </tr>
+        <tr>
+          <td>Giờ chiếu</td>
+          <td style="color: red">{{movieTicket.showTime.showTime}}</td>
+        </tr>
+        <tr>
+          <td>Ghế</td>
+          <td>
+            <label *ngFor="let seat of listSeat;index as i" style="color: red" class="mr-2">{{seat.row.rowName}}{{seat.column.columnName}}
+              <label *ngIf="i !== listSeat.length-1">,</label>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Vé</td>
+          <td>
+            <div class="col-12 row m-0 p-0">
+              <div class="col-6">
+                <p>
+                  <strong>Số ghế</strong>
+                </p>
+                <p style="color: red" *ngFor="let seat of listSeat">{{seat.row.rowName}}{{seat.column.columnName}}</p>
+                <p>
+                  <strong>Tổng tiền</strong>
+                </p>
+              </div>
+              <div class="col-6">
+                <p>
+                  <strong>Giá vé</strong>
+                </p>
+                <p *ngFor="let seat of listSeat">{{priceTicket(seat.seatType.seatTypeId)|number}} VNĐ</p>
+                <p>
+                  <strong style="color: red">{{totalPriceTicket(listSeat)|number}} VNĐ</strong>
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <table class="table table-hover" id="table-personal-info">
+        <thead>
+        <tr>
+          <td colspan="2">
+            <p class="movie-picked-title" style="font-size: 1.3rem">kiểm tra thông tin cá nhân</p>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Họ và tên</td>
+          <td class="text-uppercase">{{user.name}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <td>CMND</td>
+          <td>{{user.idCard}}</td>
+        </tr>
+        <tr>
+          <td>Số điện thoại</td>
+          <td>{{user.phone}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  <div id="btnConfirm" class="text-center">
+      <button (click)="back()" class="btn btn-outline-primary rounded-pill mb-5" type="button">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-left"></i>
+        </span>
+      </button>
+  </div>
+</div>

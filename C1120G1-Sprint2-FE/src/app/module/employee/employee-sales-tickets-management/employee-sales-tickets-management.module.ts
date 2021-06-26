@@ -7,8 +7,9 @@ import {SeatSelectionComponent} from './seat-selection/seat-selection.component'
 import {ConfirmSaleTicketComponent} from './confirm-sale-ticket/confirm-sale-ticket.component';
 import {InforSaleTicketComponent} from './infor-sale-ticket/infor-sale-ticket.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import {ToastrModule} from 'ngx-toastr';
     EmployeeSalesTicketsManagementRoutingModule,
     HttpClientModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDialogModule,
+    ReactiveFormsModule
   ]
 })
 export class EmployeeSalesTicketsManagementModule {

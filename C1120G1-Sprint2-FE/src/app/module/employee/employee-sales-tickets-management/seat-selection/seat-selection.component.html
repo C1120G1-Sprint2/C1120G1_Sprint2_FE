@@ -3,10 +3,12 @@
     <div class="follow">
       <p class="follow-title">vui lòng chọn ghế</p>
     </div>
-  </div>​
+  </div>
+  ​
   <hr class="d-inline-block"
       style="width: 99%; height: 1px; background-color: lightgray">
-  ​<div class="container-fluid p-0" >
+  ​
+  <div class="container-fluid p-0">
     <p id="movie-picked-title">Bạn đã chọn</p>
     <div id="movie-picked-content" class="row m-0 p-0" *ngIf="movieTicket">
       <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
@@ -21,13 +23,13 @@
           <table class="table table-borderless">
             <tbody class="text-center justify-content-center align-items-center">
             <tr *ngFor="let index of listRow">
-              <td *ngFor="let seat of listSeat| slice:(index-1)*10:(index)*10">
-                <div *ngIf="seat.row.rowId === index" class="text-center td-seat align-items-center"
-                     [id]="seat.row.rowName+seat.column.columnName"
-                     (click)="chooseSeat(seat)"
-                     [ngClass]="checkSeatClass(seat)"
+              <td *ngFor="let roomSeat of listRoomSeat| slice:(index-1)*10:(index)*10">
+                <div *ngIf="roomSeat.seat.row.rowId === index" class="text-center td-seat align-items-center"
+                     [id]="roomSeat.seat.row.rowName+roomSeat.seat.column.columnName"
+                     (click)="chooseSeat(roomSeat)"
+                     [ngClass]="checkSeatClass(roomSeat)"
                      style="padding-top: 0.3125rem">
-                  {{seat.row.rowName}}{{seat.column.columnName}}
+                  {{roomSeat.seat.row.rowName}}{{roomSeat.seat.column.columnName}}
                 </div>
               </td>
             </tr>
@@ -36,7 +38,6 @@
         </div>
         <div class="col-lg-2 space-div"></div>
       </div>
-      ​
       <!--      instructor-->
       <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
         <div class="row m-1 p-0 align-items-center">
@@ -58,17 +59,6 @@
       </div>
     </div>
   </div>
-  ​
-  <!--  &lt;!&ndash;      price + total&ndash;&gt;-->
-  <!--  <div class="m-3 text-success justify-content-center d-block">-->
-  <!--    <div><p>Bạn đã chọn : {{listChoseSeat.length}} vé</p></div>-->
-  <!--    <div *ngFor="let seat of listSeat">-->
-  <!--      <p>Ghế : {{seat.row.rowName}}{{seat.column.columnName}}&nbsp;</p>-->
-  <!--      <p>Giá : {{movieTicket.ticketPrice}}&nbsp;VND</p>-->
-  <!--    </div>-->
-  <!--    <div>Tổng cộng : {{movieTicket.ticketPrice * listChoseSeat.length}}&nbsp;VND</div>-->
-  <!--  </div>-->
-  <!--  ​-->
   <div id="btnContinue" class="text-center">
     <a routerLink="/employee/sale/tickets">
       <button class="btn btn-outline-primary rounded-pill" type="button">
@@ -80,7 +70,7 @@
     <a>
       <button class="btn btn-outline-success rounded-pill"
               type="button"
-              (click)="continue()"
+              (click)="openCheckAccount(content)"
               [disabled]="listChoseSeat.length == 0">
         <span class="arrow">
           <i class="fas fa-2x fa-arrow-right"></i>
@@ -89,4 +79,45 @@
     </a>
   </div>
 </div>
+<ng-template #content let-modal>
+  <div class="modal-header bg-orange">
+    <h4 class="modal-title text-white"><i class="fas fa-check-circle"> KIỂM TRA THÔNG TIN KHÁCH</i></h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5>Khách hàng mua vé hiện tại đã có tài khoản chưa ?</h5>
+    <div class="text-center mt-4">
+      <button type="button" class="btn btn-success mr-3"
+              (click)="modal.close('Close click');openCheckAccount(content1)"><i class="fas fa-check"> Đã Có</i>
+      </button>
+      <button type="button" class="btn btn-danger ml-3" (click)="modal.close('Close click');continue()"><i
+        class="fas fa-times"> Chưa Có</i></button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #content1 let-modal>
+  <div class="modal-header bg-orange">
+    <h4 class="modal-title text-white"><i class="fa fa-search"> TÌM KIẾM KHÁCH HÀNG</i></h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5>Bạn hãy nhập card id của khách hàng:</h5>
+    <form ngNoForm [formGroup]="formSearchCardId" (ngSubmit)="checkAccount()" class="mt-4  form-inline">
+      <input  id="search" class="form-control search mb-5"
+             type="search" formControlName="cardId"
+             placeholder="Nhập card id của khách hàng cần tìm ...">
+      <div class="btn-group " role="group" aria-label="Basic example">
+        <button type="submit" class="btn bg-orange text-white ml-1 mb-5"><i class="fa fa-search"> Tìm Kiếm</i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button [disabled]="user===null" (click)="modal.dismiss('Cross click');changeUser()" class="btn btn-success text-white"><i class="fas fa-check"> Xác nhận</i></button>
+  </div>
+</ng-template>
 ​

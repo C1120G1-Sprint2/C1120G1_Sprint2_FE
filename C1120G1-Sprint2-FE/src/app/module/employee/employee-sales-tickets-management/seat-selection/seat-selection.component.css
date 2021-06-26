@@ -169,5 +169,8 @@ hr {
 .td-seat:hover {
   cursor: pointer;
 }
+.bg-orange{
+  background-color: #f26b38 !important;
+}
 
 
