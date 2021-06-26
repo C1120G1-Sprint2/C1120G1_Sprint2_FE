@@ -20,3 +20,9 @@
   border-bottom: #095484 solid 2px;
   transition: 0.5s;
 }
+.row{
+  margin: 0;
+}
+.col-9{
+  padding: 0;
+}

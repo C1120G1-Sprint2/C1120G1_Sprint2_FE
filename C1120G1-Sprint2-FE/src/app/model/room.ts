@@ -1,7 +1,7 @@
-import {RoomStatus} from './roomStatus';
+import {StatusRoom} from './statusRoom';
 
 export interface Room {
   roomId: number;
   roomName: string;
-  roomStatus: RoomStatus;
+  roomStatus: StatusRoom;
 }

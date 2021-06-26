@@ -14,7 +14,7 @@ const routes: Routes = [
         loadChildren: () => import('./employee-book-tickets-management/employee-book-tickets-management.module').then(module => module.EmployeeBookTicketsManagementModule)
       },
       {
-        path: 'sales/tickets',
+        path: 'sale/tickets',
         // tslint:disable-next-line:max-line-length
         loadChildren: () => import('./employee-sales-tickets-management/employee-sales-tickets-management.module').then(module => module.EmployeeSalesTicketsManagementModule)
       },
