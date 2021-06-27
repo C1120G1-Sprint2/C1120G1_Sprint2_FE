@@ -5,8 +5,9 @@ import {Room} from '../../../model/room';
 import {Seat} from '../../../model/seat';
 import {StatusRoom} from '../../../model/statusRoom';
 import {Row} from '../../../model/row';
-import {Columns} from '../../../model/columns';
+import {Column} from '../../../model/column';
 import {SeatType} from '../../../model/seatType';
+import {RoomSeat} from '../../../model/roomSeat';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,8 @@ export class RoomManagementService {
     };
   }
 
-  getAllRoom(): Observable<Room[]> {
-    return this.httpClient.get<Room[]>(this.baseUrl + '/room');
+  getAllRoom(page: number, keySearch: string): Observable<Room[]> {
+    return this.httpClient.get<Room[]>(this.baseUrl + '/room?page=' + page + '&&roomName='+keySearch);
   }
 
   getAllSeat(): Observable<Seat[]> {
@@ -52,7 +53,7 @@ export class RoomManagementService {
     return this.httpClient.put<Room>(this.baseUrl + '/room/edit-room/' + id, room);
   }
 
-  updateSeat(seat): Observable<Seat> {
+  updateSeat(seat:Seat): Observable<Seat> {
     console.log(this.baseUrl + '/seat/edit-seat');
     return this.httpClient.put<Seat>(this.baseUrl + '/seat/edit-seat', seat);
   }
@@ -69,10 +70,6 @@ export class RoomManagementService {
     return this.httpClient.get<StatusRoom[]>(this.baseUrl + '/room-status');
   }
 
-  searchRoom(roomName: string): Observable<Room[]> {
-    return this.httpClient.get<Room[]>(this.baseUrl + '/room/search?' +
-      'roomName=' + roomName);
-  }
 
   searchRoomAbsolute(roomName: string): Observable<Room[]> {
     return this.httpClient.get<Room[]>(this.baseUrl + '/room/searchAbsolute?' +
@@ -83,9 +80,6 @@ export class RoomManagementService {
     return this.httpClient.get<Row[]>(this.baseUrl + '/row');
   }
 
-  getAllColumn(): Observable<Columns[]> {
-    return this.httpClient.get<Columns[]>(this.baseUrl + '/column');
-  }
 
   getSeatByRowIdAndColumnId(rowId, columnId): Observable<Seat[]> {
     return this.httpClient.get<Seat[]>(this.baseUrl + '/seat/findseat?' + 'rowId=' + rowId + 'columnId' + columnId);
@@ -93,5 +87,9 @@ export class RoomManagementService {
 
   getAllSeatType(): Observable<SeatType[]> {
     return this.httpClient.get<SeatType[]>(this.baseUrl + '/seat-type');
+  }
+
+  getAllSeatByRoomId(id:number): Observable<RoomSeat[]> {
+    return this.httpClient.get<RoomSeat[]>(this.baseUrl + '/roomSeat/' + id);
   }
 }

@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3" *ngIf="roomDetail">
           <p class="title">Chi tiết của phòng {{roomDetail.roomName}}</p>
           <a href="#" class="btn btn-success"><i class="fas fa-plus-circle"></i> Thêm ghế</a>
           <a routerLink='/admin/room' class="btn btn-secondary mt-3">Trở về danh sách phòng chiếu</a>
@@ -13,30 +13,29 @@
           <br>
           <div class="table table-responsive" style="text-align: center">
             <button class="mt-4" style=";padding: 20px 200px 20px 200px;color: gray;">Màn hình</button>
-            <table class="table table-borderless mt-4" style="border: 1px solid dodgerblue">
-              <tr *ngFor="let listSeat of arrayListSeat">
-                <td *ngFor="let seat of listSeat">
+            <table *ngIf="roomSeatList" class="table table-borderless mt-4" style="border: 1px solid dodgerblue">
+              <tr *ngFor="let row of rowList" >
+                <td *ngFor="let roomSeat of roomSeatList | slice:(row.rowId - 1) * 10 : row.rowId * 10">
                   <div class="dropdown show">
-                    <a class="btn dropdown-toggle" *ngIf="seat.seatType.seatTypeId == 2; else elseBlock"
+                    <a class="btn dropdown-toggle" *ngIf="roomSeat.seat.seatType.seatTypeId === 2; else elseBlock"
                        style="background-color: red;color: white" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
-                      {{seat.row.rowName + seat.column.columnName}}
+                      {{roomSeat.seat.row.rowName + roomSeat.seat.column.columnName}}
                     </a>
                     <ng-template #elseBlock>
                       <a class="btn dropdown-toggle" data-toggle="dropdown"
                          style="background-color: greenyellow;">
-                        {{seat.row.rowName + seat.column.columnName}}
+                        {{roomSeat.seat.row.rowName + roomSeat.seat.column.columnName}}
                     </a>
                     </ng-template>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" (click)="changeColor(seat)">Chuyển trạng thái ghế</a>
+                      <a class="dropdown-item" (click)="changeColor(roomSeat.seat)">Chuyển trạng thái ghế</a>
                       <a class="dropdown-item" href="#">Xóa ghế</a>
                     </div>
                   </div>
                 </td>
               </tr>
             </table>
-            <i class="fas fa-door-open" style="margin-left: 900px; font-size: 70px;color: green"></i>
           </div>
         </div>
       </div>

@@ -26,10 +26,10 @@ export class RoomDeleteComponent implements OnInit {
               private toast: ToastrService) { }
 
   ngOnInit(): void {
-    this.roomManagementService.getAllRoom().subscribe((data) => {
-      this.listRoom = data;
-      this.lengthRoomList = this.listRoom.length;
-    })
+    // this.roomManagementService.getAllRoom().subscribe((data) => {
+    //   this.listRoom = data;
+    //   this.lengthRoomList = this.listRoom.length;
+    // })
   }
 
   deleteRoom() {
