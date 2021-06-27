@@ -6,9 +6,10 @@ import { ConfirmBookingComponent } from './confirm-booking/confirm-booking.compo
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { MovieSelectedComponent } from './movie-selected/movie-selected.component';
 
 @NgModule({
-  declarations: [MovieSelectionComponent, SeatSelectionComponent, ConfirmBookingComponent],
+  declarations: [MovieSelectionComponent, SeatSelectionComponent, ConfirmBookingComponent, MovieSelectedComponent],
   imports: [
     CommonModule,
     RouterModule,
