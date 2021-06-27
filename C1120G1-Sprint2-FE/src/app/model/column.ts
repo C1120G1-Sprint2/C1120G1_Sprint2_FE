@@ -1,4 +1,4 @@
-export class Columns {
+export class Column {
   columnId: number;
   columnName: string;
 
