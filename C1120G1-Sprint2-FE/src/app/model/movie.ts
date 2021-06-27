@@ -12,4 +12,5 @@ export interface Movie {
   movieStatus: number;
   banner: string;
   promote: number;
+  description: string;
 }

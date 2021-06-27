@@ -7,19 +7,21 @@ import { ListMovieTicketManagementComponent } from './list-movie-ticket-manageme
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AdminMovieTicketRoutingModule} from './admin-movie-ticket-routing.module';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
 
 @NgModule({
   declarations: [CreateMovieTicketManagementComponent, EditMovieTicketManagementComponent, DeleteMovieTicketManagementComponent, ListMovieTicketManagementComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ReactiveFormsModule,
-    AdminMovieTicketRoutingModule,
-    FormsModule
+    imports: [
+        CommonModule,
+        RouterModule,
+        ReactiveFormsModule,
+        AdminMovieTicketRoutingModule,
+        FormsModule,
+        MatIconModule
 
-  ]
+    ]
 })
 export class AdminMovieTicketModule { }

@@ -1,6 +1,6 @@
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {DatePipe} from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {AdminModule} from './module/admin/admin.module';
@@ -37,9 +37,10 @@ import {HttpClientModule} from '@angular/common/http';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     ToastrModule.forRoot(),
-    AdminMovieTicketModule
+    AdminMovieTicketModule,
+
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

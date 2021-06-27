@@ -5,7 +5,6 @@ import {Movie} from '../../../../model/movie';
 import {ShowTime} from '../../../../model/showTime';
 import {ProjectionType} from '../../../../model/projectionType';
 import {ToastrService} from 'ngx-toastr';
-import {MovieManagementService} from '../../../../service/employee/movie-management/movie-management.service';
 import {MatDialog} from '@angular/material/dialog';
 import {EditMovieTicketManagementComponent} from '../edit-movie-ticket-management/edit-movie-ticket-management.component';
 import {MovieTicketManagementService} from '../../../../service/admin/movie-ticket-management/movie-ticket-management.service';
@@ -16,6 +15,12 @@ import {MovieTicketManagementService} from '../../../../service/admin/movie-tick
   styleUrls: ['./list-movie-ticket-management.component.css']
 })
 export class ListMovieTicketManagementComponent implements OnInit {
+  pageClicked = 0;
+  totalPages = 1;
+  size  = 5;
+  pages = [];
+  textSorting = '';
+  onSorting = false ;
   movieTickets: MovieTicket[];
   room: Room[];
   movie: Movie[];
@@ -31,15 +36,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
               private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.movieTicketManagement.getAllMovieTicket().subscribe(data => {
-      this.movieTickets = data;
-      if (data === null) {
-        this.toast.warning("No find data in DB", "Notification", {
-          timeOut: 5000,
-          progressAnimation: "increasing"
-        });
-      }
-    })
+    this.onSubmit(0);
   }
 
   deleteSuccess() {
@@ -62,11 +59,67 @@ export class ListMovieTicketManagementComponent implements OnInit {
 
   }
 
-  searchEnter() {
+  search(page) {
+    this.movieTicketManagement.getMovieTicketByKeySearch(this.keySearch, this.size).subscribe(dataSearch => {
+        this.movieTickets = dataSearch.content;
+        this.pageClicked = page;
+        this.totalPages = dataSearch.totalPages;
+        this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        this.toast.success("Search Successfully !", "Notification");
 
+    }, error => {
+      this.toast.error("Not Found", "Notification");
+    })
   }
 
-  search() {
+//  phan trang
 
+  onNext(){
+    if (this.pageClicked < this.totalPages - 1) {
+      this.pageClicked++;
+      this.onSubmit(this.pageClicked);
+    }
+  }
+
+  onPrevious() {
+    if (this.pageClicked > 0) {
+      this.pageClicked--;
+      this.onSubmit(this.pageClicked);
+    }
+  }
+
+  onFirst() {
+    this.pageClicked = 0;
+    this.onSubmit(this.pageClicked);
+  }
+
+  onLast() {
+    this.pageClicked = this.totalPages - 1;
+    this.onSubmit(this.pageClicked);
+  }
+
+  onSubmit(page) {
+    this.movieTicketManagement.getAllMovieTicket(page, this.size, this.onSorting, this.textSorting).subscribe(data => {
+      console.log(data.content);
+      this.movieTickets = data.content;
+      this.pageClicked = page;
+      this.totalPages = data.totalPages;
+      this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+      if (data === null) {
+        this.toast.warning("No find data in DB", "Notification", {
+          timeOut: 5000,
+          progressAnimation: "increasing"
+        });
+      }
+    })
+  }x
+
+  onSortChange(value) {
+    if (this.textSorting == "") {
+      this.textSorting = value;
+    }else {
+      this.textSorting = "";
+    }
+    this.ngOnInit();
   }
 }

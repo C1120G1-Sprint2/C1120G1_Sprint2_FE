@@ -6,6 +6,7 @@ import {Movie} from '../../../model/movie';
 import {ShowTime} from '../../../model/showTime';
 import {ProjectionType} from '../../../model/projectionType';
 import {Room} from '../../../model/room';
+import {MovieTicketDTO} from '../../../model/movieTicketDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {Room} from '../../../model/room';
 export class MovieTicketManagementService {
   API_URL_MOVIE_TICKET: string = 'http://localhost:8080/api/admin/movie-ticket';
   API_URL_MOVIE: string = 'http://localhost:8080/api/admin/list-movie';
-  API_URL_SHOW_TIME: string = 'http://localhost:8080/api/admin/movie-ticket';
+  API_URL_SHOW_TIME: string = 'http://localhost:8080/api/admin/showTime';
   API_URL_ROOM: string = 'http://localhost:8080/api/admin/room';
   API_URL_PROJECTION_TYPE: string = 'http://localhost:8080/api/admin/projection-type';
   httpOptions: any;
@@ -28,14 +29,18 @@ export class MovieTicketManagementService {
       'Access-Control-Allow-Credentials': 'true'
     };
   }
-  getAllMovieTicket(): Observable<MovieTicket[]> {
-    return this.httpClient.get<MovieTicket[]>(this.API_URL_MOVIE_TICKET);
+  getAllMovieTicket(page: number, size: number, onSorting: boolean, textSorting: string): Observable<any> {
+    return this.httpClient.get(this.API_URL_MOVIE_TICKET + '?page=' + page + '&size=' + size +  '&textSorting=' + textSorting + '&onSorting=' + onSorting);
   }
   editMovieTicket(movieTicket: MovieTicket, id: number): Observable<MovieTicket> {
     return this.httpClient.put<MovieTicket>(this.API_URL_MOVIE_TICKET + '/edit/' + id, movieTicket);
   }
-  createMovieTicket(movieTicket: MovieTicket):Observable<MovieTicket> {
-    return this.httpClient.post<MovieTicket>(this.API_URL_MOVIE_TICKET + '/create', movieTicket);
+  createMovieTicket(movieTickets: MovieTicket[]):Observable<void> {
+    // selectedShowTime: ShowTime[]
+    console.log(movieTickets);
+    // console.log(selectedShowTime);
+  // , selectedShowTime
+    return this.httpClient.post<void>(this.API_URL_MOVIE_TICKET + '/create', movieTickets);
   }
   getAllMovie(): Observable<Movie[]> {
     return this.httpClient.get<Movie[]>(this.API_URL_MOVIE);
@@ -55,5 +60,18 @@ export class MovieTicketManagementService {
 
   deleteMovieTicket(id: number): Observable<MovieTicket> {
     return this.httpClient.delete<MovieTicket>(this.API_URL_MOVIE_TICKET + '/delete/' + id);
+  }
+  getRoomById(id:number): Observable<any> {
+    return this.httpClient.get(this.API_URL_ROOM + '/' + id);
+  }
+  getProjectionTypeById(id: number): Observable<any> {
+    return this.httpClient.get(this.API_URL_PROJECTION_TYPE + '/' + id);
+  }
+  getShowTimeById(id: number): Observable<any> {
+    return this.httpClient.get(this.API_URL_SHOW_TIME + '/' + id);
+  }
+
+  getMovieTicketByKeySearch(keySearch: string, size: number): Observable<any> {
+    return this.httpClient.get(this.API_URL_MOVIE_TICKET + '/search' + '?q=' + keySearch + '&size=' + size);
   }
 }
