@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-import {Seat} from '../../../model/seat';
 import {BookTicketsService} from '../../../service/member/book-tickets/book-tickets.service';
 import {MovieTicket} from '../../../model/movieTicket';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
@@ -61,7 +60,7 @@ export class ConfirmBookingComponent implements OnInit {
 
     }
     if (flag) {
-      this.router.navigateByUrl('admin').then();
+      this.router.navigateByUrl('booking/information').then();
       this.isConfirmed = true;
     } else {
       this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
@@ -84,7 +83,7 @@ export class ConfirmBookingComponent implements OnInit {
     //
     //     }
     //     if (flag) {
-    //       this.router.navigateByUrl('login').then();
+    //       this.router.navigateByUrl('booking/information').then();
     //       this.isConfirmed = true;
     //     } else {
     //       this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
