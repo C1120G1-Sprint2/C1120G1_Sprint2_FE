@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Movie} from '../../model/movie';
-import {Category} from '../../model/category';
+import {MovieTicket} from '../../model/movieTicket';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DetailMovieService {
-  API_URL_DETAIL_MOVIE = 'http://localhost:8080/api/detail-movie';
-  API_URL_MOVIE_CATEGORY = 'http://localhost:8080/api/category';
+export class TicketPriceService {
+
+  API_TICKET_PRICE_CLIENT = 'http://localhost:8080/api/ticket-price';
   httpOptions: any;
   constructor(private httpClient: HttpClient) {
     this.httpOptions = {
@@ -22,11 +21,7 @@ export class DetailMovieService {
     };
   }
 
-  getMovieById(id: number):Observable<Movie> {
-    return this.httpClient.get<Movie>(this.API_URL_DETAIL_MOVIE + '/' + id);
-  }
-
-  getCategoryBiMovieId(id: number): Observable<Category[]> {
-    return this.httpClient.get<Category[]>(this.API_URL_MOVIE_CATEGORY + '/' + id);
+  getAllMovieByDate(showDate: string): Observable<MovieTicket[]> {
+    return this.httpClient.get<MovieTicket[]>(this.API_TICKET_PRICE_CLIENT + '/' + "?showDate=" + showDate);
   }
 }

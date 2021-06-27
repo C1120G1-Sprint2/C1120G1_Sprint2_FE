@@ -1,5 +1,5 @@
 <div class="content row">
-  <div class="col-lg-12 justify-content-center mt-3" style="width: 100%">
+  <div class="col-lg-12 justify-content-center mt-3">
     <form [formGroup]="formAddNewMovieTicket" (ngSubmit)="addNewMovieTicket()">
       <table class="table table-hover">
         <body>
@@ -11,7 +11,7 @@
               <option *ngFor="let room of rooms" [ngValue]="room">{{room.roomName}}</option>
             </select>
             <p class="textErr" *ngIf="formAddNewMovieTicket.controls.room.touched && formAddNewMovieTicket.controls.room.errors?.required">
-              Rap phim khong duoc de trong
+              Rạp phim không được để trống
             </p>
           </td>
 
@@ -41,12 +41,21 @@
         <tr>
           <th>Xuất Chiếu <span style="color: red;">*</span></th>
           <td>
-            <div class="form-check" *ngFor="let showTime of showTimes">
-              <input type="checkbox" formControlName="showTime" [(ngModel)]="showTime.showTimeId" name="{{showTime.showTime}}" class="form-check-input" (change)="onChange(showTime.showTime, $event.target.checked)">
-              <label class="form-check-label">{{showTime.showTimeId}}</label>
+            <div class="form-check form-check-inline" *ngFor="let show of showTimes; let i = index">
+              <label>
+                <input type="checkbox" (change)="onCheckboxChange($event, show)">
+                {{show.showTime}}
+              </label>
+<!--              <input type="checkbox"-->
+<!--                     formControlName="showTime"-->
+<!--                     [value]="show.showTimeId"-->
+<!--                     name="{{show.showTime}}"-->
+<!--                     class="form-check-inline"-->
+<!--                     (change)="onCheckboxChange($event)">-->
+<!--              <label class="form-check-label"> {{show.showTime}} </label>-->
 
             </div>
-            <p class="textErr" *ngIf="formAddNewMovieTicket.controls.showTime.touched && formAddNewMovieTicket.controls.showTime.errors?.required">Xuất chiếu không được để trống</p>
+<!--            <p class="textErr" *ngIf="formAddNewMovieTicket.controls.showTime.touched && formAddNewMovieTicket.controls.showTime.errors?.required">Xuất chiếu không được để trống</p>-->
           </td>
         </tr>
         <tr>
@@ -57,19 +66,12 @@
           </td>
 
         </tr>
-<!--        <tr>-->
-<!--          <th>Giá Vé</th>-->
-<!--          <td>-->
-<!--            <p class="form-control" formControlName="ticketPrice">{{movieTicket.ticketPrice}}</p>-->
-
-<!--          </td>-->
-<!--        </tr>-->
         <tr>
           <th></th>
           <td class="text-center">
-            <button type="submit" class="btn btn-primary" [disabled]="formAddNewMovieTicket.invalid">Create</button>
+            <button type="submit" class="btn btn-primary" [disabled]="formAddNewMovieTicket.invalid">Lưu</button>
             &nbsp;
-            <button type="reset" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+            <button data-dismiss="modal" id="closeModal3" class="btn btn-secondary" (click)="resetForm()">Huỷ</button>
           </td>
         </tr>
         </body>

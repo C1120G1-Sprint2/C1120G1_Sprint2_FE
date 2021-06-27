@@ -1,55 +1,74 @@
-<form [formGroup]="rfEditForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="rfEditForm" (ngSubmit)="editMovieTicket()">
+  <div class="header" style="background-color: #f26b39">
+  <h4 class="modal-title w-100 text-center" style="color: aliceblue;">Chỉnh Sửa Suất Chiếu</h4>
+  </div>
 <table class="table table-hover">
     <body>
     <tr>
       <th>Tên Phim <span style="color: red;">*</span></th>
       <td>
-        <select class="form-control">
-          <option value="" selected disabled>Vui lòng chọn phim</option>
-          <option>SPIDER-MAN: NO WAY HOME</option>
-
-        </select>
-        <p class="textErr">Tên phim không được để trống</p>
-
+        <p class="form-control" formControlName="movie">{{movieTicket.movie.movieName}}</p>
       </td>
     </tr>
     <tr>
+      <th>Rạp Phim <span style="color: red;">*</span></th>
+      <td>
+<!--        (change)="onChangeRoom($event.target.value)"-->
+        <select     [compareWith]="compareRoom"  class="form-control" formControlName="room">
+          <option value="" selected disabled>Vui Long chon rap phim</option>
+          <option *ngFor="let room of rooms" [ngValue]="room">{{room.roomName}}</option>
+        </select>
+        <p class="textErr" *ngIf="rfEditForm.controls.room.touched && rfEditForm.controls.room.errors?.required">Rap phim khong de trong</p>
+      </td>
+    </tr>
+    <tr>
+
       <th>Suất Chiếu <span style="color: red;">*</span></th>
       <td>
-        <select class="form-control">
+<!--        (change)="onChangeShowTime($event.target.value)"-->
+        <select  [compareWith]="compareShowTime" class="form-control" formControlName="showTime">
           <option value="" selected disabled>Vui lòng chọn Suất chiếu</option>
           <option *ngFor="let showTime of showTimes" [ngValue]="showTime">{{showTime.showTime}}</option>
 
         </select>
-        <p class="textErr">Suất chiếu không được để trống</p>
+        <p class="textErr" *ngIf="rfEditForm.controls.showTime.touched && rfEditForm.controls.showTime.errors?.required">Suất chiếu không được để trống</p>
       </td>
     </tr>
     <tr>
       <th>Loại Chiếu <span style="color: red;">*</span></th>
       <td>
-        <select class="form-control">
+<!--        (change)="onChangeProjectionType($event.target.value)"-->
+        <select    [compareWith]="compareProjectionType"   class="form-control" formControlName="projectionType">
           <option value="" selected disabled>Vui lòng chọn loại chiếu</option>
           <option *ngFor="let projectionType of projectionTypes" [ngValue]="projectionType">{{projectionType.projectionName}}</option>
 
         </select>
-        <p class="textErr">Loại chiếu không được để trống</p>
+        <p class="textErr" *ngIf="rfEditForm.controls.projectionType.touched && rfEditForm.controls.projectionType.errors">Loại chiếu không được để trống</p>
       </td>
 
     </tr>
     <tr>
       <th>Ngày Chiếu <span style="color: red;">*</span></th>
       <td>
-        <input type="date" placeholder="Chọn ngày chiếu" class="form-control">
-        <p class="textErr">Ngày chiếu không được để trống</p>
+        <input type="date" placeholder="Chọn ngày chiếu" class="form-control" formControlName="showDate">
+        <p class="textErr" *ngIf="rfEditForm.controls.showDate.touched && rfEditForm.controls.showDate.errors?.required">Ngày chiếu không được để trống</p>
+      </td>
+
+    </tr>
+    <tr>
+      <th>Giá Vé <span style="color: red;">*</span></th>
+      <td>
+        <p class="form-control">{{movieTicket.ticketPrice}}</p>
+<!--        <p class="textErr" *ngIf="rfEditForm.controls.startDate.touched && rfEditForm.controls.startDate.errors?.required">Ngày chiếu không được để trống</p>-->
       </td>
 
     </tr>
     </body>
   </table>
   <div class="modal-footer row d-flex justify-content-center">
-    <button class="btn btn-primary" style="width: 100px;margin-right: 20px" (click)="editMovieTicket()">Lưu
+    <button class="btn btn-primary" type="submit" style="width: 100px;margin-right: 20px">Lưu
     </button>
-    <button class="btn btn-secondary" style="width: 100px;margin-right: 20px"
+    <button class="btn btn-secondary" type="button" style="width: 100px;margin-right: 20px"
             (click)="close()">Huỷ
     </button>
 
