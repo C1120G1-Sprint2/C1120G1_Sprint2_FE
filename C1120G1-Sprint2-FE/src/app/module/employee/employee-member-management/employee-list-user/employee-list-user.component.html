@@ -75,15 +75,17 @@
                 <h2>Quản lý Thành viên</h2>
               </div>
               <div class="col-sm-6">
-                <div>
-                <input type="text" [(ngModel)]="keySearch"
-                       (keyup.enter)="searchEnter()"
-                       placeholder="Nhập thông tin mà bạn muốn tìm kiếm "
-                       class="form-control rounded-pill inputSearch" style="width: 80%">
-                </div>
-                  <button class="btnSearch">
-                    <i (click)="search()" class="fas fa-search" style="color: #f26b38"></i>
-                  </button>
+
+                    <div class="container  form-inline">
+                      <input id="search" class="form-control  rounded-pill search mb-5 pr-5" type="search"
+                             [(ngModel)]="keySearch"
+                             (keyup.enter)="searchEnter()"
+                             placeholder="Nhập thông tin mà bạn muốn tìm kiếm...">
+                      <div class="btn-group " role="group" aria-label="Basic example">
+                        <button type="button" (click)="search()" class="btn btn-orange rounded-pill  mb-5"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+
               </div>
               <div class="col-sm-3">
                 <a routerLink="/employee/member/management/create" class="btn btn-success"><i
@@ -119,69 +121,75 @@
               <td *ngIf="user.userId >=1000 && user.userId <= 9999 ">
                 <span>TV0{{user.userId}}</span>
               </td>
-<!--                            <td>{{user.account.username}}</td>-->
+              <!--                            <td>{{user.account.username}}</td>-->
               <td>{{user.name}}</td>
               <td>{{user.email}}</td>
               <td>
                 <span>{{getAddress(user.address)}}</span>
               </td>
-              <td *ngIf="user.accountStatus.accountStatusId ==1" class="text-success">
+              <td *ngIf="user.accountStatus.accountStatusId == 1" class="text-info">
                 {{user.accountStatus.accountStatusName}}
               </td>
-              <td *ngIf="user.accountStatus.accountStatusId ==2" class="text-info">
+              <td *ngIf="user.accountStatus.accountStatusId == 2" class="text-success">
                 {{user.accountStatus.accountStatusName}}
               </td>
-              <td *ngIf="user.accountStatus.accountStatusId ==3" class="text-danger">
+              <td *ngIf="user.accountStatus.accountStatusId == 3" class="text-danger">
                 {{user.accountStatus.accountStatusName}}
               </td>
               <td>
-                <a [routerLink]="['edit',user.userId]" class="edit" data-toggle="modal"><i
+                <a [routerLink]="['edit',user.userId]" *ngIf="user.accountStatus.accountStatusId !==3" class="edit" data-toggle="modal"><i
                   class="material-icons"
                   data-toggle="tooltip"
                   title="Edit">&#xE254;</i></a>
-                <a (click)="deleteId = user.userId; deleteName = user.name" class=" delete" data-target="#deletedModal" data-toggle="modal"><i
-                  class="material-icons"  title="Delete" >&#xE872;</i></a>
+                <a *ngIf="user.accountStatus.accountStatusId !== 3" (click)="deleteId = user.userId; deleteName = user.name" class=" delete" data-target="#deletedModal"
+                   data-toggle="modal"><i
+                  class="material-icons" title="Delete">&#xE872;</i></a>
               </td>
             </tr>
-
             </tbody>
           </table>
 
           <ul class="pagination modal-4">
-            <li><a (click)="firstPage()" class="prev">
+            <li *ngIf="indexPagination > 0"><a (click)="firstPage()" class="prev">
               <i class="fa fa-chevron-left"></i>
               Đầu
             </a>
             </li>
-            <li><a (click)="previousPage()"><i class="fa fa-chevron-left"></i></a></li>
-            <li> <a  class="active">{{indexPagination}}</a></li>
-            <li> <a (click)="nextPage()"><i class="fa fa-chevron-right"></i></a></li>
-            <li><a class="next"> Cuối
+            <li *ngIf="indexPagination > 0"><a (click)="previousPage()"><i class="fa fa-chevron-left"></i></a></li>
+            <li *ngIf="indexPagination > 0"><a (click)="selectPage(indexPagination )">{{indexPagination }}</a></li>
+            <li><a class="active">{{indexPagination + 1 }}</a></li>
+            <li *ngIf="indexPagination <= totalPagination -1 "><a (click)="selectPage(indexPagination +2)">{{indexPagination + 2}}</a></li>
+<!--            <li><a class="active">{{totalPagination +1 | number : '1.0'}}</a></li>-->
+            <li *ngIf="indexPagination <= totalPagination -1 "><a (click)="nextPage()"><i class="fa fa-chevron-right"></i></a></li>
+            <li *ngIf="indexPagination <= totalPagination -1 "><a class="next" (click)="lastPage()"> Cuối
               <i class="fa fa-chevron-right"></i>
             </a></li>
             <li><label>
-              <input type="number" class="input-group-prepend" style="width: 40px ;height: 20px" [(ngModel)]="selectPagination">
+              <input type="number" class="form-input-page ml-1"
+                     [(ngModel)]="selectPagination">
             </label></li>
-            <li><a (click)="selectPage()">Chọn</a></li>
+            <li><a class="ml-5" (click)="selectPage(selectPagination)">Đi</a></li>
           </ul>
-<!--  Modal      -->
-          <div class="modal fade" id="deletedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <!--  Modal      -->
+          <div class="modal fade" id="deletedModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header flex-column">
                   <div class="icon-box">
                   </div>
                   <h4 class="modal-title w-100">Are you sure?</h4>
-                  <button type="button" class="close" id="closeModal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <button type="button" class="close" id="closeModal" data-dismiss="modal" aria-hidden="true">&times;
+                  </button>
                 </div>
                 <div class="modal-body">
                   <app-employee-delete-user [deleteId]="deleteId" [deleteName]="deleteName"
-                                   (deleteComplete)="deleteSuccess()"></app-employee-delete-user>
+                                            (deleteComplete)="deleteSuccess()"></app-employee-delete-user>
                 </div>
               </div>
             </div>
           </div>
-<!--   Modal       -->
+          <!--   Modal       -->
         </div>
       </div>
     </div>
