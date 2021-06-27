@@ -9,7 +9,7 @@ import {MovieDTO} from '../../../model/dto/movieDTO';
 })
 export class MovieManagementService {
   httpOptions: any;
-  baseUrl = 'http://localhost:8080';
+  baseUrl = 'http://localhost:8080/api/movie';
 
   constructor(private http: HttpClient) {
     this.httpOptions = {
