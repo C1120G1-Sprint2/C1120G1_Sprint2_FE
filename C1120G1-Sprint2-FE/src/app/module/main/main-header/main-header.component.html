@@ -1,7 +1,7 @@
 <div class="header">
   <div class="header-wrap clearfix d-flex">
     <div class="logo-wrap img">
-      <a routerLink="/" title="Trang chủ">
+      <a routerLink="/" title="Trang chủ" tabindex>
         <img src="../../../../assets/layout-images/logo.png" alt="Logo C11" class="img-logo">
       </a>
     </div>
@@ -11,14 +11,15 @@
           <div class="topbar-left">
             <!--Search box-->
             <div class="search-box">
-              <form class="navbar-form w-100" role="search">
+              <div class="w-100" role="search">
                 <div class="input-group">
-                  <input type="text" class="input-search form-control" placeholder="Search" name="q">
+                  <input type="text" class="input-search form-control" placeholder="Nhập từ khóa để tìm kiếm"
+                         tabindex #keySearch id="header-search-input" (keyup.enter)="search(keySearch.value)">
                   <div class="input-group-btn">
-                    <button class="btn btn-default shadow-none" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-default" tabindex (click)="search(keySearch.value)"><i class="fas fa-search"></i></button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <!-- <div class="search-box">
               <label>
@@ -34,10 +35,10 @@
                 <div class="register-icon">
                   <ul class="clearfix">
                     <li>
-                      <a class="register" routerLink="/register">Đăng ký</a>
+                      <a class="register" routerLink="/register" tabindex>Đăng ký</a>
                     </li>
                     <li>
-                      <a class="login" routerLink="/login">Đăng nhập</a>
+                      <a class="login" routerLink="/login" tabindex>Đăng nhập</a>
                     </li>
                   </ul>
                 </div>
@@ -50,32 +51,32 @@
         <div class="menu">
           <ul>
             <li>
-              <a routerLink="/mua-ve" title="Mua vé">
+              <a routerLink="/mua-ve" title="Mua vé" tabindex>
                 <span class="item-ticket">Mua vé</span>
               </a>
             </li>
             <li>
-              <a routerLink="/rap" title="Rạp & Giá vé">
+              <a routerLink="/rap" title="Rạp & Giá vé" tabindex>
                 <span class="item-fare">Rạp & Giá vé</span>
               </a>
             </li>
             <li>
-              <a routerLink="/goc-dien-anh" title="Góc điện ảnh">
+              <a routerLink="/goc-dien-anh" title="Góc điện ảnh" tabindex>
                 <span class="item-cinema-corner">Góc điện ảnh</span>
               </a>
             </li>
             <li>
-              <a routerLink="/su-kien" title="Sự kiện">
+              <a routerLink="/su-kien" title="Sự kiện" tabindex>
                 <span class="item-event">Sự kiện</span>
               </a>
             </li>
             <li>
-              <a routerLink="/huong-dan" title="Hướng dẫn">
+              <a routerLink="/huong-dan" title="Hướng dẫn" tabindex>
                 <span class="item-instruction">Hướng dẫn</span>
               </a>
             </li>
             <li>
-              <a routerLink="/chinh-sach" title="Chính sách">
+              <a routerLink="/chinh-sach" title="Chính sách" tabindex>
                 <span class="item-policy">Chính sách</span>
               </a>
             </li>

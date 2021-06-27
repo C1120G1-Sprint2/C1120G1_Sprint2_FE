@@ -4,21 +4,21 @@
       <div class="col-xs-12 ">
         <ul class="list-inline mb-0">
           <li>
-            <a id="fb_show" href="https://www.facebook.com" target="_blank">
+            <a id="fb_show" href="https://www.facebook.com" target="_blank" tabindex>
               <img id="fb" src="../../../../assets/layout-images/icon_facebook.png" alt="">
-              <img class="social_hide" id="fb_hover" src="" alt="">
+              <img id="fb_hover" src="../../../../assets/layout-images/icon_facebook_hover.png" alt="">
             </a>
           </li>
           <li>
-            <a id="instagram_show" href="https://www.instagram.com" target="_blank">
+            <a id="instagram_show" href="https://www.instagram.com" target="_blank" tabindex>
               <img id="instagram" src="../../../../assets/layout-images/icon_instagram.png" alt="">
-              <img class="social_hide" id="instagram_hover" src="" alt="">
+              <img id="instagram_hover" src="../../../../assets/layout-images/icon_instagram_hover.png" alt="">
             </a>
           </li>
           <li>
-            <a id="youtube_show" href="https://www.youtube.com" target="_blank">
+            <a id="youtube_show" href="https://www.youtube.com" target="_blank" tabindex>
               <img id="youtube" src="../../../../assets/layout-images/icon_youtube.png" alt="">
-              <img class="social_hide" id="youtube_hover" src="" alt="">
+              <img id="youtube_hover" src="../../../../assets/layout-images/icon_youtube_hover.png" alt="">
             </a>
           </li>
         </ul>
@@ -28,33 +28,29 @@
   <div class="container">
     <div class="row content-1">
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 marg-top26">
-        <img id="logo-footer" class="img-responsive" src="../../../../assets/layout-images/logo.png" alt="">
+        <a routerLink="/" tabindex>
+          <img id="logo-footer" class="img-responsive" src="../../../../assets/layout-images/logo.png" alt="">
+        </a>
         <p class="info address">Tầng 10, 295 Nguyễn Tất Thành,
           <span class="line-down"><br></span>Thanh Bình, Hải Châu,
           <span class="line-down"><br></span>Đà Nẵng
         </p>
-        <!-- <ul>
-            <li class="clearfix">
-                <img class="map-trigger" src="./images/layout/map.png" alt="" onclick="showMap(event)">
-                <a class="map-left map-trigger" href="#" onclick="showMap(event)">XEM BẢN ĐỒ</a>
-            </li>
-        </ul> -->
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 marg-top30">
         <h3>C11 CINEMA</h3>
         <ul class="list">
-          <li><a routerLink="/dat-ve"><i class="fa fa-angle-double-right"></i> Mua vé</a></li>
-          <li><a routerLink="/phim"><i class="fa fa-angle-double-right"></i> Phim</a></li>
-          <li><a routerLink="/rap"><i class="fa fa-angle-double-right"></i> Rạp & Giá vé</a></li>
-          <li><a routerLink="/goc-dien-anh"><i class="fa fa-angle-double-right"></i> Góc điện ảnh</a></li>
-          <li><a routerLink="/su-kien"><i class="fa fa-angle-double-right"></i> Sự kiện</a></li>
+          <li><a routerLink="/dat-ve" tabindex><i class="fa fa-angle-double-right"></i> Mua vé</a></li>
+          <li><a routerLink="/phim" tabindex><i class="fa fa-angle-double-right"></i> Phim</a></li>
+          <li><a routerLink="/rap" tabindex><i class="fa fa-angle-double-right"></i> Rạp & Giá vé</a></li>
+          <li><a routerLink="/goc-dien-anh" tabindex><i class="fa fa-angle-double-right"></i> Góc điện ảnh</a></li>
+          <li><a routerLink="/su-kien" tabindex><i class="fa fa-angle-double-right"></i> Sự kiện</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 marg-top30">
         <h3>THÔNG TIN CHUNG</h3>
         <ul class="list">
-          <li><a routerLink="/huong-dan"><i class="fa fa-angle-double-right"></i> Hướng dẫn</a></li>
-          <li><a routerLink="/chinh-sach"><i class="fa fa-angle-double-right"></i> Chính sách</a></li>
+          <li><a routerLink="/huong-dan" tabindex><i class="fa fa-angle-double-right"></i> Hướng dẫn</a></li>
+          <li><a routerLink="/chinh-sach" tabindex><i class="fa fa-angle-double-right"></i> Chính sách</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 marg-top30">
@@ -62,16 +58,16 @@
         <p class="info">Hotline: 1900 0000
           <span class="line-down"><br></span>Giờ làm việc: 8:00 - 22:00 (Tất cả các ngày bao gồm cả Lễ
           Tết)
-          <span class="line-down"><br></span>Email hỗ trợ: <a
-            href="mailto:c1120g1@codegym.vn">c1120g1@codegym.vn</a>
+          <span class="line-down"><br></span>Email hỗ trợ:
+          <a href="mailto:c1120g1@codegym.vn" tabindex>c1120g1@codegym.vn</a>
         </p>
       </div>
     </div>
     <div class="row">
       <ul class="col">
         <li class="clearfix">
-          <img class="map-trigger" src="../../../../assets/layout-images/map.png" alt="" onclick="showMap(event)">
-          <a class="map-left map-trigger" href="#" onclick="showMap(event)">XEM BẢN ĐỒ</a>
+          <img class="map-trigger" src="../../../../assets/layout-images/map.png" alt="" (click)="showMap($event)">
+          <a class="map-left map-trigger" href="#" tabindex (click)="showMap($event)">XEM BẢN ĐỒ</a>
         </li>
       </ul>
       <div class="col copyright">
