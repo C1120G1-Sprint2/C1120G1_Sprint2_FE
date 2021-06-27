@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Seat} from '../../../../model/seat';
 import {MovieTicket} from '../../../../model/movieTicket';
-import {MemberTicketDTO} from '../../../../model/memberTicketDTO';
 import {User} from '../../../../model/user';
 import {SalesTicketsManagementService} from '../../../../service/employee/sales-tickets-management/sales-tickets-management.service';
 import {Location} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
+import {Account} from "../../../../model/account";
+import {Ward} from "../../../../model/ward";
 
 @Component({
   selector: 'app-infor-sale-ticket',
@@ -27,13 +28,12 @@ export class InforSaleTicketComponent implements OnInit {
   ngOnInit(): void {
     this.saleTicketService.listSeatCurrent.subscribe((data) => {
       this.listSeat = data;
-      console.log(this.listSeat);
       if (this.listSeat.length === 0) {
         this.location.back();
       }
     });
     this.saleTicketService.currentUser.subscribe((data) => {
-      this.user = data;
+        this.user = data;
     });
     this.saleTicketService.currentMovieTicket.subscribe((data) => {
       this.movieTicket = data;

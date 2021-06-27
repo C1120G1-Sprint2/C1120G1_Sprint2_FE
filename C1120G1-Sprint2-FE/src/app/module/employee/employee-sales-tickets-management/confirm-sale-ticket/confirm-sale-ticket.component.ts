@@ -35,7 +35,9 @@ export class ConfirmSaleTicketComponent implements OnInit {
       }
     });
     this.saleTicketService.currentUser.subscribe((data) => {
-      this.user = data;
+      if (data !== null){
+        this.user = data;
+      }
     });
     this.saleTicketService.currentMovieTicket.subscribe((data) => {
       this.movieTicket = data;
@@ -88,5 +90,6 @@ export class ConfirmSaleTicketComponent implements OnInit {
       this.saleTicketService.changeMovieTicket(this.movieTicket);
     });
     this.router.navigateByUrl('/employee/sale/tickets/info');
+    this.toast.success('Xác Nhận Bán Vé Thành Công!', 'Thông Báo', {timeOut: 2000})
   }
 }

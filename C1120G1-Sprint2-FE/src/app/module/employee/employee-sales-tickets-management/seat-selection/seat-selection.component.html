@@ -14,6 +14,7 @@
       <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
       <p>Ngày chiếu : <span>{{movieTicket.showDate}}</span></p>
       <p>Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
+      <p>Ghế đã chọn : <span>{{listChoseSeat.length}}</span></p>
     </div>
     <div class="container-fluid justify-content-center align-items-center">
       <!--      choose seat-->
@@ -105,19 +106,28 @@
     </button>
   </div>
   <div class="modal-body">
-    <h5>Bạn hãy nhập card id của khách hàng:</h5>
+    <h5>Bạn hãy nhập tên tài khoản của khách hàng:</h5>
     <form ngNoForm [formGroup]="formSearchCardId" (ngSubmit)="checkAccount()" class="mt-4  form-inline">
-      <input  id="search" class="form-control search mb-5"
-             type="search" formControlName="cardId"
-             placeholder="Nhập card id của khách hàng cần tìm ...">
+      <input id="search" class="form-control search mb-5"
+             type="search" formControlName="username"
+             placeholder="Nhập tên tài khoản...">
       <div class="btn-group " role="group" aria-label="Basic example">
         <button type="submit" class="btn bg-orange text-white ml-1 mb-5"><i class="fa fa-search"> Tìm Kiếm</i>
         </button>
       </div>
     </form>
+    <div *ngIf="user !== null">
+      <label>Tên: <span style="color: red">{{user.name|uppercase}}</span></label>
+      <label class="ml-4">Email: <span style="color: red">{{user.email}}</span></label>
+      <label>Số điện thoại: <span style="color: red">{{user.phone}}</span></label>
+      <label class="ml-4">CMND: <span style="color: red">{{user.idCard}}</span></label>
+    </div>
   </div>
   <div class="modal-footer">
-    <button [disabled]="user===null" (click)="modal.dismiss('Cross click');changeUser()" class="btn btn-success text-white"><i class="fas fa-check"> Xác nhận</i></button>
+    <button [disabled]="user===null" (click)="modal.dismiss('Cross click');changeUser()"
+            class="btn btn-success text-white"><i class="fas fa-check"> Xác nhận</i></button>
+    <button (click)="modal.dismiss('Cross click');continue()"
+            class="btn btn-danger text-white"><i class="fas fa-times"> Mua vé chưa có tài khoản</i></button>
   </div>
 </ng-template>
 ​

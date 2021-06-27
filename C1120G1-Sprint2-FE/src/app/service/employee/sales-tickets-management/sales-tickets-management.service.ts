@@ -15,6 +15,8 @@ export class SalesTicketsManagementService {
   public movieTicket = new BehaviorSubject<MovieTicket>(null);
   public currentMovieTicket = this.movieTicket.asObservable();
   public API_MOVIE_TICKET = 'http://localhost:8080/api/employee/saleTicket';
+  public API_ROOM_SEAT = 'http://localhost:8080/api/roomSeat/saleTicket';
+  public API_TICKET = 'http://localhost:8080/api/ticket/saleTicket';
   public user = new BehaviorSubject<User>(null);
   public currentUser = this.user.asObservable();
 
@@ -37,7 +39,10 @@ export class SalesTicketsManagementService {
   }
 
   public showAllMovieTicketByMovieId(movieId: number): Observable<any> {
-    return this.http.get(this.API_MOVIE_TICKET + '/listMovieTicket/' + movieId);
+    return this.http.get(this.API_MOVIE_TICKET + '/listMovieTicket/movie/' + movieId);
+  }
+  public showAllMovieTicketByShowDate(showDate: string): Observable<any> {
+    return this.http.get(this.API_MOVIE_TICKET + '/listMovieTicket/showDate/' + showDate);
   }
 
   public showAllMovieTicketByIdAndShowDate(movieId: number, showDate: string): Observable<any> {
@@ -53,14 +58,14 @@ export class SalesTicketsManagementService {
   }
 
   public showAllSeatByRoomId(roomId: number): Observable<any> {
-    return this.http.get(this.API_MOVIE_TICKET + '/listRoomSeat/' + roomId);
+    return this.http.get(this.API_ROOM_SEAT + '/listRoomSeat/' + roomId);
   }
 
   public createTicket(roomId: number, listTicketDTO: MemberTicketDTO[]): Observable<any> {
-    return this.http.post(this.API_MOVIE_TICKET + '/createTicket/' + roomId, listTicketDTO);
+    return this.http.post(this.API_TICKET + '/createTicket/' + roomId, listTicketDTO);
   }
 
-  public findUserByCardId(cardId: string): Observable<any> {
-    return this.http.get(this.API_MOVIE_TICKET + '/user/' + cardId);
+  public findUserByUserName(username: string): Observable<any> {
+    return this.http.get(this.API_MOVIE_TICKET + '/user/' + username);
   }
 }

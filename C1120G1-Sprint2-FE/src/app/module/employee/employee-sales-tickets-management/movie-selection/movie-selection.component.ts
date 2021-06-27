@@ -18,6 +18,9 @@ export class MovieSelectionComponent implements OnInit {
   public showTimeId: number = null;
   public movieTicket: MovieTicket;
   public activeId = null;
+  public minDate = new Date();
+  public choseDate: string = null;
+
 
   constructor(private saleTicketService: SalesTicketsManagementService,
               private toast: ToastrService,
@@ -31,14 +34,21 @@ export class MovieSelectionComponent implements OnInit {
   }
 
   changeShowDate(movieId: number) {
-    this.activeId = movieId;
     this.listShowTime = null;
+    this.activeId = movieId;
     this.movieId = movieId;
     this.showDate = null;
     this.showTimeId = null;
-    this.saleTicketService.showAllMovieTicketByMovieId(movieId).subscribe((data) => {
-      this.listShowDate = data;
-    });
+    if (this.choseDate === null) {
+      this.saleTicketService.showAllMovieTicketByMovieId(movieId).subscribe((data) => {
+        this.listShowDate = data;
+      });
+    } else {
+      this.saleTicketService.showAllMovieTicketByIdAndShowDate(movieId, this.choseDate).subscribe((data) => {
+        this.listShowTime = data;
+      })
+    }
+
   }
 
   changeShowTime(showDate: string) {
@@ -54,6 +64,9 @@ export class MovieSelectionComponent implements OnInit {
   }
 
   checkMovieTicket() {
+    if (this.choseDate !== null) {
+      this.showDate = this.choseDate;
+    }
     if (this.movieId !== null && this.showDate !== null && this.showTimeId !== null) {
       this.saleTicketService.findMovieTicketBySelect(this.movieId, this.showDate, this.showTimeId).subscribe((data) => {
         this.movieTicket = data;
@@ -66,6 +79,32 @@ export class MovieSelectionComponent implements OnInit {
       });
     } else {
       this.toast.warning('Bạn chưa chọn đầy đủ thông tin để tiếp tục', 'Thông Báo', {timeOut: 2000});
+    }
+  }
+
+  changeDate(date: Date) {
+    this.listMovie = null;
+    this.listShowDate = null;
+    this.listShowTime = null;
+    this.showDate = null;
+    this.showTimeId = null;
+    this.choseDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    this.saleTicketService.showAllMovieTicketByShowDate(this.choseDate).subscribe((data) => {
+      this.listMovie = data;
+      console.log(this.listMovie);
+      if (this.listMovie === null) {
+        this.toast.warning('Ngày bạn chọn chưa có phim xuất chiếu!', 'Thông Báo', {timeOut: 2000})
+      }
+    });
+  }
+
+  removeSearch() {
+    if (this.choseDate !== null){
+      this.listShowTime = null;
+      this.listShowDate = null;
+      this.choseDate = null;
+      document.getElementById('pick1')["value"] = "";
+      this.ngOnInit();
     }
   }
 }

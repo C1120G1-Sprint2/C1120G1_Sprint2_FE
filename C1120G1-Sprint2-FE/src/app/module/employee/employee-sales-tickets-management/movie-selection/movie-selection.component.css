@@ -17,7 +17,7 @@
 
 .follow {
   width: fit-content;
-  border-bottom: 2px solid #f26b38;
+  border-bottom: 2px solid #FF8C00 ;
 }
 
 .follow-title {
@@ -35,31 +35,31 @@ hr {
 #pick-div td {
   cursor: pointer;
 }
-#pick-movie {
+.pick-movie {
   padding: 0 0.9rem;
 }
-#pick-movie table {
+.pick-movie table {
   width: 100%;
 }
-#pick-movie tbody {
+.pick-movie tbody {
   height: 20rem;
   width: 100%;
   display: block;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-#pick-movie tr{
+.pick-movie tr{
   width: 100%;
   display: block;
 }
-#pick-movie td {
+.pick-movie td {
   width: 100%;
   display: block;
   border: none;
 }
 
 .tb-head {
-  background-color: #f26c39;
+  background-color: #FF8C00 ;
   color: white;
   text-transform: uppercase;
   text-align: center;
@@ -71,7 +71,7 @@ hr {
   margin-left: 0.8rem;
   font-size: 0.85rem;
   text-transform: uppercase;
-  color: #f26c39;
+  color: #FF8C00 ;
 }
 .img {
   transition: all 0.25s ease-in 0.1s;
@@ -99,4 +99,7 @@ hr {
 }
 .chooseFilm {
   background-color: lightgray !important;
+}
+.bg-orange{
+  background-color: #FF8C00 !important;
 }

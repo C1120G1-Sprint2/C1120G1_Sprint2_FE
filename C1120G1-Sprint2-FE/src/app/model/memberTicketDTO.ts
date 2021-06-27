@@ -5,5 +5,4 @@ export interface MemberTicketDTO {
   userId: number;
   timeCreate: string;
   ticketStatusId: number;
-
 }

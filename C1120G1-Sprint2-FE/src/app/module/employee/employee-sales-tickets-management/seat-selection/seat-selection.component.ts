@@ -48,7 +48,7 @@ export class SeatSelectionComponent implements OnInit {
       }
     });
     this.formSearchCardId = new FormGroup(
-      {cardId: new FormControl('', [Validators.required, Validators.pattern('[0-9]{9}')])}
+      {username: new FormControl('', [Validators.required, Validators.pattern('\\w{6,}')])}
     );
   }
 
@@ -59,13 +59,9 @@ export class SeatSelectionComponent implements OnInit {
   }
 
   continue() {
-    if (this.listChoseSeat.length !== 0) {
       this.salesTicketsService.changeListChoseSeat(this.listChoseSeat);
       this.salesTicketsService.changeMovieTicket(this.movieTicket);
       this.router.navigateByUrl('/employee/sale/tickets/confirmSaleTicket');
-    } else {
-      this.toast.error('Bạn chưa chọn vé!', 'Lỗi!');
-    }
   }
 
 
@@ -110,18 +106,16 @@ export class SeatSelectionComponent implements OnInit {
     this.modal.open(content, {windowClass: 'dark-modal'});
   }
 
-  openFormSearchAccount(content) {
-    this.modal.open(content, {windowClass: 'dark-modal'});
-  }
-
   checkAccount() {
     if (this.formSearchCardId.invalid) {
       this.toast.warning('Thông tin bạn nhập không hợp lệ, card id phải là số và gồm 9 kí tự!', 'Thông Báo', {timeOut: 3000});
     } else {
-      this.salesTicketsService.findUserByCardId(this.formSearchCardId.value.cardId).subscribe((data) => {
+      this.salesTicketsService.findUserByUserName(this.formSearchCardId.value.username).subscribe((data) => {
         this.user = data;
         if (this.user === null) {
           this.toast.warning('Không tìm thấy tài khoản', 'Thông Báo', {timeOut: 2000});
+        } else {
+          this.toast.success('Đã tìm thấy tài khoản', 'Thông Báo', {timeOut: 2000})
         }
       });
     }

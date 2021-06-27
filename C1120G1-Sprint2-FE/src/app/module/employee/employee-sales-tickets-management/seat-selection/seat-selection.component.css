@@ -35,7 +35,7 @@
 
 .follow {
   width: fit-content;
-  border-bottom: 2px solid #f26c39;
+  border-bottom: 2px solid #FF8C00 ;
 }
 
 .follow-title {
@@ -170,7 +170,7 @@ hr {
   cursor: pointer;
 }
 .bg-orange{
-  background-color: #f26b38 !important;
+  background-color: #FF8C00 !important;
 }
 
 
