@@ -1,1 +1,204 @@
-<p>register works!</p>
+<body>
+<div class="full-height d-flex justify-content-center">
+  <div class="col-5 d-flex align-items-center frame-login">
+    <div class="main-login rounded-lg col-12 p-0">
+      <div class="form-group px-5 py-2 m-0">
+        <h2>Đăng kí tài khoản</h2>
+        <form class="d-inline-flex col-12 px-0 justify-content-center" [formGroup]="form" (ngSubmit)="submitForm()">
+          <!-- first-form -->
+          <table class="table table-hover table-borderless px-0" id="first-form">
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="username">Username:</label>
+              </td>
+              <td class="px-0">
+                <input type="text" class="form-control form-control-custom" id="username" placeholder="Nhập username"
+                       name="username"/>
+                <!-- <div class="invalid-feedback">
+                    <span>Username không được để trống.</span><br />
+                    <span>Username quá dài.</span>
+                </div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="password">Mật khẩu:</label>
+              </td>
+              <td class="px-0 input-group" id="">
+                <input [type]="textType === true ? 'text' : 'password'"
+                       class="form-control form-control-custom input-password"
+                       placeholder="Nhập mật khẩu" id="password" name="password"/>
+                <section class="input-group-append" (click)="toggleShowHide()">
+                  <span class="input-group-text">
+                    <i *ngIf="textType" class="fa fa-eye"></i>
+                    <i *ngIf="!textType" class="fa fa-eye-slash"></i>
+                  </span>
+                </section>
+                <!-- <div class="invalid-feedback">
+                    <span>Mật khẩu không được để trống.</span><br />
+                    <span>Mật khẩu quá dài.</span>
+                </div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="password">Nhập lại mật khẩu:</label>
+              </td>
+              <td class="px-0 input-group px-0" id="show_hide_password">
+                <input [type]="textType === true ? 'text' : 'password'"
+                       class="form-control form-control-custom input-password"
+                       placeholder="Nhập mật khẩu" id="re-password" name="re-password"/>
+                <section class="input-group-append" (click)="toggleShowHide()">
+                  <span class="input-group-text">
+                    <i *ngIf="textType" class="fa fa-eye"></i>
+                    <i *ngIf="!textType" class="fa fa-eye-slash"></i>
+                  </span>
+                </section>
+                <!-- <div class="invalid-feedback">
+                    <span>Mật khẩu không trùng khớp.</span><br />
+                    <span>Mật khẩu không được để trống.</span>
+                </div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="email">Email:</label>
+              </td>
+              <td class="px-0">
+                <input type="email" class="form-control form-control-custom" id="email" placeholder="Nhập email"
+                       name="email"/>
+                <!-- <div class="invalid-feedback">
+                    <span>Email không được để trống.</span><br />
+                    <span>Email không đúng định dạng.</span><br />
+                    <span>Email quá dài.</span>
+                </div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0"></td>
+              <td class="px-0 d-flex justify-content-end">
+                <span class="btn btn-confirm col-6" (click)="secondForm()">Tiếp theo</span>
+              </td>
+            </tr>
+          </table>
+          <!-- END first-form -->
+          <!-- second-form -->
+          <table class="table table-hover table-borderless px-0" id="second-form">
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="fullname">Họ và tên:</label>
+              </td>
+              <td class="px-0">
+                <input type="text" class="form-control form-control-custom" id="fullname" placeholder="Nhập họ và tên"
+                       name="fullname"/>
+                <!-- <div class="invalid-feedback">
+                    <span>Họ và tên không được để trống.</span><br />
+                    <span>Họ và tên không được để trống.</span><br />
+                    <span>Họ và tên quá dài.</span>
+                </div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="dateOB">Ngày sinh:</label>
+              </td>
+              <td class="px-0">
+                <input type="date" class="form-control form-control-custom" id="dateOB" name="dateOB"/>
+                <!-- <div class="invalid-feedback">Ngày sinh không được để trống.</div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="gender">Giới tính:</label>
+              </td>
+              <td class="px-0 check-gender">
+                <div class="form-check-inline">
+                  <label class="form-check-label"> <input type="radio" class="form-check-input" name="gender"/>Nam
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label"> <input type="radio" class="form-check-input" name="gender"/>Nữ
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label"> <input type="radio" class="form-check-input" name="gender"/>khác
+                  </label>
+                </div>
+                <!-- <div class="invalid-feedback">Hãy chọn giới tính.</div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="idcode">CMND/CCCD:</label>
+              </td>
+              <td class="px-0">
+                <input type="text" class="form-control form-control-custom" id="idcode" placeholder="Nhập CMND/CCCD"
+                       name="idcode"/>
+                <!-- <div class="invalid-feedback">
+                    <span>CMND/CCCD không được để trống.</span><br />
+                    <span>CMND/CCCD phải là số có 9 hoặc 12 số.</span>
+                </div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="phone">Số điện thoại:</label>
+              </td>
+              <td class="px-0">
+                <input type="text" class="form-control form-control-custom" id="phone" placeholder="Nhập số điện thoại"
+                       name="phone"/>
+                <!-- <div class="invalid-feedback">
+                    <span>Số điện thoại không được để trống.</span><br />
+                    <span>Số điện thoại không đúng.</span>
+                </div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <label for="address">Địa chỉ:</label>
+              </td>
+              <td class="px-0">
+                <select class="form-control form-control-custom mb-1" id="province">
+                  <option selected disabled>Chọn tỉnh thành</option>
+                  <option>Hà Nội</option>
+                  <option>Huế</option>
+                  <option>Thành phố Hồ Chí Minh</option>
+                </select>
+                <select class="form-control form-control-custom mb-1" id="district">
+                  <option selected disabled>Chọn quận/huyện</option>
+                  <option>Nam Đông</option>
+                  <option>Hoàn Kiếm</option>
+                  <option>Hải Châu</option>
+                </select>
+                <select class="form-control form-control-custom mb-1" id="ward">
+                  <option selected disabled>Chọn chọn xã/phường</option>
+                  <option>Thượng Nhật</option>
+                  <option>Kim Long</option>
+                  <option>Khe Tre</option>
+                </select>
+                <!-- <div class="invalid-feedback">Địa chỉ không được để trống.</div> -->
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td class="col-5 px-0">
+                <span class="btn btn-confirm" (click)="firstForm()">Trở lại</span>
+              </td>
+              <td class="px-0 d-flex justify-content-end">
+                <button type="submit" class="btn btn-confirm col-12">Đăng kí</button>
+              </td>
+            </tr>
+          </table>
+          <!-- END second-form -->
+        </form>
+        <div class="mb-3">
+          <div colspan="2">
+            Bạn đã có tài khoản?&nbsp;
+            <a routerLink="/login">Đăng nhập</a><br/>
+            <small>Sau khi đăng kí thành công, hãy kiểm tra email của bạn để xác thực tài khoản.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
