@@ -30,7 +30,7 @@
                     </ng-template>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <a class="dropdown-item" (click)="changeColor(roomSeat.seat)">Chuyển trạng thái ghế</a>
-                      <a class="dropdown-item" href="#">Xóa ghế</a>
+                      <a class="dropdown-item" (click)="deleteSeat(roomSeat.roomSeatId)">Xóa ghế</a>
                     </div>
                   </div>
                 </td>
