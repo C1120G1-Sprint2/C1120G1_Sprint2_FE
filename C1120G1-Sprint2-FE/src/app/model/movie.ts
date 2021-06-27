@@ -9,7 +9,7 @@ export interface Movie {
   director: string;
   movieLength: number;
   trailer: string;
-  movieStatus: number;
+  status: number;
   banner: string;
   promote: number;
 }

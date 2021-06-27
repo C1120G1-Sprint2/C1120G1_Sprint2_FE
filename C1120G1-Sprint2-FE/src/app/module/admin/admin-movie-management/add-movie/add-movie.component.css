@@ -1,0 +1,17 @@
+#input-image:hover {
+  text-align: center;
+  width: 40px;
+  border-radius: 50rem;
+  border: 3px solid black;
+}
+
+.icon-hide {
+  position: relative;
+  float: left;
+  display: block;
+  left: 87%;
+  font-size: 17px;
+}
+.icon-hide:hover{
+  color: red;
+}

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "C1120G1-Sprint2-FE": {
+    "sprint01-fe": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/C1120G1-Sprint2-FE",
+            "outputPath": "dist/sprint01-fe",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,7 +31,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -68,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "C1120G1-Sprint2-FE:build"
+            "browserTarget": "sprint01-fe:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "C1120G1-Sprint2-FE:build:production"
+              "browserTarget": "sprint01-fe:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "C1120G1-Sprint2-FE:build"
+            "browserTarget": "sprint01-fe:build"
           }
         },
         "test": {
@@ -95,9 +96,14 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         },
         "lint": {
@@ -117,16 +123,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "C1120G1-Sprint2-FE:serve"
+            "devServerTarget": "sprint01-fe:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "C1120G1-Sprint2-FE:serve:production"
+              "devServerTarget": "sprint01-fe:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "C1120G1-Sprint2-FE"
+  "defaultProject": "sprint01-fe",
+  "cli": {
+    "analytics": "29568c55-2b73-4ed7-ae3a-a90e10021bd3"
+  }
 }
