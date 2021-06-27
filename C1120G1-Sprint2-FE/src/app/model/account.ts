@@ -8,4 +8,5 @@ export interface Account {
   point: string;
   accountStatus: AccountStatus;
   user: User;
+
 }

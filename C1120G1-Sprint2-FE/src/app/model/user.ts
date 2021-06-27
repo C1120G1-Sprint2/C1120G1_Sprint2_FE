@@ -3,7 +3,7 @@ import {Ward} from './ward';
 import {Ticket} from "./ticket";
 
 export interface User {
-  user_id: number;
+  userId: number;
   name: string;
   birthday: string;
   gender: number;
