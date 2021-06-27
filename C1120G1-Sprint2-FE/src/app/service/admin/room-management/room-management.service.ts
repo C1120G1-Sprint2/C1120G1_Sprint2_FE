@@ -54,7 +54,6 @@ export class RoomManagementService {
   }
 
   updateSeat(seat:Seat): Observable<Seat> {
-    console.log(this.baseUrl + '/seat/edit-seat');
     return this.httpClient.put<Seat>(this.baseUrl + '/seat/edit-seat', seat);
   }
 
