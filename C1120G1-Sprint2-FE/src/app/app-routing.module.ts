@@ -7,8 +7,10 @@ import {LogoutComponent} from './module/security/logout/logout.component';
 import {AccountInfoComponent} from './module/member/account-management/account-info/account-info.component';
 import {TransactionHistoryComponent} from './module/member/account-management/transaction-history/transaction-history.component';
 import {TicketsBookingComponent} from './module/member/account-management/tickets-booking/tickets-booking.component';
+import {NavBarAccountManagerComponent} from "./module/member/account-management/nav-bar-account-manager/nav-bar-account-manager.component";
 
 
+// @ts-ignore
 const routes: Routes = [
   {
     path: 'admin',
@@ -31,6 +33,7 @@ const routes: Routes = [
       }, {
         path: 'booking', component: TicketsBookingComponent,
       },
+
     ]
   }
 ];

@@ -16,6 +16,7 @@ import {environment} from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {RouterModule} from "@angular/router";
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

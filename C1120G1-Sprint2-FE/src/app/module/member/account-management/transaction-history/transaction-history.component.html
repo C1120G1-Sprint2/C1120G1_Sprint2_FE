@@ -3,34 +3,7 @@
   <div class="row">
     <!--    account-manager start-->
     <div class=" container-fluid  col-lg-4" style="background-color:rgba(168,162,161,0.15)">
-      <!--            <div class="card" style="border-style: solid; border-color: coral">-->
-      <div class="card-title">QUẢN LÝ TÀI KHOẢN</div>
-      <div class="card-body">
-        <div style="text-align:center">
-          <ul>
-            <li><a href="https://vnexpress.net/"><img class="avatar"
-                                                      style="width: 120px; height: 120px"
-                                                      src="" alt=""></a></li>
-            <li>Jack</li>
-            <li>Điểm Tích Lũy: 1000</li>
-            <li>
-              <button type="submit" class="btn btn-primary">Đăng Xuất</button>
-            </li>
-          </ul>
-        </div>
-        <br>
-        <br>
-        <div>
-          <button class=" w3-button "><i class="fas fa-user"></i> THÔNG TIN TÀI KHOẢN</button>
-        </div>
-        <div>
-          <button class="w3-button "><i class="fas fa-history"></i> LỊCH SỬ</button>
-        </div>
-        <div>
-          <button class=" w3-button "><i class="fas fa-ticket-alt"></i> QUẢN LÝ ĐẶT VÉ</button>
-        </div>
-      </div>
-      <!--            </div>-->
+      <app-nav-bar-account-manager></app-nav-bar-account-manager>
     </div>
     <!--    account-manager end-->
     <br>
@@ -91,7 +64,7 @@
             <!-- --------------------------                       ---------------->
             <table class="table table-hover">
               <thead>
-              <tr>
+              <tr >
                 <th>STT</th>
                 <th>Hình Ảnh</th>
                 <th>Ngày Đặt</th>
@@ -100,20 +73,12 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1</td>
+              <tr *ngFor="let transaction of transactionHistoryList; let i = index">
+                <td>{{i + 1}}</td>
                 <td><img style="width: 100px;height: 60px" src="" alt=""></td>
-                <td>10/06/2021</td>
-                <td> Bẫy Rồng</td>
-                <td>Bạn Được Cộng 100 Điểm</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td><img style="width: 100px;height: 60px" src="" alt="">
-                </td>
-                <td>11/06/2021</td>
-                <td> Đội Bóng Thiếu Lâm</td>
-                <td>Bạn Được Cộng 100 Điểm</td>
+<!--                <td>{{transaction.account.user.}}</td>-->
+                <td></td>
+                <td></td>
               </tr>
               </tbody>
 

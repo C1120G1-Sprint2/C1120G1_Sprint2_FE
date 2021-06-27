@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Ticket} from "../../../model/ticket";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookTicketsService {
+export class TransactionHistoryService {
 
-  API_URL_TICKET: string = 'http://localhost:8080/member';
+
+  API_URL_TRANSACTION: string = 'http://localhost:8080/member';
   httpOptions: any;
 
   constructor(private httpClient: HttpClient) {
@@ -22,17 +22,10 @@ export class BookTicketsService {
     };
   }
 
+
   findAll(username: string): Observable<any> {
     console.log(username);
-    console.log(this.API_URL_TICKET + '/booking/'+ username)
-    return this.httpClient.get<any>(this.API_URL_TICKET + '/booking/'+ username);
+    console.log(this.API_URL_TRANSACTION + '/booking/'+ username)
+    return this.httpClient.get<any>(this.API_URL_TRANSACTION + '/transaction/'+ username);
   };
-
-
-  deleteByIdTickets(deleteId: number): Observable<Ticket> {
-    console.log(deleteId);
-    console.log(this.API_URL_TICKET + '/booking/'+ deleteId)
-    return this.httpClient.delete<Ticket>(this.API_URL_TICKET + '/cancelTicket/' + deleteId);
-  }
-
 }
