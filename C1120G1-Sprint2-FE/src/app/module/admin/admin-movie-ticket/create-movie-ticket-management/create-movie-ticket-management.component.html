@@ -4,8 +4,8 @@
       <table class="table table-hover">
         <body>
         <tr>
-          <th>Chọn Rạp <span style="color: red;">*</span></th>
-          <td>
+          <th class="col-3">Chọn Rạp <span style="color: red;">*</span></th>
+          <td class="col-7">
             <select class="form-control" formControlName="room">
               <option value="" selected disabled>Vui lòng chọn rạp</option>
               <option *ngFor="let room of rooms" [ngValue]="room">{{room.roomName}}</option>
@@ -17,8 +17,8 @@
 
         </tr>
         <tr>
-          <th>Tên Phim <span style="color: red;">*</span></th>
-          <td>
+          <th class="col-3">Tên Phim <span style="color: red;">*</span></th>
+          <td class="col-7">
             <select class="form-control" formControlName="movie">
               <option value="" selected disabled>Vui lòng chọn phim</option>
               <option *ngFor="let movie of movies" [ngValue]="movie">{{movie.movieName}}</option>
@@ -29,8 +29,8 @@
           </td>
         </tr>
         <tr>
-          <th>Loại Chiếu <span style="color: red;">*</span></th>
-          <td>
+          <th class="col-3">Loại Chiếu <span style="color: red;">*</span></th>
+          <td class="col-7">
             <select class="form-control" formControlName="projectionType">
               <option value="" selected disabled>Vui lòng loại chiếu</option>
               <option *ngFor="let projectionType of projectionTypes" [ngValue]="projectionType">{{projectionType.projectionName}}</option>
@@ -39,8 +39,8 @@
           </td>
         </tr>
         <tr>
-          <th>Xuất Chiếu <span style="color: red;">*</span></th>
-          <td>
+          <th class="col-3">Xuất Chiếu <span style="color: red;">*</span></th>
+          <td class="col-7">
             <div class="form-check form-check-inline" *ngFor="let show of showTimes; let i = index">
               <label>
                 <input type="checkbox" (change)="onCheckboxChange($event, show)">
@@ -59,8 +59,8 @@
           </td>
         </tr>
         <tr>
-          <th>Ngày Chiếu <span style="color: red;">*</span></th>
-          <td>
+          <th class="col-3">Ngày Chiếu <span style="color: red;">*</span></th>
+          <td class="col-7">
             <input type="date" class="form-control" formControlName="showDate">
             <p class="textErr" *ngIf="formAddNewMovieTicket.controls.showDate.touched && formAddNewMovieTicket.controls.showDate.errors?.required">Ngày chiếu không được để trống</p>
           </td>

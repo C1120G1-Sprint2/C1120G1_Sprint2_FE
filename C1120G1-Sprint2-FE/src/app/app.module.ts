@@ -1,3 +1,4 @@
+
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {DatePipe} from '@angular/common';
@@ -8,7 +9,7 @@ import {EmployeeModule} from './module/employee/employee.module';
 import {MemberModule} from './module/member/member.module';
 import {MainModule} from './module/main/main.module';
 import {SecurityModule} from './module/security/security.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -31,6 +32,7 @@ import {HttpClientModule} from '@angular/common/http';
     MemberModule,
     MainModule,
     SecurityModule,
+    ToastrModule.forRoot(),
     HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -38,9 +40,10 @@ import {HttpClientModule} from '@angular/common/http';
     AngularFireDatabaseModule,
     ToastrModule.forRoot(),
     AdminMovieTicketModule,
-
+    HttpClientModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -17,10 +17,10 @@ import {MovieTicketManagementService} from '../../../../service/admin/movie-tick
 export class ListMovieTicketManagementComponent implements OnInit {
   pageClicked = 0;
   totalPages = 1;
-  size  = 5;
+  size = 5;
   pages = [];
   textSorting = '';
-  onSorting = false ;
+  onSorting = false;
   movieTickets: MovieTicket[];
   room: Room[];
   movie: Movie[];
@@ -30,10 +30,13 @@ export class ListMovieTicketManagementComponent implements OnInit {
   deleteName: string;
   editId: number;
   keySearch: string = '';
+  deleteMovieName: string;
 
   constructor(private toast: ToastrService,
               private movieTicketManagement: MovieTicketManagementService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
     this.onSubmit(0);
@@ -41,7 +44,6 @@ export class ListMovieTicketManagementComponent implements OnInit {
 
   deleteSuccess() {
     this.ngOnInit();
-    this.toast.success("Delete complete", "Notification");
   }
 
 
@@ -54,18 +56,20 @@ export class ListMovieTicketManagementComponent implements OnInit {
       })
       console.log('id nhan dc' + id);
       console.log(dataEdit);
-      dialogRef.afterClosed().subscribe(result => {this.ngOnInit()})
+      dialogRef.afterClosed().subscribe(result => {
+        this.ngOnInit()
+      })
     });
 
   }
 
   search(page) {
     this.movieTicketManagement.getMovieTicketByKeySearch(this.keySearch, this.size).subscribe(dataSearch => {
-        this.movieTickets = dataSearch.content;
-        this.pageClicked = page;
-        this.totalPages = dataSearch.totalPages;
-        this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
-        this.toast.success("Search Successfully !", "Notification");
+      this.movieTickets = dataSearch.content;
+      this.pageClicked = page;
+      this.totalPages = dataSearch.totalPages;
+      this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+      this.toast.success("Search Successfully !", "Notification");
 
     }, error => {
       this.toast.error("Not Found", "Notification");
@@ -74,7 +78,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
 
 //  phan trang
 
-  onNext(){
+  onNext() {
     if (this.pageClicked < this.totalPages - 1) {
       this.pageClicked++;
       this.onSubmit(this.pageClicked);
@@ -112,14 +116,28 @@ export class ListMovieTicketManagementComponent implements OnInit {
         });
       }
     })
-  }x
+  }
+
+  selectPagination: number;
+
 
   onSortChange(value) {
     if (this.textSorting == "") {
       this.textSorting = value;
-    }else {
+    } else {
       this.textSorting = "";
     }
     this.ngOnInit();
+  }
+
+  selectPage() {
+    if (this.selectPagination < 1) {
+      this.pageClicked = this.selectPagination;
+      this.onFirst();
+      this.toastr.warning('Không tìm thấy trang hoặc danh sách đã hết', 'Thông báo', {
+        timeOut: 3000,
+        progressAnimation: 'increasing'
+      });
+    }
   }
 }
