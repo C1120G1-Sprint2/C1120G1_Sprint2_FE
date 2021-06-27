@@ -8,7 +8,7 @@ import {UserEditPreview} from '../../../model/userEditPreview';
   providedIn: 'root'
 })
 export class MemberManagementService {
-  API_URL_ADDRESS: string = 'http://localhost:8080/';
+  API_URL_ADDRESS: string = 'http://localhost:8080';
   private API_URL_USER = 'http://localhost:8080/employee/listUser';
   httpOptions: any;
 
