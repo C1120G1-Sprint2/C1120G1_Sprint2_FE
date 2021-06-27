@@ -73,7 +73,7 @@ export class SeatSelectionComponent implements OnInit {
   continue() {
     if (this.listChoseSeat.length != 0 ){
       this.bookTicketsService.listChoseSeat = this.listChoseSeat;
-      this.router.navigateByUrl("confirm");
+      this.router.navigateByUrl("booking/confirm");
     } else {
       this.toastrService.error("Bạn chưa chọn vé!", "Lỗi!")
     }

@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AdminModule} from './module/admin/admin.module';
@@ -30,6 +31,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     AdminModule,
     EmployeeModule,
+    HttpClientModule,
     MemberModule,
     MainModule,
     SecurityModule,
