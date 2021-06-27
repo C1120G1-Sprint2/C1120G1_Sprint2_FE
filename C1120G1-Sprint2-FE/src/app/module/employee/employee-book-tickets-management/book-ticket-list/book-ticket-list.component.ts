@@ -69,8 +69,16 @@ export class BookTicketListComponent implements OnInit {
           this.bookedTicketList = data.content;
         }
       });
-    } else {
+    } else if (this.optionSearch == 4){
       this.bookTicketManagementService.searchTicketByPhone(this.keySearch).subscribe(data => {
+        if (data == null) {
+          this.toastr.warning('Không tìm thấy !', 'Vé Đã Đặt !');
+        } else {
+          this.bookedTicketList = data.content;
+        }
+      });
+    } else {
+      this.bookTicketManagementService.searchTicketByName(this.keySearch).subscribe(data => {
         if (data == null) {
           this.toastr.warning('Không tìm thấy !', 'Vé Đã Đặt !');
         } else {

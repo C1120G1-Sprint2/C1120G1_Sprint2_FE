@@ -43,6 +43,10 @@ export class BookTicketsManagementService {
     return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-idCard' + '?idCard=' + idCard, this.httpOptions);
   }
 
+  searchTicketByName(name: string): Observable<any> {
+    return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-name' + '?name=' + name, this.httpOptions);
+  }
+
   searchTicketByPhone(phone: string): Observable<any> {
     return this.httpClient.get<any>(this.API_BASE_URL + '/booked-ticket-list/search-phone' + '?phone=' + phone, this.httpOptions);
   }
