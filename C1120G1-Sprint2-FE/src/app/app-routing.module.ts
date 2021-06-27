@@ -4,6 +4,7 @@ import {MainHomePageComponent} from './module/main/main-home-page/main-home-page
 import {RegisterComponent} from './module/security/register/register.component';
 import {LoginComponent} from './module/security/login/login.component';
 import {LogoutComponent} from './module/security/logout/logout.component';
+import {LoginGoogleComponent} from './module/security/login-google/login-google.component';
 
 
 const routes: Routes = [

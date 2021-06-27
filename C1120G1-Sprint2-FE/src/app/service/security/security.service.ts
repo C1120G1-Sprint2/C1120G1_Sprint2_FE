@@ -2,8 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthLogin} from '../../model/authLogin';
+import {UserSocial} from '../../model/userSocial';
 
 const API_URL = 'http://localhost:8080/api/';
+const API_URL_GOOGLE: string = 'http://localhost:8080/api/login/google';
+const API_URL_FACEBOOK: string = 'http://localhost:8080/api/login/facebook';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +38,15 @@ export class SecurityService {
   checkEmail(email: string): Observable<string> {
     console.log('Email on service: ' + email);
     return this.http.get<string>(API_URL + 'checkEmail/' + email);
+  }
+
+  createUserGoogle(user: UserSocial): Observable<any> {
+    return this.http.post<any>(API_URL_GOOGLE, user, this.httpOptions);
+  }
+
+  createUserFacebook(user: UserSocial): Observable<any> {
+    console.log("User in Service")
+    console.log(user)
+    return this.http.post<any>(API_URL_FACEBOOK, user, this.httpOptions);
   }
 }
