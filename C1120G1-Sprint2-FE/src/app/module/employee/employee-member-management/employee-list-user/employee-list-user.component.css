@@ -474,3 +474,10 @@ div.item-social {
   font-size: 13px;
   margin: 20px 5px 20px 10px;
 }
+.form-input-page {
+  height: 30px;
+  width: 45px;
+}
+.btn-orange{
+  background: #FF8C00;
+}

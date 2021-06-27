@@ -28,13 +28,11 @@
               <i class="fas fa-ticket-alt mr-2 col-1"></i>Quản Lý Đặt Vé
             </a>
           </li>
-
           <li class=" pt-2 pb-2 menu-var">
             <a class="text-decoration-none text-dark  pt-2 pb-2">
               <i class="fas fa-user-cog mr-2 col-1"></i>Quản Lý Nhân Viên
             </a>
           </li>
-
           <li class=" pt-2 pb-2 menu-var">
             <a class="text-decoration-none text-dark  pt-2 pb-2">
 
@@ -72,7 +70,7 @@
       <h2 class="title">Thêm Mới Thông Tin Đăng Kí Khách Hàng</h2>
     </div>
     <div class="card-body">
-      <form [formGroup]="formAddNewCustomer" (ngSubmit)="addNewCustomer(formAddNewCustomer.value)">
+      <form [formGroup]="formAddNewCustomer" (ngSubmit)="addNewCustomer() ; sendMail()">
         <label class="label">--Đăng Kí Tài Khoản--</label>
         <div class="form-row mt-2">
           <div class="name">Tài Khoản<span class="text-red"> (*)</span>:</div>
@@ -146,7 +144,7 @@
             class="text-error">Vui lòng nhập số điện thoại !</p>
           <p
             *ngIf="formAddNewCustomer.get('phone').hasError('pattern') && formAddNewCustomer.get('phone').touched"
-            class="text-error">Sai định dạng (số điện toại phải từ 10 đến 11 số), vui lòng nhập lại !</p>
+            class="text-error">Sai định dạng (0xxxxxxxx), vui lòng nhập lại !</p>
         </div>
         <div class="form-row">
           <div class="name">Email<span class="text-red"> (*)</span>:</div>
@@ -178,6 +176,9 @@
           <p
             *ngIf="formAddNewCustomer.get('idCard').hasError('pattern') && formAddNewCustomer.get('idCard').touched"
             class="text-error">Sai định dạng (số CMND phải đủ 9 số), vui lòng nhập lại !</p>
+          <p
+            *ngIf="formAddNewCustomer.get('idCard').hasError('maxlength') && formAddNewCustomer.get('idCard').touched"
+            class="text-error">Sai định dạng nhiều hơn 9 số, vui lòng nhập lại !</p>
 
           <p class="text-error" *ngIf="listError.existIdCard">
             {{listError.existIdCard}}
