@@ -50,7 +50,7 @@ export class EmployeeCreateUserComponent implements OnInit {
     this.formAddNewCustomer = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(/^(\s*)([\p{Lu}]|[\p{Ll}]){2,}((\s*)(([\p{Lu}]|[\p{Ll}]){2,}))+(\s*)$/u),
         Validators.minLength(6), Validators.maxLength(45)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)]],
       phone: ['', [Validators.required, Validators.pattern('^0\\d{9,10}$')]],
       ward: ['', [Validators.required]],
       birthday :['',[Validators.required]],
