@@ -17,6 +17,7 @@ export class RoomListComponent implements OnInit {
   selectPagination: number;
   page = 0;
   totalPage: number;
+  numberSeat: number;
 
   constructor(private roomManagement: RoomManagementService,
               private toast: ToastrService) {
@@ -85,4 +86,13 @@ export class RoomListComponent implements OnInit {
     this.page = page;
     this.ngOnInit();
   }
+
+  // getAllSeatByRoomId(roomId :number){
+  //   this.roomManagement.getAllSeatByRoomId(roomId).subscribe(data=>{
+  //     this.numberSeat = data.length;
+  //   });
+  //   setTimeout(()=>{
+  //     return this.numberSeat;
+  //   },200)
+  // }
 }

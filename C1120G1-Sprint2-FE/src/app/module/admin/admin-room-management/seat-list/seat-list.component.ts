@@ -29,7 +29,6 @@ export class SeatListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getDataColumn();
     this.getDataRow();
     this.getDataSeatType();
 
@@ -41,7 +40,6 @@ export class SeatListComponent implements OnInit {
           this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống', 'Thông báo');
         }
       });
-      console.log(this.roomId);
       this.roomManagement.getRoomById(this.roomId).subscribe((data: Room) => {
         if (data === null) {
           this.toast.warning('Dữ liệu không có', 'Thông báo');
@@ -61,29 +59,26 @@ export class SeatListComponent implements OnInit {
     });
   }
 
-  // getDataColumn() {
-  //   this.roomManagement.getAllColumn().subscribe(data => {
-  //     this.columnList = data;
-  //     if (this.columnList === null) {
-  //       this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống', 'Thông báo');
-  //     }
-  //   });
-  // }
-
   getDataSeatType(){
     this.roomManagement.getAllSeatType().subscribe(data =>{
       this.seatTypeList = data;
       if (this.seatTypeList === null) {
         this.toast.warning('Thông tin dữ liệu hiện không có trong hệ thống', 'Thông báo');
       }
-      console.log(this.seatTypeList)
     })
   }
 
   changeColor(seatChange: Seat) {
     this.roomManagement.updateSeat(seatChange).subscribe(data=>{
-      this.toast.success("Thay đổi loại ghế thành công", "Thông báo")
+      this.toast.success("Thay đổi loại ghế thành công", "Thông báo");
+      this.ngOnInit();
+    })
+  }
+
+  deleteSeat(roomSeatId: any) {
+    this.roomManagement.deleteSeat(roomSeatId).subscribe(data=>{
+      this.toast.success("Xóa ghế thành công","Thông báo");
+      this.ngOnInit();
     })
   }
 }
-

@@ -18,18 +18,11 @@ export class RoomDeleteComponent implements OnInit {
   @Output()
   deleteComplete = new EventEmitter<boolean>();
 
-  public listRoom: Room[];
-  public lengthRoomList: number;
-
   constructor(public roomManagementService: RoomManagementService,
               private active: ActivatedRoute,
               private toast: ToastrService) { }
 
   ngOnInit(): void {
-    // this.roomManagementService.getAllRoom().subscribe((data) => {
-    //   this.listRoom = data;
-    //   this.lengthRoomList = this.listRoom.length;
-    // })
   }
 
   deleteRoom() {
