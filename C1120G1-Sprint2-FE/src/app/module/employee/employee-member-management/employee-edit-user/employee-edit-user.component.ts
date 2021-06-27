@@ -110,7 +110,7 @@ export class EmployeeEditUserComponent implements OnInit {
               formRegister.avatarUrl = url;
               this.memberManagementService.editUser(formRegister).subscribe(data => {
                 this.router.navigateByUrl('/employee/member/management');
-                this.toastr.success('Chỉnh Sửa thành công', 'Notification', {
+                this.toastr.success('Chỉnh Sửa thành công', 'Thông báo', {
                   timeOut: 1000,
                   progressBar: true,
                   progressAnimation: 'increasing'
@@ -132,7 +132,7 @@ export class EmployeeEditUserComponent implements OnInit {
     } else {
       this.memberManagementService.editUser(formRegister).subscribe(data => {
         this.router.navigateByUrl('/employee/member/management');
-        this.toastr.success('Chỉnh Sửa thành công', 'Notification', {
+        this.toastr.success('Chỉnh Sửa thành công', 'Thông báo', {
           timeOut: 1000,
           progressBar: true,
           progressAnimation: 'increasing'
@@ -152,7 +152,6 @@ export class EmployeeEditUserComponent implements OnInit {
 
   //    upload anh fire base
   showPreview(image: any) {
-
     if (image.target.files && image.target.files[0]) {
       const file = image.target.files[0].name;
       const path = file.substring(file.length - 3).toLowerCase();
