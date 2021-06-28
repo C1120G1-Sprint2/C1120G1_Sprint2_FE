@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditMovieComponent implements OnInit {
 
+  formEditMovie: FormGroup;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  submit(formEditMovie) {
+
+  }
 }

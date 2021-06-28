@@ -8,15 +8,20 @@ import {AppRoutingModule} from '../../app-routing.module';
 import {MovieTrailerComponent} from './movie-trailer/movie-trailer.component';
 import {MainSearchComponent} from './main-search/main-search.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AdminRoutingModule} from '../admin/admin-routing.module';
 
 
 @NgModule({
   declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent, MainContentComponent, MovieTrailerComponent, MainSearchComponent],
+  exports: [
+    MainHeaderComponent,
+    MainFooterComponent
+  ],
   imports: [
     CommonModule,
-    AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminRoutingModule
   ]
 })
 export class MainModule {

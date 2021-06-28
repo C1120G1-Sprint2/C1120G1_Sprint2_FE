@@ -43,7 +43,7 @@ export class AddMovieComponent implements OnInit {
     this.formAddMovie = new FormGroup({
       movieId: new FormControl(null),
       movieName: new FormControl('', [Validators.required]),
-      status: new FormControl(this.statusOn),
+      movieStatus: new FormControl(this.statusOn),
       posterMovie: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
