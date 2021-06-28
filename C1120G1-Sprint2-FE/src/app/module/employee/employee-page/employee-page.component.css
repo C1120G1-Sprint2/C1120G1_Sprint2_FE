@@ -5,7 +5,7 @@
 }
 
 .menu-left-admin {
-  border-right: solid #095484 1px;
+  border-right: solid #FF8C00 1px;
   height: 700px;
   margin: 26px;
 }
@@ -17,6 +17,12 @@
 }
 
 .menu-left-admin .menu-var:hover {
-  border-bottom: #095484 solid 2px;
+  border-bottom: #FF8C00 solid 2px;
   transition: 0.5s;
+}
+.row{
+  margin: 0;
+}
+.col-9{
+  padding: 0;
 }

@@ -1,14 +1,12 @@
-
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {User} from '../../../model/user';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {UserEditPreview} from '../../../model/userEditPreview';
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {UserEditPreview} from "../../../model/userEditPreview";
+import {User} from "../../../model/user";
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class MemberManagementService {
   API_URL_ADDRESS: string = 'http://localhost:8080/';
   private API_URL_USER = 'http://localhost:8080/employee/listUser';
