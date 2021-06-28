@@ -43,8 +43,9 @@ export class RoomCreateComponent implements OnInit {
   save() {
     if (this.formCreate.valid) {
       this.roomStatus = this.formCreate.value.roomStatus;
-      this.roomManagementService.searchRoomAbsolute(this.formCreate.value.roomName).subscribe((data) => {
+      this.roomManagementService.searchRoomAbsolute(this.formCreate.getRawValue().roomName).subscribe((data) => {
         this.room = data;
+        console.log(data);
         if (this.room === null) {
           this.roomManagementService.createRoom(this.formCreate.getRawValue()).subscribe(data => {
               this.toast.success('Phòng chiếu đã được tạo');

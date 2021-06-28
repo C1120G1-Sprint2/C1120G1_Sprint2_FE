@@ -15,6 +15,7 @@ import {RoomSeat} from '../../../model/roomSeat';
 export class RoomManagementService {
 
   public baseUrl = 'http://localhost:8080/api/admin';
+  public roomSeatUrl = 'http://localhost:8080/api/roomSeat';
   httpOptions: any;
 
 
@@ -62,7 +63,7 @@ export class RoomManagementService {
   }
 
   deleteSeat(id: number): Observable<Seat> {
-    return this.httpClient.get<Seat>(this.baseUrl + '/seat/delete-seat/' + id);
+    return this.httpClient.get<Seat>(this.roomSeatUrl + '/seat/delete-seat/' + id);
   }
 
   getAllRoomStatus(): Observable<StatusRoom[]> {
@@ -89,6 +90,6 @@ export class RoomManagementService {
   }
 
   getAllSeatByRoomId(id:number): Observable<RoomSeat[]> {
-    return this.httpClient.get<RoomSeat[]>(this.baseUrl + '/roomSeat/' + id);
+    return this.httpClient.get<RoomSeat[]>(this.roomSeatUrl + '/roomSeat/' + id);
   }
 }
