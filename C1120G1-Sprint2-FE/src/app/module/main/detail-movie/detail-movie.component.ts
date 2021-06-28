@@ -14,7 +14,7 @@ import {Comments} from '../../../model/comment';
 import {DeleteCommentComponent} from '../comment/delete-comment/delete-comment.component';
 import {DatePipe} from '@angular/common';
 import {MemberManagementService} from '../../../service/admin/member-management/member-management.service';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -38,6 +38,8 @@ export class DetailMovieComponent implements OnInit {
   email: string = '';
   size: number = 5;
   page: [];
+  idUser: number;
+
 
 
 
@@ -63,15 +65,17 @@ export class DetailMovieComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.email = this.tokenService.getUser().email;
-    let index = this.activatedRoute.snapshot.params['id'];
-    this.detailMovieService.getMovieById(index).subscribe(data => {
+    
+   let id = this.activatedRoute.snapshot.params['id'];
+    this.detailMovieService.getMovieById(id).subscribe(data => {
       this.movie = data;
-      this.detailMovieService.getCategoryBiMovieId(index).subscribe(dataCategory => {
+      console.log(data);
+      console.log(id);
+      this.detailMovieService.getCategoryBiMovieId(id).subscribe(dataCategory => {
         this.categories = dataCategory;
         console.log(dataCategory);
       })
-      this.commentService.getAllCommentByMovieId(index).subscribe(dataComment => {
+      this.commentService.getAllCommentByMovieId(id).subscribe(dataComment => {
         this.comments = dataComment;
         console.log(this.comments);
       })
@@ -92,6 +96,7 @@ export class DetailMovieComponent implements OnInit {
     this.loading = true;
     if (this.formComment.valid) {
       this.commentService.addComment(this.formComment.value, this.id).subscribe(data => {
+        console.log(this.id);
         this.toastr.success("Add new comment", "Notification");
         this.loading = false;
         this.ngOnInit();
@@ -100,7 +105,7 @@ export class DetailMovieComponent implements OnInit {
   }
 
   editComment(comment: any) {
-    this.idCommentEdit = comment.commentId;
+    this.idCommentEdit = comment.id;
     this.contentCommentEdit = comment.content;
   }
 

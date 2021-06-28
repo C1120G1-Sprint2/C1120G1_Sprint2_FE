@@ -116,8 +116,8 @@
                   <a style="color: rgb(0,123,255);"
                      (click)="viewProfile(comment.user.email)">{{comment.user.name}}</a>
                 </span>
-<!--              *ngIf="email == comment.user.email"-->
-              <button  style="float: right" class="buttonEdit btn" data-toggle="dropdown"
+
+              <button *ngIf="email == comment.user.email"  style="float: right" class="buttonEdit btn" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false"><i
                 class="fa fa-ellipsis-v"></i>
                 <div class="dropdown-menu">
