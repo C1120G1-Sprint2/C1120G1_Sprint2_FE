@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-import {Seat} from '../../../model/seat';
 import {BookTicketsService} from '../../../service/member/book-tickets/book-tickets.service';
 import {MovieTicket} from '../../../model/movieTicket';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
@@ -67,6 +66,54 @@ export class ConfirmBookingComponent implements OnInit {
     //   this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
     // }
 
+    // let flag: boolean = true;
+    // for (let roomSeat of this.listChoseSeat) {
+    //   this.ticketDTO = new MemberTicketDTO(this.movieTicket.movieTicketId,
+    //     this.user.userId, roomSeat.seat.seatId);
+    //   console.log(this.ticketDTO);
+    //
+    //   this.bookTicketsService.createTicketDTO(this.movieTicket.movieTicketId,
+    //     this.user.userId, roomSeat.seat.seatId).subscribe(data => {
+    //     console.log('OK ' + data);
+    //   }, error => {
+    //     console.log("get "+error+" at createTicketDTO() on ConfirmBookingComponent");
+    //     flag = false;
+    //   });
+    //
+    // }
+    // if (flag) {
+    //   this.router.navigateByUrl('booking/information').then();
+    //   this.isConfirmed = true;
+    // } else {
+    //   this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
+    // }
+
+    // this.bookTicketsService.payViaPaypal(this.totalMoney).subscribe(data => {
+    //     let flag: boolean = true;
+    //     for (let roomSeat of this.listChoseSeat) {
+    //       this.ticketDTO = new MemberTicketDTO(this.movieTicket.movieTicketId,
+    //         this.user.userId, roomSeat.seat.seatId);
+    //       console.log(this.ticketDTO);
+    //
+    //       this.bookTicketsService.createTicketDTO(this.movieTicket.movieTicketId,
+    //         this.user.userId, roomSeat.seat.seatId).subscribe(data => {
+    //         console.log('OK ' + data);
+    //       }, error => {
+    //         console.log("get "+error+" at createTicketDTO() on ConfirmBookingComponent");
+    //         flag = false;
+    //       });
+    //
+    //     }
+    //     if (flag) {
+    //       this.router.navigateByUrl('booking/information').then();
+    //       this.isConfirmed = true;
+    //     } else {
+    //       this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
+    //     }
+    // }, error => {
+    //   // this.router.navigateByUrl("/login").then();
+    //   console.log('get ' + error + ' at payViaPaypal() on ConfirmBookingComponent');
+    // });
   }
 
   back() {
