@@ -223,7 +223,7 @@ input {
 }
 .card-5 .card-heading {
   padding: 10px 0;
-  background: #B4D5FA;
+  background: #ff9c2f;
   -webkit-border-top-left-radius: 10px;
   -moz-border-radius-topleft: 10px;
   border-top-left-radius: 10px;
@@ -537,19 +537,6 @@ table.table .avatar {
   z-index: 2;
 }
 
-.custom-checkbox input[type="checkbox"]:checked + label:after {
-  content: '';
-  position: absolute;
-  left: 6px;
-  top: 3px;
-  width: 6px;
-  height: 11px;
-  border: solid #000;
-  border-width: 0 3px 3px 0;
-  transform: inherit;
-  z-index: 3;
-  transform: rotateZ(45deg);
-}
 
 .custom-checkbox input[type="checkbox"]:checked + label:before {
   border-color: #03A9F4;

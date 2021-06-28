@@ -15,6 +15,8 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 import {ToastrModule} from 'ngx-toastr';
 import {AdminMovieTicketModule} from './module/admin/admin-movie-ticket/admin-movie-ticket.module';
 import {HttpClientModule} from '@angular/common/http';
@@ -40,10 +42,16 @@ import {HttpClientModule} from '@angular/common/http';
     AngularFireDatabaseModule,
     ToastrModule.forRoot(),
     AdminMovieTicketModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
+//sss

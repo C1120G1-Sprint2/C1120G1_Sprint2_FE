@@ -48,7 +48,7 @@
             </div>
           </div>
           <div class="notification-center invalid-feedback text-center">
-            <span *ngIf="lockedAccountMessage != ''">{{lockedAccountMessage}}&nbsp;</span>
+            <span *ngIf="statusAccountMessage != ''">{{statusAccountMessage}}&nbsp;</span>
             <span *ngIf="wrongAccountMessage != ''">{{wrongAccountMessage}}&nbsp;</span>
           </div>
           <button type="submit" class="btn btn-confirm btn-block mb-4 mt-2">Đăng nhập</button>
@@ -67,16 +67,16 @@
         </form>
       </div>
       <div class="social">
-        <a href="#" class="link-social">
+        <div (click)="loginFacebook()" class="link-social">
           <div class="mb-2 item-social item-social-gg rounded-left">
             <i class="fab fa-google item-social"></i>
-            <span class="social-name-gg text-white font-weight-bold rounded-left">Google</span>
+            <span class="social-name-gg text-white font-weight-bold rounded-left">oogle</span>
           </div>
-        </a>
+        </div>
         <a href="#" class="link-social">
           <div class="mb-2 item-social item-social-fb rounded-left">
             <i class="fab fa-facebook-square item-social"></i>
-            <span class="social-name-fb text-white font-weight-bold">Facebook</span>
+            <span class="social-name-fb text-white font-weight-bold">&nbsp;Facebook</span>
           </div>
         </a>
       </div>
