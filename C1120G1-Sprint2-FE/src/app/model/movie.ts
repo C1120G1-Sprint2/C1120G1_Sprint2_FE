@@ -17,4 +17,5 @@ export interface Movie {
   description: string;
   movieCategorySet: MovieCategory[];
   categories: string;
+
 }

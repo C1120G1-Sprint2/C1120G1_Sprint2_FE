@@ -18,6 +18,7 @@ import {District} from '../../../../model/district';
 export class EmployeeCreateUserComponent implements OnInit {
 
   formAddNewCustomer: FormGroup;
+  userSendMail : User;
   selectedImg: any = null;
   isMessage: any;
   listError: any = "";
@@ -50,11 +51,11 @@ export class EmployeeCreateUserComponent implements OnInit {
       name: ['', [Validators.required, Validators.pattern(/^(\s*)([\p{Lu}]|[\p{Ll}]){2,}((\s*)(([\p{Lu}]|[\p{Ll}]){2,}))+(\s*)$/u),
         Validators.minLength(6), Validators.maxLength(45)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('^\\d{10,11}$')]],
+      phone: ['', [Validators.required, Validators.pattern('^0\\d{9,10}$')]],
       ward: ['', [Validators.required]],
       birthday :['',[Validators.required]],
       gender:['',[Validators.required]],
-      idCard:['',[Validators.required,Validators.pattern('^\\d{9}$')]],
+      idCard:['',[Validators.required,Validators.pattern('^\\d{9}$'),Validators.maxLength(9)]],
       province: ['', [Validators.required]],
       district: ['', [Validators.required]],
       username: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)]],
@@ -65,9 +66,8 @@ export class EmployeeCreateUserComponent implements OnInit {
   })
   }
 
-
   // create new user
-  addNewCustomer(formRegister) {
+  addNewCustomer() {
     this.isMessage = false;
     this.loading = true;
     this.isMessage1 = false;
@@ -80,8 +80,8 @@ export class EmployeeCreateUserComponent implements OnInit {
         this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
-              formRegister.avatarUrl = url;
-              this.memberManagementService.createUser(formRegister).subscribe(data => {
+              this.formAddNewCustomer.value.avatarUrl = url;
+              this.memberManagementService.createUser(this.formAddNewCustomer.value).subscribe(data => {
                 this.router.navigateByUrl('/employee/member/management');
                 this.toastr.success("Them moi thanh cong", "Notification", {
                   timeOut: 1000,
@@ -103,7 +103,7 @@ export class EmployeeCreateUserComponent implements OnInit {
         this.isMessage = true;
       }
     } else {
-      this.memberManagementService.createUser(formRegister).subscribe(data => {
+      this.memberManagementService.createUser(this.formAddNewCustomer.value).subscribe(data => {
         this.router.navigateByUrl('/employee/member/management');
         this.toastr.success("Them moi thanh cong", "Notification", {
           timeOut: 1000,
@@ -189,6 +189,15 @@ export class EmployeeCreateUserComponent implements OnInit {
 
   changeAccept() {
     this.checkAccept = true;
+  }
+
+  sendMail(){
+    if (this.formAddNewCustomer.valid){
+      console.log(this.formAddNewCustomer.value.email);
+      this.memberManagementService.sendEmailApprove(this.formAddNewCustomer.value.email).subscribe(data => {
+      });
+    }
+
   }
 
 }

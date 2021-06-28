@@ -1,7 +1,8 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import {DatePipe} from '@angular/common';
 import {AdminModule} from './module/admin/admin.module';
 import {EmployeeModule} from './module/employee/employee.module';
 import {MemberModule} from './module/member/member.module';
@@ -16,13 +17,14 @@ import {FormsModule} from '@angular/forms';
 import {BookingModule} from './module/booking/booking.module';
 import {LoadingComponent} from './module/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
+import {AdminMovieTicketModule} from './module/admin/admin-movie-ticket/admin-movie-ticket.module';
 import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +47,11 @@ import {HttpClientModule} from '@angular/common/http';
     ToastrModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    AdminMovieTicketModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
