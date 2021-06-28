@@ -1,0 +1,42 @@
+<div class="container-fluid body">
+  <div class="card">
+    <div class="card-body">
+      <p class="title">Thêm mới phòng chiếu</p>
+      <form [formGroup]="formCreate" (ngSubmit)="save()">
+        <table class="table table-striped">
+          <tr>
+            <th>Tên phòng <span>*</span></th>
+            <td>
+              <input type="text" formControlName="roomName" maxlength="20" class="form-control">
+              <div class="error mt-2" role="alert"
+                   *ngIf="formCreate.get('roomName').invalid && formCreate.get('roomName').dirty">
+                <span *ngIf="formCreate.get('roomName').hasError('required')">Tên phòng không được để trống.</span>
+                <span *ngIf="formCreate.get('roomName').hasError('pattern')">Tên phòng phải đúng format</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Trạng thái phòng <span>*</span></th>
+            <td>
+              <select formControlName="statusRoom" class="form-control">
+                <option value="" disabled>Chọn trạng thái phòng</option>
+                <option *ngFor="let item of roomStatusList"
+                        [ngValue]="item"
+                        style="color: blue">
+                  {{item.statusRoomName}}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <input type="submit" class="btn btn-success" [disabled]="formCreate.invalid" value="Lưu">
+              <a routerLink="/admin/room" class="btn btn-secondary ml-2">Hủy</a>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
