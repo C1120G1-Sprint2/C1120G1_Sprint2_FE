@@ -124,9 +124,9 @@ export class ConfirmBookingComponent implements OnInit {
     let total: number = 0;
     for (let roomSeat of listChoseSeat) {
       if (roomSeat.seat.seatType.seatTypeId == 1) {
-        total += parseInt(this.movieTicket.ticketPrice.toString());
+        total += this.movieTicket.ticketPrice;
       } else {
-        total += parseInt(this.movieTicket.ticketPrice.toString()) * (4 / 3);
+        total += this.movieTicket.ticketPrice * (4 / 3);
       }
     }
     return Math.round(total);

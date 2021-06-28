@@ -12,6 +12,10 @@ import {MainSearchComponent} from "./module/main/main-search/main-search.compone
 import {MainBookingComponent} from './module/booking/main-booking/main-booking.component';
 import {MovieSelectedComponent} from './module/booking/movie-selected/movie-selected.component';
 import {BookingInformationComponent} from './module/booking/booking-information/booking-information.component';
+import {DetailMovieComponent} from './module/main/detail-movie/detail-movie.component';
+import {PriceTicketClientComponent} from './module/main/price-ticket-client/price-ticket-client.component';
+import {LoginGoogleComponent} from './module/security/login-google/login-google.component';
+
 
 
 const routes: Routes = [
@@ -46,7 +50,11 @@ const routes: Routes = [
       {path: 'confirm', component: ConfirmBookingComponent},
       {path: 'information', component: BookingInformationComponent}
     ]
-  }
+  },
+
+  {path: 'detail-movie/:id', component: DetailMovieComponent},
+  {path: 'ticket-price', component: PriceTicketClientComponent}
+
 ];
 
 @NgModule({

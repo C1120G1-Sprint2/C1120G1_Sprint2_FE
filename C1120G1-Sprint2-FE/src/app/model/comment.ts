@@ -1,9 +1,12 @@
 import {User} from './user';
 import {Movie} from './movie';
 
-export interface Comment {
+export interface Comments{
   commentId: number;
   content: string;
   user: User;
+  date: string;
   movie: Movie;
+  img: string;
+  comment: []
 }

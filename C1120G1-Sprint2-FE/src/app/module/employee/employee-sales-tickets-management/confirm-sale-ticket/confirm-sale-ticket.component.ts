@@ -8,8 +8,6 @@ import {ToastrService} from 'ngx-toastr';
 import {User} from '../../../../model/user';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Account} from "../../../../model/account";
-import {Ward} from "../../../../model/ward";
 
 
 @Component({
@@ -57,14 +55,11 @@ export class ConfirmSaleTicketComponent implements OnInit {
 
   totalPriceTicket(listSeat: Seat[]) {
     let totalPrice = 0;
-    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.listSeat.length; i++) {
       if (this.listSeat[i].seatType.seatTypeId === 1) {
-        // tslint:disable-next-line:radix
-        totalPrice += parseInt(this.movieTicket.ticketPrice.toString());
+        totalPrice += this.movieTicket.ticketPrice;
       } else {
-        // tslint:disable-next-line:radix
-        totalPrice += parseInt(this.movieTicket.ticketPrice.toString()) * (4 / 3);
+        totalPrice += this.movieTicket.ticketPrice * (4 / 3);
       }
     }
     return Math.floor(totalPrice);

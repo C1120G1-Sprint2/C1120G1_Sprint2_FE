@@ -46,10 +46,10 @@ export class InforSaleTicketComponent implements OnInit {
     for (let i = 0; i < this.listSeat.length; i++) {
       if (this.listSeat[i].seatType.seatTypeId === 1) {
         // tslint:disable-next-line:radix
-        totalPrice += parseInt(this.movieTicket.ticketPrice.toString());
+        totalPrice += this.movieTicket.ticketPrice;
       } else {
         // tslint:disable-next-line:radix
-        totalPrice += parseInt(this.movieTicket.ticketPrice.toString()) * (4 / 3);
+        totalPrice += this.movieTicket.ticketPrice * (4 / 3);
       }
     }
     return Math.floor(totalPrice);

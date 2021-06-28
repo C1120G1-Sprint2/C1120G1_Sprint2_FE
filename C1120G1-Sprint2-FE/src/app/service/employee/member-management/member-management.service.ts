@@ -8,7 +8,7 @@ import {User} from "../../../model/user";
   providedIn: 'root'
 })
 export class MemberManagementService {
-  API_URL_ADDRESS: string = 'http://localhost:8080/';
+  API_URL_ADDRESS: string = 'http://localhost:8080';
   private API_URL_USER = 'http://localhost:8080/employee/listUser';
   httpOptions: any;
 
@@ -28,16 +28,16 @@ export class MemberManagementService {
    * Sang
    */
 
-  getAllUsers(index : number): Observable<any> {
-    return this.httpClient.get(this.API_URL_USER +"/?index=" + index);
+  getAllUsers(index: number): Observable<any> {
+    return this.httpClient.get(this.API_URL_USER + '/?index=' + index);
   }
 
   getUserById(id: number): Observable<UserEditPreview> {
     return this.httpClient.get<UserEditPreview>(this.API_URL_USER + '/' + id);
   }
 
-  deleteUser(id: number ): Observable<any> {
-    return this.httpClient.put<any>(this.API_URL_USER + '/delete/' + id,{});
+  deleteUser(id: number): Observable<any> {
+    return this.httpClient.put<any>(this.API_URL_USER + '/delete/' + id, {});
   }
 
 
@@ -63,5 +63,13 @@ export class MemberManagementService {
 
   searchUserBySomething(keySearch: string): Observable<any> {
     return this.httpClient.get<any>(this.API_URL_USER + '/search?q=' + keySearch);
+  }
+
+  findAllUsers(): Observable<any> {
+    return this.httpClient.get(this.API_URL_USER + '/getAll');
+  }
+
+  sendEmailApprove(email: string): Observable<any>{
+    return this.httpClient.get(this.API_URL_USER + "/email?email=" + email );
   }
 }

@@ -1,0 +1,86 @@
+<div class="content row">
+  <div class="col-lg-12 justify-content-center mt-3">
+    <form [formGroup]="formAddNewMovieTicket" (ngSubmit)="addNewMovieTicket()">
+      <table class="table table-hover">
+        <body>
+        <tr>
+          <th class="col-3">Chọn Rạp <span style="color: red;">*</span></th>
+          <td class="col-7">
+            <select class="form-control" formControlName="room">
+              <option value="" selected disabled>Vui lòng chọn rạp</option>
+              <option *ngFor="let room of rooms" [ngValue]="room">{{room.roomName}}</option>
+            </select>
+            <p class="textErr" *ngIf="formAddNewMovieTicket.controls.room.touched && formAddNewMovieTicket.controls.room.errors?.required">
+              Rạp phim không được để trống
+            </p>
+          </td>
+
+        </tr>
+        <tr>
+          <th class="col-3">Tên Phim <span style="color: red;">*</span></th>
+          <td class="col-7">
+            <select class="form-control" formControlName="movie">
+              <option value="" selected disabled>Vui lòng chọn phim</option>
+              <option *ngFor="let movie of movies" [ngValue]="movie">{{movie.movieName}}</option>
+
+            </select>
+            <p class="textErr" *ngIf="formAddNewMovieTicket.controls.movie.touched && formAddNewMovieTicket.controls.movie.errors?.required">Tên phim không được để trống</p>
+
+          </td>
+        </tr>
+        <tr>
+          <th class="col-3">Loại Chiếu <span style="color: red;">*</span></th>
+          <td class="col-7">
+          <th>Loại Chiếu <span style="color: red;">*</span></th>
+          <td>
+            <select class="form-control" formControlName="projectionType">
+              <option value="" selected disabled>Vui lòng loại chiếu</option>
+              <option *ngFor="let projectionType of projectionTypes" [ngValue]="projectionType">{{projectionType.projectionName}}</option>
+            </select>
+            <p class="textErr" *ngIf="formAddNewMovieTicket.controls.projectionType.touched && formAddNewMovieTicket.controls.projectionType.errors?.required">Loại chiếu không được để trống</p>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-3">Xuất Chiếu <span style="color: red;">*</span></th>
+          <td class="col-7">
+            <div class="form-check form-check-inline" *ngFor="let show of showTimes; let i = index">
+              <label>
+                <input type="checkbox" (change)="onCheckboxChange($event, show)">
+                {{show.showTime}}
+              </label>
+<!--              <input type="checkbox"-->
+<!--                     formControlName="showTime"-->
+<!--                     [value]="show.showTimeId"-->
+<!--                     name="{{show.showTime}}"-->
+<!--                     class="form-check-inline"-->
+<!--                     (change)="onCheckboxChange($event)">-->
+<!--              <label class="form-check-label"> {{show.showTime}} </label>-->
+
+            </div>
+<!--            <p class="textErr" *ngIf="formAddNewMovieTicket.controls.showTime.touched && formAddNewMovieTicket.controls.showTime.errors?.required">Xuất chiếu không được để trống</p>-->
+          </td>
+        </tr>
+        <tr>
+          <th class="col-3">Ngày Chiếu <span style="color: red;">*</span></th>
+          <td class="col-7">
+
+            <input type="date" class="form-control" formControlName="showDate">
+            <p class="textErr" *ngIf="formAddNewMovieTicket.controls.showDate.touched && formAddNewMovieTicket.controls.showDate.errors?.required">Ngày chiếu không được để trống</p>
+          </td>
+
+        </tr>
+        <tr>
+          <th></th>
+          <td class="text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="formAddNewMovieTicket.invalid">Lưu</button>
+            &nbsp;
+            <button data-dismiss="modal" id="closeModal3" class="btn btn-secondary" (click)="resetForm()">Huỷ</button>
+          </td>
+        </tr>
+        </body>
+      </table>
+    </form>
+  </div>
+</div>
+
+
