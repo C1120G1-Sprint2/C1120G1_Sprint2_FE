@@ -4,7 +4,6 @@ import {BookTicketsService} from '../../../service/member/book-tickets/book-tick
 import {MovieManagementService} from '../../../service/admin/movie-management/movie-management.service';
 import {ShowTime} from '../../../model/showTime';
 import {Router} from '@angular/router';
-import {MovieTicket} from '../../../model/movieTicket';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
 import {User} from '../../../model/user';
 
@@ -44,8 +43,6 @@ export class MovieSelectionComponent implements OnInit {
       }, error => {
         console.log("get " + error + " at getAllMovie() on MovieSelectionComponent");
       })
-    } else {
-      this.router.navigateByUrl("login");
     }
 
     this.user = this.tokenStorageService.getUser();
@@ -92,7 +89,7 @@ export class MovieSelectionComponent implements OnInit {
   getMovieTicket() {
     this.bookTicketsService.getMovieTicket(this.movie.movieId, this.date, this.showTimeId).subscribe(data => {
       this.bookTicketsService.movieTicket = data;
-      this.router.navigate(['seat'], {
+      this.router.navigate(['booking/seat'], {
           queryParams: {
             movieTicketId: data.movieTicketId
           }
