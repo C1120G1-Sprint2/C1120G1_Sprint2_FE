@@ -14,6 +14,8 @@ import {MovieSelectedComponent} from './module/booking/movie-selected/movie-sele
 import {BookingInformationComponent} from './module/booking/booking-information/booking-information.component';
 import {DetailMovieComponent} from './module/main/detail-movie/detail-movie.component';
 import {PriceTicketClientComponent} from './module/main/price-ticket-client/price-ticket-client.component';
+import {LoginGoogleComponent} from './module/security/login-google/login-google.component';
+
 
 
 const routes: Routes = [
