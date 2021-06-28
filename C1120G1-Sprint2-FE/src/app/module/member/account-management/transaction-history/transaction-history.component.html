@@ -66,19 +66,16 @@
               <thead>
               <tr >
                 <th>STT</th>
-                <th>Hình Ảnh</th>
-                <th>Ngày Đặt</th>
-                <th>Tên Phim</th>
-                <th>Mô Tả</th>
+                <th>Ngày Giao Dịch</th>
+                <th>Mô Tả Giao Dịch</th>
+
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let transaction of transactionHistoryList; let i = index">
                 <td>{{i + 1}}</td>
-                <td><img style="width: 100px;height: 60px" src="" alt=""></td>
-<!--                <td>{{transaction.account.user.}}</td>-->
-                <td></td>
-                <td></td>
+                <td>{{transaction.transactionDate}}</td>
+                <td>{{transaction.description}}</td>
               </tr>
               </tbody>
 

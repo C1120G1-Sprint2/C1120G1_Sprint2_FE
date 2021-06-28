@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {TransactionHistory} from "../../../model/transactionHistory";
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,9 @@ export class TransactionHistoryService {
   }
 
 
-  findAll(username: string): Observable<any> {
+  findAll(username: string): Observable<TransactionHistory[]> {
     console.log(username);
-    console.log(this.API_URL_TRANSACTION + '/booking/'+ username)
-    return this.httpClient.get<any>(this.API_URL_TRANSACTION + '/transaction/'+ username);
+    console.log(this.API_URL_TRANSACTION + '/transaction/'+ username)
+    return this.httpClient.get<TransactionHistory[]>(this.API_URL_TRANSACTION + '/transaction/'+ username);
   };
 }

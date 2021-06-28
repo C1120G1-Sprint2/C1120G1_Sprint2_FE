@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Ticket} from "../../../../model/ticket";
 import {TransactionHistory} from "../../../../model/transactionHistory";
-import {BookTicketsService} from "../../../../service/member/book-tickets/book-tickets.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TransactionHistoryService} from "../../../../service/member/transaction-history/transaction-history.service";
 

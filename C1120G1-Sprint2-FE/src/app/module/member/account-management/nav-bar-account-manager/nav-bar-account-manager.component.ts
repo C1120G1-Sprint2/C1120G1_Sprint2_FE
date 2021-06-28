@@ -11,10 +11,10 @@ import {User} from "../../../../model/user";
   styleUrls: ['./nav-bar-account-manager.component.css']
 })
 export class NavBarAccountManagerComponent implements OnInit {
-  rfEditForm: FormGroup;
+  // rfEditForm: FormGroup;
    username: string = 'hoangsang123';
   accounts: Account;
-  users: User;
+  user: User;
 
   constructor(private accountManagementService: AccountManagementService
   ) {
@@ -29,13 +29,13 @@ export class NavBarAccountManagerComponent implements OnInit {
       this.accounts = data;
       console.log(data);
     }, error => {
-      console.log("Get " + error + " on getInfoUser()");
+      // console.log("Get " + error + " on getInfoUser()");
     });
   }
   getUsername() {
     this.accountManagementService.getUserByUserName(this.username).subscribe(data => {
-      this.rfEditForm.patchValue(data)
-      this.users=data;
+      // this.rfEditForm.patchValue(data)
+      this.user=data;
       console.log(data);
     }, error => {
       console.log("Get " + error + " on getInfoUser()");

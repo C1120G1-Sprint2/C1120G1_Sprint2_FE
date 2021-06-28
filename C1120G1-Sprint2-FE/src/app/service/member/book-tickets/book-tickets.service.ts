@@ -22,12 +22,11 @@ export class BookTicketsService {
     };
   }
 
-  findAll(username: string): Observable<any> {
+  findAll(username: string,page: number): Observable<any> {
     console.log(username);
-    console.log(this.API_URL_TICKET + '/booking/'+ username)
-    return this.httpClient.get<any>(this.API_URL_TICKET + '/booking/'+ username);
+    console.log(this.API_URL_TICKET + '/booking?page='+ page+ '&&username='+username)
+    return this.httpClient.get<any>(this.API_URL_TICKET + '/booking'+'?page='+ page+ '&&username='+username );
   };
-
 
   deleteByIdTickets(deleteId: number): Observable<Ticket> {
     console.log(deleteId);
