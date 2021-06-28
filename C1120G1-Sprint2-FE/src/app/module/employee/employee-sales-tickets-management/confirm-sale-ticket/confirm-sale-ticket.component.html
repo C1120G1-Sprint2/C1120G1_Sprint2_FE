@@ -90,16 +90,12 @@
           <td>{{user.email}}</td>
         </tr>
         <tr>
-          <td>CMND</td>
-          <td>{{user.idCard}}</td>
-        </tr>
-        <tr>
           <td>Số điện thoại</td>
           <td>{{user.phone}}</td>
         </tr>
         </tbody>
       </table>
-      <form>
+      <form [formGroup]="createTicketUserNoAccount" ngNoForm>
         <table *ngIf="user === null" class="table table-hover" id="table-personal-info1">
           <thead>
           <tr>
@@ -111,15 +107,33 @@
           <tbody>
           <tr>
             <td>Họ và tên</td>
-            <td><input class="form-control" type="text"></td>
+            <td>
+              <input placeholder="Nhập họ và tên" class="form-control" formControlName="name" type="text">
+              <div *ngIf="name.invalid && (name.dirty||name.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!name.errors.required">*Bạn chưa nhập họ và tên !</span>
+                <span style="color: red" [hidden]="!name.errors.pattern">*Bạn nhập họ tên không hợp lệ!</span>
+              </div>
+            </td>
           </tr>
           <tr>
             <td>Email</td>
-            <td><input class="form-control" type="text"></td>
+            <td>
+              <input placeholder="Nhập email"  class="form-control" formControlName="email" type="text">
+              <div *ngIf="email.invalid && (email.dirty||email.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!email.errors.required">*Bạn chưa nhập email !</span>
+                <span style="color: red" [hidden]="!email.errors.pattern">*Bạn nhập email không hợp lệ !</span>
+              </div>
+            </td>
           </tr>
           <tr>
             <td>Số điện thoại</td>
-            <td><input class="form-control" type="text"></td>
+            <td>
+              <input placeholder="Nhập số điện thoại" class="form-control" formControlName="phone" type="text">
+              <div *ngIf="phone.invalid && (phone.dirty||phone.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!phone.errors.required">*Bạn chưa nhập số điện thoại !</span>
+                <span style="color: red" [hidden]="!phone.errors.pattern">*Bạn nhập số điện thoại không hợp lệ!</span>
+              </div>
+            </td>
           </tr>
           </tbody>
         </table>

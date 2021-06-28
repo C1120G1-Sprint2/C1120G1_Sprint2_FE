@@ -30,6 +30,7 @@ export class SalesTicketsManagementService {
   changeMovieTicket(movieTicket: MovieTicket) {
     this.movieTicket.next(movieTicket);
   }
+
   changeUser(user: User) {
     this.user.next(user);
   }
@@ -41,6 +42,7 @@ export class SalesTicketsManagementService {
   public showAllMovieTicketByMovieId(movieId: number): Observable<any> {
     return this.http.get(this.API_MOVIE_TICKET + '/listMovieTicket/movie/' + movieId);
   }
+
   public showAllMovieTicketByShowDate(showDate: string): Observable<any> {
     return this.http.get(this.API_MOVIE_TICKET + '/listMovieTicket/showDate/' + showDate);
   }
@@ -67,5 +69,9 @@ export class SalesTicketsManagementService {
 
   public findUserByUserName(username: string): Observable<any> {
     return this.http.get(this.API_MOVIE_TICKET + '/user/' + username);
+  }
+
+  public createUserNoAccount(user: User): Observable<any> {
+    return this.http.post(this.API_MOVIE_TICKET + '/user/create', user)
   }
 }

@@ -7,6 +7,9 @@ import {MemberTicketDTO} from '../../../../model/memberTicketDTO';
 import {ToastrService} from 'ngx-toastr';
 import {User} from '../../../../model/user';
 import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Account} from "../../../../model/account";
+import {Ward} from "../../../../model/ward";
 
 
 @Component({
@@ -19,6 +22,14 @@ export class ConfirmSaleTicketComponent implements OnInit {
   public movieTicket: MovieTicket;
   public listTicketDTO: MemberTicketDTO[] = [];
   public user: User = null;
+  public createTicketUserNoAccount = new FormGroup(
+    {
+      userId: new FormControl(null),
+      name: new FormControl('', [Validators.required, Validators.pattern(/^(\s)*([\p{Lu}]|[\p{Ll}]){2,}((\s)(([\p{Lu}]|[\p{Ll}]){2,}))+(\s*)$/u)]),
+      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+      phone: new FormControl('', [Validators.required, Validators.pattern('(09|03)[0-9]{8}')])
+    }
+  );
 
   constructor(private saleTicketService: SalesTicketsManagementService,
               private location: Location,
@@ -35,7 +46,7 @@ export class ConfirmSaleTicketComponent implements OnInit {
       }
     });
     this.saleTicketService.currentUser.subscribe((data) => {
-      if (data !== null){
+      if (data !== null) {
         this.user = data;
       }
     });
@@ -72,24 +83,57 @@ export class ConfirmSaleTicketComponent implements OnInit {
   }
 
   createTicket() {
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.listSeat.length; i++) {
-      const ticketDTO: MemberTicketDTO = {
-        ticketId: null,
-        movieTicketId: this.movieTicket.movieTicketId,
-        seatId: this.listSeat[i].seatId,
-        userId: this.user.userId,
-        timeCreate: '',
-        ticketStatusId: 2
-      };
-      this.listTicketDTO.push(ticketDTO);
-    }
-    this.saleTicketService.createTicket(this.movieTicket.room.roomId, this.listTicketDTO).subscribe((data) => {
-      this.saleTicketService.changeListChoseSeat(this.listSeat);
-      this.saleTicketService.changeUser(this.user);
-      this.saleTicketService.changeMovieTicket(this.movieTicket);
+    const user: User = {
+      userId: null,
+      name: this.createTicketUserNoAccount.value.name,
+      birthday: null,
+      gender: null,
+      email: this.createTicketUserNoAccount.value.email,
+      phone: this.createTicketUserNoAccount.value.phone,
+      idCard: null,
+      avatarUrl: null,
+      account: null,
+      ward: null,
+    };
+    this.saleTicketService.createUserNoAccount(user).subscribe((data) => {
+      this.user = data;
+      if (this.createTicketUserNoAccount.valid) {
+        if (this.user !== null) {
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < this.listSeat.length; i++) {
+            const ticketDTO: MemberTicketDTO = {
+              ticketId: null,
+              movieTicketId: this.movieTicket.movieTicketId,
+              seatId: this.listSeat[i].seatId,
+              userId: this.user.userId,
+              timeCreate: '',
+              ticketStatusId: 2
+            };
+            this.listTicketDTO.push(ticketDTO);
+          }
+          this.saleTicketService.createTicket(this.movieTicket.room.roomId, this.listTicketDTO).subscribe((data) => {
+            this.saleTicketService.changeListChoseSeat(this.listSeat);
+            this.saleTicketService.changeUser(this.user);
+            this.saleTicketService.changeMovieTicket(this.movieTicket);
+          });
+          this.router.navigateByUrl('/employee/sale/tickets/info');
+          this.toast.success('Xác Nhận Bán Vé Thành Công!', 'Thông Báo', {timeOut: 2000})
+        }
+      } else {
+        this.toast.warning('Bạn nhập thông tin user không hợp lệ', 'Thông Báo', {timeOut: 2000})
+      }
     });
-    this.router.navigateByUrl('/employee/sale/tickets/info');
-    this.toast.success('Xác Nhận Bán Vé Thành Công!', 'Thông Báo', {timeOut: 2000})
+  }
+
+  get name() {
+    return this.createTicketUserNoAccount.get('name')
+  }
+
+  get email() {
+    return this.createTicketUserNoAccount.get('email')
+  }
+
+  get phone() {
+    return this.createTicketUserNoAccount.get('phone')
   }
 }
