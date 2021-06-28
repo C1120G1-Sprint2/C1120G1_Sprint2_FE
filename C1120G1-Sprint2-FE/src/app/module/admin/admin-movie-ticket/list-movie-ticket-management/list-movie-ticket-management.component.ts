@@ -21,7 +21,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
   pages = [];
   textSorting = '';
   onSorting = false;
-  
+
   movieTickets: MovieTicket[];
   room: Room[];
   movie: Movie[];
@@ -32,6 +32,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
   editId: number;
   keySearch: string = '';
   deleteMovieName: string;
+  selectPagination: number;
 
   constructor(private toast: ToastrService,
               private movieTicketManagement: MovieTicketManagementService,
@@ -118,9 +119,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
           progressAnimation: "increasing"
         });
       }
-    })
-
-  selectPagination: number;
+    });
   }
 
   onSortChange(value) {

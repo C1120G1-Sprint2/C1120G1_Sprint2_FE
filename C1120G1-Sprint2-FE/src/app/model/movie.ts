@@ -1,4 +1,5 @@
 import {MovieCategory} from "./movieCategory";
+import {MovieStatus} from './movieStatus';
 
 export interface Movie {
   movieId: number;
@@ -11,7 +12,7 @@ export interface Movie {
   director: string;
   movieLength: number;
   trailer: string;
-  movieStatus: number;
+  movieStatus: MovieStatus;
   banner: string;
   promote: boolean;
   description: string;

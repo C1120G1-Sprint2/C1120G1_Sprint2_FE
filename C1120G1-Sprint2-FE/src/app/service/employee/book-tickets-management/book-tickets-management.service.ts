@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {RoomSeat} from '../../../model/roomSeat';
+import {MovieTicket} from '../../../model/movieTicket';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookTicketsManagementService {
+  listChoseSeat: RoomSeat[] = [];
+  movieTicket: MovieTicket;
   httpOptions: any;
   private API_BASE_URL = 'http://localhost:8080/api/ticket';
   constructor(private httpClient: HttpClient) {

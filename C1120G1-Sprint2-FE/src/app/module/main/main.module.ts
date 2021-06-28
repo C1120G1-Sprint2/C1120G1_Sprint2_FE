@@ -23,8 +23,12 @@ import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent,
-  MainContentComponent, DetailMovieComponent, CreateCommentComponent, DeleteCommentComponent,
-  EditCommentComponent, RatingComponent, PriceTicketClientComponent, MovieTrailerComponent, MainSearchComponent],
+    MainContentComponent, DetailMovieComponent, CreateCommentComponent, DeleteCommentComponent,
+    EditCommentComponent, RatingComponent, PriceTicketClientComponent, MovieTrailerComponent, MainSearchComponent],
+  exports: [
+    MainHeaderComponent,
+    MainFooterComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

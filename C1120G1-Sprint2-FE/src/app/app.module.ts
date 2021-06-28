@@ -19,6 +19,8 @@ import {LoadingComponent} from './module/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import {AdminMovieTicketModule} from './module/admin/admin-movie-ticket/admin-movie-ticket.module';
 import {HttpClientModule} from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({
@@ -31,25 +33,20 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     AdminModule,
     EmployeeModule,
-    HttpClientModule,
     MemberModule,
     MainModule,
     SecurityModule,
-    ToastrModule.forRoot(),
-    HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     FormsModule,
     BookingModule,
-    HttpClientModule,
-    ToastrModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
     AdminMovieTicketModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

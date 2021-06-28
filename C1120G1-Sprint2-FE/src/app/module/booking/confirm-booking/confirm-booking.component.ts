@@ -43,28 +43,50 @@ export class ConfirmBookingComponent implements OnInit {
   }
 
   confirm() {
+    //
+    // let flag: boolean = true;
+    // for (let roomSeat of this.listChoseSeat) {
+    //   this.ticketDTO = new MemberTicketDTO(this.movieTicket.movieTicketId,
+    //     this.user.userId, roomSeat.seat.seatId);
+    //   console.log(this.ticketDTO);
+    //
+    //   this.bookTicketsService.createTicketDTO(this.movieTicket.movieTicketId,
+    //     this.user.userId, roomSeat.seat.seatId).subscribe(data => {
+    //     console.log('OK ' + data);
+    //   }, error => {
+    //     console.log("get "+error+" at createTicketDTO() on ConfirmBookingComponent");
+    //     flag = false;
+    //   });
+    //
+    // }
+    // if (flag) {
+    //   this.router.navigateByUrl('admin').then();
+    //   this.isConfirmed = true;
+    // } else {
+    //   this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
+    // }
 
-    let flag: boolean = true;
-    for (let roomSeat of this.listChoseSeat) {
-      this.ticketDTO = new MemberTicketDTO(this.movieTicket.movieTicketId,
-        this.user.userId, roomSeat.seat.seatId);
-      console.log(this.ticketDTO);
-
-      this.bookTicketsService.createTicketDTO(this.movieTicket.movieTicketId,
-        this.user.userId, roomSeat.seat.seatId).subscribe(data => {
-        console.log('OK ' + data);
-      }, error => {
-        console.log("get "+error+" at createTicketDTO() on ConfirmBookingComponent");
-        flag = false;
-      });
-
-    }
-    if (flag) {
-      this.router.navigateByUrl('booking/information').then();
-      this.isConfirmed = true;
-    } else {
-      this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
-    }
+    // let flag: boolean = true;
+    // for (let roomSeat of this.listChoseSeat) {
+    //   this.ticketDTO = new MemberTicketDTO(this.movieTicket.movieTicketId,
+    //     this.user.userId, roomSeat.seat.seatId);
+    //   console.log(this.ticketDTO);
+    //
+    //   this.bookTicketsService.createTicketDTO(this.movieTicket.movieTicketId,
+    //     this.user.userId, roomSeat.seat.seatId).subscribe(data => {
+    //     console.log('OK ' + data);
+    //   }, error => {
+    //     console.log("get "+error+" at createTicketDTO() on ConfirmBookingComponent");
+    //     flag = false;
+    //   });
+    //
+    // }
+    // if (flag) {
+    //   this.router.navigateByUrl('booking/information').then();
+    //   this.isConfirmed = true;
+    // } else {
+    //   this.toastrService.warning('Đã có lỗi xảy ra!', 'Thông báo!');
+    // }
 
     // this.bookTicketsService.payViaPaypal(this.totalMoney).subscribe(data => {
     //     let flag: boolean = true;
@@ -102,9 +124,9 @@ export class ConfirmBookingComponent implements OnInit {
     let total: number = 0;
     for (let roomSeat of listChoseSeat) {
       if (roomSeat.seat.seatType.seatTypeId == 1) {
-        total += parseInt(this.movieTicket.ticketPrice.toString());
+        total += this.movieTicket.ticketPrice;
       } else {
-        total += parseInt(this.movieTicket.ticketPrice.toString()) * (4 / 3);
+        total += this.movieTicket.ticketPrice * (4 / 3);
       }
     }
     return Math.round(total);
