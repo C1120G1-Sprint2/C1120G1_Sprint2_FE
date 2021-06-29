@@ -6,6 +6,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import {AdminRoomManagementModule} from './admin-room-management/admin-room-management.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
+import { MainModule } from '../main/main.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ToastrModule} from 'ngx-toastr';
     AdminRoutingModule,
     AdminRoomManagementModule,
     HttpClientModule,
-    ToastrModule
+    ToastrModule,
+    MainModule,
   ]
 })
 export class AdminModule { }
