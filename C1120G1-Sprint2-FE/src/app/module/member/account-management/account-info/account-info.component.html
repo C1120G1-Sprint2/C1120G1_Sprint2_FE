@@ -166,19 +166,20 @@
                   <span style="color: red" class="asterisk-red">(*):</span>
                 </td>
                 <td>
-                  <input type="password" class="form-control" formControlName="" placeholder="Nhập mật khẩu củ"
+                  <input type="password" class="form-control" [(ngModel)]="oldPass"  placeholder="Nhập mật khẩu củ"
                          id="passwordOld"/>
+                  <span *ngIf="notification != ''">{{notification}}</span>
                 </td>
               </tr>
               <tr>
                 <td>
                   <label for="passwordNew">Mật Khẩu Mới</label>
-                  <span style="color: red" class="asterisk-red">(*):</span>
+                  <span  class ="text-danger" style="color: red" class="asterisk-red">(*):</span>
                 </td>
                 <td>
                   <input type="password" class="form-control" formControlName="newPassword" placeholder="Mật Khẩu Mới"
                          id="passwordNew"/>
-                  <p *ngIf="rfPasswordForm.controls.newPassword.touched" class="errorText">
+                  <p *ngIf="rfPasswordForm.controls.newPassword.touched" class="text-danger">
                 <span *ngIf="rfPasswordForm.controls.newPassword.errors?.required">
                   Bạn chưa nhập mật khẩu. Vui lòng nhập lại.
                 </span>

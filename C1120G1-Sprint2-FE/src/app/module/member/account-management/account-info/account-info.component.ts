@@ -19,6 +19,10 @@ export class AccountInfoComponent implements OnInit {
     accounts: Account;
 
     newPwNotify: string = '';
+  oldPass: string = '';
+  notification: string;
+
+
 
 
     constructor(private accountManagementService: AccountManagementService,
@@ -88,13 +92,21 @@ export class AccountInfoComponent implements OnInit {
     }
 
     getPasswordOld() {
+      if (this.oldPass == null || this.oldPass == '' || this.oldPass == undefined) {
+        this.notification = 'Vui lòng nhập mật khẩu';
+      } else{
         this.accountManagementService.getPasswordOld(this.username).subscribe(data => {
+          if(data){
             this.rfPasswordForm.patchValue(data);
             this.accounts = data;
+            this.notification = '';
             console.log(data);
+          }else
+            this.notification = 'Mật khẩu không đúng, bạn có chắc đây là mật khẩu hiện tại của bạn không';
         }, error => {
-            console.log("Get " + error + " on getInfoUser()");
+          console.log("Get " + error + " on getInfoUser()");
         });
+      }
     }
 
     onSubmitPass(rfPasswordForm: FormGroup) {
