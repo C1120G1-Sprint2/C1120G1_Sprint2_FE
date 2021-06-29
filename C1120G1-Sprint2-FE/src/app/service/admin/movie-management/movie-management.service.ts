@@ -19,6 +19,10 @@ export class MovieManagementService {
     };
   }
 
+  public formEditMovie(movie: Movie): Observable<Movie>{
+    return this.http.put<any>(this.baseUrl + '/edit_movie', movie);
+  }
+
   public formAddMovie(listMovieDTO: MovieDTO[]): Observable<Movie>{
     return this.http.post<any>(this.baseUrl + '/add_movie', listMovieDTO);
   }
@@ -35,4 +39,7 @@ export class MovieManagementService {
     return this.http.put(this.baseUrl + '/set_status/' + id, this.httpOptions);
   }
 
+  public getMovieById(movieId: number): Observable<any>{
+    return this.http.get(this.baseUrl + '/movie_id/' + movieId)
+  }
 }

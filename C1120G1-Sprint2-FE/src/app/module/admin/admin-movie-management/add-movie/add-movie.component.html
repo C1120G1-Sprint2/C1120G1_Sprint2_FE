@@ -165,7 +165,7 @@
               <div class="form-group mt-3">
                 <button class="btn btn-secondary mt-3" data-target="#exampleModal" data-toggle="modal" type="button">Huỷ
                 </button>
-                <button [disabled]="formAddMovie.invalid && categoryList.length === 0" class="btn btn-success ml-5 mt-3"
+                <button [disabled]="formAddMovie.invalid || categoryList.length === 0" class="btn btn-success ml-5 mt-3"
                         data-ripple=""
                         type="submit">Thêm
                 </button>

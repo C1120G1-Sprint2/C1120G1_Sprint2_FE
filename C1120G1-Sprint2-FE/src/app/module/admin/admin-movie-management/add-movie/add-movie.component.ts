@@ -72,34 +72,34 @@ export class AddMovieComponent implements OnInit {
     } else if (this.startDateCompare == this.endDateCompare) {
       this.toast.error('Ngày bắt đầu và  ngày kết thúc không được trùng nhau');
     } else {
-    }
-    const name = this.selectedImage.name;
-    const stringImage = name.substring(name.length - 3).toLowerCase();
-    if (stringImage === 'png' || stringImage === 'jpg') {
-      const fileName = 'imageBanner/' + name;
-      const fileRef = this.storage.ref(fileName);
-      this.storage.upload(fileName, this.selectedImage).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-              this.formAddMovie.value.poster = url;
-              if (this.categoryList.length > 0) {
-                // tslint:disable-next-line:prefer-for-of
-                for (let i = 0; i < this.categoryList.length; i++) {
-                  const movieDTO: MovieDTO = {
-                    movie: this.formAddMovie.value,
-                    categoryId: this.categoryList[i]
-                  };
-                  this.listMovieDTO.push(movieDTO);
+      const name = this.selectedImage.name;
+      const stringImage = name.substring(name.length - 3).toLowerCase();
+      if (stringImage === 'png' || stringImage === 'jpg') {
+        const fileName = 'imageMovie/' + name;
+        const fileRef = this.storage.ref(fileName);
+        this.storage.upload(fileName, this.selectedImage).snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+                this.formAddMovie.value.posterMovie = url;
+                if (this.categoryList.length > 0) {
+                  // tslint:disable-next-line:prefer-for-of
+                  for (let i = 0; i < this.categoryList.length; i++) {
+                    const movieDTO: MovieDTO = {
+                      movie: this.formAddMovie.value,
+                      categoryId: this.categoryList[i]
+                    };
+                    this.listMovieDTO.push(movieDTO);
+                  }
+                  console.log(this.listMovieDTO);
+                  this.movieService.formAddMovie(this.listMovieDTO).subscribe(data => {
+                    this.toast.success('Thêm mới thành công!');
+                    this.router.navigate(['/admin/movie/movie-list']);
+                  });
                 }
-                console.log(this.listMovieDTO);
-                this.movieService.formAddMovie(this.listMovieDTO).subscribe(data => {
-                  this.toast.success('Thêm mới thành công!');
-                  this.router.navigate(['/admin/movie/movie-list']);
-                });
               }
-            }
-          );
-        })).subscribe();
+            );
+          })).subscribe();
+      }
     }
   }
 

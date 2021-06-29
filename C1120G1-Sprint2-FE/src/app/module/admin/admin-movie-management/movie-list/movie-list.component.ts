@@ -33,7 +33,7 @@ export class MovieListComponent implements OnInit {
   }
 
   getMovieId(id: number) {
-      this.idMovie = id;
+    this.idMovie = id;
   }
 
   deleteMovie() {
@@ -72,4 +72,7 @@ export class MovieListComponent implements OnInit {
     }
   }
 
+  sendMovieId(movieId: number) {
+    console.log(this.router.navigate(['/admin/movie/edit-movie/' + movieId]));
+  }
 }

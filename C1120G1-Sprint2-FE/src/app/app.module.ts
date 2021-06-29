@@ -15,7 +15,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
 import { AdminMovieManagementModule} from './module/admin/admin-movie-management/admin-movie-management.module';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
