@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'C1120G1-Sprint2-FE';
+
 }

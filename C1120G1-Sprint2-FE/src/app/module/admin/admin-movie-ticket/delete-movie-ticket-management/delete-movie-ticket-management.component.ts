@@ -24,6 +24,7 @@ export class DeleteMovieTicketManagementComponent implements OnInit {
               private router: Router,
               private toastr: ToastrService) { }
 
+
   ngOnInit(): void {
   }
 
@@ -36,6 +37,6 @@ export class DeleteMovieTicketManagementComponent implements OnInit {
       console.log(data);
     }, error => {
       this.toastr.error("Error !", "Notification");
-    })
+    });
   }
 }

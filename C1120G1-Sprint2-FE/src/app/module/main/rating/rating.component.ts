@@ -10,25 +10,70 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./rating.component.css']
 })
 export class RatingComponent implements OnInit {
+  selectedRating = 0;
+  stars = [
+    {
+      id: 1,
+      icon: 'star',
+      class: 'star-gray star-hover star'
+    },
+    {
+      id: 2,
+      icon: 'star',
+      class: 'star-gray star-hover star'
+    },
+    {
+      id: 3,
+      icon: 'star',
+      class: 'star-gray star-hover star'
+    },
+    {
+      id: 4,
+      icon: 'star',
+      class: 'star-gray star-hover star'
+    },
+    {
+      id: 5,
+      icon: 'star',
+      class: 'star-gray star-hover star'
+    }
 
-  @Input() userId;
-  @Input() movieId;
-  stars: Observable<any>;
-  avgRating: Observable<any>;
+  ];
+
   constructor(private ratingService: RatingService) {}
 
   ngOnInit() {
-    this.stars = this.ratingService.getMovieStars(this.movieId);
 
-    this.avgRating = this.stars.pipe(map(arr => {
-      const ratings = arr.map(v => v.value)
-      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
-    }))
+  }
+  selectStar(value): void{
+
+    // prevent multiple selection
+    if ( this.selectedRating === 0){
+
+      this.stars.filter( (star) => {
+
+        if ( star.id <= value){
+
+          star.class = 'star-gold star';
+
+        }else{
+
+          star.class = 'star-gray star';
+
+        }
+
+        return star;
+      });
+
+    }
+
+    this.selectedRating = value;
+
   }
 
-  starHandler(value) {
-    this.ratingService.setStar(this.userId, this.movieId, value);
-  }
+
+
+
 
 
 

@@ -13,5 +13,4 @@ export interface User {
   avatarUrl: string;
   account: Account;
   ward: Ward;
-  ticketSet:Ticket[];
 }

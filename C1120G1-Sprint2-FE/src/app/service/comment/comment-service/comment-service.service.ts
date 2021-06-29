@@ -32,8 +32,8 @@ export class CommentServiceService {
     return this.http.get(this.COMMENT_API);
   }
 
-  addComment(value: any, id: any): Observable<any> {
-    return this.http.post(this.COMMENT_API + "/detail-movie/" + id + '/create', value);
+  addComment(value: any, id: any, idUser: number): Observable<any> {
+    return this.http.post(this.COMMENT_API + "/detail-movie/" + id + '/' + 1 + '/create', value, this.httpOptions);
   }
 
   deleteCommentByUser(id: any) {

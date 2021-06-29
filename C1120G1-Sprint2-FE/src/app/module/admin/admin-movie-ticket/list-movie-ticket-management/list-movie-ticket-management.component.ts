@@ -21,6 +21,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
   pages = [];
   textSorting = '';
   onSorting = false;
+
   movieTickets: MovieTicket[];
   room: Room[];
   movie: Movie[];
@@ -31,12 +32,14 @@ export class ListMovieTicketManagementComponent implements OnInit {
   editId: number;
   keySearch: string = '';
   deleteMovieName: string;
+  selectPagination: number;
 
   constructor(private toast: ToastrService,
               private movieTicketManagement: MovieTicketManagementService,
               private dialog: MatDialog,
               private toastr: ToastrService) {
   }
+
 
   ngOnInit(): void {
     this.onSubmit(0);
@@ -59,6 +62,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit()
       })
+      dialogRef.afterClosed().subscribe(result => {this.ngOnInit()})
     });
 
   }
@@ -70,7 +74,6 @@ export class ListMovieTicketManagementComponent implements OnInit {
       this.totalPages = dataSearch.totalPages;
       this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
       this.toast.success("Search Successfully !", "Notification");
-
     }, error => {
       this.toast.error("Not Found", "Notification");
     })
@@ -78,7 +81,8 @@ export class ListMovieTicketManagementComponent implements OnInit {
 
 //  phan trang
 
-  onNext() {
+
+  onNext(){
     if (this.pageClicked < this.totalPages - 1) {
       this.pageClicked++;
       this.onSubmit(this.pageClicked);
@@ -115,11 +119,8 @@ export class ListMovieTicketManagementComponent implements OnInit {
           progressAnimation: "increasing"
         });
       }
-    })
+    });
   }
-
-  selectPagination: number;
-
 
   onSortChange(value) {
     if (this.textSorting == "") {
@@ -129,6 +130,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
     }
     this.ngOnInit();
   }
+
 
   selectPage() {
     if (this.selectPagination < 1) {

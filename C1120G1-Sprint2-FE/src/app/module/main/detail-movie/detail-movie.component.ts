@@ -66,16 +66,16 @@ export class DetailMovieComponent implements OnInit {
 
   ngOnInit(): void {
 
-   let id = this.activatedRoute.snapshot.params['id'];
-    this.detailMovieService.getMovieById(id).subscribe(data => {
+    this.id = this.activatedRoute.snapshot.params['id'];
+    this.detailMovieService.getMovieById(this.id).subscribe(data => {
       this.movie = data;
       console.log(data);
-      console.log(id);
-      this.detailMovieService.getCategoryBiMovieId(id).subscribe(dataCategory => {
+      console.log(this.id);
+      this.detailMovieService.getCategoryBiMovieId(this.id).subscribe(dataCategory => {
         this.categories = dataCategory;
         console.log(dataCategory);
       })
-      this.commentService.getAllCommentByMovieId(id).subscribe(dataComment => {
+      this.commentService.getAllCommentByMovieId(this.id).subscribe(dataComment => {
         this.comments = dataComment;
         console.log(this.comments);
       })
@@ -95,7 +95,7 @@ export class DetailMovieComponent implements OnInit {
   onSubmitNewComment() {
     this.loading = true;
     if (this.formComment.valid) {
-      this.commentService.addComment(this.formComment.value, this.id).subscribe(data => {
+      this.commentService.addComment(this.formComment.value, this.id, this.idUser).subscribe(data => {
         console.log(this.id);
         this.toastr.success("Add new comment", "Notification");
         this.loading = false;

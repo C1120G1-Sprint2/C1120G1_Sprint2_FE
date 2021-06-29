@@ -140,6 +140,52 @@
         <li><a (click)="selectPage()">Đi</a></li>
       </ul>
     </div>
+          <div class="col-12">
+            <nav class="float-left">
+              <ul class="pagination">
+                <li class="disabled" (click)="onFirst()" [ngClass]="pageClicked==0?'disabled':''">
+                  <a class="active btn btnP"><mat-icon class="material-icons">
+                      first_page
+                  </mat-icon>
+                  </a>
+
+                </li>
+                <li class="disabled" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+                  <a class="waves-effect btn btnP"><mat-icon class="material-icons">
+                  navigate_before
+                  </mat-icon></a>
+                </li>
+                <li *ngIf="pageClicked != 0" class="page-item" (click)="onSubmit(pages[pageClicked-1])">
+                  <a class="waves-effect btn btnN">{{pageClicked}}</a>
+                </li>
+                <li [ngClass]="(pageClicked == pages[pageClicked]) ? 'active' : ''" class="page-item"
+                    (click)="onSubmit(pages[pageClicked])">
+                  <a class="waves-effect btn btnN">{{pageClicked + 1}}</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length -1" class="page-item" (click)="onSubmit(pages[pageClicked+1])">
+                  <a class="waves-effect btn btnN">{{pageClicked + 2}}</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length -2" class="disabled">
+                  <a class="waves-effect btn btnN">...</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length-2" class="page-item" (click)="onLast()">
+                  <a class="waves-effect btn btnN">{{pages[pages.length - 1] + 1}}</a>
+                </li>
+                <li class="disabled" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+                  <a class="active btn btnP"><mat-icon class="material-icons">
+                  navigate_next
+                  </mat-icon>
+                  </a>
+                </li>
+                <li class="disabled" (click)="onLast()" [ngClass]="pageClicked==totalPages-1?'disabled':''"><a
+                  class="active btn btnP"><mat-icon class="material-icons">
+                  last_page
+                  </mat-icon></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
 
     <!-- end pagination -->
 
@@ -155,6 +201,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
+
             <app-delete-movie-ticket-management [deleteId]="deleteId" [deleteName]="deleteName" [deleteMovieName]="deleteMovieName"
                                                 (deleteComplete) = "deleteSuccess()">
 
