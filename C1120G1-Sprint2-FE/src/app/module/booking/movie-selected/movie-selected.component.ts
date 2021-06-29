@@ -18,13 +18,13 @@ export class MovieSelectedComponent implements OnInit {
   listMovie: Movie[] = [];
   user:User;
   movie:Movie;
+  activeId:number;
 
   date:string = '';
   showTimeId:number;
   startDate:Date;
   endDate:Date;
   diff:number;
-  selectedMovieId: number;
 
   constructor(private bookTicketsService: BookTicketsService,
               private activatedRoute:ActivatedRoute,
@@ -42,19 +42,23 @@ export class MovieSelectedComponent implements OnInit {
         console.log("get " + error + " at getAllMovie() on MovieSelectionComponent");
       })
     }
-    this.selectedMovieId = this.activatedRoute.snapshot.params['id'];
-    console.log("ID : "+this.selectedMovieId)
 
     this.user = this.tokenStorageService.getUser();
     this.bookTicketsService.getAllMovie().subscribe(data => {
       this.listMovie = data;
+      console.log(this.listMovie)
+      this.activeId = this.activatedRoute.snapshot.params['id'];
+      console.log("ID : "+this.activeId)
+      this.getDateTimeList(this.activeId);
     }, error => {
       console.log("get " + error + " at getAllMovie() on MovieSelectionComponent");
     })
+
   }
 
   getDateTimeList(movieId: number) {
     this.listDateTime = [];
+    this.activeId = movieId;
     if (this.listMovie != null) {
       for(let movie of this.listMovie) {
         if (movie.movieId == movieId) {
@@ -62,15 +66,15 @@ export class MovieSelectedComponent implements OnInit {
           break;
         }
       }
-      this.startDate = (new Date(this.movie.startDate) > new Date()) ? new Date(this.movie.startDate) : new Date();
-      this.endDate = new Date(this.movie.endDate);
+    }
+    this.startDate = (new Date(this.movie.startDate) > new Date()) ? new Date(this.movie.startDate) : new Date();
+    this.endDate = new Date(this.movie.endDate);
 
-      if (this.endDate > this.startDate) {
-        this.diff = this.endDate.getDate() - this.startDate.getDate();
-        for(let i = 0; i <= this.diff; i++){
-          this.listDateTime.push(this.startDate.toISOString().slice(0,10));
-          this.startDate.setDate(this.startDate.getDate() + 1);
-        }
+    if (this.endDate > this.startDate) {
+      this.diff = this.endDate.getDate() - this.startDate.getDate();
+      for(let i = 0; i <= this.diff; i++){
+        this.listDateTime.push(this.startDate.toISOString().slice(0,10));
+        this.startDate.setDate(this.startDate.getDate() + 1);
       }
     }
   }
