@@ -16,8 +16,6 @@ import {DetailMovieComponent} from './module/main/detail-movie/detail-movie.comp
 import {PriceTicketClientComponent} from './module/main/price-ticket-client/price-ticket-client.component';
 import {LoginGoogleComponent} from './module/security/login-google/login-google.component';
 
-
-
 const routes: Routes = [
   {
     path: 'admin',

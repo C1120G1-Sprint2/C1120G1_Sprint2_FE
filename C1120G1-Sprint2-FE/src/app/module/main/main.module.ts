@@ -32,7 +32,6 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     RouterModule,
     FormsModule,
     MatDialogModule,
