@@ -128,19 +128,15 @@
         </span>
       </button>
     </a>
-    <button class="btn btn-outline-primary rounded-pill" type="button" (click)="confirm()">
+    <button class="btn btn-outline-primary rounded-pill" type="button" (click)="confirmCreate()">
         <span class="ticket">
           <img src="../../../../assets/img/cinema-ticket.png" height="34" width="34"/>
         </span>
       Xác nhận đặt vé
     </button>
-  </div>
-  <div *ngIf="isConfirmed" class="pleasure text-center">
-    <p>Vui lòng đến lấy vé trước thời gian chiếu phim 30 phút. Sau thời gian đó vé sẽ tự động hủy</p>
-    <div class="mb-4">
-      <a routerLink="/" role="button">
-        <button class="btn btn-outline-primary rounded-pill">Trang chủ</button>
-      </a>
+
+    <div class="m-0 p-0" [hidden]="!isConfirmed"
+         style="width: 60%;height:50px;font-size: 13px;font-weight: bolder " #paypal>
     </div>
   </div>
 </div>

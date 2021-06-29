@@ -28,6 +28,7 @@ export class MovieSelectionComponent implements OnInit {
   startDate:Date;
   endDate:Date;
   diff:number;
+  public activeId = null;
 
   constructor(private bookTicketsService: BookTicketsService,
               private movieManagementService:MovieManagementService,
@@ -55,6 +56,7 @@ export class MovieSelectionComponent implements OnInit {
 
   getDateTimeList(movieId: number) {
     this.listDateTime = [];
+    this.activeId = movieId;
     if (this.listMovie != null) {
       for(let movie of this.listMovie) {
         if (movie.movieId == movieId) {
