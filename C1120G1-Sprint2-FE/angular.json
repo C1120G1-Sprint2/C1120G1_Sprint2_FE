@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sprint01-fe": {
+    "C1120G1-Sprint2-FE": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sprint01-fe",
+            "outputPath": "dist/C1120G1-Sprint2-FE",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -32,7 +32,6 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -69,7 +68,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sprint01-fe:build"
+            "browserTarget": "C1120G1-Sprint2-FE:build:production"
           },
           "configurations": {
             "production": {
@@ -80,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sprint01-fe:build"
+            "browserTarget": "C1120G1-Sprint2-FE:build"
           }
         },
         "test": {
@@ -96,13 +95,9 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.css"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/popper.js/dist/umd/popper.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           }
         },
@@ -123,19 +118,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sprint01-fe:serve"
+            "devServerTarget": "C1120G1-Sprint2-FE:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sprint01-fe:serve:production"
+              "devServerTarget": "C1120G1-Sprint2-FE:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "sprint01-fe",
-  "cli": {
-    "analytics": "29568c55-2b73-4ed7-ae3a-a90e10021bd3"
-  }
+  "defaultProject": "C1120G1-Sprint2-FE"
 }
