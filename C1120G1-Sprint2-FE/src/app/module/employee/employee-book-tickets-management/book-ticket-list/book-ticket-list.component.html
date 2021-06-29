@@ -1,18 +1,18 @@
 <div>
-  <div class="input-group col-8 my-3">
-    <select [(ngModel)]="optionSearch" class="form-control mx-2">
-      <option value="1">Tìm kiếm theo Mã đặt vé</option>
-      <option value="2">Tìm kiếm theo Mã thành viên</option>
-      <option value="3">Tìm kiếm theo CMND</option>
-      <option value="4">Tìm kiếm theo Số điện thoại</option>
-      <option value="5">Tìm kiếm theo Tên khách</option>
-    </select>
-    <input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Search"
-           aria-describedby="search-addon" [(ngModel)]="keySearch">
-    <button type="button" class="btn btn-outline-success mx-2" (click)="search()">Tìm kiếm</button>
-  </div>
-  <div class="card border-success">
+  <div>
       <h3 class="title" style="color: #FF8C00">Quản lý đặt vé</h3>
+    <div class="input-group col-8 my-3">
+      <select [(ngModel)]="optionSearch" class="form-control mx-2">
+        <option value="1">Tìm kiếm theo Mã đặt vé</option>
+        <option value="2">Tìm kiếm theo Mã thành viên</option>
+        <option value="3">Tìm kiếm theo CMND</option>
+        <option value="4">Tìm kiếm theo Số điện thoại</option>
+        <option value="5">Tìm kiếm theo Tên khách</option>
+      </select>
+      <input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Search"
+             aria-describedby="search-addon" [(ngModel)]="keySearch">
+      <button type="button" class="btn btn-outline-success mx-2" (click)="search()">Tìm kiếm</button>
+    </div>
     <div>
       <div *ngIf="bookedTicketList.length > 0; else nodata">
 <!--        <div>-->
@@ -81,14 +81,16 @@
         <ul class="pagination modal-4">
           <li><a (click)="firstPage()" class="prev"><i class="fa fa-chevron-left"></i> Đầu</a></li>
           <li><a (click)="previousPage()"><i class="fa fa-chevron-left"></i></a></li>
-          <li> <a  class="active">{{indexPagination}}</a></li>
-          <li> <a  class="active">{{totalPagination}}</a></li>
-          <li> <a (click)="nextPage()"><i class="fa fa-chevron-right"></i></a></li>
+          <li *ngIf="indexPagination > 1"><a (click)="previousPage()">{{indexPagination - 1}}</a></li>
+          <li><a class="active">{{indexPagination}}</a></li>
+          <li *ngIf="indexPagination <= totalPagination - 1"><a (click)="nextPage()">{{indexPagination + 1}}</a></li>
+<!--          <li> <a  class="active">{{totalPagination}}</a></li>-->
+          <li><a (click)="nextPage()"><i class="fa fa-chevron-right"></i></a></li>
           <li><a (click)="lastPage()" class="next">Cuối <i class="fa fa-chevron-right"></i></a></li>
           <li><label>
             <input type="number" class="input-group-prepend" style="width: 40px; height: 28px" [(ngModel)]="selectPagination">
           </label></li>
-          <li><a (click)="selectPage()">Đi</a></li>
+          <li><a (click)="selectPage(selectPagination)">Đi</a></li>
         </ul>
 
       </div>

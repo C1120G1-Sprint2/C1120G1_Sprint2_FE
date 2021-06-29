@@ -7,6 +7,7 @@ import {EmployeeMemberManagementModule} from './employee-member-management/emplo
 import {FormsModule} from '@angular/forms';
 import {MainModule} from '../main/main.module';
 import {EmployeeSalesTicketsManagementModule} from "./employee-sales-tickets-management/employee-sales-tickets-management.module";
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {EmployeeSalesTicketsManagementModule} from "./employee-sales-tickets-man
     EmployeeMemberManagementModule,
     FormsModule,
     MainModule,
-    EmployeeSalesTicketsManagementModule
+    EmployeeSalesTicketsManagementModule,
+    RouterModule
   ]
 })
 export class EmployeeModule { }

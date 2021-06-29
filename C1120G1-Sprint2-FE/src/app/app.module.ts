@@ -20,6 +20,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {AdminMovieTicketModule} from './module/admin/admin-movie-ticket/admin-movie-ticket.module';
 import {HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -46,7 +47,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     AdminMovieTicketModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    RouterModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
