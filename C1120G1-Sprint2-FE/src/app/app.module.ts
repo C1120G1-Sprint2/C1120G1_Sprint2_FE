@@ -14,27 +14,28 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
-import { HttpClientModule } from '@angular/common/http';
+import { AdminMovieManagementModule} from './module/admin/admin-movie-management/admin-movie-management.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AdminModule,
-    EmployeeModule,
-    HttpClientModule,
-    MemberModule,
-    MainModule,
-    SecurityModule,
-    BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule
-  ],
+
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AdminModule,
+        EmployeeModule,
+        MemberModule,
+        MainModule,
+        SecurityModule,
+        BrowserAnimationsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
+        AngularFireDatabaseModule,
+        AdminMovieManagementModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
