@@ -34,6 +34,7 @@ export class EmployeeCreateUserComponent implements OnInit {
   loading = false;
   messageImageError: string = "";
   checkAccept : boolean =false;
+  checkLoad: boolean =  false;
 
 
   constructor(private memberManagementService: MemberManagementService,
@@ -80,8 +81,11 @@ export class EmployeeCreateUserComponent implements OnInit {
         this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
+              this.checkLoad = true;
               this.formAddNewCustomer.value.avatarUrl = url;
               this.memberManagementService.createUser(this.formAddNewCustomer.value).subscribe(data => {
+                this.sendMail();
+                this.checkLoad = false;
                 this.router.navigateByUrl('/employee/member/management');
                 this.toastr.success("Them moi thanh cong", "Notification", {
                   timeOut: 1000,
@@ -124,6 +128,7 @@ export class EmployeeCreateUserComponent implements OnInit {
   }
 
   //    upload anh fire base
+
   showPreview(image: any) {
 
     if (image.target.files && image.target.files[0]) {
@@ -193,11 +198,9 @@ export class EmployeeCreateUserComponent implements OnInit {
 
   sendMail(){
     if (this.formAddNewCustomer.valid){
-      console.log(this.formAddNewCustomer.value.email);
+      console.log("ádasd");
       this.memberManagementService.sendEmailApprove(this.formAddNewCustomer.value.email).subscribe(data => {
       });
     }
-
   }
-
 }
