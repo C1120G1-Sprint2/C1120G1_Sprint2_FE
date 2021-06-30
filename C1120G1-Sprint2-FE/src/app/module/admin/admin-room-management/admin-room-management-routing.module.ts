@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'edit/:id', component: RoomEditComponent},
   {path: 'delete/:id', component: RoomDeleteComponent},
   {path: 'seat/:id', component: SeatListComponent},
-  {path: 'seat/create', component: SeatCreateComponent},
+  {path: 'seat/create/:id', component: SeatCreateComponent},
   {path: 'seat/edit/:id', component: SeatEditComponent},
   {path: 'seat/delete/:id', component: SeatDeleteComponent}
 ];
