@@ -15,6 +15,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 
 import { LoadingComponent } from './module/loading/loading.component';
+
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {BookingModule} from './module/booking/booking.module';
@@ -22,7 +23,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {AdminMovieTicketModule} from './module/admin/admin-movie-ticket/admin-movie-ticket.module';
 import {HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { AdminMovieManagementModule} from './module/admin/admin-movie-management/admin-movie-management.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     LoadingComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,7 +51,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    AdminMovieManagementModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -36,6 +36,7 @@ export class MainContentComponent implements OnInit {
   getPromotingMovies() {
     this.movieService.getPromotingMovies().subscribe(data => {
       this.promotingMovies = data;
+      console.log(data);
       for (let i = 0; i < this.promotingMovies.length; i++) {
         if (!this.promotingMovies[i].banner) {
           this.promotingMovies.splice(i, 1);
@@ -57,6 +58,7 @@ export class MainContentComponent implements OnInit {
     this.reset();
     this.movieService.getOnShowingMovies(this.page, this.size).subscribe(data => {
       this.onShowingMovies = data.content;
+      console.log(this.onShowingMovies);
       this.getCategoriesString(this.onShowingMovies);
       if (this.page >= data.totalPages - 1) {
         this.displayLoadMore = false;

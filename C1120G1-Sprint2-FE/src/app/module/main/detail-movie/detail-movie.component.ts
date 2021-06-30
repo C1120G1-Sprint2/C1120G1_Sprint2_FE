@@ -9,11 +9,8 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {Category} from '../../../model/category';
 import {MatDialog} from '@angular/material/dialog';
 import {CommentServiceService} from '../../../service/comment/comment-service/comment-service.service';
-import {TokenStorageService} from '../../../service/security/token-storage.service';
 import {Comments} from '../../../model/comment';
 import {DeleteCommentComponent} from '../comment/delete-comment/delete-comment.component';
-import {DatePipe} from '@angular/common';
-import {MemberManagementService} from '../../../service/admin/member-management/member-management.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 
@@ -52,10 +49,7 @@ export class DetailMovieComponent implements OnInit {
               private sanitizer: DomSanitizer,
               private dialog: MatDialog,
               private commentService: CommentServiceService,
-              private formBuilder: FormBuilder,
-              private tokenService: TokenStorageService,
-              private datePipe : DatePipe,
-              private memberService: MemberManagementService,
+              private formBuilder: FormBuilder
               ) {
 
   }

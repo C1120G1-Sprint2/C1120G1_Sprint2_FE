@@ -8,6 +8,7 @@ import {MovieTrailerComponent} from './movie-trailer/movie-trailer.component';
 import {MainSearchComponent} from './main-search/main-search.component';
 import {AppRoutingModule} from '../../app-routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 import {RouterModule} from '@angular/router';
 import { DetailMovieComponent } from './detail-movie/detail-movie.component';
 import { CreateCommentComponent } from './comment/create-comment/create-comment.component';
@@ -18,14 +19,16 @@ import { PriceTicketClientComponent } from './price-ticket-client/price-ticket-c
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {AdminRoutingModule} from '../admin/admin-routing.module';
 
 
 
 
 @NgModule({
-  declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent,
-    MainContentComponent, DetailMovieComponent, CreateCommentComponent, DeleteCommentComponent,
-    EditCommentComponent, RatingComponent, PriceTicketClientComponent, MovieTrailerComponent, MainSearchComponent],
+  declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent, MainContentComponent, MovieTrailerComponent, MainSearchComponent,
+    DetailMovieComponent, CreateCommentComponent, DeleteCommentComponent,
+    EditCommentComponent, RatingComponent, PriceTicketClientComponent, MovieTrailerComponent],
+
   exports: [
     MainHeaderComponent,
     MainFooterComponent
@@ -33,14 +36,13 @@ import {MatIconModule} from '@angular/material/icon';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        AppRoutingModule,
         RouterModule,
         FormsModule,
         MatDialogModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+      AdminRoutingModule
     ]
 })
 
-export class MainModule {
-}
+export class MainModule { }

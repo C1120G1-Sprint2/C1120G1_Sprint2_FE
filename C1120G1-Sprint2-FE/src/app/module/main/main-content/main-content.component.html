@@ -6,15 +6,17 @@
           data-slide-to="i" [ngClass]="i == 0? 'active': ''"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
-      <a *ngFor="let movie of promotingMovies; let i = index" class="carousel-item" role="option"
-         [routerLink]="['/detail-movie', movie.movieId]" [ngClass]="i == 0? 'active': ''">
-        <img [src]="movie.banner" alt="">
+      <div *ngFor="let movie of promotingMovies; let i = index" class="carousel-item" role="option"
+           [ngClass]="i == 0? 'active': ''">
+        <a [routerLink]="['/detail-movie', movie.movieId]">
+          <img [src]="movie.banner" alt="">
+        </a>
         <div class="container content-wrap">
           <div class="play-bt trailer-bt-banner" (click)="openTrailer(movie.trailer)">
             <button class="btn primary animated fadeInUp c11-trailer" (click)="openTrailer(movie.trailer)"></button>
           </div>
         </div>
-      </a>
+      </div>
     </div>
     <a href="#main-carousel" class="left carousel-control-prev" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

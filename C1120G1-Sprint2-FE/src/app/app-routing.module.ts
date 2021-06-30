@@ -34,7 +34,8 @@ const routes: Routes = [
     component: MainHomePageComponent,
     children: [
       {path: '', component: MainContentComponent},
-      {path: 'search', component: MainSearchComponent}
+      {path: 'search', component: MainSearchComponent},
+      {path: 'detail-movie/:id', component: DetailMovieComponent}
     ]
   },
   {path: 'login', component: LoginComponent},
@@ -54,7 +55,6 @@ const routes: Routes = [
     ]
   },
 
-  {path: 'detail-movie/:id', component: DetailMovieComponent},
   {path: 'ticket-price', component: PriceTicketClientComponent},
 
   {

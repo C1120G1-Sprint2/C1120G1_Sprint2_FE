@@ -1,17 +1,20 @@
+
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserEditPreview} from "../../../model/userEditPreview";
 import {User} from "../../../model/user";
 
+// import {UserEditPreview} from '../../../model/userEditPreview';
+
 @Injectable({
   providedIn: 'root'
 })
 export class MemberManagementService {
+
   API_URL_ADDRESS: string = 'http://localhost:8080';
   private API_URL_USER = 'http://localhost:8080/employee/listUser';
   httpOptions: any;
-
 
   constructor(private httpClient: HttpClient) {
     this.httpOptions = {
@@ -23,6 +26,7 @@ export class MemberManagementService {
       'Access-Control-Allow-Credentials': 'true'
     };
   }
+
 
   /**
    * Sang
@@ -69,7 +73,8 @@ export class MemberManagementService {
     return this.httpClient.get(this.API_URL_USER + '/getAll');
   }
 
-  sendEmailApprove(email: string): Observable<any>{
-    return this.httpClient.get(this.API_URL_USER + "/email?email=" + email );
+  sendEmailApprove(email: string): Observable<any> {
+    return this.httpClient.get(this.API_URL_USER + "/email?email=" + email);
   }
+
 }
