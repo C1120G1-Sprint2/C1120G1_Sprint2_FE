@@ -26,6 +26,7 @@ export class SeatListComponent implements OnInit {
   roomDetail: Room;
   form: FormGroup;
   seatDelete: RoomSeat[];
+  type;
 
   constructor(private roomManagement: RoomManagementService,
               private toast: ToastrService,
