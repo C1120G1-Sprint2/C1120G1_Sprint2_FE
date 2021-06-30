@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
       ward: ['', [Validators.required]],
       district: [''],
       province: [''],
-      avatarUrl: ['defaultAvatar'],
+      avatarUrl: [this.defaultAvatar],
     });
   }
 
@@ -68,14 +68,14 @@ export class RegisterComponent implements OnInit {
         data => {
           this.router.navigateByUrl('/login');
           this.toastr.success('Hãy kiểm tra email và xác nhận tài khoản', 'Đăng kí thành công', {
-            timeOut: 1000,
+            timeOut: 2000,
             progressBar: true,
             progressAnimation: 'increasing'
           });
         },
         error => {
-          this.toastr.success('Hãy kiểm tra lại đăng kí', 'Đăng kí thất bại', {
-            timeOut: 1000,
+          this.toastr.error('Hãy kiểm tra lại đăng kí', 'Đăng kí thất bại', {
+            timeOut: 2000,
             progressBar: true,
             progressAnimation: 'increasing'
           });

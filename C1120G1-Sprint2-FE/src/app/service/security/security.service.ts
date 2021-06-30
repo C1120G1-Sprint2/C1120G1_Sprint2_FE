@@ -44,9 +44,8 @@ export class SecurityService {
     return this.http.post<any>(API_URL_GOOGLE, user, this.httpOptions);
   }
 
-  createUserFacebook(user: UserSocial): Observable<any> {
-    console.log("User in Service")
-    console.log(user)
+  createUserFacebook(user: any): Observable<any> {
+    console.log(user);
     return this.http.post<any>(API_URL_FACEBOOK, user, this.httpOptions);
   }
 }

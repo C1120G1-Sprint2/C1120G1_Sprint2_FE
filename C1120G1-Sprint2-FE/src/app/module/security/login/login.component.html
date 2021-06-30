@@ -67,18 +67,18 @@
         </form>
       </div>
       <div class="social">
-        <div (click)="loginFacebook()" class="link-social">
-          <div class="mb-2 item-social item-social-gg rounded-left">
+        <div class="link-social">
+          <div class="mb-2 item-social item-social-gg rounded-left" #loginRef>
             <i class="fab fa-google item-social"></i>
             <span class="social-name-gg text-white font-weight-bold rounded-left">oogle</span>
           </div>
         </div>
-        <a href="#" class="link-social">
+        <div class="link-social" (click)="updatingFunction()">
           <div class="mb-2 item-social item-social-fb rounded-left">
             <i class="fab fa-facebook-square item-social"></i>
             <span class="social-name-fb text-white font-weight-bold">&nbsp;Facebook</span>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </div>
