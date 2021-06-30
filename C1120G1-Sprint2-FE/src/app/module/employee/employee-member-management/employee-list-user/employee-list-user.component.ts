@@ -21,9 +21,10 @@ export class EmployeeListUserComponent implements OnInit {
   deleteName: string;
   p: number = 1;
   page: number = 1;
-  indexPagination: number = 0 ;
+  indexPagination: number = 0;
   selectPagination: number;
-  totalPagination : number ;
+  totalPagination: number;
+  userSearchNotPagination: number = 0;
 
   constructor(private memberManagementService: MemberManagementService,
               private toastr: ToastrService) {
@@ -44,20 +45,38 @@ export class EmployeeListUserComponent implements OnInit {
       }
     });
     this.memberManagementService.findAllUsers().subscribe(data => {
-      this.usersNotPagination =data;
-      this.totalPagination = Math.floor((this.usersNotPagination.length -1)/5);
-    })
+      this.usersNotPagination = data;
+      this.totalPagination = Math.floor((this.usersNotPagination.length - 1) / 5);
+    });
   }
 
   firstPage() {
-    this.indexPagination = 0 ;
-    this.memberManagementService.getAllUsers(this.indexPagination).subscribe(data => {
-      this.users = data ;
-    });
+    if (this.keySearch != '') {
+      this.indexPagination = 0;
+      this.memberManagementService.searchUserByPagination(this.keySearch, this.indexPagination).subscribe(data => {
+        this.users = data;
+      });
     }
+    this.indexPagination = 0;
+    this.memberManagementService.getAllUsers(this.indexPagination).subscribe(data => {
+      this.users = data;
+    });
+  }
 
   nextPage() {
     this.indexPagination = this.indexPagination + 1;
+    if (this.keySearch != '') {
+      this.memberManagementService.searchUserByPagination(this.keySearch, this.indexPagination).subscribe(data => {
+        this.users = data;
+        if (this.users.length == 0) {
+          this.firstPage();
+          this.toastr.warning('Không tìm thấy trang hoặc danh sách đã hết', 'Thông báo', {
+            timeOut: 3000,
+            progressAnimation: 'increasing'
+          });
+        }
+      });
+    }
     this.memberManagementService.getAllUsers((this.indexPagination * 5)).subscribe(data => {
       this.users = data;
       console.log(this.users);
@@ -67,25 +86,36 @@ export class EmployeeListUserComponent implements OnInit {
           timeOut: 3000,
           progressAnimation: 'increasing'
         });
-        }
+      }
     });
   }
 
   previousPage() {
     this.indexPagination = this.indexPagination - 1;
+    if (this.keySearch != '') {
+      if (this.indexPagination <= 0) {
+        this.indexPagination = 0;
+        this.memberManagementService.searchUserByPagination(this.keySearch, this.indexPagination).subscribe(data => {
+          this.users = data;
+        });
+      }
+      this.memberManagementService.getAllUsers(this.indexPagination * 5).subscribe(data => {
+        this.users = data;
+      });
+    }
     if (this.indexPagination <= 0) {
       this.indexPagination = 0;
       this.memberManagementService.getAllUsers(this.indexPagination).subscribe(data => {
         this.users = data;
       });
     }
-    this.memberManagementService.getAllUsers(this.indexPagination*5).subscribe(data => {
+    this.memberManagementService.getAllUsers(this.indexPagination * 5).subscribe(data => {
       this.users = data;
     });
   }
 
-  selectPage(selectPageNumber : number) {
-    if (selectPageNumber < 1){
+  selectPage(selectPageNumber: number) {
+    if (selectPageNumber < 1) {
       this.indexPagination = selectPageNumber;
       this.firstPage();
       this.toastr.warning('Không tìm thấy trang hoặc danh sách đã hết', 'Thông báo', {
@@ -93,8 +123,8 @@ export class EmployeeListUserComponent implements OnInit {
         progressAnimation: 'increasing'
       });
     }
-    this.indexPagination = selectPageNumber -1;
-    this.memberManagementService.getAllUsers((selectPageNumber*5)-5).subscribe(data => {
+    this.indexPagination = selectPageNumber - 1;
+    this.memberManagementService.getAllUsers((selectPageNumber * 5) - 5).subscribe(data => {
       this.users = data;
       if (this.users.length == 0) {
         this.toastr.warning('Quá số trang tìm kiếm', 'Thông báo', {
@@ -106,18 +136,24 @@ export class EmployeeListUserComponent implements OnInit {
     });
   };
 
-  lastPage(){
-    this.indexPagination =this.totalPagination;
-    this.memberManagementService.getAllUsers(this.totalPagination*5).subscribe(data => {
-      this.users =data;
+  lastPage() {
+    if (this.keySearch != '') {
+      this.indexPagination = this.totalPagination;
+      this.memberManagementService.searchUserByPagination(this.keySearch,this.totalPagination * 5 ).subscribe(data => {
+        this.users = data;
+      })
+    }
+    this.indexPagination = this.totalPagination;
+    this.memberManagementService.getAllUsers(this.totalPagination * 5).subscribe(data => {
+      this.users = data;
       console.log(this.totalPagination);
-      if (this.users.length ==0) {
+      if (this.users.length == 0) {
         this.toastr.warning('Không tìm thấy dữ liệu', 'Thông báo', {
           timeOut: 3000,
           progressAnimation: 'increasing'
         });
       }
-    })
+    });
   }
 
 
@@ -143,7 +179,7 @@ export class EmployeeListUserComponent implements OnInit {
   }
 
   searchEnter() {
-    this.memberManagementService.searchUserBySomething(this.keySearch).subscribe(data => {
+    this.memberManagementService.searchUserByPagination(this.keySearch, this.indexPagination).subscribe(data => {
       this.users = data;
       if (data === null) {
         this.toastr.warning('Không tìm thấy kết quả', 'Thông báo', {
@@ -156,20 +192,22 @@ export class EmployeeListUserComponent implements OnInit {
   }
 
   search() {
-    this.memberManagementService.searchUserBySomething(this.keySearch).subscribe(data => {
+    this.memberManagementService.searchUserByPagination(this.keySearch, this.indexPagination).subscribe(data => {
       this.users = data;
-      if (this.keySearch == ''){
+      if (this.keySearch == '') {
         this.toastr.warning('Xin vui lòng nhập từ khoá', 'Thông báo');
-        this.firstPage()
-      }else if (this.users.length == 0) {
+        this.firstPage();
+      } else if (this.users.length == 0) {
         this.toastr.warning('Không tìm thấy kết quả', 'Thông báo');
       } else {
         this.users = data;
         this.toastr.success('Tìm thấy kết quả', 'Thông báo');
       }
     });
+    this.memberManagementService.searchUserBySomething(this.keySearch).subscribe(data => {
+      this.usersNotPagination = data;
+      this.totalPagination = Math.floor((this.usersNotPagination.length - 1) / 5);
+    });
   }
-
-
 }
 
