@@ -139,35 +139,38 @@
       <div class="card-title"> THÔNG TIN ĐĂNG NHẬP</div>
       <div class="card-body">
         <div>
-          <form [formGroup]="rfPasswordForm" (ngSubmit)="onSubmitPass(rfPasswordForm)">
+          <form [formGroup]="rfPasswordForm" (ngSubmit)="onSubmitPass()">
             <table class="table table-hover table-borderless">
               <tbody>
-              <tr>
-                <td style="width: 320px">
-                  <label for="memberCard">Thẻ Thành Viên</label>
-                </td>
-                <td >
-                  <input type="text" class="form-control" placeholder="TV0000001" id="memberCard"/>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="account">Tài Khoản</label>
-                  <span style="color: red" class="asterisk-red">(*):</span>
-                </td>
-                <td>
-                  <input type="text" class="form-control" placeholder="Aha0001" id="account"/>
-                </td>
-              </tr>
+<!--              <tr>-->
+<!--                <td style="width: 320px">-->
+<!--                  <label for="memberCard">Thẻ Thành Viên</label>-->
+<!--                </td>-->
+<!--                <td >-->
+<!--                  <input type="text" class="form-control" placeholder="TV0000001" id="memberCard"/>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td>-->
+<!--                  <label for="account">Tài Khoản</label>-->
+<!--                  <span style="color: red" class="asterisk-red">(*):</span>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                  <input type="text" class="form-control" placeholder="Aha0001" id="account"/>-->
+<!--                </td>-->
+<!--              </tr>-->
 
               <tr>
-                <td>
+                <td style="width: 320px">
                   <label for="passwordOld">Mật Khẩu cũ</label>
-                  <span style="color: red" class="asterisk-red">(*):</span>
+                  <span  class ="text-danger" style="color: red" >(*):</span>
                 </td>
                 <td>
-                  <input type="password" class="form-control" formControlName="" placeholder="Nhập mật khẩu củ"
+                  <input type="password" class="form-control" formControlName="oldPassword"  placeholder="Nhập mật khẩu củ"
                          id="passwordOld"/>
+                  <p *ngIf="rfPasswordForm.controls.newPassword.touched" class="text-danger">
+                    <span *ngIf="rfPasswordForm.controls.newPassword.errors?.required">Bạn chưa nhập mật khẩu. Vui lòng nhập lại.</span>
+                  </p>
                 </td>
               </tr>
               <tr>
@@ -178,13 +181,9 @@
                 <td>
                   <input type="password" class="form-control" formControlName="newPassword" placeholder="Mật Khẩu Mới"
                          id="passwordNew"/>
-                  <p *ngIf="rfPasswordForm.controls.newPassword.touched" class="errorText">
-                <span *ngIf="rfPasswordForm.controls.newPassword.errors?.required">
-                  Bạn chưa nhập mật khẩu. Vui lòng nhập lại.
-                </span>
-                    <span *ngIf="rfPasswordForm.controls.newPassword.errors?.pattern">
-                  Mật khẩu mới phải bao gồm chữ và số và trên 6 kí tự
-                </span>
+                  <p *ngIf="rfPasswordForm.controls.newPassword.touched" class="text-danger">
+                <span *ngIf="rfPasswordForm.controls.newPassword.errors?.required">Bạn chưa nhập mật khẩu. Vui lòng nhập lại.</span>
+                    <span *ngIf="rfPasswordForm.controls.newPassword.errors?.pattern">Mật khẩu mới phải bao gồm chữ và số và trên 6 kí tự </span>
                   </p>
                 </td>
               </tr>
@@ -201,7 +200,7 @@
                 <span *ngIf="rfPasswordForm.controls.confirmNewPassword.errors?.required">
                   Bạn chưa nhập mật khẩu. Vui lòng nhập lại.
                 </span>
-                    <span *ngIf="rfPasswordForm.controls.confirmNewPassword.errors?.comparePassword">
+                    <span *ngIf="rfPasswordForm.hasError('passwordNotMatch')">
                   Không trùng với mật khẩu mới, xin nhập lại
                 </span>
                   </p>
@@ -209,21 +208,21 @@
               </tr>
               <tr>
                 <td>
-                  <label for="otp">Mã OTP</label>
+                  <label >Mã OTP</label>
                   <span style="color: red" class="asterisk-red">(*):</span>
                 </td>
                 <td>
                   <div class="input-group mr-12">
                     <div class="input-group pd-12 w-50">
-                      <button type="submit" class="btn btn-warning">Lấy Mã OTP</button>
+                      <button type="button" class="btn btn-warning" (click)="sendEmailOTP()">Lấy Mã OTP</button>
                     </div>
                     <div class="input-group pd-20 w-50">
-                      <input type="text" style="width: 150px;padding: revert" class="form-control"
-                             placeholder="Nhập Mã OTP" id="otp"/></div>
+                      <input (input)="changeInputEmailOTP($event.target.value)" type="text" style="width: 150px;padding: revert" class="form-control underline"
+                             placeholder="Nhập Mã OTP" id="otp " maxlength="6" size="6" /></div>
                   </div>
                 </td>
               </tr>
-              <tr>
+<tr>
                 <td></td>
                 <td>
                   <button type="submit" class="btn btn-primary ">Đổi Mật Khẩu</button>

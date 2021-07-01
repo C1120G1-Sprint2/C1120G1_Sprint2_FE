@@ -8,7 +8,7 @@ import {Ticket} from "../../../model/ticket";
 })
 export class BookTicketsService {
 
-  API_URL_TICKET: string = 'http://localhost:8080/member';
+  API_URL_TICKET: string = 'http://localhost:8080/api/ticket';
   httpOptions: any;
 
   constructor(private httpClient: HttpClient) {
