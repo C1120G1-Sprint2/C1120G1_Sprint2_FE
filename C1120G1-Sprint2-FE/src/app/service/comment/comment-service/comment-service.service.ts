@@ -15,7 +15,7 @@ export class CommentServiceService {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset = utf-8',
-        'Authorization': `Bearer ` + this.tokenStorage.getToken()
+        'Authorization': `Bearer ` + this.tokenStorage.getUser().token
       })
       , 'Access-Control-Allow-Origin': 'http://localhost:4200',
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -32,8 +32,9 @@ export class CommentServiceService {
     return this.http.get(this.COMMENT_API);
   }
 
-  addComment(value: any, id: any, idUser: number): Observable<any> {
-    return this.http.post(this.COMMENT_API + "/detail-movie/" + id + '/' + 1 + '/create', value, this.httpOptions);
+  addComment(value: any, id: any): Observable<any> {
+    console.log(this.tokenStorage.getUser().user);
+    return this.http.post(this.COMMENT_API + "/detail-movie/" + id + '/' + this.tokenStorage.getUser().user.userId + '/create', value, this.httpOptions);
   }
 
   deleteCommentByUser(id: any) {

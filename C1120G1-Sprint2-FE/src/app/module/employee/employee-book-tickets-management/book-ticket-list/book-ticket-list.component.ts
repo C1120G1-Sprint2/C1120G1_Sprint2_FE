@@ -38,8 +38,10 @@ export class BookTicketListComponent implements OnInit {
     });
     this.bookTicketManagementService.getAllBookedTicketListNoPage().subscribe(data => {
       this.bookedTicketListNoPage = data;
-      if ((this.bookedTicketListNoPage.length % 3) != 0) {
-        this.totalPagination = (Math.floor(this.bookedTicketListNoPage.length / 3)) + 1;
+      if ((this.bookedTicketListNoPage.length % 5) != 0) {
+        this.totalPagination = (Math.floor(this.bookedTicketListNoPage.length / 5)) + 1;
+      } else {
+        this.totalPagination = (Math.floor(this.bookedTicketListNoPage.length / 5));
       }
     });
   }
@@ -89,6 +91,7 @@ export class BookTicketListComponent implements OnInit {
   }
 
   cancelSuccess() {
+    this.indexPagination = 1;
     this.getBookTicketList();
   }
 
@@ -96,15 +99,21 @@ export class BookTicketListComponent implements OnInit {
   firstPage() {
     this.indexPagination = 1;
     this.getBookTicketList();
+    if (this.indexPagination < this.totalPagination) {
+      this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+    }
   }
 
   previousPage() {
     this.indexPagination = this.indexPagination - 1;
+    if (this.indexPagination < this.totalPagination) {
+      // this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+    }
     if (this.indexPagination == 0) {
       this.indexPagination = 1;
       this.getBookTicketList();
     } else {
-      this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 3) - 3).subscribe(data => {
+      this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 5) - 5).subscribe(data => {
         this.bookedTicketList = data;
       });
     }
@@ -113,9 +122,10 @@ export class BookTicketListComponent implements OnInit {
   nextPage() {
     this.indexPagination = this.indexPagination + 1;
     if (this.indexPagination > this.totalPagination) {
-        this.indexPagination = this.indexPagination - 1;
+      this.indexPagination = this.indexPagination - 1;
+      this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
     }
-    this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 3) - 3).subscribe(data => {
+    this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 5) - 5).subscribe(data =>{
       this.bookedTicketList = data;
       if (data == null) {
         this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
@@ -124,23 +134,33 @@ export class BookTicketListComponent implements OnInit {
   }
 
   lastPage() {
-    this.indexPagination = (Math.floor(this.bookedTicketListNoPage.length / 3)) + 1;
-    this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 3) - 3).subscribe(data =>{
-      this.bookedTicketList = data;
-      if (data == null) {
-        this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
-      }
-    });
+    if (this.indexPagination < this.totalPagination) {
+      this.indexPagination = (Math.floor(this.bookedTicketListNoPage.length / 5)) + 1;
+      this.bookTicketManagementService.getAllBookedTicketList((this.indexPagination * 5) - 5).subscribe(data =>{
+        this.bookedTicketList = data;
+        if (data == null) {
+          this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+        }
+      });
+    } else {
+      this.firstPage();
+      this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+    }
   }
 
-  selectPage() {
-    this.bookTicketManagementService.getAllBookedTicketList((this.selectPagination * 3) - 3).subscribe(data =>{
-      this.bookedTicketList = data;
-      if (data == null) {
-        this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
-        this.firstPage();
-      }
-    });
+  selectPage(selectPageIndex: number) {
+    if (selectPageIndex <= this.totalPagination && selectPageIndex > 0) {
+      this.indexPagination = selectPageIndex;
+      this.bookTicketManagementService.getAllBookedTicketList((selectPageIndex * 5) - 5).subscribe(data =>{
+        this.bookedTicketList = data;
+        if (data == null) {
+          this.toastr.warning('Không có dữ liệu !', 'Vé Đã Đặt !');
+          this.firstPage();
+        }
+      });
+    } else {
+      this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+    }
   }
 
 }

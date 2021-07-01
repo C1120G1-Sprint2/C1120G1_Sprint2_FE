@@ -46,11 +46,14 @@ export class ConfirmSaleTicketComponent implements OnInit {
     this.saleTicketService.currentUser.subscribe((data) => {
       if (data !== null) {
         this.user = data;
+
       }
+      console.log(this.user);
     });
     this.saleTicketService.currentMovieTicket.subscribe((data) => {
       this.movieTicket = data;
     });
+
   }
 
   totalPriceTicket(listSeat: Seat[]) {
@@ -77,47 +80,52 @@ export class ConfirmSaleTicketComponent implements OnInit {
     this.location.back();
   }
 
+  createTicketDTO(){
+    for (let i = 0; i < this.listSeat.length; i++) {
+      const ticketDTO: MemberTicketDTO = {
+        ticketId: null,
+        movieTicketId: this.movieTicket.movieTicketId,
+        seatId: this.listSeat[i].seatId,
+        userId: this.user.userId,
+        timeCreate: '',
+        ticketStatusId: 2
+      };
+      this.listTicketDTO.push(ticketDTO);
+    }
+    this.saleTicketService.createTicket(this.movieTicket.room.roomId, this.listTicketDTO).subscribe((data) => {
+      this.saleTicketService.changeListChoseSeat(this.listSeat);
+      this.saleTicketService.changeUser(this.user);
+      this.saleTicketService.changeMovieTicket(this.movieTicket);
+    });
+    this.router.navigateByUrl('/employee/sale/tickets');
+    this.toast.success('Xác Nhận Bán Vé Thành Công!', 'Thông Báo', {timeOut: 2000})
+  }
   createTicket() {
-    const user: User = {
-      userId: null,
-      name: this.createTicketUserNoAccount.value.name,
-      birthday: null,
-      gender: null,
-      email: this.createTicketUserNoAccount.value.email,
-      phone: this.createTicketUserNoAccount.value.phone,
-      idCard: null,
-      avatarUrl: null,
-      account: null,
-      ward: null,
-    };
-    this.saleTicketService.createUserNoAccount(user).subscribe((data) => {
-      this.user = data;
+    if (this.user !== null) {
+      this.createTicketDTO();
+    } else {
+      const user: User = {
+        userId: null,
+        name: this.createTicketUserNoAccount.value.name,
+        birthday: null,
+        gender: null,
+        email: this.createTicketUserNoAccount.value.email,
+        phone: this.createTicketUserNoAccount.value.phone,
+        idCard: null,
+        avatarUrl: null,
+        account: null,
+        ward: null,
+      };
       if (this.createTicketUserNoAccount.valid) {
-        if (this.user !== null) {
-          // tslint:disable-next-line:prefer-for-of
-          for (let i = 0; i < this.listSeat.length; i++) {
-            const ticketDTO: MemberTicketDTO = {
-              ticketId: null,
-              movieTicketId: this.movieTicket.movieTicketId,
-              seatId: this.listSeat[i].seatId,
-              userId: this.user.userId,
-              timeCreate: '',
-              ticketStatusId: 2
-            };
-            this.listTicketDTO.push(ticketDTO);
-          }
-          this.saleTicketService.createTicket(this.movieTicket.room.roomId, this.listTicketDTO).subscribe((data) => {
-            this.saleTicketService.changeListChoseSeat(this.listSeat);
-            this.saleTicketService.changeUser(this.user);
-            this.saleTicketService.changeMovieTicket(this.movieTicket);
-          });
-          this.router.navigateByUrl('/employee/sale/tickets/info');
-          this.toast.success('Xác Nhận Bán Vé Thành Công!', 'Thông Báo', {timeOut: 2000})
-        }
+        // tslint:disable-next-line:prefer-for-of
+        this.saleTicketService.createUserNoAccount(user).subscribe((data) => {
+          this.user = data;
+          this.createTicketDTO();
+        });
       } else {
         this.toast.warning('Bạn nhập thông tin user không hợp lệ', 'Thông Báo', {timeOut: 2000})
       }
-    });
+    }
   }
 
   get name() {

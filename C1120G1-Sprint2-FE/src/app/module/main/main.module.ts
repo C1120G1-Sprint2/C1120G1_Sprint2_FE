@@ -43,6 +43,7 @@ import {AdminRoutingModule} from '../admin/admin-routing.module';
         MatIconModule,
       AdminRoutingModule
     ]
+
 })
 
 export class MainModule { }

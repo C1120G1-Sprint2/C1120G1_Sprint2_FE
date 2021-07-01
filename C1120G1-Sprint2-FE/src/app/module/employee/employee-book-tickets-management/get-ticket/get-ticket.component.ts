@@ -27,6 +27,7 @@ export class GetTicketComponent implements OnInit {
   getBookedTicket() {
     let index = this.activatedRoute.snapshot.params['ticketId'];
     this.bookTicketService.getBookedTicketByIndex(index).subscribe(data => {
+      console.log(data);
       this.ticketDetail = data;
     });
     if (this.bookTicketService.listChoseSeat.length != 0) {

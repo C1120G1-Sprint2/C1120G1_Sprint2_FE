@@ -8,7 +8,7 @@ import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
-
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [MovieListComponent, AddMovieComponent, EditMovieComponent],

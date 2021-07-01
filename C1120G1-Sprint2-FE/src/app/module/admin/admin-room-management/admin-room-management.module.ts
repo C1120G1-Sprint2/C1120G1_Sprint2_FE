@@ -13,6 +13,7 @@ import { SeatDeleteComponent } from './seat-delete/seat-delete.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         HttpClientModule,
         ToastrModule,
         ReactiveFormsModule,
+        RouterModule,
         FormsModule,
     ]
 })

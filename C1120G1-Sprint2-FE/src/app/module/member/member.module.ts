@@ -9,17 +9,20 @@ import {AppRoutingModule} from "../../app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import { TicketCancelComponent } from './account-management/ticket-cancel/ticket-cancel.component';
 import { NavBarAccountManagerComponent } from './account-management/nav-bar-account-manager/nav-bar-account-manager.component';
+import { MemberPageComponent } from './member-page/member-page.component';
+import {MainModule} from '../main/main.module';
 
 @NgModule({
-  declarations: [TransactionHistoryComponent, AccountInfoComponent, TicketsBookingComponent, TicketCancelComponent, NavBarAccountManagerComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ]
+  declarations: [TransactionHistoryComponent, AccountInfoComponent, TicketsBookingComponent, TicketCancelComponent, NavBarAccountManagerComponent, MemberPageComponent],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MainModule,
+    ]
 })
 export class MemberModule { }

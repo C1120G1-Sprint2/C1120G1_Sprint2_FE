@@ -13,6 +13,7 @@ import {Comments} from '../../../model/comment';
 import {DeleteCommentComponent} from '../comment/delete-comment/delete-comment.component';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
+import {TokenStorageService} from '../../../service/security/token-storage.service';
 
 @Component({
   selector: 'app-detail-movie',
@@ -36,6 +37,7 @@ export class DetailMovieComponent implements OnInit {
   size: number = 5;
   page: [];
   idUser: number;
+  token: string;
 
 
 
@@ -49,8 +51,10 @@ export class DetailMovieComponent implements OnInit {
               private sanitizer: DomSanitizer,
               private dialog: MatDialog,
               private commentService: CommentServiceService,
-              private formBuilder: FormBuilder
+              private formBuilder: FormBuilder,
+              private tokenStore: TokenStorageService
               ) {
+    this.token = this.tokenStore.getUser().user;
 
   }
   videoUrl() {
@@ -88,8 +92,10 @@ export class DetailMovieComponent implements OnInit {
 
   onSubmitNewComment() {
     this.loading = true;
+    console.log(this.formComment.value);
     if (this.formComment.valid) {
-      this.commentService.addComment(this.formComment.value, this.id, this.idUser).subscribe(data => {
+      console.log(this.formComment.value);
+      this.commentService.addComment(this.formComment.value, this.id).subscribe(data => {
         console.log(this.id);
         this.toastr.success("Add new comment", "Notification");
         this.loading = false;

@@ -60,7 +60,9 @@
           </p>
         </div>
         <div>
-          <button class="btn btn-outline btnOrder" (click)="onSubmit()">Đặt Vé</button>
+          <a [routerLink]="['/booking/movie',movie.movieId]">
+            <button class="btn btn-outline btnOrder">Đặt Vé</button>
+          </a>
         </div>
         <div>
 

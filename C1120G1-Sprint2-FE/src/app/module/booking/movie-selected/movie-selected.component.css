@@ -122,6 +122,6 @@ hr {
 .fa-arrow-right {
   width: 5rem;
 }
-.movie-selected {
-  background-color: #B4D5FA;
+.chooseFilm {
+  background-color: lightgray !important;
 }

@@ -8,6 +8,7 @@ import {MovieTicket} from '../../../model/movieTicket';
 import {User} from '../../../model/user';
 import {RoomSeat} from '../../../model/roomSeat';
 import {Ticket} from '../../../model/ticket';
+import {PaypalDTO} from '../../../model/paypalDTO';
 
 const API_TICKET: string = 'http://localhost:8080/api/ticket';
 const API_SEAT: string = 'http://localhost:8080/api/roomSeat';
@@ -82,8 +83,13 @@ export class BookTicketsService {
     return this.httpClient.post(API_TICKET + '/createTicketDTO/' + movieTicketId + '/' + userId + '/' + seatId, this.httpOptions);
   }
 
-  payViaPaypal(totalMoney: number): Observable<any> {
-    return this.httpClient.post(API_PAYPAL + '/pay', 5, this.httpOptions);
+
+  payViaPaypal(paypalDTO: PaypalDTO):Observable<any>{
+    return this.httpClient.post<PaypalDTO>(API_PAYPAL + '/pay', paypalDTO, this.httpOptions);
+  }
+
+  paySuccess(paymentId: string, payerId: string):Observable<any> {
+    return this.httpClient.get(API_PAYPAL+"/pay/success?paymentId="+paymentId+"&PayerID="+payerId);
   }
 
 }

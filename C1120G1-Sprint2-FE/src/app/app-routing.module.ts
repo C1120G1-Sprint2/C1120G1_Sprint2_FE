@@ -15,10 +15,12 @@ import {MainSearchComponent} from "./module/main/main-search/main-search.compone
 import {MainBookingComponent} from './module/booking/main-booking/main-booking.component';
 import {MovieSelectedComponent} from './module/booking/movie-selected/movie-selected.component';
 import {BookingInformationComponent} from './module/booking/booking-information/booking-information.component';
+
 // import {LoginGoogleComponent} from './module/security/login-google/login-google.component';
 import {AccountInfoComponent} from './module/member/account-management/account-info/account-info.component';
 import {TransactionHistoryComponent} from './module/member/account-management/transaction-history/transaction-history.component';
 import {TicketsBookingComponent} from './module/member/account-management/tickets-booking/tickets-booking.component';
+
 
 const routes: Routes = [
   {

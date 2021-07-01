@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminMovieManagementModule} from './module/admin/admin-movie-management/admin-movie-management.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,9 @@ import { AdminMovieManagementModule} from './module/admin/admin-movie-management
     RouterModule,
     FormsModule,
     NgbModule,
-    AdminMovieManagementModule
+    AdminMovieManagementModule,
+    NgbModule,
+    RouterModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
