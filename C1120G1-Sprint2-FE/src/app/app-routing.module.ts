@@ -20,6 +20,7 @@ import {BookingInformationComponent} from './module/booking/booking-information/
 import {AccountInfoComponent} from './module/member/account-management/account-info/account-info.component';
 import {TransactionHistoryComponent} from './module/member/account-management/transaction-history/transaction-history.component';
 import {TicketsBookingComponent} from './module/member/account-management/tickets-booking/tickets-booking.component';
+import {MemberPageComponent} from './module/member/member-page/member-page.component';
 
 
 const routes: Routes = [
@@ -60,14 +61,14 @@ const routes: Routes = [
   {path: 'ticket-price', component: PriceTicketClientComponent},
 
   {
-    path: 'member', children: [
+    path: 'member', component: MemberPageComponent, children: [
       {
         path: 'info', component: AccountInfoComponent,
       }, {
         path: 'history', component: TransactionHistoryComponent,
       }, {
         path: 'booking', component: TicketsBookingComponent,
-      },
+      }
 
     ]
   }

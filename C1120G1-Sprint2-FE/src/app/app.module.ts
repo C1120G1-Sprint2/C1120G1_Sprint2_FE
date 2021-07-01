@@ -1,3 +1,4 @@
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
@@ -27,6 +28,7 @@ import { AdminMovieManagementModule} from './module/admin/admin-movie-management
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,13 +55,12 @@ import { AdminMovieManagementModule} from './module/admin/admin-movie-management
     RouterModule,
     FormsModule,
     NgbModule,
-    AdminMovieManagementModule,
-    NgbModule,
-    RouterModule
+    AdminMovieManagementModule
+
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
-//sss
+
