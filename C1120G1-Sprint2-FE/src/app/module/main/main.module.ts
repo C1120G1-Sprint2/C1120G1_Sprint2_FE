@@ -12,15 +12,19 @@ import { MovieCornerComponent } from './movie-corner/movie-corner.component';
 import { MainEventsComponent } from './main-events/main-events.component';
 import { MainInstructionsComponent } from './main-instructions/main-instructions.component';
 import { MainPolicyComponent } from './main-policy/main-policy.component';
-
+import {AdminRoutingModule} from '../admin/admin-routing.module';
 
 @NgModule({
   declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent, MainContentComponent, MovieTrailerComponent, MainSearchComponent, MovieCornerComponent, MainEventsComponent, MainInstructionsComponent, MainPolicyComponent],
+  exports: [
+    MainHeaderComponent,
+    MainFooterComponent
+  ],
   imports: [
     CommonModule,
-    AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminRoutingModule
   ]
 })
 export class MainModule {
