@@ -18,6 +18,8 @@ import {RouterModule} from "@angular/router";
 import {LoadingComponent} from './module/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
+import {FacebookLoginProvider} from 'angularx-social-login';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import {HttpClientModule} from '@angular/common/http';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    HttpClientModule,
+    SocialLoginModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
@@ -47,9 +51,19 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
 
   ],
-  providers: [],
+  // providers: [],
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('111111111111111') //need to chang FB Client Id
+        }
+      ]
+    } as SocialAuthServiceConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
-

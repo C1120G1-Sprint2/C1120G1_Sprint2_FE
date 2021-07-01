@@ -57,6 +57,10 @@ export class MemberManagementService {
     return this.httpClient.post<User>(this.API_URL_USER + '/create', user);
   }
 
+  createUserConfirmMail(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.API_URL_USER + '/createConfirm', user);
+  }
+
   editUser(user: UserEditPreview): Observable<UserEditPreview> {
     return this.httpClient.put<UserEditPreview>(this.API_URL_USER + '/edit', user);
   }
@@ -73,6 +77,10 @@ export class MemberManagementService {
   }
 
   sendEmailApprove(email: string): Observable<any>{
-    return this.httpClient.get(this.API_URL_USER + "/email?email=" + email );
+    return this.httpClient.get(this.API_URL_USER + "/email?email=" + email);
+  }
+
+  sendEmailConfirm(email: string): Observable<any>{
+    return this.httpClient.get(this.API_URL_USER + "/emailConfirm?email=" + email);
   }
 }
