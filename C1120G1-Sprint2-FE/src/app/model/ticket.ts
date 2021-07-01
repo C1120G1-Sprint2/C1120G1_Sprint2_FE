@@ -5,9 +5,10 @@ import {MovieTicket} from './movieTicket';
 
 export interface Ticket {
   ticketId: number;
-  createTime: string;
+  timeCreate: string;
   user: User;
   seat: Seat;
   ticketStatus: TicketStatus;
   movieTicket: MovieTicket;
+
 }
