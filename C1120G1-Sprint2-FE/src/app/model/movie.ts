@@ -1,4 +1,7 @@
+
 import {MovieStatus} from "./movieStatus";
+
+import {MovieCategory} from "./movieCategory";
 
 export interface Movie {
   movieId: number;
@@ -13,5 +16,8 @@ export interface Movie {
   trailer: string;
   movieStatus: MovieStatus;
   banner: string;
-  promote: number;
+  promote: boolean;
+  description: string;
+  movieCategorySet: MovieCategory[];
+  categories: string;
 }

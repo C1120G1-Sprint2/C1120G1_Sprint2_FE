@@ -19,6 +19,7 @@ import {LoadingComponent} from './module/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     AdminModule,
     EmployeeModule,
+    HttpClientModule,
     MemberModule,
     MainModule,
     SecurityModule,
@@ -43,11 +45,11 @@ import {HttpClientModule} from '@angular/common/http';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
-//sss
+
