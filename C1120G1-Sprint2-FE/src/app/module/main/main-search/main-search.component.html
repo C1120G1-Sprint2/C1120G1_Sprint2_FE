@@ -43,7 +43,7 @@
                           Khởi chiếu: {{movie.startDate}}
                         </p>
                         <div class="booking-btn">
-                          <a routerLink="/dat-ve/cau-hon" class="btn secondary text-center">ĐẶT VÉ</a>
+                          <a [routerLink]="['/booking/movie', movie.movieId]" class="btn secondary text-center">ĐẶT VÉ</a>
                         </div>
                       </div>
                     </a>
