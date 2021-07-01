@@ -8,10 +8,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MainModule} from '../main/main.module';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginGoogleComponent } from './login-google/login-google.component';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, LogoutComponent, LoginGoogleComponent],
+  declarations: [RegisterComponent, LoginComponent, LogoutComponent, LoginGoogleComponent, ConfirmEmailComponent],
   imports: [
     CommonModule,
     RouterModule,

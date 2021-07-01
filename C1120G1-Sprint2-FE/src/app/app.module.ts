@@ -13,6 +13,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 import {LoadingComponent} from './module/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
@@ -40,6 +42,12 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
     AngularFireDatabaseModule,
     HttpClientModule,
     SocialLoginModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
   // providers: [],
   providers: [{
@@ -49,7 +57,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
       providers: [
         {
           id: FacebookLoginProvider.PROVIDER_ID,
-          provider: new FacebookLoginProvider('310277720766688')
+          provider: new FacebookLoginProvider('111111111111111') //need to chang FB Client Id
         }
       ]
     } as SocialAuthServiceConfig}],

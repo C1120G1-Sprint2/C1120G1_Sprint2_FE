@@ -1,5 +1,6 @@
 import {Account} from './account';
 import {Ward} from './ward';
+import {Ticket} from "./ticket";
 
 export interface User {
   userId: number;
@@ -12,4 +13,5 @@ export interface User {
   avatarUrl: string;
   account: Account;
   ward: Ward;
+  ticketSet:Ticket[];
 }

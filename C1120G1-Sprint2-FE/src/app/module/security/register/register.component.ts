@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
 
   submitForm() {
     if (this.form.valid) {
-      this.memberManagementService.createUser(this.form.value).subscribe(
+      this.memberManagementService.createUserConfirmMail(this.form.value).subscribe(
         data => {
           this.router.navigateByUrl('/login');
           this.toastr.success('Hãy kiểm tra email và xác nhận tài khoản', 'Đăng kí thành công', {
@@ -72,6 +72,7 @@ export class RegisterComponent implements OnInit {
             progressBar: true,
             progressAnimation: 'increasing'
           });
+          this.sendMail();
         },
         error => {
           this.toastr.error('Hãy kiểm tra lại đăng kí', 'Đăng kí thất bại', {
@@ -152,8 +153,7 @@ export class RegisterComponent implements OnInit {
 
   sendMail() {
     if (this.form.valid) {
-      console.log(this.form.value.email);
-      this.memberManagementService.sendEmailApprove(this.form.value.email).subscribe(data => {
+      this.memberManagementService.sendEmailConfirm(this.form.value.email).subscribe(data => {
       });
     }
   }
