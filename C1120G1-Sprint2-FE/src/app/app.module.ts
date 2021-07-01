@@ -21,6 +21,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FacebookLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
     AppRoutingModule,
     AdminModule,
     EmployeeModule,
+    HttpClientModule,
     MemberModule,
     MainModule,
     SecurityModule,
@@ -47,7 +49,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+
   ],
   // providers: [],
   providers: [{

@@ -1,4 +1,4 @@
 export interface SeatType {
   seatTypeId: number;
-  seatTypeName: number;
+  seatTypeName: string;
 }

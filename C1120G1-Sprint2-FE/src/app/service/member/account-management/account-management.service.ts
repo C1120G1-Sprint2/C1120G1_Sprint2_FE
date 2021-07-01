@@ -3,6 +3,7 @@ import {User} from "../../../model/user";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Account} from "../../../model/account";
+import {AccountDTO} from "../../../model/accountDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,12 @@ export class AccountManagementService {
   getPasswordOld(username: string): Observable<Account> {
     return this.httpClient.get<Account>(this.API_URL_USER + '/account/'+ username);
   }
-  setNewPassword(username: string, newPassword: string): Observable<void> {
-    return this.httpClient.post<void>(this.API_URL_USER + '/setPass/' + username + '/' + newPassword, this.httpOptions);
+  setNewPassword(accountDTO: AccountDTO): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL_USER + '/setPass', accountDTO, this.httpOptions);
   }
+
+  sendEmailOTP(email: string): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_USER + '/sendEmailOTP?email=' +email, this.httpOptions);
+  }
+
 }

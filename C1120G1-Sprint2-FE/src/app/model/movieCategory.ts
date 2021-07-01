@@ -1,7 +1,6 @@
-import {Movie} from './movie';
 import {Category} from './category';
 
 export interface MovieCategory {
-  movie: Movie;
+  movieCategoryId: number;
   category: Category;
 }
