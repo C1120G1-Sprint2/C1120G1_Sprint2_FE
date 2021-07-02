@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MemberStatisticsComponent } from './member-statistics/member-statistics.component';
 import { CategoryStatisticsComponent } from './category-statistics/category-statistics.component';
 import { ShowtimeStatisticsComponent } from './showtime-statistics/showtime-statistics.component';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ShowtimeStatisticsComponent } from './showtime-statistics/showtime-stat
     CommonModule,
     AdminStatisticalManagementRoutingModule,
     ChartModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ]
 })
 export class AdminStatisticalManagementModule { }

@@ -14,7 +14,7 @@ const routes: Routes = [
         loadChildren: () => import('./employee-book-tickets-management/employee-book-tickets-management.module').then(module => module.EmployeeBookTicketsManagementModule)
       },
       {
-        path: 'sales/tickets',
+        path: 'sale/tickets',
         // tslint:disable-next-line:max-line-length
         loadChildren: () => import('./employee-sales-tickets-management/employee-sales-tickets-management.module').then(module => module.EmployeeSalesTicketsManagementModule)
       },
@@ -23,8 +23,8 @@ const routes: Routes = [
         // tslint:disable-next-line:max-line-length
         loadChildren: () => import('./employee-member-management/employee-member-management.module').then(module => module.EmployeeMemberManagementModule)
       },
-      {path: '', redirectTo: '', pathMatch: 'full'},
-      {path: '**', redirectTo: '', pathMatch: 'full'}
+      {path: '', redirectTo: 'sale/tickets', pathMatch: 'full'},
+      {path: '**', redirectTo: 'sale/tickets', pathMatch: 'full'}
     ]
   }
 ];

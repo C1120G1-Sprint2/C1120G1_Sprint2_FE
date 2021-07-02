@@ -1,3 +1,9 @@
+
+
+import {MovieStatus} from "./movieStatus";
+import {MovieCategory} from "./movieCategory";
+
+
 export interface Movie {
   movieId: number;
   posterMovie: string;
@@ -9,7 +15,13 @@ export interface Movie {
   director: string;
   movieLength: number;
   trailer: string;
-  movieStatus: number;
+  movieStatus: MovieStatus;
   banner: string;
-  promote: number;
+  promote: boolean;
+  description: string;
+  movieCategorySet: MovieCategory[];
+  categories: string;
+
 }
+
+

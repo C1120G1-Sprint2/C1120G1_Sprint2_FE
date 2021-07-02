@@ -17,8 +17,8 @@
 }
 .loader__filmstrip {
   position: relative;
-  width: 56px;
-  height: 70px;
+  width: 100px;
+  height: 140px;
   background: #f26c39;
   z-index: -1;
 }
@@ -27,7 +27,7 @@
   position: absolute;
   height: 120%;
   border-left: 5px dashed #F5F1ED;
-  -webkit-animation: roll 100ms infinite;
+  -webkit-animation: roll 300ms infinite;
   animation: roll 100ms infinite;
 }
 .loader__filmstrip:before {
