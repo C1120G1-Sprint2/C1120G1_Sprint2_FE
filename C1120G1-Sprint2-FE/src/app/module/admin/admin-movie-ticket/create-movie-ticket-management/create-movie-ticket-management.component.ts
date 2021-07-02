@@ -71,10 +71,10 @@ export class CreateMovieTicketManagementComponent implements OnInit {
     console.log(this.movieTickets);
     this.movieTicketManagementService.createMovieTicket(this.movieTickets).subscribe(data => {
       document.getElementById('closeModal3').click();
-      this.toast.success("Add successfully !", "Notification");
+      this.toast.success("Thêm mới thành công !", "Thông Báo ");
       console.log("data create" + data);
     }, error => {
-      this.toast.error("Error", "Notification");
+      this.toast.error("Lỗi !", "Thông Báo ");
     })
 
   }

@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserEditPreview} from "../../../model/userEditPreview";
 import {User} from "../../../model/user";
+import {TokenStorageService} from '../../security/token-storage.service';
 
 // import {UserEditPreview} from '../../../model/userEditPreview';
 
@@ -16,10 +17,12 @@ export class MemberManagementService {
   private API_URL_USER = 'http://localhost:8080/employee/listUser';
   httpOptions: any;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private tokenStorage: TokenStorageService) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ` + this.tokenStorage.getUser().token
       }),
       'Access-Control-Allow-Origin': 'http://localhost:4200/',
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -33,36 +36,36 @@ export class MemberManagementService {
    */
 
   getAllUsers(index: number): Observable<any> {
-    return this.httpClient.get(this.API_URL_USER + '/?index=' + index);
+    return this.httpClient.get(this.API_URL_USER + '/?index=' + index, this.httpOptions);
   }
 
-  getUserById(id: number): Observable<UserEditPreview> {
-    return this.httpClient.get<UserEditPreview>(this.API_URL_USER + '/' + id);
+  getUserById(id: number): Observable<any> {
+    return this.httpClient.get(this.API_URL_USER + '/' + id, this.httpOptions);
   }
 
   deleteUser(id: number): Observable<any> {
-    return this.httpClient.put<any>(this.API_URL_USER + '/delete/' + id, {});
+    return this.httpClient.put<any>(this.API_URL_USER + '/delete/' + id, {}, this.httpOptions);
   }
 
 
   getAllProvince(): Observable<any> {
-    return this.httpClient.get(this.API_URL_ADDRESS + '/provinces');
+    return this.httpClient.get(this.API_URL_ADDRESS + '/provinces', this.httpOptions);
   }
 
   getAllDistrictByProvinceId(id: number): Observable<any> {
-    return this.httpClient.get(this.API_URL_ADDRESS + '/districts/' + id);
+    return this.httpClient.get(this.API_URL_ADDRESS + '/districts/' + id, this.httpOptions);
   }
 
   getAllWardByDistrictId(id: number): Observable<any> {
-    return this.httpClient.get(this.API_URL_ADDRESS + '/wards/' + id);
+    return this.httpClient.get(this.API_URL_ADDRESS + '/wards/' + id, this.httpOptions);
   }
 
-  createUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.API_URL_USER + '/create', user);
+  createUser(user: User): Observable<any> {
+    return this.httpClient.post(this.API_URL_USER + '/create', user, this.httpOptions);
   }
 
-  editUser(user: UserEditPreview): Observable<UserEditPreview> {
-    return this.httpClient.put<UserEditPreview>(this.API_URL_USER + '/edit', user);
+  editUser(user: UserEditPreview): Observable<any> {
+    return this.httpClient.put(this.API_URL_USER + '/edit', user, this.httpOptions);
   }
 
   searchUserBySomething(keySearch: string): Observable<any> {
@@ -73,11 +76,11 @@ export class MemberManagementService {
   }
 
   findAllUsers(): Observable<any> {
-    return this.httpClient.get(this.API_URL_USER + '/getAll');
+    return this.httpClient.get(this.API_URL_USER + '/getAll', this.httpOptions);
   }
 
   sendEmailApprove(email: string): Observable<any> {
-    return this.httpClient.get(this.API_URL_USER + "/email?email=" + email);
+    return this.httpClient.get(this.API_URL_USER + "/email?email=" + email, this.httpOptions);
   }
 
 }

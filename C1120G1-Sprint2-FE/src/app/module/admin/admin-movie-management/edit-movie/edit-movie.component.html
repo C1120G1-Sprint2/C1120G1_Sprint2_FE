@@ -7,13 +7,10 @@
           <h2 class="tm-block-title d-inline-block mt-3">Chỉnh sửa phim</h2>
         </div>
       </div>
-
       <form (ngSubmit)="submit()" [formGroup]="formEditMovie">
-
         <div class="row tm-edit-product-row">
           <div class="col-xl-12 col-lg-12 col-md-12">
             <div class="tm-edit-product-form">
-
               <div class="form-group mb-3 mt-3">
                 <h3>Tên phim</h3>
                 <input
@@ -25,7 +22,6 @@
                      class="alert alert-danger">
                   <i class="fa fa-exclamation-circle"></i><i>Tên phim không được để trống</i>
                 </div>
-
               </div>
               <div class="form-group mb-3">
                 <h3>Poster</h3>
@@ -41,37 +37,31 @@
                   </div>
                 </div>
               </div>
-
               <div class="row">
                 <div class="form-group mb-3 col-xs-12 col-sm-6">
                   <h3>Ngày bắt đầu</h3>
                   <input
                     class="form-control" formControlName="startDate"
                     type="date"
-
                   />
                   <div
                     *ngIf="formEditMovie.controls.startDate.errors?.required && formEditMovie.controls.startDate.touched"
                     class="alert alert-danger">
                     <i class="fa fa-exclamation-circle"></i><i>Ngày bắt đầu không được để trống</i>
                   </div>
-
                 </div>
                 <div class="form-group mb-3 col-xs-12 col-sm-6">
                   <h3>Ngày kết thúc</h3>
                   <input
                     class="form-control" formControlName="endDate"
                     type="date"
-
                   />
                   <div *ngIf="formEditMovie.controls.endDate.errors?.required && formEditMovie.controls.endDate.touched"
                        class="alert alert-danger">
                     <i class="fa fa-exclamation-circle"></i><i>Ngày kết thúc không được để trống</i>
                   </div>
-
                 </div>
               </div>
-
               <div class="form-group mb-3">
                 <h3>Studio</h3>
                 <input
@@ -86,8 +76,6 @@
                 class="alert alert-danger">
                 <i class="fa fa-exclamation-circle"></i><i>Studio không được để trống</i>
               </div>
-
-
               <div class="form-group mb-3">
                 <h3>Diễn viên</h3>
                 <input
@@ -101,7 +89,6 @@
                    class="alert alert-danger">
                 <i class="fa fa-exclamation-circle"></i><i>Diễn viên không được để trống</i>
               </div>
-
               <div class="form-group mb-3">
                 <h3>Đạo diễn</h3>
                 <input
@@ -115,7 +102,6 @@
                    class="alert alert-danger">
                 <i class="fa fa-exclamation-circle"></i><i>Đạo diễn không được để trống</i>
               </div>
-
               <div class="form-group mb-3">
                 <h3>Độ dài</h3>
                 <input
@@ -130,7 +116,6 @@
                 class="alert alert-danger">
                 <i class="fa fa-exclamation-circle"></i><i>Độ dài không được để trống</i>
               </div>
-
               <div class="form-group mb-3">
                 <h3>Link trailer</h3>
                 <input
@@ -144,29 +129,27 @@
                    class="alert alert-danger">
                 <i class="fa fa-exclamation-circle"></i><i>Link trailer không được để trống</i>
               </div>
-
-<!--              <div class="form-group mb-3">-->
-<!--                <h3>Thể loại</h3>-->
-<!--                <table>-->
-<!--                  <tr>-->
-<!--                    <th *ngFor="let category of listCategory|slice: 0: 7"><input-->
-<!--                      (click)="selectCategory(category.categoryId)" class="ml-2"-->
-<!--                      type="checkbox"/> {{category.categoryName}}-->
-<!--                    </th>-->
-<!--                  </tr>-->
-<!--                  <tr>-->
-<!--                    <th *ngFor="let category of listCategory|slice: 8: 14"><input-->
-<!--                      (click)="selectCategory(category.categoryId)" class="ml-2"-->
-<!--                      type="checkbox"/> {{category.categoryName}}-->
-<!--                    </th>-->
-<!--                  </tr>-->
-<!--                </table>-->
-<!--              </div>-->
-
+              <div class="form-group mb-3">
+                <h3>Thể loại</h3>
+                <table>
+                  <tr>
+                    <th *ngFor="let category of listCategory|slice: 0: 7"><input
+                      (click)="selectCategory(category.categoryId)" class="ml-2"
+                      type="checkbox"/> {{category.categoryName}}
+                    </th>
+                  </tr>
+                  <tr>
+                    <th *ngFor="let category of listCategory|slice: 8: 14"><input
+                      (click)="selectCategory(category.categoryId)" class="ml-2"
+                      type="checkbox"/> {{category.categoryName}}
+                    </th>
+                  </tr>
+                </table>
+              </div>
               <div class="form-group mt-3">
                 <button class="btn btn-secondary mt-3" data-target="#exampleModal" data-toggle="modal" type="button">Huỷ
                 </button>
-                <button class="btn btn-warning ml-5 mt-3"
+                <button [disabled]="formEditMovie.invalid || categoryList.length === 0" class="btn btn-warning ml-5 mt-3"
                         data-ripple=""
                         type="submit" >Sửa
                 </button>
@@ -174,12 +157,9 @@
             </div>
           </div>
         </div>
-
       </form>
-
     </div>
   </div>
-
   <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog"
        tabindex="-1">
     <div class="modal-dialog" role="document">

@@ -13,9 +13,9 @@ import {MovieTicketDTO} from '../../../model/movieTicketDTO';
 })
 export class MovieTicketManagementService {
   API_URL_MOVIE_TICKET: string = 'http://localhost:8080/api/admin/movie-ticket';
-  API_URL_MOVIE: string = 'http://localhost:8080/api/admin/list-movie';
+  API_URL_MOVIE: string = 'http://localhost:8080/api/movie';
   API_URL_SHOW_TIME: string = 'http://localhost:8080/api/showTime';
-  API_URL_ROOM: string = 'http://localhost:8080/api/admin/room';
+  API_URL_ROOM: string = 'http://localhost:8080/api/room';
   API_URL_PROJECTION_TYPE: string = 'http://localhost:8080/api/admin/projection-type';
   httpOptions: any;
 

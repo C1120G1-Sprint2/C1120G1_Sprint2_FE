@@ -82,9 +82,9 @@ export class EditMovieTicketManagementComponent implements OnInit {
       // this.movieTicket = data;
       // console.log("id edit" + this.movieTicketId);
       this.dialogRef.close();
-      this.toastr.success("Edit successfully", "Notification");
+      this.toastr.success("Chỉnh sửa thành công !", "Thông Báo");
     }, error => {
-      this.toastr.warning("Error !", "Notification");
+      this.toastr.warning("Lỗi !", "Thông Báo");
     })
   }
   close() {

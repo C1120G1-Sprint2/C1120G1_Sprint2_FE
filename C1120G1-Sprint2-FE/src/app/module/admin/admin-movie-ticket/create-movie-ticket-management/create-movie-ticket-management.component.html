@@ -31,8 +31,6 @@
         <tr>
           <th class="col-3">Loại Chiếu <span style="color: red;">*</span></th>
           <td class="col-7">
-          <th>Loại Chiếu <span style="color: red;">*</span></th>
-          <td>
             <select class="form-control" formControlName="projectionType">
               <option value="" selected disabled>Vui lòng loại chiếu</option>
               <option *ngFor="let projectionType of projectionTypes" [ngValue]="projectionType">{{projectionType.projectionName}}</option>

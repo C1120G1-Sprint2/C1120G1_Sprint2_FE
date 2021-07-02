@@ -7,6 +7,7 @@ import {Movie} from '../../../../model/movie';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrService} from 'ngx-toastr';
+import {Category} from '../../../../model/category';
 
 
 // @ts-ignore
@@ -17,6 +18,8 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class EditMovieComponent implements OnInit {
 
+  public moviePatch: Movie = null;
+  public listCategory: Category[];
   public movieId: number;
   public formEditMovie: FormGroup;
   public imagePoster = null;
@@ -27,7 +30,7 @@ export class EditMovieComponent implements OnInit {
   public movie: Movie;
   private messageImageError: string;
   private image: any;
-
+  public categoryList: number[] = [];
   constructor(
     private movieService: MovieManagementService,
     private activatedRoute: ActivatedRoute,
@@ -36,11 +39,8 @@ export class EditMovieComponent implements OnInit {
     private storage: AngularFireStorage
   ) {
   }
-
   ngOnInit(): void {
-
     this.movieId = this.activatedRoute.snapshot.params['movieId'];
-
     this.formEditMovie = new FormGroup({
       movieId: new FormControl(''),
       movieName: new FormControl('', [Validators.required]),
@@ -53,24 +53,28 @@ export class EditMovieComponent implements OnInit {
       movieLength: new FormControl('', [Validators.required]),
       trailer: new FormControl('', [Validators.required])
     });
-
-    this.movieService.getMovieById(this.movieId).subscribe(movie => {
-      this.formEditMovie.controls.movieId.setValue(movie.movieId);
-      this.formEditMovie.controls.movieName.setValue(movie.movieName);
-      this.formEditMovie.controls.posterMovie.setValue(movie.posterMovie);
-      this.imagePoster = movie.posterMovie;
-      this.formEditMovie.controls.startDate.setValue(movie.startDate);
-      this.formEditMovie.controls.endDate.setValue(movie.endDate);
-      this.formEditMovie.controls.movieStudio.setValue(movie.movieStudio);
-      this.formEditMovie.controls.actor.setValue(movie.actor);
-      this.formEditMovie.controls.director.setValue(movie.director);
-      this.formEditMovie.controls.movieLength.setValue(movie.movieLength);
-      this.formEditMovie.controls.trailer.setValue(movie.trailer);
-
+    this.movieService.getMovieById(this.movieId).subscribe(movieDTO => {
+      for (let i = 0; i < movieDTO.length; i++) {
+        this.moviePatch = movieDTO[i].movie;
+      }
+      this.formEditMovie.controls.movieId.setValue(this.movieId);
+      this.formEditMovie.controls.movieName.setValue(this.moviePatch.movieName);
+      this.formEditMovie.controls.posterMovie.setValue(this.moviePatch.posterMovie);
+      this.imagePoster = this.moviePatch.posterMovie;
+      this.formEditMovie.controls.startDate.setValue(this.moviePatch.startDate);
+      this.formEditMovie.controls.endDate.setValue(this.moviePatch.endDate);
+      this.formEditMovie.controls.movieStudio.setValue(this.moviePatch.movieStudio);
+      this.formEditMovie.controls.actor.setValue(this.moviePatch.actor);
+      this.formEditMovie.controls.director.setValue(this.moviePatch.director);
+      this.formEditMovie.controls.movieLength.setValue(this.moviePatch.movieLength);
+      this.formEditMovie.controls.trailer.setValue(this.moviePatch.trailer);
       console.log(this.formEditMovie);
     });
+    this.movieService.getCategory().subscribe(category => {
+      this.listCategory = category;
+    });
+    console.log(this.categoryList);
   }
-
   submit() {
     this.endDateCompare = this.formEditMovie.value.endDate;
     this.startDateCompare = this.formEditMovie.value.startDate;
@@ -91,28 +95,48 @@ export class EditMovieComponent implements OnInit {
               fileRef.getDownloadURL().subscribe((url) => {
                   this.formEditMovie.value.posterMovie = url;
                   console.log(this.formEditMovie.value);
-                  this.movieService.formEditMovie(this.formEditMovie.value).subscribe(data => {
-                    this.toast.success('Sửa thành công!');
-                    this.router.navigate(['/admin/movie/movie-list']);
-                  });
+                  if (this.categoryList.length > 0) {
+                    // tslint:disable-next-line:prefer-for-of
+                    for (let i = 0; i < this.categoryList.length; i++) {
+                      const movieDTO: MovieDTO = {
+                        movie: this.formEditMovie.value,
+                        categoryId: this.categoryList[i]
+                      };
+                      this.listMovieDTO.push(movieDTO);
+                    }
+                    console.log(this.listMovieDTO);
+                    this.movieService.formEditMovie(this.listMovieDTO).subscribe(data => {
+                      this.toast.success('Sửa thành công!');
+                      this.router.navigate(['/admin/movie/movie-list']);
+                    });
+                  }
                 }
               );
             })).subscribe();
         }
       } else {
-        this.movieService.formEditMovie(this.formEditMovie.value).subscribe(data => {
-          this.toast.success('Sửa thành công!');
-          this.router.navigate(['/admin/movie/movie-list']);
-        });
+        if (this.categoryList.length > 0) {
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < this.categoryList.length; i++) {
+            const movieDTO: MovieDTO = {
+              movie: this.formEditMovie.value,
+              categoryId: this.categoryList[i]
+            };
+            this.listMovieDTO.push(movieDTO);
+          }
+          console.log(this.listMovieDTO);
+          this.movieService.formEditMovie(this.listMovieDTO).subscribe(data => {
+            this.toast.success('Sửa thành công!');
+            this.router.navigate(['/admin/movie/movie-list']);
+          });
+        }
       }
     }
   }
-
   removeImage() {
     this.imagePoster = null;
     this.selectedImage = null;
   }
-
   showImage(image) {
     if (image.target.files && image.target.files[0]) {
       const file = image.target.files[0].name;
@@ -131,6 +155,13 @@ export class EditMovieComponent implements OnInit {
     } else {
       this.selectedImage = null;
       this.messageImageError = '*Không được bỏ trống ảnh';
+    }
+  }
+  selectCategory(categoryId: number) {
+    if (this.categoryList.includes(categoryId)) {
+      this.categoryList.splice(this.categoryList.indexOf(categoryId), 1);
+    } else {
+      this.categoryList.push(categoryId);
     }
   }
 }

@@ -73,9 +73,9 @@ export class ListMovieTicketManagementComponent implements OnInit {
       this.pageClicked = page;
       this.totalPages = dataSearch.totalPages;
       this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
-      this.toast.success("Search Successfully !", "Notification");
+      this.toast.success("Tìm kiếm thành công !", "Thông Báo");
     }, error => {
-      this.toast.error("Not Found", "Notification");
+      this.toast.error("Không tìm thấy dữ liệu !", "Thông Báo");
     })
   }
 
@@ -114,7 +114,7 @@ export class ListMovieTicketManagementComponent implements OnInit {
       this.totalPages = data.totalPages;
       this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
       if (data === null) {
-        this.toast.warning("No find data in DB", "Notification", {
+        this.toast.warning("Không tìm thấy dữ liệu !", "Thông Báo", {
           timeOut: 5000,
           progressAnimation: "increasing"
         });

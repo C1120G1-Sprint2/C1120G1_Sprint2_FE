@@ -24,8 +24,8 @@ export class MovieManagementService {
     };
   }
 
-  public formEditMovie(movie: Movie): Observable<Movie>{
-    return this.http.put<any>(this.baseUrl + '/edit_movie', movie);
+  public formEditMovie(listMovieDTO: MovieDTO[]): Observable<Movie>{
+    return this.http.put<any>(this.baseUrl + '/edit_movie', listMovieDTO);
   }
 
   public formAddMovie(listMovieDTO: MovieDTO[]): Observable<Movie>{
