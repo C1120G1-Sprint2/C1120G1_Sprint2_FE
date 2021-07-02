@@ -1,0 +1,159 @@
+<div class="container-fluid" id="fluid">
+  <div id="follow-div">
+    <div class="follow">
+      <p class="follow-title">vui lòng xác nhận</p>
+    </div>
+  </div>
+
+  <hr class="d-inline-block"
+      style="width: 99%; height: 1px; background-color: lightgray">
+  <div class="container-fluid row p-0 m-0" *ngIf="movieTicket">
+    <div class="col-lg-3 col-md-4" id="img-div">
+      <p class="movie-picked-title" style="font-size: 1.3rem">Thông tin đặt vé</p>
+      <img class="border border-secondary" [src]="movieTicket.movie.posterMovie"
+           alt="img">
+    </div>
+    <div class="col-lg-7 col-md-8 pl-3">
+      <table class="table table-hover" id="table-booking-infor">
+        <thead class="text-center">
+        <tr>
+          <td colspan="2">
+            <span style="color: red" class="movie-picked-title">{{movieTicket.movie.movieName}}</span>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Rạp</td>
+          <td>
+            <p style="color: red">{{movieTicket.room.roomName}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Ngày chiếu</td>
+          <td style="color: red">{{movieTicket.showDate | date: "dd-MM-yyyy"}}</td>
+        </tr>
+        <tr>
+          <td>Giờ chiếu</td>
+          <td style="color: red">{{movieTicket.showTime.showTime}}</td>
+        </tr>
+        <tr>
+          <td>Ghế</td>
+          <td>
+            <label *ngFor="let seat of listSeat;index as i" style="color: red" class="mr-2">{{seat.row.rowName}}{{seat.column.columnName}}
+              <label *ngIf="i !== listSeat.length-1">,</label>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Vé</td>
+          <td>
+            <div class="col-12 row m-0 p-0">
+              <div class="col-6">
+                <p>
+                  <strong>Số ghế</strong>
+                </p>
+                <p style="color: red" *ngFor="let seat of listSeat">{{seat.row.rowName}}{{seat.column.columnName}}</p>
+                <p>
+                  <strong>Tổng tiền</strong>
+                </p>
+              </div>
+              <div class="col-6">
+                <p>
+                  <strong>Giá vé</strong>
+                </p>
+                <p *ngFor="let seat of listSeat">{{priceTicket(seat.seatType.seatTypeId)|number}} VNĐ</p>
+                <p>
+                  <strong style="color: red">{{totalPriceTicket(listSeat)|number}} VNĐ</strong>
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <table *ngIf="user !== null" class="table table-hover" id="table-personal-info">
+        <thead>
+        <tr>
+          <td colspan="2">
+            <p class="movie-picked-title" style="font-size: 1.3rem">kiểm tra thông tin cá nhân</p>
+          </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Họ và tên</td>
+          <td class="text-uppercase">{{user.name}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <td>Số điện thoại</td>
+          <td>{{user.phone}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <form [formGroup]="createTicketUserNoAccount" ngNoForm>
+        <table *ngIf="user === null" class="table table-hover" id="table-personal-info1">
+          <thead>
+          <tr>
+            <td colspan="2">
+              <p class="movie-picked-title" style="font-size: 1.3rem">kiểm tra thông tin cá nhân</p>
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Họ và tên</td>
+            <td>
+              <input placeholder="Nhập họ và tên" class="form-control" formControlName="name" type="text">
+              <div *ngIf="name.invalid && (name.dirty||name.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!name.errors.required">*Bạn chưa nhập họ và tên !</span>
+                <span style="color: red" [hidden]="!name.errors.pattern">*Bạn nhập họ tên không hợp lệ!</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>
+              <input placeholder="Nhập email"  class="form-control" formControlName="email" type="text">
+              <div *ngIf="email.invalid && (email.dirty||email.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!email.errors.required">*Bạn chưa nhập email !</span>
+                <span style="color: red" [hidden]="!email.errors.pattern">*Bạn nhập email không hợp lệ !</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Số điện thoại</td>
+            <td>
+              <input placeholder="Nhập số điện thoại" class="form-control" formControlName="phone" type="text">
+              <div *ngIf="phone.invalid && (phone.dirty||phone.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!phone.errors.required">*Bạn chưa nhập số điện thoại !</span>
+                <span style="color: red" [hidden]="!phone.errors.pattern">*Bạn nhập số điện thoại không hợp lệ!</span>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  <div id="btnConfirm" class="text-center">
+    <a routerLink="/seat">
+      <button (click)="back()" class="btn btn-outline-primary rounded-pill mb-5" type="button">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-left"></i>
+        </span>
+      </button>
+    </a>
+    <button (click)="createTicket()" class="btn btn-outline-success rounded-pill mb-5" style="font-size: 23px" type="button">
+        <span class="ticket">
+          <i class="fas fa-ticket-alt"></i>
+        </span>
+      Xác nhận bán vé
+    </button>
+  </div>
+</div>
