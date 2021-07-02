@@ -3,7 +3,7 @@
     <div class="col- mr-3">
       <div class="form-group">
         <label>Thống kê theo</label>
-        <select class="form-control" [(ngModel)]="statBy">
+        <select class="form-control" [(ngModel)]="statBy" (change)="resetValidate()">
           <option [ngValue]="1">Ngày</option>
           <option [ngValue]="2">Tháng</option>
           <option [ngValue]="3">Năm</option>
@@ -64,7 +64,7 @@
       <button class="btn btn-outline-primary" (click)="onStatByDate()" *ngIf="statBy === 1">Thống Kê</button>
       <button class="btn btn-outline-primary" (click)="onStatByMonth()" *ngIf="statBy === 2">Thống Kê</button>
       <button class="btn btn-outline-primary" (click)="onStatByYear()" *ngIf="statBy === 3">Thống Kê</button>
-      <span *ngIf="dateValidate == true" class="small text-danger ml-3">Ngày kết thúc phải lớn hơn hoặc bẳng ngày bắt
+      <span *ngIf="dateValidate" class="small text-danger ml-3">Ngày kết thúc phải lớn hơn hoặc bẳng ngày bắt
         đầu</span>
     </div>
   </div>
@@ -77,6 +77,8 @@
     </ng-template>
   </div>
 
+  <hr>
+
   <div class="form-group row">
     <div class="col- ml-4 mt-3">
       <select class="form-control" [(ngModel)]="movieTop" (change)="onMovieTop()">
@@ -88,7 +90,8 @@
   </div>
   <div class="card p-3 m-2">
     <h5>Top {{movieTop}} phim được xem nhiều nhất</h5>
-    <p-chart type="bar" [data]="multiAxisDataTop" [options]="multiAxisOptionsTop" *ngIf="chartHideTop == false; else nodata">
+    <p-chart type="bar" [data]="multiAxisDataTop" [options]="multiAxisOptionsTop"
+      *ngIf="chartHideTop == false; else nodata">
     </p-chart>
     <ng-template #nodata>
       <div class="small text-danger text-center">Không có dữ liệu thống kê</div>

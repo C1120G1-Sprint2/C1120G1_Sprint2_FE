@@ -173,7 +173,10 @@ export class MovieStatisticsComponent implements OnInit {
           id: 'y-axis-1',
           ticks: {
             min: 0,
-            precision: 0
+            precision: 0,
+            callback: function (value, index, values) {
+              return value.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+            }
           }
         }, {
           type: 'linear',
@@ -220,11 +223,18 @@ export class MovieStatisticsComponent implements OnInit {
           },
           ticks: {
             min: 0,
-            precision: 0
+            precision: 0,
+            callback: function (value, index, values) {
+              return value.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+            }
           }
         }]
       }
     };
+  }
+
+  resetValidate() {
+    this.dateValidate = false;
   }
 
   checkMonth(month: number, year: number) {
