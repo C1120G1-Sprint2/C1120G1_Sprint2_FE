@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-=======
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -11,7 +9,6 @@
   </component>
 </module>
     
->>>>>>> 3343e02f0b4769af90e4057c4f7b3d31a72a9470
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
@@ -22,8 +19,4 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
-<<<<<<< HEAD
 </module>
-=======
-</module>
->>>>>>> 3343e02f0b4769af90e4057c4f7b3d31a72a9470
