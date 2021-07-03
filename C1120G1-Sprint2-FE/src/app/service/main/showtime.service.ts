@@ -8,7 +8,7 @@ import {ShowTime} from "../../model/showTime";
 })
 export class ShowtimeService {
 
-  private API_SHOWTIME_URL = "http://localhost:8080/api/showtime";
+  private API_SHOWTIME_URL = "http://localhost:8080/api/showTime";
 
   constructor(private httpClient: HttpClient) {
   }

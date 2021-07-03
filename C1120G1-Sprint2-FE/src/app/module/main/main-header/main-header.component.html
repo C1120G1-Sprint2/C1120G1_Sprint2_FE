@@ -32,7 +32,7 @@
                       <a class="register" routerLink="/register" tabindex>Đăng ký</a>
                     </li>
                     <li>
-                      <a class="login" routerLink="/login" tabindex>Đăng nhập</a>
+                      <a class="login" routerLink="/login" tabindex *ngIf="!username">Đăng nhập</a>
                     </li>
                   </ul>
                 </div>

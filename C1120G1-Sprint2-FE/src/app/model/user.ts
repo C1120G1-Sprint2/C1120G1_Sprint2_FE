@@ -1,6 +1,5 @@
 import {Account} from './account';
 import {Ward} from './ward';
-import {Ticket} from "./ticket";
 
 export interface User {
   userId: number;
