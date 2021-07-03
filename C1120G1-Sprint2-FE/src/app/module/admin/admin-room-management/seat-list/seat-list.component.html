@@ -1,0 +1,44 @@
+<div class="container-fluid body">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3" *ngIf="roomDetail">
+          <p class="title">Chi tiết của phòng {{roomDetail.roomName}}</p>
+          <a href="#" class="btn btn-success"><i class="fas fa-plus-circle"></i> Thêm ghế</a>
+          <a routerLink='/admin/room' class="btn btn-secondary mt-3">Trở về danh sách phòng chiếu</a>
+        </div>
+        <div class="col-md-6 mt-3">
+          <button class="btn" style="background-color: greenyellow">Ghế thường</button>
+          <button class="btn ml-4" style="background-color: red; color: white">Ghế vip</button>
+          <br>
+          <div class="table table-responsive" style="text-align: center">
+            <button class="mt-4" style=";padding: 20px 200px 20px 200px;color: gray;">Màn hình</button>
+            <table *ngIf="roomSeatList" class="table table-borderless mt-4" style="border: 1px solid dodgerblue">
+              <tr *ngFor="let row of rowList" >
+                <td *ngFor="let roomSeat of roomSeatList | slice:(row.rowId - 1) * 10 : row.rowId * 10">
+                  <div class="dropdown show">
+                    <a class="btn dropdown-toggle" *ngIf="roomSeat.seat.seatType.seatTypeId === 2; else elseBlock"
+                       style="background-color: red;color: white" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                      {{roomSeat.seat.row.rowName + roomSeat.seat.column.columnName}}
+                    </a>
+                    <ng-template #elseBlock>
+                      <a class="btn dropdown-toggle" data-toggle="dropdown"
+                         style="background-color: greenyellow;">
+                        {{roomSeat.seat.row.rowName + roomSeat.seat.column.columnName}}
+                    </a>
+                    </ng-template>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" (click)="changeColor(roomSeat.seat)">Chuyển trạng thái ghế</a>
+                      <a class="dropdown-item" (click)="deleteSeat(roomSeat.roomSeatId)">Xóa ghế</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

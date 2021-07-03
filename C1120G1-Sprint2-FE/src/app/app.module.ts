@@ -1,23 +1,26 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {AdminModule} from './module/admin/admin.module';
-import {EmployeeModule} from './module/employee/employee.module';
-import {MemberModule} from './module/member/member.module';
-import {MainModule} from './module/main/main.module';
-import {SecurityModule} from './module/security/security.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireStorageModule} from '@angular/fire/storage';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {environment} from '../environments/environment';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import {LoadingComponent} from './module/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AdminModule } from './module/admin/admin.module';
+import { EmployeeModule } from './module/employee/employee.module';
+import { MemberModule } from './module/member/member.module';
+import { MainModule } from './module/main/main.module';
+import { SecurityModule } from './module/security/security.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+import { LoadingComponent } from './module/loading/loading.component';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     AdminModule,
     EmployeeModule,
+    HttpClientModule,
     MemberModule,
     MainModule,
     SecurityModule,
@@ -41,9 +45,6 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
