@@ -1,3 +1,6 @@
+import {MainEventsComponent} from './module/main/main-events/main-events.component';
+import {MainInstructionsComponent} from './module/main/main-instructions/main-instructions.component';
+import {MainPolicyComponent} from './module/main/main-policy/main-policy.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainHomePageComponent} from './module/main/main-home-page/main-home-page.component';
@@ -21,16 +24,22 @@ import {AccountInfoComponent} from './module/member/account-management/account-i
 import {TransactionHistoryComponent} from './module/member/account-management/transaction-history/transaction-history.component';
 import {TicketsBookingComponent} from './module/member/account-management/tickets-booking/tickets-booking.component';
 import {MemberPageComponent} from './module/member/member-page/member-page.component';
-
+import {MovieCornerComponent} from './module/main/movie-corner/movie-corner.component';
 
 const routes: Routes = [
   {
     path: 'admin',
-    loadChildren: () => import('./module/admin/admin.module').then(module => module.AdminModule)
+    loadChildren: () =>
+      import('./module/admin/admin.module').then(
+        (module) => module.AdminModule
+      ),
   },
   {
     path: 'employee',
-    loadChildren: () => import('./module/employee/employee.module').then(module => module.EmployeeModule)
+    loadChildren: () =>
+      import('./module/employee/employee.module').then(
+        (module) => module.EmployeeModule
+      ),
   },
   {
     path: '',
@@ -38,12 +47,17 @@ const routes: Routes = [
     children: [
       {path: '', component: MainContentComponent},
       {path: 'search', component: MainSearchComponent},
-      {path: 'detail-movie/:id', component: DetailMovieComponent}
-    ]
+      {path: 'detail-movie/:id', component: DetailMovieComponent},
+      {path: 'movie-corner', component: MovieCornerComponent},
+      {path: 'events', component: MainEventsComponent},
+      {path: 'instructions', component: MainInstructionsComponent},
+      {path: 'policy', component: MainPolicyComponent},
+    ],
   },
-  {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent},
-  {path: 'register', component: RegisterComponent},
+
+      {path: 'login', component: LoginComponent},
+      {path: 'logout', component: LogoutComponent},
+      {path: 'register', component: RegisterComponent},
 
   {
     path: 'booking',
@@ -72,12 +86,11 @@ const routes: Routes = [
 
     ]
   }
-
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

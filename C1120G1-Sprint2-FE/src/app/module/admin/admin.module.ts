@@ -8,10 +8,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {AdminMovieTicketModule} from './admin-movie-ticket/admin-movie-ticket.module';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
-
 import { MainModule } from '../main/main.module';
-
-
 
 @NgModule({
   declarations: [AdminPageComponent],
