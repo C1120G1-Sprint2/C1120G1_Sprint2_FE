@@ -1,0 +1,9 @@
+#home-contents {
+    background-image: url("../../../../assets/layout-images/background-with-bokeh-light-effect.jpg");
+    background-position: right bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -999;
+    padding-bottom: 80px;
+  }

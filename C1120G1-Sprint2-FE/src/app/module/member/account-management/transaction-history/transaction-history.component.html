@@ -2,64 +2,22 @@
 <div class="container-fluid">
   <div class="row">
     <!--    account-manager start-->
-    <div class=" container-fluid  col-lg-4" style="background-color:rgba(168,162,161,0.15)">
+    <div class=" container-fluid  col-lg-3" style="background-color:rgba(168,162,161,0.15)">
       <app-nav-bar-account-manager></app-nav-bar-account-manager>
     </div>
     <!--    account-manager end-->
     <br>
-    <div class="container-fluid col-lg-8">
+    <div class="container-fluid col-lg-9">
       <!--            <div class="card" style="border-style: solid; border-color: coral">-->
       <div class="card-title">LỊCH SỬ CỘNG ĐIỂM VÀ SỬ DỤNG ĐIỂM</div>
       <div class="card-body">
         <div>
           <form>
-            <table class="table table-hover table-borderless">
-              <tbody>
-              <tr>
-                <td style="width: 220px">
-                  <label for="startDate">Ngày Bắt Đầu</label>
-                  <span style="color: red" class="asterisk-red">(*):</span>
-
-                </td>
-                <td>
-                  <input type="date" style="width: 300px" class="form-control"
-                         placeholder="10/6/2021"
-                         id="startDate"/>
-                </td>
-              </tr>
-              <tr>
-                <td style="width: 220px">
-                  <label for="endDate">Ngày Kết Thúc</label>
-                  <span style="color: red" class="asterisk-red">(*):</span>
-
-                </td>
-                <td>
-                  <input type="date" style="width: 300px" class="form-control"
-                         placeholder="10/6/2021"
-                         id="endDate"/>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>
-                  <input type="radio" class="form-check-input" value=true/>Lịch Sử Cộng Điểm
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>
-                  <input type="radio" class="form-check-input" value=true/>Lịch Sử Dùng Điểm
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>
-                  <button type="submit" class="btn btn-primary">Xem Điểm</button>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-
+            <div class="row float-right">
+              <input type="text" (input)="inputKeySearch($event.target.value)" placeholder="Tìm Theo Tên Phim">
+              <button (click)="searchNameMovie()" class="form-check-inline badge-info" >Search</button>
+            </div>
+            <br>
             <br>
             <!-- --------------------------                       ---------------->
             <table class="table table-hover">

@@ -4,3 +4,8 @@
     <option name="languageLevel" value="ES6" />
   </component>
 </project>
+  <project>
+  <component name="ProjectRootManager" version="2" project-jdk-name="16" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -12,10 +12,12 @@ import {MatRadioModule} from '@angular/material/radio';
 import { EmployeeEditUserComponent } from './employee-edit-user/employee-edit-user.component';
 import { EmployeeDeleteUserComponent } from './employee-delete-user/employee-delete-user.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
-  declarations: [EmployeeListUserComponent, EmployeeCreateUserComponent, EmployeeEditUserComponent, EmployeeDeleteUserComponent],
+  declarations: [EmployeeListUserComponent, EmployeeCreateUserComponent,
+    EmployeeEditUserComponent, EmployeeDeleteUserComponent],
     imports: [
         CommonModule,
         EmployeeMemberManagementRoutingModule,
@@ -25,6 +27,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatFormFieldModule,
         MatSelectModule,
         MatRadioModule,
+        RouterModule,
         MatPaginatorModule,
     ]
 })

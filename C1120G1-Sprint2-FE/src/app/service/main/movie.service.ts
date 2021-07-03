@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Movie} from 'src/app/model/movie';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Movie } from 'src/app/model/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +48,12 @@ export class MovieService {
     if (form.time) {
       showTimeId = form.time.showTimeId;
     }
+
     let url = this.API_MOVIE_URL + "/advancedSearch?q=" + form.keySearch + "&categoryId=" + categoryId +
       "&date=" + form.date + "&showTimeId=" + showTimeId + "&page=" + page + "&size=" + size;
+
+    console.log(url);
+
     return this.httpClient.get<any>(url);
   }
 

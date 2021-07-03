@@ -2,19 +2,21 @@
   <!--Carousel-->
   <div id="main-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
     <ol class="carousel-indicators">
-      <li data-target="#main-carousel" *ngFor="let movie of promotingMovies; let i = index"
-          data-slide-to="i" [ngClass]="i == 0? 'active': ''"></li>
+      <li data-target="#main-carousel" *ngFor="let movie of promotingMovies; let i = index" data-slide-to="i"
+          [ngClass]="i == 0? 'active': ''"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
-      <a *ngFor="let movie of promotingMovies; let i = index" class="carousel-item" role="option"
-         [routerLink]="['/detail-movie', movie.movieId]" [ngClass]="i == 0? 'active': ''">
-        <img [src]="movie.banner" alt="">
+      <div *ngFor="let movie of promotingMovies; let i = index" class="carousel-item" role="option"
+           [ngClass]="i == 0? 'active': ''">
+        <a [routerLink]="['/detail-movie', movie.movieId]">
+          <img [src]="movie.banner" alt="">
+        </a>
         <div class="container content-wrap">
           <div class="play-bt trailer-bt-banner" (click)="openTrailer(movie.trailer)">
             <button class="btn primary animated fadeInUp c11-trailer" (click)="openTrailer(movie.trailer)"></button>
           </div>
         </div>
-      </a>
+      </div>
     </div>
     <a href="#main-carousel" class="left carousel-control-prev" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -25,7 +27,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div class="top-list">
+  <div class="top-list" *ngIf="top3Movies.length >= 3">
     <div class="top-sale">
       <div class="top-sale-header">
         <div class="title">
@@ -42,16 +44,18 @@
         <div class="row m-0 h-100">
           <div class="col h-100 px-2">
             <div class="last top-2">
-              <a [routerLink]="['/detail-movie', this.top3Movies[1].movieId]">
-                <img [src]="this.top3Movies[1].posterMovie" alt="">
+              <a [routerLink]="['/detail-movie', top3Movies[1].movieId]">
+                <img [src]="top3Movies[1].posterMovie" alt="">
                 <img class="tag" src="../../../../assets/layout-images/top-2.png" alt="top-2">
                 <div class="movie-hover">
-                  <p class="title-hover">{{this.top3Movies[1].movieName}}</p>
-                  <p class="categories-hover">Thể loại: {{this.top3Movies[1].categories}}<br>
-                    Khởi chiếu: {{this.top3Movies[1].startDate}}
+                  <p class="title-hover">{{top3Movies[1].movieName}}</p>
+                  <p class="categories-hover">Thể loại: {{top3Movies[1].categories}}<br>
+                    Khởi chiếu: {{top3Movies[1].startDate}}
                   </p>
                   <div class="booking-btn">
-                    <a routerLink="/dat-ve/cau-hon" class="btn secondary text-center">ĐẶT VÉ</a>
+                    <a [routerLink]="['/booking/movie', this.top3Movies[1].movieId]" class="btn secondary text-center">ĐẶT VÉ</a>
+<!--                    <a [routerLink]="['/booking/movie', top3Movies[1].movieId]" class="btn secondary text-center">ĐẶT-->
+<!--                      VÉ</a>-->
                   </div>
                 </div>
               </a>
@@ -59,16 +63,18 @@
           </div>
           <div class="col h-100 px-2">
             <div class="last top-1">
-              <a [routerLink]="['/detail-movie', this.top3Movies[0].movieId]">
-                <img [src]="this.top3Movies[0].posterMovie" alt="">
+              <a [routerLink]="['/detail-movie', top3Movies[0].movieId]">
+                <img [src]="top3Movies[0].posterMovie" alt="">
                 <img class="tag" src="../../../../assets/layout-images/top-1.png" alt="top-1">
                 <div class="movie-hover">
-                  <p class="title-hover">{{this.top3Movies[0].movieName}}</p>
-                  <p class="categories-hover">Thể loại: {{this.top3Movies[0].categories}}<br>
-                    Khởi chiếu: {{this.top3Movies[0].startDate}}
+                  <p class="title-hover">{{top3Movies[0].movieName}}</p>
+                  <p class="categories-hover">Thể loại: {{top3Movies[0].categories}}<br>
+                    Khởi chiếu: {{top3Movies[0].startDate}}
                   </p>
                   <div class="booking-btn">
-                    <a routerLink="/dat-ve/cau-hon" class="btn secondary text-center">ĐẶT VÉ</a>
+                    <a [routerLink]="['/booking/movie', this.top3Movies[0].movieId]" class="btn secondary text-center">ĐẶT VÉ</a>
+<!--                    <a [routerLink]="['/booking/movie', top3Movies[0].movieId]" class="btn secondary text-center">ĐẶT-->
+<!--                      VÉ</a>-->
                   </div>
                 </div>
               </a>
@@ -76,16 +82,18 @@
           </div>
           <div class="col h-100 px-2">
             <div class="last top-3">
-              <a [routerLink]="['/detail-movie', this.top3Movies[2].movieId]">
-                <img [src]="this.top3Movies[2].posterMovie" alt="">
+              <a [routerLink]="['/detail-movie', top3Movies[2].movieId]">
+                <img [src]="top3Movies[2].posterMovie" alt="">
                 <img class="tag" src="../../../../assets/layout-images/top-3.png" alt="top-3">
                 <div class="movie-hover">
-                  <p class="title-hover">{{this.top3Movies[2].movieName}}</p>
-                  <p class="categories-hover">Thể loại: {{this.top3Movies[2].categories}}<br>
-                    Khởi chiếu: {{this.top3Movies[2].startDate}}
+                  <p class="title-hover">{{top3Movies[2].movieName}}</p>
+                  <p class="categories-hover">Thể loại: {{top3Movies[2].categories}}<br>
+                    Khởi chiếu: {{top3Movies[2].startDate}}
                   </p>
                   <div class="booking-btn">
-                    <a routerLink="/dat-ve/cau-hon" class="btn secondary text-center">ĐẶT VÉ</a>
+                    <a [routerLink]="['/booking/movie', this.top3Movies[2].movieId]" class="btn secondary text-center">ĐẶT VÉ</a>
+<!--                    <a [routerLink]="['/booking/movie', top3Movies[2].movieId]" class="btn secondary text-center">ĐẶT-->
+<!--                      VÉ</a>-->
                   </div>
                 </div>
               </a>
@@ -123,7 +131,9 @@
                             Khởi chiếu: {{movie.startDate}}
                           </p>
                           <div class="booking-btn">
-                            <a routerLink="/dat-ve/cau-hon" class="btn secondary text-center">ĐẶT VÉ</a>
+                            <a [routerLink]="['/booking/movie', movie.movieId]" class="btn secondary text-center">ĐẶT VÉ</a>
+<!--                            <a [routerLink]="['/booking/movie', movie.movieId]" class="btn secondary text-center">ĐẶT-->
+<!--                              VÉ</a>-->
                           </div>
                         </div>
                       </a>
@@ -150,7 +160,9 @@
                             Khởi chiếu: {{movie.startDate}}
                           </p>
                           <div class="booking-btn">
-                            <a routerLink="/dat-ve/cau-hon" class="btn secondary text-center">ĐẶT VÉ</a>
+                            <a [routerLink]="['/booking/movie', movie.movieId]" class="btn secondary text-center">ĐẶT VÉ</a>
+<!--                            <a [routerLink]="['/booking/movie', movie.movieId]" class="btn secondary text-center">ĐẶT-->
+<!--                              VÉ</a>-->
                           </div>
                         </div>
                       </a>
@@ -171,9 +183,8 @@
       </div>
     </div>
     <div class="benefit-wrapper col-md-12 col-xs-12 mt-5">
-      <section id="promotion"><a routerLink="/khuyen-mai" class="title-block">
+      <section id="promotion">
         <h3>Tin khuyến mãi</h3>
-      </a>
         <div class="row promotion">
           <div class="col-xs-6 col-sm-4 col-md-3 promotion-item">
             <div class="promotion-item-home">
@@ -197,37 +208,14 @@
             </div>
           </div>
           <div class="col-xs-6 col-sm-4 col-md-3 promotion-item">
-            <div class="promotion-item-home">
-              <a routerLink="/khuyen-mai/galaxy-cinema-tri-an-thanh-vien">
-                <img src="https://www.galaxycine.vn/media/2021/1/18/300x450_1610956359573.png" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-3 promotion-item">
-            <div class="promotion-item-home">
-              <a routerLink="/khuyen-mai/app-galaxy-cinema--chi-mat-nua-giay-den-ngay-phong-chieu">
-                <img src="https://www.galaxycine.vn/media/2020/9/24/300x450_1600914057388.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-3 promotion-item">
-            <div class="promotion-item-home">
-              <a routerLink="/khuyen-mai/tung-bung-hai-sao--nhan-uu-dai-khung">
-                <img src="https://www.galaxycine.vn/media/2019/12/9/300x450_1575874237175.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-3 promotion-item">
-            <div class="promotion-item-home">
-              <a routerLink="/khuyen-mai/ngay-tri-an-cua-galaxy-cinema---ngay-thu-hai-dau-tien-moi-thang">
-                <img src="https://www.galaxycine.vn/media/2021/4/22/1200x1800_1619064936544.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-3 promotion-item">
-            <div class="promotion-item-home">
-              <a routerLink="/khuyen-mai/x2-thanh-vien-x2-quyen-loi">
-                <img src="https://www.galaxycine.vn/media/2020/7/1/galaxy-website-1_1593573807717.jpg" alt="">
+            <div class="promotion-item-home promotion-more">
+              <a routerLink="/events">
+                <div class="text-center">
+                  <i class="fas fa-plus fa-4x"></i>
+                  <p></p>
+                  <p></p>
+                  <h2>Xem thêm</h2>
+                </div>
               </a>
             </div>
           </div>

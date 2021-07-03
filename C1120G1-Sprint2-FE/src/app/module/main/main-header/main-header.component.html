@@ -21,12 +21,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="search-box">
-              <label>
-                <input type="text" class="form-control shadow-none" placeholder="Tìm tên phim, diễn viên,...">
-              </label>
-              <button class="btn btn-search"><i class="fas fa-search"></i></button>
-            </div> -->
           </div>
           <div class="topbar-right" id="welcome-header">
             <!--Member register-->
@@ -38,7 +32,7 @@
                       <a class="register" routerLink="/register" tabindex>Đăng ký</a>
                     </li>
                     <li>
-                      <a class="login" routerLink="/login" tabindex>Đăng nhập</a>
+                      <a class="login" routerLink="/login" tabindex *ngIf="!username">Đăng nhập</a>
                     </li>
                   </ul>
                 </div>
@@ -61,22 +55,22 @@
               </a>
             </li>
             <li>
-              <a routerLink="/goc-dien-anh" title="Góc điện ảnh" tabindex>
+              <a routerLink="/movie-corner" title="Góc điện ảnh" tabindex>
                 <span class="item-cinema-corner">Góc điện ảnh</span>
               </a>
             </li>
             <li>
-              <a routerLink="/su-kien" title="Sự kiện" tabindex>
+              <a routerLink="/events" title="Sự kiện" tabindex>
                 <span class="item-event">Sự kiện</span>
               </a>
             </li>
             <li>
-              <a routerLink="/huong-dan" title="Hướng dẫn" tabindex>
+              <a routerLink="/instructions" title="Hướng dẫn" tabindex>
                 <span class="item-instruction">Hướng dẫn</span>
               </a>
             </li>
             <li>
-              <a routerLink="/chinh-sach" title="Chính sách" tabindex>
+              <a routerLink="/policy" title="Chính sách" tabindex>
                 <span class="item-policy">Chính sách</span>
               </a>
             </li>

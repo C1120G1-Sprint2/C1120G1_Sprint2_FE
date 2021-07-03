@@ -1,0 +1,47 @@
+.breadcrumb {
+  background-color: #f26b38;
+}
+.breadcrumb > li + li::before {
+  padding: 0 5px;
+  color: #a0a3a7;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  line-height: 1;
+  content: '\f105';
+}
+.btn-outline {
+  color: #f26b38;
+  border-color: #f26b38;
+  margin-bottom: 2%;
+  margin-left: 2%;
+}
+.btn-outline:hover {
+  background-color: #f26b38;
+  color: aliceblue;
+}
+.theadTable  th {
+  color: #f26b38;
+}
+.backgroundTable {
+  background-image: url(https://i.pinimg.com/originals/db/02/74/db0274430553df153a88aa3621355373.jpg);
+}
+.inputTable {
+  color: aliceblue;
+  align-items: center;
+}
+.inputTable3D {
+  background-image: url(https://yourdream.s3.amazonaws.com/media/cache/50/75/5075b77e8aee2fff80ccd4cc951ddd79.jpg);
+  color: aliceblue;
+}
+.card-header {
+  background-color: #f26b38;
+  color: aliceblue;
+}
+.titleD:after {
+  display: block;
+  width: 80px;
+  height: 1px;
+  padding-top: 3px;
+  content: '';
+  background-color: #f26b38;
+}

@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
     <!--    account-manager start-->
-    <div class=" container-fluid  col-lg-4" style="background-color:rgba(168,162,161,0.15)">
+    <div class=" container-fluid  col-lg-3" style="background-color:rgba(168,162,161,0.15); margin-top: 10px">
       <app-nav-bar-account-manager></app-nav-bar-account-manager>
     </div>
     <!--    account-manager end-->
-    <div class="container-fluid col-lg-8">
+    <div class="container-fluid col-lg-9">
       <!--            <div class="card" style="border-style: solid; border-color: coral">-->
       <div class="card-title">VÉ ĐÃ ĐẶT</div>
       <div class="card-body">
@@ -28,8 +28,8 @@
               <td>{{i + 1}}</td>
               <td> <img [src]="booking.movieTicket.movie.posterMovie" width="80" height="̉60"></td>
               <td>{{booking.movieTicket.movie.movieName}}</td>
-              <td>{{booking.timeCreate | date:'dd/MM/yyyy'}}</td>
-              <td>{{booking.movieTicket.ticketPrice | currency:'VND':true}}</td>
+              <td>{{booking.createTime | date:'dd/MM/yyyy'}}</td>
+              <td>{{booking.movieTicket.ticketPrice | number}} VND</td>
         <td>
           <span *ngIf="booking.ticketStatus.ticketStatusId == 1" class="badge badge-primary">{{booking.ticketStatus.ticketStatusName}}</span>
           <span *ngIf="booking.ticketStatus.ticketStatusId == 2" class="badge badge-success">{{booking.ticketStatus.ticketStatusName}}</span>
