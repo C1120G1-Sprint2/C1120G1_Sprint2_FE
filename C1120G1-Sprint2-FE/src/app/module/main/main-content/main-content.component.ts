@@ -50,7 +50,6 @@ export class MainContentComponent implements OnInit {
     this.movieService.getTop3BySales().subscribe(data => {
       this.top3Movies = data;
       this.getCategoriesString(this.top3Movies);
-      console.log(this.top3Movies);
     })
   }
 

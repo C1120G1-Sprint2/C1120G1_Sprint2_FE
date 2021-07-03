@@ -6,7 +6,6 @@ import {MainFooterComponent} from './main-footer/main-footer.component';
 import {MainContentComponent} from './main-content/main-content.component';
 import {MovieTrailerComponent} from './movie-trailer/movie-trailer.component';
 import {MainSearchComponent} from './main-search/main-search.component';
-import {AppRoutingModule} from '../../app-routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {RouterModule} from '@angular/router';
@@ -20,14 +19,24 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {AdminRoutingModule} from '../admin/admin-routing.module';
+import { MovieCornerComponent } from './movie-corner/movie-corner.component';
+import { MainEventsComponent } from './main-events/main-events.component';
+import { MainInstructionsComponent } from './main-instructions/main-instructions.component';
+import { MainPolicyComponent } from './main-policy/main-policy.component';
 
 
 
 
 @NgModule({
-  declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent, MainContentComponent, MovieTrailerComponent, MainSearchComponent,
+  declarations: [MainHomePageComponent, MainHeaderComponent, MainFooterComponent, MovieTrailerComponent, MainSearchComponent,
     DetailMovieComponent, CreateCommentComponent, DeleteCommentComponent,
-    EditCommentComponent, RatingComponent, PriceTicketClientComponent, MovieTrailerComponent],
+    EditCommentComponent, RatingComponent, PriceTicketClientComponent,
+    MainContentComponent,
+    MainSearchComponent,
+    MovieCornerComponent,
+    MainEventsComponent,
+    MainInstructionsComponent,
+    MainPolicyComponent],
 
   exports: [
     MainHeaderComponent,
