@@ -5,6 +5,7 @@ import {AuthLogin} from '../../model/authLogin';
 import {UserSocial} from '../../model/userSocial';
 
 const API_URL = 'http://localhost:8080/api/';
+const BASE_API_URL = 'http://localhost:8080/';
 const API_URL_GOOGLE: string = 'http://localhost:8080/api/login/google';
 const API_URL_FACEBOOK: string = 'http://localhost:8080/api/login/facebook';
 
@@ -44,9 +45,11 @@ export class SecurityService {
     return this.http.post<any>(API_URL_GOOGLE, user, this.httpOptions);
   }
 
-  createUserFacebook(user: UserSocial): Observable<any> {
-    console.log("User in Service")
-    console.log(user)
+  createUserFacebook(user: any): Observable<any> {
+    console.log(user);
     return this.http.post<any>(API_URL_FACEBOOK, user, this.httpOptions);
+  }
+  confirmEmail(username: string, email: string): Observable<any> {
+    return this.http.put<any>(BASE_API_URL + 'register/confirmEmail/' +  username + '/' + email, this.httpOptions)
   }
 }

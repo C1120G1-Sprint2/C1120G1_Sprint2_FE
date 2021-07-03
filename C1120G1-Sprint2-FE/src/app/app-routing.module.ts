@@ -23,6 +23,7 @@ import {BookingInformationComponent} from './module/booking/booking-information/
 import {AccountInfoComponent} from './module/member/account-management/account-info/account-info.component';
 import {TransactionHistoryComponent} from './module/member/account-management/transaction-history/transaction-history.component';
 import {TicketsBookingComponent} from './module/member/account-management/tickets-booking/tickets-booking.component';
+
 import {MemberPageComponent} from './module/member/member-page/member-page.component';
 import {MovieCornerComponent} from './module/main/movie-corner/movie-corner.component';
 
@@ -72,8 +73,12 @@ const routes: Routes = [
     ]
   },
 
-  {path: 'ticket-price', component: PriceTicketClientComponent},
 
+  {path: 'ticket-price', component: PriceTicketClientComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'register/confirmEmail/:username/:email', component: ConfirmEmailComponent},
   {
     path: 'member', component: MemberPageComponent, children: [
       {

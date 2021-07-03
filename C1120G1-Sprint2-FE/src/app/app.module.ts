@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeModule } from './module/employee/employee.module';
@@ -24,6 +25,8 @@ import {AdminMovieTicketModule} from './module/admin/admin-movie-ticket/admin-mo
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminMovieManagementModule} from './module/admin/admin-movie-management/admin-movie-management.module';
 
+import {FacebookLoginProvider} from 'angularx-social-login';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 
 
 @NgModule({
@@ -46,19 +49,37 @@ import { AdminMovieManagementModule} from './module/admin/admin-movie-management
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+
     BookingModule,
     BrowserAnimationsModule,
     AdminMovieTicketModule,
+
+    HttpClientModule,
+    SocialLoginModule,
+    FormsModule,
+
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
     NgbModule,
     AdminMovieManagementModule
   ],
-  providers: [DatePipe],
+
+  // providers: [DatePipe],
+
+  "providers": [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('111111111111111') //need to chang FB Client Id
+        }
+      ]
+    } as SocialAuthServiceConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
-
 

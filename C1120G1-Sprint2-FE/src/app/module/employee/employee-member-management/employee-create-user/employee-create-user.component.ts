@@ -36,7 +36,6 @@ export class EmployeeCreateUserComponent implements OnInit {
   checkAccept : boolean =false;
   checkLoad: boolean =  false;
 
-
   constructor(private memberManagementService: MemberManagementService,
               private router: Router,
               private storage: AngularFireStorage,
@@ -198,7 +197,6 @@ export class EmployeeCreateUserComponent implements OnInit {
 
   sendMail(){
     if (this.formAddNewCustomer.valid){
-      console.log("ádasd");
       this.memberManagementService.sendEmailApprove(this.formAddNewCustomer.value.email).subscribe(data => {
       });
     }

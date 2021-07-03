@@ -65,12 +65,16 @@ export class MemberManagementService {
   }
 
   editUser(user: UserEditPreview): Observable<any> {
-    return this.httpClient.put(this.API_URL_USER + '/edit', user, this.httpOptions);
+    return this.httpClient.put(this.API_URL_USER + '/edit', user, this.httpOptions);}
+
+  createUserConfirmMail(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.API_URL_USER + '/createConfirm', user);
   }
 
   searchUserBySomething(keySearch: string): Observable<any> {
     return this.httpClient.get<any>(this.API_URL_USER + '/search?q=' + keySearch);
   }
+
   searchUserByPagination(keySearch: string , index :number): Observable<any> {
     return this.httpClient.get<any>(this.API_URL_USER + '/searchPagination?q=' + keySearch + "&&index=" + index);
   }
@@ -81,6 +85,6 @@ export class MemberManagementService {
 
   sendEmailApprove(email: string): Observable<any> {
     return this.httpClient.get(this.API_URL_USER + "/email?email=" + email, this.httpOptions);
-  }
 
-}
+
+
