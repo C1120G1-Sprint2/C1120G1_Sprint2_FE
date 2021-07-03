@@ -1,9 +1,10 @@
-  import { NgModule } from '@angular/core';
-  import { Routes, RouterModule } from '@angular/router';
-  import {AdminPageComponent} from './admin-page/admin-page.component';
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AdminPageComponent} from './admin-page/admin-page.component';
 
 
-  const routes: Routes = [
+const routes: Routes = [
   {
     path: '',
     component: AdminPageComponent,
@@ -27,14 +28,20 @@
         // tslint:disable-next-line:max-line-length
         loadChildren: () => import('./admin-statistical-management/admin-statistical-management.module').then(module => module.AdminStatisticalManagementModule)
       },
+      {
+        path:'movie-ticket',
+        // tslint:disable-next-line:max-line-length
+        loadChildren: () => import('./admin-movie-ticket/admin-movie-ticket.module').then(module => module.AdminMovieTicketModule)
+      },
       {path: '', redirectTo: '', pathMatch: 'full'},
       {path: '**', redirectTo: '', pathMatch: 'full'}
     ]
   }
 ];
 
-  @NgModule({
+@NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {
+}

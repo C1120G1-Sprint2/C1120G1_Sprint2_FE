@@ -6,5 +6,5 @@ export interface RoomSeat {
   roomSeatId: number;
   room: Room;
   seat: Seat;
-  seatStatus: SeatStatus
+  seatStatus: SeatStatus;
 }

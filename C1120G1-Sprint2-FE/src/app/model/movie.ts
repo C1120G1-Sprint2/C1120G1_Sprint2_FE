@@ -1,3 +1,4 @@
+
 import {MovieStatus} from "./movieStatus";
 import {MovieCategory} from "./movieCategory";
 
@@ -19,3 +20,4 @@ export interface Movie {
   movieCategorySet: MovieCategory[];
   categories: string;
 }
+

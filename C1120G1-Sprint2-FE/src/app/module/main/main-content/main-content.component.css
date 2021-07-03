@@ -15,7 +15,7 @@
 }
 
 .carousel-item img {
-  position:  absolute;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
@@ -117,7 +117,7 @@
   background-image: linear-gradient(#F26B39, #F58963, #F5AD93, #F5D3C5, white);
   margin-top: -30px;
   z-index: 100;
-  position:  absolute;
+  position: absolute;
   top: 0;
   left: auto;
   right: auto;
@@ -181,7 +181,7 @@
 }
 
 .top-sale .top-movies .last img {
-  position:  absolute;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
@@ -277,7 +277,7 @@ a img {
 }
 
 .form-control:focus {
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
 
 ul li {
@@ -364,7 +364,7 @@ ul li {
   width: 100%;
   height: 100%;
   /*max-width: 248px;*/
-  position:  absolute;
+  position: absolute;
   top: 0;
   left: 0;
 }
@@ -373,8 +373,7 @@ ul li {
   position: absolute;
   bottom: 0;
   left: 0;
-  background: #000;
-  opacity: 0.9;
+  background: rgba(0, 0, 0, 0.8);
   text-align: center;
   width: 100%;
   overflow: hidden;
@@ -388,6 +387,7 @@ ul li {
   margin: 15px 0 0;
   color: #fff;
   text-transform: capitalize;
+  font-weight: 500;
 }
 
 .movie-hover .categories-hover {
@@ -470,8 +470,28 @@ h3::after {
   display: table;
 }
 
+.promotion-item-home:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .promotion-item-home img {
   width: 100%;
   height: auto;
   display: table-cell;
+}
+
+.promotion-more {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0.7;
+  background: black;
+}
+
+.promotion-more:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
 }

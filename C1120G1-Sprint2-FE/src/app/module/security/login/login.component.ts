@@ -77,7 +77,8 @@ export class LoginComponent implements OnInit {
           this.tokenStorageService.saveTokenSession(data.accessToken);
           this.tokenStorageService.saveUserLocal(data);
         }
-
+        console.log(this.tokenStorageService.getUser());
+        console.log(data);
         switch (this.tokenStorageService.getUser().user.account.accountStatus.accountStatusId) {
           case this.unconfirmEmailStatus: {
             console.log('Account unconfirm email: LoginComponent');

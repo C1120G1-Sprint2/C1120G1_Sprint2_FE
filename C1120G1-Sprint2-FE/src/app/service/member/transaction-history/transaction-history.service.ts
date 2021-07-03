@@ -29,4 +29,8 @@ export class TransactionHistoryService {
     console.log(this.API_URL_TRANSACTION + '/transaction/'+ username)
     return this.httpClient.get<TransactionHistory[]>(this.API_URL_TRANSACTION + '/transaction/'+ username);
   };
+
+  searchNameMovie(username: string, keySearch: string): Observable<TransactionHistory[]> {
+    return this.httpClient.get<TransactionHistory[]>(this.API_URL_TRANSACTION + '/searchNameMovie'+'?username='+ username+'&keySearch='+keySearch);
+  }
 }

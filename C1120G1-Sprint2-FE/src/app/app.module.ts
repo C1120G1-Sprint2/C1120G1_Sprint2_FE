@@ -1,3 +1,4 @@
+
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -6,7 +7,6 @@ import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminModule } from './module/admin/admin.module';
 import { EmployeeModule } from './module/employee/employee.module';
 import { MemberModule } from './module/member/member.module';
 import { MainModule } from './module/main/main.module';
@@ -18,37 +18,47 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { LoadingComponent } from './module/loading/loading.component';
 
-
+import {DatePipe} from '@angular/common';
+import {BookingModule} from './module/booking/booking.module';
+import {AdminMovieTicketModule} from './module/admin/admin-movie-ticket/admin-movie-ticket.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminMovieManagementModule} from './module/admin/admin-movie-management/admin-movie-management.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
+
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    AdminModule,
     EmployeeModule,
-    HttpClientModule,
     MemberModule,
     MainModule,
     SecurityModule,
-    ToastrModule.forRoot(),
-    HttpClientModule,
-    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    FormsModule,
+    BookingModule,
+    BrowserAnimationsModule,
+    AdminMovieTicketModule,
     ReactiveFormsModule,
     RouterModule,
+    FormsModule,
+    NgbModule,
+    AdminMovieManagementModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
-//sss
+
+

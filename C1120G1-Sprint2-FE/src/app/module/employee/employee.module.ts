@@ -5,6 +5,10 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeePageComponent } from './employee-page/employee-page.component';
 import {EmployeeMemberManagementModule} from './employee-member-management/employee-member-management.module';
 import {FormsModule} from '@angular/forms';
+import {MainModule} from '../main/main.module';
+import {EmployeeSalesTicketsManagementModule} from "./employee-sales-tickets-management/employee-sales-tickets-management.module";
+import {RouterModule} from '@angular/router';
+
 
 @NgModule({
   declarations: [EmployeePageComponent ],
@@ -12,7 +16,10 @@ import {FormsModule} from '@angular/forms';
     CommonModule,
     EmployeeRoutingModule,
     EmployeeMemberManagementModule,
-    FormsModule
+    FormsModule,
+    MainModule,
+    EmployeeSalesTicketsManagementModule,
+    RouterModule
   ]
 })
 export class EmployeeModule { }

@@ -6,6 +6,7 @@ import {User} from "../../../../model/user";
 import {ToastrService} from "ngx-toastr";
 import {Account} from "../../../../model/account";
 import {AccountDTO} from "../../../../model/accountDTO";
+import {TokenStorageService} from '../../../../service/security/token-storage.service';
 
 @Component({
   selector: 'app-account-info',
@@ -16,7 +17,7 @@ export class AccountInfoComponent implements OnInit {
   rfEditForm: FormGroup;
   rfPasswordForm: FormGroup;
   users: User;
-  username: string = 'hoangsang123';
+  username: string;
   accounts: Account;
 
   oldPass: string = '';
@@ -28,8 +29,10 @@ export class AccountInfoComponent implements OnInit {
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private toastr: ToastrService
+              private toastr: ToastrService,
+              private tokenStore: TokenStorageService
   ) {
+    this.username = this.tokenStore.getUser().user.account.username;
   }
 
   ngOnInit(): void {

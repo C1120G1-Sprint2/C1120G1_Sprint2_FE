@@ -1,0 +1,176 @@
+<div>
+  <div style="width: 1100px">
+    <div class="table-header">
+      <p class="title">Quản Lý Suất Chiếu Trong Hệ Thống</p>
+    </div>
+    <div class="row p-0 m-0">
+      <div class="col-3">
+        <a href="" class="btn btn-success addUser" data-toggle="modal" data-target="#exampleModal3">
+          <i class="fas fa-plus"></i>
+          <span>Thêm mới suất chiếu</span>
+        </a>
+      </div>
+      <div class="col-5"></div>
+      <div class="col-4 float-right d-inline-flex">
+        <input type="text" [(ngModel)]="keySearch"
+               (keyup.enter)="search(0)"
+               placeholder="Nhập thông tin mà bạn muốn tìm kiếm "
+               class="form-control rounded-pill inputSearch" style="width: 80%">
+        <button class="btn btnSearch"
+                (click)="search(0)">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+    <table class="table table-hover">
+      <thead class="theadTable">
+      <th>#</th>
+      <th (click)="onSortChange('movie')">Tên Phim <i class="fas fa-sort"></i></th>
+      <th (click)="onSortChange('room')">Rạp Chiếu <i class="fas fa-sort"></i></th>
+      <th (click)="onSortChange('showDate')">Ngày Chiếu <i class="fas fa-sort"></i></th>
+      <th (click)="onSortChange('showTime')">Suất Chiếu <i class="fas fa-sort"></i></th>
+      <th (click)="onSortChange('projectionType')">Loại Chiếu <i class="fas fa-sort"></i></th>
+      <th (click)="onSortChange('ticketPrice')">Giá Vé <i class="fas fa-sort"></i></th>
+      <th>Xoá </th>
+      <th>Sửa</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let movieTicket of movieTickets; let i = index"  class="inputTable">
+        <td>{{i+1}}</td>
+        <td>{{movieTicket.movie.movieName}}</td>
+        <td>{{movieTicket.room.roomName}}</td>
+        <td>{{movieTicket.showDate}}</td>
+        <td>{{movieTicket.showTime.showTime}}</td>
+        <td>{{movieTicket.projectionType.projectionName}}</td>
+        <td>{{movieTicket.ticketPrice | number}} VND</td>
+        <td>
+          <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"
+                  (click)="deleteId = movieTicket.movieTicketId; deleteName = movieTicket.showTime.showTime"><i class="fas fa-trash"></i></button>
+        </td>
+      <td>
+          <a (click)="openDialog(movieTicket.movieTicketId)"><button class="btn btn-warning"><i class="far fa-edit"></i></button></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+<!--    modal them moi -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header flex-column" style="background-color: #f26b39">
+            <div class="icon-box">
+            </div>
+            <h4 class="modal-title w-100 text-center" style="color: aliceblue;">Thêm Suất Chiếu</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <app-create-movie-ticket-management></app-create-movie-ticket-management>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <ul class="pagination modal-4">
+        <li><a (click)="onFirst()" [ngClass]="pageClicked==0?'disabled':''"  class="prev">
+          <i class="fa fa-chevron-left"></i>
+          Đầu
+        </a>
+        </li>
+        <li><a (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''"><i class="fa fa-chevron-left"></i></a></li>
+        <li><a *ngIf="pageClicked != 0" class="active" (click)="onSubmit(pages[pageClicked-1])">{{pageClicked}}</a></li>
+        <li><a [ngClass]="(pageClicked == pages[pageClicked]) ? 'active' : ''" class="active" (click)="onSubmit(pages[pageClicked])">{{pageClicked + 1}}</a></li>
+        <li><a *ngIf="pageClicked < pages.length -1" class="active" (click)="onSubmit(pages[pageClicked+1])">{{pageClicked + 2}}</a></li>
+        <li><a *ngIf="pageClicked < pages.length -2" class="active"> ...
+        </a></li>
+        <li><a *ngIf="pageClicked < pages.length-2" class="page-item" (click)="onLast()" >
+          {{pages[pages.length - 1] + 1}}</a>
+        </li>
+        <li class="disabled" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+        </li>
+        <li><a class="next" (click)="onLast()" [ngClass]="pageClicked==totalPages-1?'disabled':''"> Cuối
+          <i class="fa fa-chevron-right"></i>
+        </a></li>
+
+        <li><label>
+          <input type="number" class="input-group-prepend" style="width: 40px ;height: 20px"
+                 [(ngModel)]="selectPagination">
+        </label></li>
+        <li><a (click)="selectPage()">Đi</a></li>
+      </ul>
+    </div>
+          <div class="col-12">
+            <nav class="float-left">
+              <ul class="pagination">
+                <li class="disabled" (click)="onFirst()" [ngClass]="pageClicked==0?'disabled':''">
+                  <a class="active btn btnP"><mat-icon class="material-icons">
+                      first_page
+                  </mat-icon>
+                  </a>
+
+                </li>
+                <li class="disabled" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+                  <a class="waves-effect btn btnP"><mat-icon class="material-icons">
+                  navigate_before
+                  </mat-icon></a>
+                </li>
+                <li *ngIf="pageClicked != 0" class="page-item" (click)="onSubmit(pages[pageClicked-1])">
+                  <a class="waves-effect btn btnN">{{pageClicked}}</a>
+                </li>
+                <li [ngClass]="(pageClicked == pages[pageClicked]) ? 'active' : ''" class="page-item"
+                    (click)="onSubmit(pages[pageClicked])">
+                  <a class="waves-effect btn btnN">{{pageClicked + 1}}</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length -1" class="page-item" (click)="onSubmit(pages[pageClicked+1])">
+                  <a class="waves-effect btn btnN">{{pageClicked + 2}}</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length -2" class="disabled">
+                  <a class="waves-effect btn btnN">...</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length-2" class="page-item" (click)="onLast()">
+                  <a class="waves-effect btn btnN">{{pages[pages.length - 1] + 1}}</a>
+                </li>
+                <li class="disabled" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+                  <a class="active btn btnP"><mat-icon class="material-icons">
+                  navigate_next
+                  </mat-icon>
+                  </a>
+                </li>
+                <li class="disabled" (click)="onLast()" [ngClass]="pageClicked==totalPages-1?'disabled':''"><a
+                  class="active btn btnP"><mat-icon class="material-icons">
+                  last_page
+                  </mat-icon></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+
+    <!-- end pagination -->
+
+<!--    modal delete-->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header flex-column">
+            <div class="icon-box">
+            </div>
+            <h4 class="modal-title w-100">Bạn có chắc chắn chứ ? </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+
+            <app-delete-movie-ticket-management [deleteId]="deleteId" [deleteName]="deleteName" [deleteMovieName]="deleteMovieName"
+                                                (deleteComplete) = "deleteSuccess()">
+
+            </app-delete-movie-ticket-management>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

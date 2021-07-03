@@ -1,5 +1,7 @@
 import {AccountStatus} from './accountStatus';
+
 import {User} from "./user";
+
 
 export interface Account {
   username: string;

@@ -35,6 +35,6 @@ export class TicketCancelComponent implements OnInit {
       document.getElementById('closeModal').click();
       this.deleteComplete.emit(true);
     });
-    this.toastr.success('Xóa Thành Công !', 'Bài Đăng !');
+    this.toastr.success('HỦy Thành Công !', 'Bài Đăng !');
   }
 }

@@ -2,15 +2,20 @@
   text-align: center;
   font-size: 1.75rem;
   margin: 5px;
-  color: #0D5DB6;
+  color: #f26b39;
   text-transform: uppercase;
   padding: 10px;
+}
+.btnCreate {
+  margin: 20px;
+  font-family: "Roboto Light", sans-serif;
+  font-size: 15px;
 }
 
 .menu {
   width: 100%;
   height: 60px;
-  background: #FF8C00;
+  background: #ff8c00;
 }
 
 .menu-left-admin {

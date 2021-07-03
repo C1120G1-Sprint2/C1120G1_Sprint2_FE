@@ -1,0 +1,130 @@
+<div class="container-fluid" id="fluid">
+  <div id="follow-div">
+    <div class="follow">
+      <p class="follow-title">vui lòng chọn ghế</p>
+    </div>
+  </div>
+  <hr class="d-inline-block"
+      style="width: 99%; height: 1px; background-color: lightgray">
+  <div class="container-fluid p-0">
+    <p id="movie-picked-title">Bạn đã chọn</p>
+    <div id="movie-picked-content" class="row m-0 p-0" *ngIf="movieTicket">
+      <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
+      <p>Ngày chiếu : <span>{{movieTicket.showDate}}</span></p>
+      <p>Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
+      <p>Ghế đã chọn : <span>{{listChoseSeat.length}}</span></p>
+    </div>
+    <div class="container-fluid justify-content-center align-items-center">
+      <!--      choose seat-->
+      <div id="seat-show" class="row m-0 p-0">
+        <div class="col-lg-2 space-div"></div>
+        <div class="col-lg-8 col-md-12" id="seat">
+          <table class="table table-borderless">
+            <tbody class="text-center justify-content-center align-items-center">
+            <tr *ngFor="let index of listRow">
+              <td *ngFor="let roomSeat of listRoomSeat| slice:(index-1)*10:(index)*10">
+                <div *ngIf="roomSeat.seat.row.rowId === index" class="text-center td-seat align-items-center"
+                     [id]="roomSeat.seat.row.rowName+roomSeat.seat.column.columnName"
+                     (click)="chooseSeat(roomSeat)"
+                     [ngClass]="checkSeatClass(roomSeat)"
+                     style="padding-top: 0.3125rem">
+                  {{roomSeat.seat.row.rowName}}{{roomSeat.seat.column.columnName}}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-2 space-div"></div>
+      </div>
+      <!--      instructor-->
+      <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
+        <div class="row m-1 p-0 align-items-center">
+          <div class="td-seat empty-seat"></div>
+          <span class="instructor-label mr-lg-3 ml-1">Ghế trống</span>
+        </div>
+        <div class="row m-1 p-0 align-items-center">
+          <div class="td-seat selecting-seat"></div>
+          <span class="instructor-label mr-lg-3 ml-1">Ghế đang chọn</span>
+        </div>
+        <div class="row m-1 p-0 align-items-center">
+          <div class="td-seat ordered-seat"></div>
+          <span class="instructor-label mr-lg-3 ml-1">Ghế đã có người đặt</span>
+        </div>
+        <div class="row m-1 p-0 align-items-center">
+          <div class="td-seat vip-seat"></div>
+          <span class="instructor-label mr-lg-0 ml-1">Ghế VIP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="btnContinue" class="text-center">
+    <a routerLink="/employee/sale/tickets">
+      <button class="btn btn-outline-primary rounded-pill" type="button">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-left"></i>
+        </span>
+      </button>
+    </a>
+    <a>
+      <button class="btn btn-outline-success rounded-pill"
+              type="button"
+              (click)="openCheckAccount(content)"
+              [disabled]="listChoseSeat.length == 0">
+        <span class="arrow">
+          <i class="fas fa-2x fa-arrow-right"></i>
+        </span>
+      </button>
+    </a>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header bg-orange">
+    <h4 class="modal-title text-white"><i class="fas fa-check-circle"> KIỂM TRA THÔNG TIN KHÁCH</i></h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5>Khách hàng mua vé hiện tại đã có tài khoản chưa ?</h5>
+    <div class="text-center mt-4">
+      <button type="button" class="btn btn-success mr-3"
+              (click)="openCheckAccount(content1);modal.close('Close click');"><i class="fas fa-check"> Đã Có</i>
+      </button>
+      <button type="button" class="btn btn-danger ml-3" (click)="continue();modal.close('Close click');"><i
+        class="fas fa-times"> Chưa Có</i></button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #content1 let-modal>
+  <div class="modal-header bg-orange">
+    <h4 class="modal-title text-white"><i class="fa fa-search"> TÌM KIẾM KHÁCH HÀNG</i></h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5>Bạn hãy nhập tên tài khoản của khách hàng:</h5>
+    <form ngNoForm [formGroup]="formSearchCardId" (ngSubmit)="checkAccount()" class="mt-4  form-inline">
+      <input id="search" class="form-control search mb-5"
+             type="search" formControlName="username"
+             placeholder="Nhập tên tài khoản...">
+      <div class="btn-group " role="group" aria-label="Basic example">
+        <button type="submit" class="btn bg-orange text-white ml-1 mb-5"><i class="fa fa-search"> Tìm Kiếm</i>
+        </button>
+      </div>
+    </form>
+    <div *ngIf="user !== null">
+      <label>Tên: <span style="color: red">{{user.name|uppercase}}</span></label>
+      <label class="ml-4">Email: <span style="color: red">{{user.email}}</span></label>
+      <label>Số điện thoại: <span style="color: red">{{user.phone}}</span></label>
+      <label class="ml-4">CMND: <span style="color: red">{{user.idCard}}</span></label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button [disabled]="user===null" (click)="changeUser();modal.dismiss('Cross click');"
+            class="btn btn-success text-white"><i class="fas fa-check"> Xác nhận</i></button>
+    <button (click)="continue();modal.dismiss('Cross click');"
+            class="btn btn-danger text-white"><i class="fas fa-times"> Mua vé chưa có tài khoản</i></button>
+  </div>
+</ng-template>

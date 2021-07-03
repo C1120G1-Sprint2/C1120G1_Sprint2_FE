@@ -31,7 +31,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/chart.js/dist/Chart.js"
             ]
           },
           "configurations": {
@@ -68,11 +69,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "C1120G1-Sprint2-FE:build"
+            "browserTarget": "C1120G1-Sprint2-FE:build:production"
           },
           "configurations": {
             "production": {
-              "browserTarget": "C1120G1-Sprint2-FE:build:production"
+              "browserTarget": "sprint01-fe:build:production"
             }
           }
         },
@@ -97,7 +98,8 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           }
         },
         "lint": {
@@ -128,8 +130,12 @@
       }
     }
   },
+
   "defaultProject": "C1120G1-Sprint2-FE",
   "cli": {
+    "analytics": "cadd94a8-c52b-4f24-93dc-27a3f54b8478",
     "analytics": "9b17b5dd-e21f-4127-8a11-731a9c252bf1"
   }
+
+
 }

@@ -23,10 +23,6 @@ span {
   color: red;
 }
 
-td, th {
-  text-align: center;
-}
-
 @media screen and (max-width: 730px) {
   #instructor {
     display: grid;

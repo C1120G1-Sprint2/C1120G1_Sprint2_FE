@@ -23,12 +23,12 @@ th{
   font-weight: bold;
   text-align: center;
   padding: 10px;
+  color: #f26b39;
 }
 
 table{
   text-align: justify-all;
 }
-
 
 /* Style the tab */
 .tab {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {User} from '../../../model/user';
 
 @Component({
   selector: 'app-main-header',
@@ -7,6 +8,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./main-header.component.css']
 })
 export class MainHeaderComponent implements OnInit {
+  username: string = '';
+  role: string = '';
+  user: User;
+  avatarUrl: string = '';
 
   constructor(private router: Router) { }
 

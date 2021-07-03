@@ -1,0 +1,35 @@
+/*#input-image:hover {*/
+/*  text-align: center;*/
+/*  width: 40px;*/
+/*  border-radius: 50rem;*/
+/*  border: 3px solid black;*/
+/*}*/
+
+.icon-hide {
+  position: relative;
+  float: left;
+  display: block;
+  left: 87%;
+  font-size: 17px;
+}
+.icon-hide:hover{
+  color: red;
+}
+.container {
+  width: 50vw;
+  clear: both;
+}
+
+.container input {
+  width: 100%;
+  clear: both;
+}
+
+.label {
+  text-align: left;
+  font-size: x-large;
+}
+
+.label:hover {
+  color: #f26b38;
+}
