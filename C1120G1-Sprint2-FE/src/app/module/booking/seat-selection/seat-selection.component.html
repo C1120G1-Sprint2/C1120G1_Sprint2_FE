@@ -59,6 +59,45 @@
         </div>
         <div class="col-lg-2 space-div"></div>
       </div>
+      <div *ngIf="listChoseSeat.length != 0 else elseBlock"
+           class="row text-center justify-content-center">
+        <div class="col-lg-3 col-md-3 col-sm-3"> </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <table class="table table-borderless table-choose-seat">
+            <tbody>
+            <tr>
+              <td>
+                Bạn đã chọn
+              </td>
+              <td>
+                <strong> 0{{listChoseSeat.length}} vé</strong>
+              </td>
+            </tr>
+            <tr *ngFor="let roomSeat of listChoseSeat; let i = index">
+              <td>
+                {{roomSeat.seat.row.rowName}}{{roomSeat.seat.column.columnName}}
+              </td>
+              <td>
+                <p *ngIf="roomSeat.seat.seatType.seatTypeId == 1">{{movieTicket.ticketPrice | number}} VND</p>
+                <p *ngIf="roomSeat.seat.seatType.seatTypeId == 2">{{movieTicket.ticketPrice * (4 / 3) | number}} VND</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Tổng tiền
+              </td>
+              <td>
+                {{totalMoney | number}} VND
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3"> </div>
+      </div>
+      <ng-template #elseBlock>
+
+      </ng-template>
       ​
       <!--      instructor-->
       <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">

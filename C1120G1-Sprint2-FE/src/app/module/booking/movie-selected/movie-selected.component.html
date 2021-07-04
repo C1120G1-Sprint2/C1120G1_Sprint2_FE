@@ -27,8 +27,8 @@
         </thead>
         <tbody>
         <tr *ngFor="let movie of listMovie">
-          <td (click)="getDateTimeList(movie.movieId)"
-              [class.chooseFilm]="activeId === movie.movieId">
+          <td [class.chooseFilm]="movie.movieId == activeId"
+              (click)="getDateTimeList(movie.movieId)">
             <img class="img" [src]="movie.posterMovie"
                  alt="img" width="80" height="60">
             <span class="movie-title">{{movie.movieName}}</span>
