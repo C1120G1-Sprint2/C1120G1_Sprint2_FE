@@ -33,10 +33,10 @@ export class DeleteMovieTicketManagementComponent implements OnInit {
     this.movieTicketManagementService.deleteMovieTicket(this.deleteId).subscribe(data => {
       document.getElementById('closeModal1').click();
       this.deleteComplete.emit(true);
-      this.toastr.success("Delete Complete !", "Notification");
+      this.toastr.success("Xoá thành công !", "Thông Báo");
       console.log(data);
     }, error => {
-      this.toastr.error("Error !", "Notification");
+      this.toastr.error("Lỗi !", "Thông Báo");
     });
   }
 }

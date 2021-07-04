@@ -1,5 +1,8 @@
+
+
+import {MovieStatus} from "./movieStatus";
 import {MovieCategory} from "./movieCategory";
-import {MovieStatus} from './movieStatus';
+
 
 export interface Movie {
   movieId: number;
@@ -20,3 +23,5 @@ export interface Movie {
   categories: string;
 
 }
+
+

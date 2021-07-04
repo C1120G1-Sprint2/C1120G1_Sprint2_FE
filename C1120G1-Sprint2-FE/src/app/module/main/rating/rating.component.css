@@ -1,36 +1,76 @@
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
+/*fieldset, label { margin: 0; padding: 0; }*/
+/*body{ margin: 20px; }*/
+/*h1 { font-size: 1.5em; margin: 10px; }*/
 
-.rating {
-  border: none;
-  float: left;
-}
+/*.rating {*/
+/*  border: none;*/
+/*  float: left;*/
+/*}*/
 
-.rating > input { display: none; }
-.rating > label:before {
-  margin: 5px;
-  font-size: 1.25em;
-  font-family: 'Font Awesome 5 Pro';
+/*.rating > input { display: none; }*/
+/*.rating > label:before {*/
+/*  margin: 5px;*/
+/*  font-size: 1.25em;*/
+/*  font-family: 'Font Awesome 5 Pro';*/
+/*  display: inline-block;*/
+/*  content: "\f005";*/
+/*}*/
+
+/*.rating > .half:before {*/
+/*  content: "\f089";*/
+/*  position: absolute;*/
+/*}*/
+
+/*.rating > label {*/
+/*  color: #ddd;*/
+/*  float: right;*/
+/*}*/
+
+/*.rating > input:checked ~ label,*/
+/*.rating:not(:checked) > label:hover,*/
+/*.rating:not(:checked) > label:hover ~ label { color: #FFD700;  }*/
+
+/*.rating > input:checked + label:hover,*/
+/*.rating > input:checked ~ label:hover,*/
+/*.rating > label:hover ~ input:checked ~ label,  selection*/
+/*.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }*/
+
+
+.star {
+  margin: 0px 0px;
+  color: #a9a5a5;
   display: inline-block;
-  content: "\f005";
+  cursor: pointer;
+  transition: all .3s;
+  transform: scale(1);
 }
 
-.rating > .half:before {
-  content: "\f089";
-  position: absolute;
+
+.star
+  mat-icon {
+  width: 40px;
+  height: 40px;
+
+}
+.star-gold {
+  color: orange;
 }
 
-.rating > label {
-  color: #ddd;
-  float: right;
+
+
+/*// make all stars orange*/
+.star-rating-animation:hover .star-hover {
+  color: orange
 }
 
-.rating > input:checked ~ label,
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  }
 
-.rating > input:checked + label:hover,
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label,  selection
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+/*// make all stars right from selected gray*/
+.star-rating-animation .star-hover:hover ~ .star-hover {
+  color: #ddd
+}
+
+
+.star-rating-animation .star-hover:hover {
+  transform: scale(1.3)
+}
+

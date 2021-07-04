@@ -9,13 +9,11 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {Category} from '../../../model/category';
 import {MatDialog} from '@angular/material/dialog';
 import {CommentServiceService} from '../../../service/comment/comment-service/comment-service.service';
-import {TokenStorageService} from '../../../service/security/token-storage.service';
 import {Comments} from '../../../model/comment';
 import {DeleteCommentComponent} from '../comment/delete-comment/delete-comment.component';
-import {DatePipe} from '@angular/common';
-import {MemberManagementService} from '../../../service/admin/member-management/member-management.service';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
+import {TokenStorageService} from '../../../service/security/token-storage.service';
 
 @Component({
   selector: 'app-detail-movie',
@@ -38,6 +36,9 @@ export class DetailMovieComponent implements OnInit {
   email: string = '';
   size: number = 5;
   page: [];
+  idUser: number;
+  token: string;
+
 
 
 
@@ -51,10 +52,9 @@ export class DetailMovieComponent implements OnInit {
               private dialog: MatDialog,
               private commentService: CommentServiceService,
               private formBuilder: FormBuilder,
-              private tokenService: TokenStorageService,
-              private datePipe : DatePipe,
-              private memberService: MemberManagementService,
+              private tokenStore: TokenStorageService
               ) {
+    this.token = this.tokenStore.getUser().user;
 
   }
   videoUrl() {
@@ -63,15 +63,17 @@ export class DetailMovieComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.email = this.tokenService.getUser().email;
-    let index = this.activatedRoute.snapshot.params['id'];
-    this.detailMovieService.getMovieById(index).subscribe(data => {
+
+    this.id = this.activatedRoute.snapshot.params['id'];
+    this.detailMovieService.getMovieById(this.id).subscribe(data => {
       this.movie = data;
-      this.detailMovieService.getCategoryBiMovieId(index).subscribe(dataCategory => {
+      console.log(data);
+      console.log(this.id);
+      this.detailMovieService.getCategoryBiMovieId(this.id).subscribe(dataCategory => {
         this.categories = dataCategory;
         console.log(dataCategory);
       })
-      this.commentService.getAllCommentByMovieId(index).subscribe(dataComment => {
+      this.commentService.getAllCommentByMovieId(this.id).subscribe(dataComment => {
         this.comments = dataComment;
         console.log(this.comments);
       })
@@ -90,8 +92,11 @@ export class DetailMovieComponent implements OnInit {
 
   onSubmitNewComment() {
     this.loading = true;
+    console.log(this.formComment.value);
     if (this.formComment.valid) {
+      console.log(this.formComment.value);
       this.commentService.addComment(this.formComment.value, this.id).subscribe(data => {
+        console.log(this.id);
         this.toastr.success("Add new comment", "Notification");
         this.loading = false;
         this.ngOnInit();
@@ -100,7 +105,7 @@ export class DetailMovieComponent implements OnInit {
   }
 
   editComment(comment: any) {
-    this.idCommentEdit = comment.commentId;
+    this.idCommentEdit = comment.id;
     this.contentCommentEdit = comment.content;
   }
 

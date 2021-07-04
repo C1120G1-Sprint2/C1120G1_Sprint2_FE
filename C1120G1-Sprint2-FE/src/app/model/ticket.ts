@@ -3,6 +3,7 @@ import {Seat} from './seat';
 import {TicketStatus} from './ticketStatus';
 import {MovieTicket} from './movieTicket';
 
+
 export class Ticket {
   private _ticketId: number;
   private _createTime: string;
@@ -63,4 +64,5 @@ export class Ticket {
   set movieTicket(value: MovieTicket) {
     this._movieTicket = value;
   }
+
 }

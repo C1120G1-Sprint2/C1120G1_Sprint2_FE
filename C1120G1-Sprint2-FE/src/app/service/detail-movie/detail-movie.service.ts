@@ -8,7 +8,7 @@ import {Category} from '../../model/category';
   providedIn: 'root'
 })
 export class DetailMovieService {
-  API_URL_DETAIL_MOVIE = 'http://localhost:8080/api/detail-movie';
+  API_URL_DETAIL_MOVIE = 'http://localhost:8080/api/movie';
   API_URL_MOVIE_CATEGORY = 'http://localhost:8080/api/category';
   httpOptions: any;
   constructor(private httpClient: HttpClient) {
@@ -23,7 +23,7 @@ export class DetailMovieService {
   }
 
   getMovieById(id: number):Observable<Movie> {
-    return this.httpClient.get<Movie>(this.API_URL_DETAIL_MOVIE + '/' + id);
+    return this.httpClient.get<Movie>(this.API_URL_DETAIL_MOVIE + '/detail-movie/' + id);
   }
 
   getCategoryBiMovieId(id: number): Observable<Category[]> {

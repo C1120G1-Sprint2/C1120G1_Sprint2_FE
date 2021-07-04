@@ -8,6 +8,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {RoomSeat} from '../../../model/roomSeat';
 import {PaypalDTO} from '../../../model/paypalDTO';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserNoAccountDTO} from "../../../model/userNoAccountDTO";
 
 declare var paypal;
 
@@ -24,6 +26,8 @@ export class ConfirmBookingComponent implements OnInit {
   listChoseSeat: RoomSeat[] = [];
   movieTicket: MovieTicket;
   user: User;
+  userNoAccountDTO:UserNoAccountDTO;
+  createUserForm:FormGroup;
   totalMoney: number;
   ticketName:string = "";
   paypalDTO:PaypalDTO;
@@ -31,6 +35,7 @@ export class ConfirmBookingComponent implements OnInit {
   payerId:string = '';
 
   constructor(private location: Location,
+              private formBuilder:FormBuilder,
               private bookTicketsService: BookTicketsService,
               private activatedRoute:ActivatedRoute,
               private router: Router,
@@ -41,85 +46,84 @@ export class ConfirmBookingComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
   ngOnInit(): void {
-    this.user = this.tokenStorageService.getUser().user;
+    if (this.tokenStorageService.getToken()) {
+      this.user = this.tokenStorageService.getUser().user;
+    } else {
+      this.createForm();
+    }
 
     if (this.bookTicketsService.listChoseSeat.length != 0) {
       this.listChoseSeat = this.bookTicketsService.listChoseSeat;
+      console.log(this.listChoseSeat)
       this.movieTicket = this.bookTicketsService.movieTicket;
       this.totalMoney = this.getTotalMoney(this.listChoseSeat);
+      this.ticketName = "";
+      for(let roomSeat of this.listChoseSeat){
+        this.ticketName += (roomSeat.seat.row.rowName+roomSeat.seat.column.columnName)+" ";
+      }
     } else {
       this.location.back();
     }
+  }
 
-    // paypal.Buttons(
-    //   {
-    //     style: {
-    //       shape: 'rect',
-    //       color: 'gold',
-    //       layout: 'horizontal',
-    //       label: 'paypal',
-    //       tagline: true,
-    //       height: 50
-    //       // color:  'blue',
-    //       // shape:  'pill',
-    //       // label:  'pay',
-    //       // height: 40
-    //     },
-    //     createOrder: (data, actions) => {
-    //       console.log('createOrder');
-    //       // This function sets up the details of the transaction,
-    //       // including the amount and line item details
-    //       return actions.order.create({
-    //         purchase_units: [
-    //           {
-    //             amount: {
-    //               value: 5.0, //test
-    //               currency_code: 'USD'
-    //             }
-    //           }
-    //         ]
-    //       });
-    //     },
-    //     onApprove: (data, actions) => {
-    //       return actions.order.capture().then(details => {
-    //         console.log('Transaction completed');
-    //         console.log(details);
-    //         this.createTicket();
-    //       });
-    //     },
-    //     onError: (data, actions) => {
-    //       console.log('Transaction error');
-    //       // @ts-ignore
-    //       $('#refreshData').click();
-    //     }
-    //
-    //   }
-    // ).render(this.paypalElement.nativeElement);
-    // this.bookTicketsService.paySuccess(this.paymentId, )
+  private loadExternalScript(scriptUrl: string) {
+    return new Promise((resolve, reject) => {
+      const scriptElement = document.createElement('script')
+      scriptElement.src = scriptUrl;
+      scriptElement.onload = resolve;
+      document.body.appendChild(scriptElement);
+    })
+  }
+
+  createForm(){
+  this.createUserForm = new FormGroup(
+      {
+        name: new FormControl('', [Validators.required, Validators.pattern(/^(\s)*([\p{Lu}]|[\p{Ll}]){2,}((\s)(([\p{Lu}]|[\p{Ll}]){2,}))+(\s*)$/u)]),
+        email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+        idCard : new FormControl('', [Validators.required, Validators.pattern('^(\\d{9}|\\d{12})$')]),
+        phone: new FormControl('', [Validators.required, Validators.pattern('(09|03)[0-9]{8}')])
+      }
+    );
   }
 
   confirmCreate() {
-    this.ticketName = "";
-    for(let roomSeat of this.listChoseSeat){
-      this.ticketName += (roomSeat.seat.row.rowName+roomSeat.seat.column.columnName)+" ";
+    if (this.user == null) {
+      if (this.createUserForm.valid) {
+        this.userNoAccountDTO = this.createUserForm.value;
+        this.bookTicketsService.createUserNoAccount(this.userNoAccountDTO).subscribe(data => {
+          this.user = data;
+        });
+      } else {
+        this.toastrService.warning('Bạn nhập thông tin user không hợp lệ', 'Thông Báo', {timeOut: 2000})
+      }
     }
-    if (confirm("Bạn xác nhận sẽ đặt "+this.listChoseSeat.length+" vé : "+this.ticketName+"?")){
-      this.paypalDTO = new PaypalDTO(Math.round(Math.floor(this.totalMoney / 23000)));
-      console.log(this.paypalDTO)
-      this.bookTicketsService.payViaPaypal(this.paypalDTO).subscribe(data => {
-        console.log(data['linkName']);
-        this.createTicket();
-        // window.open(data['linkName'], "_self");
-        // this.paymentId = this.activatedRoute.snapshot.params['paymentId'];
-        // this.payerId = this.activatedRoute.snapshot.params['PayerID'];
-        // console.log(this.paymentId)
-        // console.log(this.payerId)
-        // this.bookTicketsService.paySuccess(this.paymentId, this.payerId).subscribe(data => {
-        //
-        // })
-      });
-      this.isConfirmed = true;
-    }
+    this.loadExternalScript("https://www.paypalobjects.com/api/checkout.js").then(() => {
+      paypal.Button.render({
+        env: 'sandbox',
+        client: {
+          production: 'AZMtdrGrR6S5jAMvERXiK365UgLAaNievYYpexl6JnnjoULHkpCH86pCzW5xeB_zHRa0R0vZhSs7M86U',
+          sandbox: 'AZMtdrGrR6S5jAMvERXiK365UgLAaNievYYpexl6JnnjoULHkpCH86pCzW5xeB_zHRa0R0vZhSs7M86U'
+        },
+        commit: true,
+        payment: function (data, actions) {
+          return actions.payment.create({
+            payment: {
+              transactions: [
+                {
+                  amount: { total: '4.00', currency: 'USD' }
+                }
+              ]
+            }
+          })
+        },
+        onAuthorize: function(data, actions) {
+          return actions.payment.execute().then( x => {
+            console.log("PAYPAL : OK");
+          })
+        }
+      }, '#paypal');
+    });
+    this.createTicket();
   }
 
   createTicket():void {

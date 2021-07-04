@@ -36,10 +36,6 @@ export class RoomListComponent implements OnInit {
       }
     });
   }
-  // getNumberSeat(roomId: number){
-  //   this.roomManagement.
-  // }
-
 
   deleteSuccess() {
     this.ngOnInit();

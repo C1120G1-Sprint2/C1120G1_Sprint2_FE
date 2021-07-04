@@ -5,7 +5,6 @@ import {MovieManagementService} from '../../../service/admin/movie-management/mo
 import {ShowTime} from '../../../model/showTime';
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
-import {User} from '../../../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,6 @@ export class MovieSelectionComponent implements OnInit {
   listDateTime: string[] = [];
   listShowtime: ShowTime[] = [];
   listMovie: Movie[] = [];
-  user:User;
   movie:Movie;
 
   date:string = '';
@@ -36,17 +34,7 @@ export class MovieSelectionComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
-    if (this.tokenStorageService.getToken()) {
-      this.user = this.tokenStorageService.getUser();
 
-      this.bookTicketsService.getAllMovie().subscribe(data => {
-        this.listMovie = data;
-      }, error => {
-        console.log("get " + error + " at getAllMovie() on MovieSelectionComponent");
-      })
-    }
-
-    this.user = this.tokenStorageService.getUser();
     this.bookTicketsService.getAllMovie().subscribe(data => {
       this.listMovie = data;
     }, error => {

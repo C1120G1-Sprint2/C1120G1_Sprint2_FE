@@ -24,8 +24,6 @@ export class SeatSelectionComponent implements OnInit {
   public listChoseSeat: Seat[] = [];
   public listRow: number[] = [1, 2, 3, 4, 5, 6, 7];
   public user: User = null;
-
-
   constructor(private salesTicketsService: SalesTicketsManagementService,
               private route: ActivatedRoute,
               private router: Router,
@@ -33,7 +31,6 @@ export class SeatSelectionComponent implements OnInit {
               private dialog: MatDialog,
               private modal: NgbModal) {
   }
-
   ngOnInit(): void {
     // tslint:disable-next-line:radix
     this.movieTicketId = parseInt(this.route.snapshot.queryParamMap.get('movieTicketId'));
@@ -51,20 +48,18 @@ export class SeatSelectionComponent implements OnInit {
       {username: new FormControl('', [Validators.required, Validators.pattern('\\w{6,}')])}
     );
   }
-
   openLoading() {
     const dialogRef = this.dialog.open(LoadingComponent, {
       disableClose: true
     });
   }
-
   continue() {
-      this.salesTicketsService.changeListChoseSeat(this.listChoseSeat);
-      this.salesTicketsService.changeMovieTicket(this.movieTicket);
-      this.router.navigateByUrl('/employee/sale/tickets/confirmSaleTicket');
+    this.user === null;
+    this.salesTicketsService.changeUser(this.user);
+    this.salesTicketsService.changeListChoseSeat(this.listChoseSeat);
+    this.salesTicketsService.changeMovieTicket(this.movieTicket);
+    this.router.navigateByUrl('/employee/sale/tickets/confirmSaleTicket');
   }
-
-
   chooseSeat(roomSeat: RoomSeat) {
     const seatStyle = document.getElementById(roomSeat.seat.row.rowName + roomSeat.seat.column.columnName);
     if (roomSeat.seatStatus.seatStatusId === 1) {
@@ -89,7 +84,6 @@ export class SeatSelectionComponent implements OnInit {
       this.toast.warning('Ghế này đã có người đặt', 'Thông Báo');
     }
   }
-
   checkSeatClass(roomSeat: RoomSeat) {
     if (roomSeat.seatStatus.seatStatusId === 1) {
       if (roomSeat.seat.seatType.seatTypeId === 1) {
@@ -101,11 +95,9 @@ export class SeatSelectionComponent implements OnInit {
       return 'ordered-seat';
     }
   }
-
   openCheckAccount(content) {
     this.modal.open(content, {windowClass: 'dark-modal'});
   }
-
   checkAccount() {
     if (this.formSearchCardId.invalid) {
       this.toast.warning('Thông tin bạn nhập không hợp lệ, card id phải là số và gồm 9 kí tự!', 'Thông Báo', {timeOut: 3000});
@@ -120,9 +112,10 @@ export class SeatSelectionComponent implements OnInit {
       });
     }
   }
-
   changeUser() {
     this.salesTicketsService.changeUser(this.user);
-    this.continue();
+    this.salesTicketsService.changeListChoseSeat(this.listChoseSeat);
+    this.salesTicketsService.changeMovieTicket(this.movieTicket);
+    this.router.navigateByUrl('/employee/sale/tickets/confirmSaleTicket');
   }
 }

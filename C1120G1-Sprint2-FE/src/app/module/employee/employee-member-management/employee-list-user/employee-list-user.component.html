@@ -1,96 +1,56 @@
-<div class="menu">
-  <div class=".logo col-2 text-center float-left">
-    <a>
-      <div class="row">
-        <h4 class="text-light mt-2 pt-1 ml-5">C1120G1</h4>
-        <img src="" width="50px" class="mt-1"/>
-      </div>
-    </a>
-  </div>
-  <div class="col-2 float-right mt-2">
-    <a class="float-left text-light mr-1 mt-2">Sang</a>
-    <a role="button" class="float-left btn btn-light mt-1 btnLogOut">Đăng xuất</a>
-  </div>
-</div>
-<div class="mt-2 col-12 d-inline-flex">
-  <div class="col-lg-2 col-md-2 col-sm-2 col-2 pl-0">
-    <div class=" float-left menu-left-admin">
-      <div class="w3-row">
-        <ul class="col-12">
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
-              <i class="fas fa-money-bill-wave mr-2 col-1"></i>Quản Lý Bán Vé
-            </a>
-          </li>
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
 
-              <i class="fas fa-ticket-alt mr-2 col-1"></i>Quản Lý Đặt Vé
-            </a>
-          </li>
-
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
-              <i class="fas fa-user-cog mr-2 col-1"></i>Quản Lý Nhân Viên
-            </a>
-          </li>
-
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
-
-              <i class="fas fa-video mr-2 col-1"></i>Quản Lý Phòng Chiếu
-            </a>
-          </li>
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
-              <i class="fas fa-users mr-2 col-1"></i>Quản Lý Thành Viên
-            </a>
-          </li>
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
-              <i class="fas fa-film mr-2 col-1"></i> Quản Lý Phim
-            </a>
-          </li>
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
-              <i class="fas fa-gifts mr-2 col-1"></i> Quản Lý Khuyến Mãi
-            </a>
-          </li>
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
-              <i class="fas fa-chart-bar mr-2 col-1"></i>Thống Kê
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-10 col-md-10 col-sm-10 col-10">
+<!--  <div class="col-lg-10 col-md-10 col-sm-10 col-10">-->
     <div class="container-xl ">
       <div class="table-responsive">
         <div class="table-wrapper">
-          <div class="table-title">
-            <div class="row">
-              <div class="col-sm-3">
-                <h2>Quản lý Thành viên</h2>
-              </div>
-              <div class="col-sm-6">
+<!--          <div class="table-header">-->
+<!--            <p class="title">Quản Lý Suất Chiếu Trong Hệ Thống</p>-->
+<!--          </div>-->
+<!--          <div class="table-title">-->
+<!--            <div class="row">-->
+<!--              <div class="col-3 float-left" >-->
+<!--                <a routerLink="/employee/member/management/create" class="btn btn-success"><i-->
+<!--                  class="material-icons">&#xE147;</i> <span>Thêm Thành Viên</span></a>-->
+<!--              </div>-->
+<!--              <div class="col-5"></div>-->
+<!--              <div class="col-4">-->
 
-                    <div class="container  form-inline">
-                      <input id="search" class="form-control  rounded-pill search mb-5 pr-5" type="search"
-                             [(ngModel)]="keySearch"
-                             (keyup.enter)="searchEnter()"
-                             placeholder="Nhập thông tin mà bạn muốn tìm kiếm...">
-                      <div class="btn-group " role="group" aria-label="Basic example">
-                        <button type="button" (click)="search()" class="btn btn-orange rounded-pill  mb-5"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
+<!--                    <div class="container  form-inline">-->
+<!--                      <input id="search" class="form-control  rounded-pill search mb-5 pr-5" type="search"-->
+<!--                             [(ngModel)]="keySearch"-->
+<!--                             (keyup.enter)="searchEnter()"-->
+<!--                             placeholder="Nhập thông tin mà bạn muốn tìm kiếm...">-->
+<!--                      <div class="btn-group " role="group" aria-label="Basic example">-->
+<!--                        <button type="button" (click)="search()" class="btn btn-orange rounded-pill  mb-5"><i class="fa fa-search"></i></button>-->
+<!--                      </div>-->
+<!--                    </div>-->
 
-              </div>
-              <div class="col-sm-3">
-                <a routerLink="/employee/member/management/create" class="btn btn-success"><i
-                  class="material-icons">&#xE147;</i> <span>Thêm Thành Viên</span></a>
-              </div>
+<!--              </div>-->
+
+<!--            </div>-->
+<!--          </div>-->
+
+
+          <div class="table-header">
+            <p class="title">Quản Lý Thành Viên</p>
+          </div>
+          <div class="row p-0 m-0">
+            <div class="col-3">
+              <a routerLink="/employee/member/management/create" class="btn btn-success btnCreate">
+                <i class="fas fa-plus"></i>
+                <span>Thêm Thành Viên</span>
+              </a>
+            </div>
+            <div class="col-5"></div>
+            <div class="col-4 float-right d-inline-flex">
+              <input type="text" [(ngModel)]="keySearch"
+                     (keyup.enter)="searchEnter()"
+                     placeholder="Nhập thông tin mà bạn muốn tìm kiếm "
+                     class="form-control rounded-pill inputSearch" style="width: 80%">
+              <button class="btn btnSearch"
+                      (click)="search()">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
           </div>
           <table class="table table-striped table-hover">
@@ -190,8 +150,7 @@
             </div>
           </div>
           <!--   Modal       -->
-        </div>
       </div>
     </div>
   </div>
-</div>
+<!--</div>-->

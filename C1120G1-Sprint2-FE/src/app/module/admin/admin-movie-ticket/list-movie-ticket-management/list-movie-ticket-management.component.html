@@ -31,7 +31,8 @@
       <th (click)="onSortChange('showTime')">Suất Chiếu <i class="fas fa-sort"></i></th>
       <th (click)="onSortChange('projectionType')">Loại Chiếu <i class="fas fa-sort"></i></th>
       <th (click)="onSortChange('ticketPrice')">Giá Vé <i class="fas fa-sort"></i></th>
-      <th>Tuỳ Chọn</th>
+      <th>Xoá </th>
+      <th>Sửa</th>
       </thead>
       <tbody>
       <tr *ngFor="let movieTicket of movieTickets; let i = index"  class="inputTable">
@@ -41,10 +42,12 @@
         <td>{{movieTicket.showDate}}</td>
         <td>{{movieTicket.showTime.showTime}}</td>
         <td>{{movieTicket.projectionType.projectionName}}</td>
-        <td>{{movieTicket.ticketPrice}}</td>
+        <td>{{movieTicket.ticketPrice | number}} VND</td>
         <td>
           <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal1"
                   (click)="deleteId = movieTicket.movieTicketId; deleteName = movieTicket.showTime.showTime"><i class="fas fa-trash"></i></button>
+        </td>
+      <td>
           <a (click)="openDialog(movieTicket.movieTicketId)"><button class="btn btn-warning"><i class="far fa-edit"></i></button></a>
         </td>
       </tr>
@@ -68,49 +71,7 @@
       </div>
     </div>
 
-    <!-- pagination -->
-<!--          <div class="col-12">-->
-<!--            <nav class="float-left">-->
-<!--              <ul class="pagination modal-4">-->
-<!--                <li class="disabled prev" (click)="onFirst()" [ngClass]="pageClicked==0?'disabled':''">-->
-<!--                  <a class="active btn btnP"><i class="fa fa-chevron-left"></i>-->
-<!--                    Đầu-->
-<!--                  </a>-->
 
-<!--                </li>-->
-<!--                <li class="disabled" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">-->
-<!--                  <a class="waves-effect btn btnP"><i class="fa fa-chevron-left"></i>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li *ngIf="pageClicked != 0" class="active" (click)="onSubmit(pages[pageClicked-1])">-->
-<!--                  <a class="waves-effect btn btnN">{{pageClicked}}</a>-->
-<!--                </li>-->
-<!--                <li [ngClass]="(pageClicked == pages[pageClicked]) ? 'active' : ''" class="active"-->
-<!--                    (click)="onSubmit(pages[pageClicked])">-->
-<!--                  <a class="waves-effect btn btnN">{{pageClicked + 1}}</a>-->
-<!--                </li>-->
-<!--                <li *ngIf="pageClicked < pages.length -1" class="active" (click)="onSubmit(pages[pageClicked+1])">-->
-<!--                  <a class="waves-effect btn btnN">{{pageClicked + 2}}</a>-->
-<!--                </li>-->
-<!--                <li *ngIf="pageClicked < pages.length -2" class="active">-->
-<!--                  <a class="waves-effect btn btnN">...</a>-->
-<!--                </li>-->
-<!--                <li *ngIf="pageClicked < pages.length-2" class="page-item" (click)="onLast()">-->
-<!--                  <a class="waves-effect btn btnN">{{pages[pages.length - 1] + 1}}</a>-->
-<!--                </li>-->
-<!--                <li class="disabled" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">-->
-<!--                  <a class="active btn btnP"><mat-icon class="material-icons">-->
-<!--                  navigate_next-->
-<!--                  </mat-icon>-->
-<!--                  </a>-->
-<!--                </li>-->
-<!--                <li class="disabled" (click)="onLast()" [ngClass]="pageClicked==totalPages-1?'disabled':''"><a-->
-<!--                  class="active btn btnP">Cuối-->
-<!--                  <i class="fa fa-chevron-right"></i></a>-->
-<!--                </li>-->
-<!--              </ul>-->
-<!--            </nav>-->
-<!--          </div>-->
     <div>
       <ul class="pagination modal-4">
         <li><a (click)="onFirst()" [ngClass]="pageClicked==0?'disabled':''"  class="prev">

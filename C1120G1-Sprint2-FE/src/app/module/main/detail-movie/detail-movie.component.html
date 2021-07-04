@@ -1,5 +1,5 @@
 <div class="container-fluid"
-     style="background-image: url(https://assets.isu.pub/document-structure/201119095039-81c9c6ee54cf9d84cd37f8bfacda75ea/v1/fa7693daeda883175fba952e4a65047c.jpg);">
+     style="background-image: url(https://assets.isu.pub/document-structure/201119095039-81c9c6ee54cf9d84cd37f8bfacda75ea/v1/fa7693daeda883175fba952e4a65047c.jpg); margin-top: 25px">
   <div class="container">
     <div class="col-xs-12 film-detail-title">
       <ol class="breadcrumb">
@@ -50,7 +50,7 @@
         </div>
         <div>
           <label class="row" style="margin-left: 3px">Đánh Giá: &nbsp; &nbsp; &nbsp; &nbsp;
-<!--            <app-rating></app-rating>-->
+            <app-rating></app-rating>
           </label>
 
         </div>
@@ -60,7 +60,9 @@
           </p>
         </div>
         <div>
-          <button class="btn btn-outline btnOrder" (click)="onSubmit()">Đặt Vé</button>
+          <a [routerLink]="['/booking/movie',movie.movieId]">
+            <button class="btn btn-outline btnOrder">Đặt Vé</button>
+          </a>
         </div>
         <div>
 
@@ -106,7 +108,7 @@
           <div class="form-group">
             <textarea class="form-control" rows="3" formControlName="content"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Add Comment</button>
+          <button type="submit" class="btn btn-primary" style="margin-bottom: 10px">Thêm Bình Luận</button>
         </form>
         <div class="faq-item col-lg-8" *ngFor="let comment of comments">
           <div class="answer" style="padding: 15px;">
@@ -116,8 +118,8 @@
                   <a style="color: rgb(0,123,255);"
                      (click)="viewProfile(comment.user.email)">{{comment.user.name}}</a>
                 </span>
-<!--              *ngIf="email == comment.user.email"-->
-              <button  style="float: right" class="buttonEdit btn" data-toggle="dropdown"
+
+              <button *ngIf="email == comment.user.email"  style="float: right" class="buttonEdit btn" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false"><i
                 class="fa fa-ellipsis-v"></i>
                 <div class="dropdown-menu">

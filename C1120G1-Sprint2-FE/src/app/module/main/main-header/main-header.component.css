@@ -1,18 +1,18 @@
 .header {
-  background-image: url(../../../../assets/layout-images/header-wrap-background.png);
+  background-image: url(../../../../assets/layout-images/header-wrap-background.jpg);
   position: relative;
-  background-repeat: repeat-x;
+  background-size: 100% 100%;
   height: 111px;
   z-index: 77;
 }
 
 .header::before {
   content: "";
-  background: #383839 url(../../../../assets/layout-images/menu-backgound-wapper-left.png);
+  background: #383839 url(../../../../assets/layout-images/menu-background-wrapper-left.jpg);
   width: calc(50% - 570px);
-  bottom: -17px;
   left: 0;
-  height: 100%;
+  height: 128px;
+  background-size: 100% 100%;
   position: absolute;
 }
 
@@ -24,6 +24,7 @@
   height: 128px;
   position: relative;
   z-index: 999;
+  /* box-shadow: 0 0 8px #f26b39; */
 }
 
 .header-wrap .logo-wrap {

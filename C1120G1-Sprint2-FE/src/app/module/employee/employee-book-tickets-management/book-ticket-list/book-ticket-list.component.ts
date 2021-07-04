@@ -107,7 +107,7 @@ export class BookTicketListComponent implements OnInit {
   previousPage() {
     this.indexPagination = this.indexPagination - 1;
     if (this.indexPagination < this.totalPagination) {
-      this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
+      // this.toastr.warning('Quá số trang tìm kiếm !', 'Vé Đã Đặt !');
     }
     if (this.indexPagination == 0) {
       this.indexPagination = 1;
