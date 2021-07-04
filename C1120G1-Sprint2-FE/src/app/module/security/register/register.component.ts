@@ -4,9 +4,9 @@ import {User} from '../../../model/user';
 import {Ward} from '../../../model/ward';
 import {District} from '../../../model/district';
 import {Province} from '../../../model/province';
-import {MemberManagementService} from '../../../service/employee/member-management/member-management.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {SecurityService} from "../../../service/security/security.service";
 
 @Component({
   selector: 'app-register',
@@ -27,14 +27,14 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private memberManagementService: MemberManagementService,
+    private securityService: SecurityService,
     private router: Router,
     private toastr: ToastrService,
   ) {
   }
 
   ngOnInit(): void {
-    this.memberManagementService.getAllProvince().subscribe(data => {
+    this.securityService.getAllProvince().subscribe(data => {
       this.provinces = data;
     });
     this.form = this.formBuilder.group({
@@ -58,24 +58,25 @@ export class RegisterComponent implements OnInit {
       ward: ['', [Validators.required]],
       district: [''],
       province: [''],
-      avatarUrl: ['defaultAvatar'],
+      avatarUrl: [this.defaultAvatar],
     });
   }
 
   submitForm() {
     if (this.form.valid) {
-      this.memberManagementService.createUser(this.form.value).subscribe(
+      this.securityService.createUserConfirmMail(this.form.value).subscribe(
         data => {
           this.router.navigateByUrl('/login');
           this.toastr.success('Hãy kiểm tra email và xác nhận tài khoản', 'Đăng kí thành công', {
-            timeOut: 1000,
+            timeOut: 2000,
             progressBar: true,
             progressAnimation: 'increasing'
           });
+          this.sendMail();
         },
         error => {
-          this.toastr.success('Hãy kiểm tra lại đăng kí', 'Đăng kí thất bại', {
-            timeOut: 1000,
+          this.toastr.error('Hãy kiểm tra lại đăng kí', 'Đăng kí thất bại', {
+            timeOut: 2000,
             progressBar: true,
             progressAnimation: 'increasing'
           });
@@ -128,7 +129,7 @@ export class RegisterComponent implements OnInit {
     let userProfile = this.form.controls['province'].value;
     const provinceId = userProfile.provinceId;
     if (provinceId) {
-      this.memberManagementService.getAllDistrictByProvinceId(provinceId).subscribe(data => {
+      this.securityService.getAllDistrictByProvinceId(provinceId).subscribe(data => {
         this.districts = data;
         this.wards = null;
       });
@@ -142,7 +143,7 @@ export class RegisterComponent implements OnInit {
     let userInfo = this.form.controls['district'].value;
     const districtId = userInfo.districtId;
     if (districtId) {
-      this.memberManagementService.getAllWardByDistrictId(districtId).subscribe(data => {
+      this.securityService.getAllWardByDistrictId(districtId).subscribe(data => {
         this.wards = data;
       });
     } else {
@@ -152,8 +153,7 @@ export class RegisterComponent implements OnInit {
 
   sendMail() {
     if (this.form.valid) {
-      console.log(this.form.value.email);
-      this.memberManagementService.sendEmailApprove(this.form.value.email).subscribe(data => {
+      this.securityService.sendEmailConfirm(this.form.value.email).subscribe(data => {
       });
     }
   }
