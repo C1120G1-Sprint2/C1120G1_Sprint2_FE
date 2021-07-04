@@ -19,6 +19,7 @@ export class SeatSelectionComponent implements OnInit {
   ticket:Ticket;
   movieTicket:MovieTicket;
   movieTicketId:number;
+  totalMoney:number;
 
   constructor(private bookTicketsService:BookTicketsService,
               private router:Router,
@@ -53,6 +54,7 @@ export class SeatSelectionComponent implements OnInit {
           seatStyle.style.backgroundColor = 'green';
           seatStyle.style.color = 'white';
           this.listChoseSeat.push(roomSeat);
+          this.getTotalMoney();
         } else {
           this.toastrService.error('Bạn chỉ có thể chọn tối đa 8 vé!', 'Thông báo!');
         }
@@ -64,9 +66,20 @@ export class SeatSelectionComponent implements OnInit {
         }
         seatStyle.style.color = 'black';
         this.listChoseSeat.splice(this.listChoseSeat.indexOf(roomSeat), 1);
+        this.getTotalMoney();
       }
     } else {
       this.toastrService.warning("Ghế này đã có người đặt rồi!","Thông báo!")
+    }
+  }
+
+  getTotalMoney(){
+    for (let roomSeat of this.listChoseSeat) {
+      if (roomSeat.seat.seatType.seatTypeId == 1) {
+        this.totalMoney += this.movieTicket.ticketPrice;
+      } else {
+        this.totalMoney += (this.movieTicket.ticketPrice * (4/3));
+      }
     }
   }
 

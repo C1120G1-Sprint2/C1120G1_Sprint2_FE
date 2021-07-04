@@ -89,7 +89,7 @@
         </tbody>
       </table>
 
-      <table class="table table-hover" id="table-personal-info" *ngIf="user">
+      <table class="table table-hover table-personal-info" *ngIf="user">
         <thead>
         <tr>
           <td colspan="2">
@@ -116,6 +116,60 @@
         </tr>
         </tbody>
       </table>
+
+      <form [formGroup]="createUserForm">
+        <table *ngIf="user === null" class="table table-hover table-personal-info">
+          <thead>
+          <tr>
+            <td colspan="2">
+              <p class="movie-picked-title" style="font-size: 1.3rem">kiểm tra thông tin cá nhân</p>
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Họ và tên</td>
+            <td>
+              <input placeholder="Nhập họ và tên" class="form-control" formControlName="name" type="text">
+              <div *ngIf="createUserForm.controls.name.invalid && (createUserForm.controls.name.dirty||createUserForm.controls.name.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!createUserForm.controls.name.errors.required">*Bạn chưa nhập họ và tên !</span>
+                <span style="color: red" [hidden]="!createUserForm.controls.name.errors.pattern">*Bạn nhập họ tên không hợp lệ!</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>
+              <input placeholder="Nhập email"  class="form-control" formControlName="email" type="text">
+              <div *ngIf="createUserForm.controls.email.invalid && (createUserForm.controls.email.dirty||createUserForm.controls.email.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!createUserForm.controls.email.errors.required">*Bạn chưa nhập email !</span>
+                <span style="color: red" [hidden]="!createUserForm.controls.email.errors.pattern">*Bạn nhập email không hợp lệ !</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>CMND</td>
+            <td>
+              <input placeholder="Nhập số điện thoại" class="form-control" formControlName="phone" type="text">
+              <div *ngIf="createUserForm.controls.idCard.invalid && (createUserForm.controls.idCard.dirty||createUserForm.controls.idCard.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!createUserForm.controls.idCard.errors.required">*Bạn chưa nhập CMND !</span>
+                <span style="color: red" [hidden]="!createUserForm.controls.idCard.errors.pattern">*Bạn nhập CMND không hợp lệ!</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Số điện thoại</td>
+            <td>
+              <input placeholder="Nhập số điện thoại" class="form-control" formControlName="phone" type="text">
+              <div *ngIf="createUserForm.controls.phone.invalid && (createUserForm.controls.phone.dirty||createUserForm.controls.phone.touched)" class="mt-1">
+                <span style="color: red" [hidden]="!createUserForm.controls.phone.errors.required">*Bạn chưa nhập số điện thoại !</span>
+                <span style="color: red" [hidden]="!createUserForm.controls.phone.errors.pattern">*Bạn nhập số điện thoại không hợp lệ!</span>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
     </div>
     <div class="col-lg-2"></div>
   </div>
@@ -128,15 +182,40 @@
         </span>
       </button>
     </a>
-    <button class="btn btn-outline-primary rounded-pill" type="button" (click)="confirmCreate()">
+    <button class="btn btn-outline-primary rounded-pill" type="button"
+            data-toggle="modal" data-target="#confirmModal"
+            [disabled]="!user && createUserForm.invalid">
         <span class="ticket">
           <img src="../../../../assets/img/cinema-ticket.png" height="34" width="34"/>
         </span>
       Xác nhận đặt vé
     </button>
+  </div>
+</div>
 
-    <div class="m-0 p-0" [hidden]="!isConfirmed"
-         style="width: 60%;height:50px;font-size: 13px;font-weight: bolder " #paypal>
+<!--confirm Modal-->
+<div class="modal" tabindex="-1" role="dialog" id="confirmModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-uppercase">Xác nhận đặt vé</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Bạn xác nhận sẽ đặt 0{{listChoseSeat.length}} vé : {{ticketName}} ?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <div class="m-0 p-0"
+             style="width: 60%;height:50px;font-size: 13px;font-weight: bolder"
+             #paypal>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="confirmCreate()">Xác nhận</button>
+      </div>
     </div>
   </div>
 </div>
