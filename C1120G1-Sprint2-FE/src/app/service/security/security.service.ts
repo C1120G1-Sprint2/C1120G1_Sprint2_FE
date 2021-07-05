@@ -3,8 +3,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthLogin} from '../../model/authLogin';
 import {UserSocial} from '../../model/userSocial';
+import {User} from "../../model/user";
 
 const API_URL = 'http://localhost:8080/api/';
+const BASE_API_URL = 'http://localhost:8080/';
 const API_URL_GOOGLE: string = 'http://localhost:8080/api/login/google';
 const API_URL_FACEBOOK: string = 'http://localhost:8080/api/login/facebook';
 
@@ -48,5 +50,29 @@ export class SecurityService {
     console.log("User in Service")
     console.log(user)
     return this.http.post<any>(API_URL_FACEBOOK, user, this.httpOptions);
+  }
+
+  confirmEmail(username: string, email: string): Observable<any> {
+    return this.http.put<any>(API_URL + 'register/confirmEmail/' +  username + '/' + email, this.httpOptions)
+  }
+
+  createUserConfirmMail(user: User): Observable<User> {
+    return this.http.post<User>(API_URL + 'createConfirm', user);
+  }
+
+  sendEmailConfirm(email: string): Observable<any>{
+    return this.http.get(API_URL + "emailConfirm?email=" + email);
+  }
+
+  getAllProvince(): Observable<any> {
+    return this.http.get(BASE_API_URL + 'provinces', this.httpOptions);
+  }
+
+  getAllDistrictByProvinceId(id: number): Observable<any> {
+    return this.http.get(BASE_API_URL + 'districts/' + id, this.httpOptions);
+  }
+
+  getAllWardByDistrictId(id: number): Observable<any> {
+    return this.http.get(BASE_API_URL + 'wards/' + id, this.httpOptions);
   }
 }

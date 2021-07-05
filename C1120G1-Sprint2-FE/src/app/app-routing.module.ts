@@ -19,12 +19,13 @@ import {MainBookingComponent} from './module/booking/main-booking/main-booking.c
 import {MovieSelectedComponent} from './module/booking/movie-selected/movie-selected.component';
 import {BookingInformationComponent} from './module/booking/booking-information/booking-information.component';
 
-// import {LoginGoogleComponent} from './module/security/login-google/login-google.component';
+import {LoginGoogleComponent} from './module/security/login-google/login-google.component';
 import {AccountInfoComponent} from './module/member/account-management/account-info/account-info.component';
 import {TransactionHistoryComponent} from './module/member/account-management/transaction-history/transaction-history.component';
 import {TicketsBookingComponent} from './module/member/account-management/tickets-booking/tickets-booking.component';
 import {MemberPageComponent} from './module/member/member-page/member-page.component';
 import {MovieCornerComponent} from './module/main/movie-corner/movie-corner.component';
+import {ConfirmEmailComponent} from "./module/security/confirm-email/confirm-email.component";
 
 const routes: Routes = [
   {
@@ -58,6 +59,9 @@ const routes: Routes = [
       {path: 'login', component: LoginComponent},
       {path: 'logout', component: LogoutComponent},
       {path: 'register', component: RegisterComponent},
+      {path: 'register/confirmEmail/:username/:email', component: ConfirmEmailComponent},
+      {path: 'loginGoogle', component: LoginGoogleComponent},
+      {path: 'home', redirectTo: '/'},
 
   {
     path: 'booking',
