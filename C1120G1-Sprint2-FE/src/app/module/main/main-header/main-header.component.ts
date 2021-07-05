@@ -4,7 +4,6 @@ import {User} from '../../../model/user';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
 import {UserServiceService} from '../../../service/user/user-service.service';
 import {SecurityService} from '../../../service/security/security.service';
-
 @Component({
   selector: 'app-main-header',
   templateUrl: './main-header.component.html',
@@ -28,6 +27,11 @@ export class MainHeaderComponent implements OnInit {
       this.role = user.authorities[0].authority;
       this.username = user.username;
       this.getAvatarUrl(this.username);
+    }
+    if (this.tokenStore.getToken()){
+      this.user = this.tokenStore.getUser().user;
+      this.role = this.tokenStore.getUser().authorities[0].authority;
+
     }
   }
 

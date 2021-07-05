@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ShowTime} from '../../../model/showTime';
 import {Movie} from '../../../model/movie';
-import {User} from '../../../model/user';
 import {BookTicketsService} from '../../../service/member/book-tickets/book-tickets.service';
 import {MovieManagementService} from '../../../service/admin/movie-management/movie-management.service';
 import {TokenStorageService} from '../../../service/security/token-storage.service';
@@ -16,7 +15,6 @@ export class MovieSelectedComponent implements OnInit {
   listDateTime: string[] = [];
   listShowtime: ShowTime[] = [];
   listMovie: Movie[] = [];
-  user:User;
   movie:Movie;
   activeId:number;
 
@@ -33,22 +31,12 @@ export class MovieSelectedComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
-    if (this.tokenStorageService.getToken()) {
-      this.user = this.tokenStorageService.getUser();
+    this.activeId = this.activatedRoute.snapshot.params['id'];
+    console.log("ID : "+this.activeId);
 
-      this.bookTicketsService.getAllMovie().subscribe(data => {
-        this.listMovie = data;
-      }, error => {
-        console.log("get " + error + " at getAllMovie() on MovieSelectionComponent");
-      })
-    }
-
-    this.user = this.tokenStorageService.getUser();
     this.bookTicketsService.getAllMovie().subscribe(data => {
       this.listMovie = data;
       console.log(this.listMovie)
-      this.activeId = this.activatedRoute.snapshot.params['id'];
-      console.log("ID : "+this.activeId)
       this.getDateTimeList(this.activeId);
     }, error => {
       console.log("get " + error + " at getAllMovie() on MovieSelectionComponent");

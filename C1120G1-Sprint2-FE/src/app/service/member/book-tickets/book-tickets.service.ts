@@ -9,10 +9,12 @@ import {User} from '../../../model/user';
 import {RoomSeat} from '../../../model/roomSeat';
 import {Ticket} from '../../../model/ticket';
 import {PaypalDTO} from '../../../model/paypalDTO';
+import {UserNoAccountDTO} from "../../../model/userNoAccountDTO";
 
 const API_TICKET: string = 'http://localhost:8080/api/ticket';
 const API_SEAT: string = 'http://localhost:8080/api/roomSeat';
 const API_PAYPAL: string = 'http://localhost:8080/api/paypal';
+const API_USER: string = 'http://localhost:8080/api/user';
 
 
 @Injectable({
@@ -21,13 +23,10 @@ const API_PAYPAL: string = 'http://localhost:8080/api/paypal';
 
 export class BookTicketsService {
 
-  // API_URL_TICKET: string = 'http://localhost:8080/member';
-
   API_URL_TICKET: string = 'http://localhost:8080/api/ticket';
 
   httpOptions: any;
 
-  user: User;
   movieTicket: MovieTicket;
   listChoseSeat: RoomSeat[] = [];
 
@@ -36,7 +35,6 @@ export class BookTicketsService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
-      // 'Access-Control-Allow-Origin': 'http://localhost:4200/',
       'Access-Control-Allow-Origin': 'http://localhost:4200',
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       'Access-Control-Allow-Credentials': 'true'
@@ -58,7 +56,8 @@ export class BookTicketsService {
 
   /**
    * Author: HoangTQ
-   * getAllMovie(), getAllShowTime(), getMovieTicket(), getAllSeat(), getMovieTicketById(), createTicket()
+   * getAllMovie(), getAllShowTime(), getMovieTicket(),
+   * getAllSeat(), getMovieTicketById(), createTicket(), createUserNoAccount()
    */
 
   getAllMovie(): Observable<Movie[]> {
@@ -94,4 +93,7 @@ export class BookTicketsService {
     return this.httpClient.get(API_PAYPAL+"/pay/success?paymentId="+paymentId+"&PayerID="+payerId);
   }
 
+  createUserNoAccount(userNoAccountDTO: UserNoAccountDTO):Observable<any> {
+    return this.httpClient.post(API_USER + "/createUserNoAccount", userNoAccountDTO);
+  }
 }

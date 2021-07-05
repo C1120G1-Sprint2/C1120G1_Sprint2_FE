@@ -14,7 +14,7 @@ $color : #f26c39;
   .container-fluid {
     display: block;
   }
-  #table-booking-infor {
+  .table-booking-infor {
     margin-top: 1.5rem;
   }
   .pleasure {
@@ -76,16 +76,16 @@ tbody tr td {
   color: black;
   text-align: center;
 }
-#table-booking-infor {
+.table-booking-infor {
   text-align: left;
 }
-#table-booking-infor td:first-child {
+.table-booking-infor td:first-child {
   padding-left: 2rem;
 }
-#table-booking-infor td:last-child {
+.table-booking-infor td:last-child {
   padding-right: 0;
 }
-#table-personal-info td:first-child {
+.table-personal-info td:first-child {
   padding-left: 2rem;
 }
 #img-div {
