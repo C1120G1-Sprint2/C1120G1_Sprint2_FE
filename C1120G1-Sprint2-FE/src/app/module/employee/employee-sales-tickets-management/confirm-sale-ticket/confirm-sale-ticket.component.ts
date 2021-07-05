@@ -97,7 +97,7 @@ export class ConfirmSaleTicketComponent implements OnInit {
       this.saleTicketService.changeUser(this.user);
       this.saleTicketService.changeMovieTicket(this.movieTicket);
     });
-    this.router.navigateByUrl('/employee/sale/tickets');
+    this.router.navigateByUrl('/employee/sale/tickets/info');
     this.toast.success('Xác Nhận Bán Vé Thành Công!', 'Thông Báo', {timeOut: 2000})
   }
   createTicket() {

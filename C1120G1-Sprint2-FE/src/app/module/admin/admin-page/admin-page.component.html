@@ -44,10 +44,33 @@
                 <i class="fas fa-gifts mr-2 col-1"></i> Quản Lý Khuyến Mãi
               </a>
             </li>
-            <li class=" pt-2 pb-2 menu-var">
-              <a class="text-decoration-none text-dark  pt-2 pb-2">
+            <li class=" pt-2 pb-2 menu-var dropdown">
+              <a class="text-decoration-none text-dark  pt-2 pb-2" data-toggle="dropdown" role="button"
+                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-chart-bar mr-2 col-1"></i>Thống Kê
               </a>
+              <div class="dropdown-menu">
+                <a class="text-decoration-none text-dark  pt-2 pb-2 dropdown-item"
+                   [routerLink]="['/admin/statistical/movie']">
+                  <i class="fas fa-film"></i>
+                  Thống kê phim
+                </a>
+                <a class="text-decoration-none text-dark  pt-2 pb-2 dropdown-item"
+                   [routerLink]="['/admin/statistical/member']">
+                  <i class="fas fa-user-friends"></i>
+                  Thống kê thành viên
+                </a>
+                <a class="text-decoration-none text-dark  pt-2 pb-2 dropdown-item"
+                   [routerLink]="['/admin/statistical/category']">
+                  <i class="fas fa-photo-video"></i>
+                  Thống kê thể loại
+                </a>
+                <a class="text-decoration-none text-dark  pt-2 pb-2 dropdown-item"
+                   [routerLink]="['/admin/statistical/showtime']">
+                  <i class="far fa-clock"></i>
+                  Thống kê suất chiếu
+                </a>
+              </div>
             </li>
 
           </ul>
@@ -60,7 +83,3 @@
 </div>
 <app-main-footer></app-main-footer>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> cb26e9b4374621304da0d44095516cc0cf344b2e

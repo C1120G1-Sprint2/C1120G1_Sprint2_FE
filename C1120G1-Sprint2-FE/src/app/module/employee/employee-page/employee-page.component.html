@@ -43,10 +43,33 @@
               <i class="fas fa-gifts mr-2 col-1"></i> Quản Lý Khuyến Mãi
             </a>
           </li>
-          <li class=" pt-2 pb-2 menu-var">
-            <a class="text-decoration-none text-dark  pt-2 pb-2">
+          <li class=" pt-2 pb-2 menu-var dropdown">
+            <a class="text-decoration-none text-dark  pt-2 pb-2" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-chart-bar mr-2 col-1"></i>Thống Kê
             </a>
+            <div class="dropdown-menu">
+              <a class="text-decoration-none text-dark  pt-2 pb-2 dropdown-item"
+                 [routerLink]="['/admin/statistical/movie']">
+                <i class="fas fa-film"></i>
+                <span class="sideBarTitle">Thong ke phim</span>
+              </a>
+              <a class="text-decoration-none text-dark  pt-2 pb-2 dropdown-item"
+                 [routerLink]="['/admin/statistical/member']">
+                <i class="fas fa-user-friends"></i>
+                <span class="sideBarTitle">Thon ke thanh vien</span>
+              </a>
+              <a class="text-decoration-none text-dark  pt-2 pb-2 dropdown-item"
+                 [routerLink]="['/admin/statistical/category']">
+                <i class="fas fa-photo-video"></i>
+                <span class="sideBarTitle">Thong ke the loai</span>
+              </a>
+              <a class="text-decoration-none text-dark  pt-2 pb-2 dropdown-item"
+                 [routerLink]="['/admin/statistical/showtime']">
+                <i class="far fa-clock"></i>
+                <span class="sideBarTitle">Thong ke suat chieu</span>
+              </a>
+            </div>
           </li>
 
         </ul>

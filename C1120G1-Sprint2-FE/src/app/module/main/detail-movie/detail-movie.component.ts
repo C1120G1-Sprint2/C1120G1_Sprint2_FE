@@ -79,7 +79,7 @@ export class DetailMovieComponent implements OnInit {
       })
       console.log(data);
     }, error => {
-      this.toastr.error("Not found film", "Notification");
+      this.toastr.error("Không tìm thấy phim", "Thông báo");
     })
     this.formComment = this.formBuilder.group({
       content: ['']
@@ -97,7 +97,7 @@ export class DetailMovieComponent implements OnInit {
       console.log(this.formComment.value);
       this.commentService.addComment(this.formComment.value, this.id).subscribe(data => {
         console.log(this.id);
-        this.toastr.success("Add new comment", "Notification");
+        this.toastr.success("Thêm mới bình luận thành công !", "Thông báo");
         this.loading = false;
         this.ngOnInit();
       })
@@ -128,12 +128,12 @@ export class DetailMovieComponent implements OnInit {
       // }
       if (confirmed) {
         this.commentService.deleteCommentByUser(comment.commentId).subscribe(dataDelete => {
-          this.toastr.success("Delete complete", "Notification");
+          this.toastr.success("Xoá bình luận thành công !", "Thông báo");
           console.log(dataDelete);
         })
       }
     }, error => {
-      this.toastr.error("Error !", "Notification");
+      this.toastr.error("Lỗi !", "Thông báo");
     }, ()=> {
       this.loading = false;
     });
@@ -152,12 +152,12 @@ export class DetailMovieComponent implements OnInit {
     // }
     if (comment.commentId == this.idCommentEdit) {
     this.commentService.updateComment(this.idCommentEdit, this.contentCommentEdit).subscribe(dataEdit => {
-      this.toastr.success("Update complete !", "Notification");
+      this.toastr.success("Chỉnh sửa thành công !", "Thông báo");
       this.contentCommentEdit ="";
       this.contentCommentEdit = 0;
       this.ngOnInit();
     }, error => {
-      this.toastr.error("Error !", "Notification");
+      this.toastr.error("Lỗi !", "Thông báo");
     })
     }
   }

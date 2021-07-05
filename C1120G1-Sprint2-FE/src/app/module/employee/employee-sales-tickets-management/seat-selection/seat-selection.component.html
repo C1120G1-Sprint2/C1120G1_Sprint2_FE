@@ -1,24 +1,63 @@
 <div class="container-fluid" id="fluid">
-  <div id="follow-div">
-    <div class="follow">
-      <p class="follow-title">vui lòng chọn ghế</p>
+  <div id="follow-div" class="row m-0 p-0">
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title text-dark">chọn phim</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title" id="active">chọn ghế</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">xác nhận đặt vé</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">thông tin đặt vé</p>
     </div>
   </div>
-  <hr class="d-inline-block"
-      style="width: 99%; height: 1px; background-color: lightgray">
-  <div class="container-fluid p-0">
+  <div class="container-fluid p-0 mt-3">
     <p id="movie-picked-title">Bạn đã chọn</p>
     <div id="movie-picked-content" class="row m-0 p-0" *ngIf="movieTicket">
       <p>Phim : <span>{{movieTicket.movie.movieName}}</span></p>
-      <p>Ngày chiếu : <span>{{movieTicket.showDate}}</span></p>
-      <p>Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
-      <p>Ghế đã chọn : <span>{{listChoseSeat.length}}</span></p>
+      <p class="ml-5">Ngày chiếu : <span>{{movieTicket.showDate|date: 'dd/MM/yyyy'}}</span></p>
+      <p class="ml-5">Suất chiếu : <span>{{movieTicket.showTime.showTime}}</span></p>
+      <p class="ml-5">Ghế đã chọn : <span>{{listChoseSeat.length}}</span></p>
     </div>
-    <div class="container-fluid justify-content-center align-items-center">
+    <div>
       <!--      choose seat-->
       <div id="seat-show" class="row m-0 p-0">
-        <div class="col-lg-2 space-div"></div>
-        <div class="col-lg-8 col-md-12" id="seat">
+        <div class="col-lg-4 space-div">
+          <p style="text-align: center; color: red;text-transform: uppercase">Thông tin về ghế đang chọn</p>
+          <table class="table table-hover" id="table-booking-infor">
+            <tr>
+              <td>
+                <div class="col-12 row m-0 p-0">
+                  <div class="col-6">
+                    <p>
+                      <strong>Số ghế</strong>
+                    </p>
+                    <p style="color: red" *ngFor="let seat of listChoseSeat">{{seat.row.rowName}}{{seat.column.columnName}}</p>
+                    <p>
+                      <strong>Tổng tiền</strong>
+                    </p>
+                  </div>
+                  <div class="col-6">
+                    <p>
+                      <strong>Giá vé</strong>
+                    </p>
+                    <p *ngFor="let seat of listChoseSeat">{{priceTicket(seat.seatType.seatTypeId)|number}} VNĐ</p>
+                    <p>
+                      <strong style="color: red">{{totalPriceTicket(listChoseSeat)|number}} VNĐ</strong>
+                    </p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-lg-8 col-md-12 container-fluid justify-content-center align-items-center" id="seat">
+          <div class="container-fluid mb-3">
+            <img src="../../../../assets/img/screen-bg-transparent.png"
+                 style="height: 6rem; width: 100%" alt="bg"/>
+          </div>
           <table class="table table-borderless">
             <tbody class="text-center justify-content-center align-items-center">
             <tr *ngFor="let index of listRow">
@@ -34,31 +73,30 @@
             </tr>
             </tbody>
           </table>
+          <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
+            <div class="row m-1 p-0 ml-5 align-items-center">
+              <div class="td-seat empty-seat"></div>
+              <span class="instructor-label mr-lg-3 ml-1">Ghế trống</span>
+            </div>
+            <div class="row m-1 p-0 align-items-center">
+              <div class="td-seat selecting-seat"></div>
+              <span class="instructor-label mr-lg-3 ml-1">Ghế đang chọn</span>
+            </div>
+            <div class="row m-1 p-0 align-items-center">
+              <div class="td-seat ordered-seat"></div>
+              <span class="instructor-label mr-lg-3 ml-1">Ghế đã có người đặt</span>
+            </div>
+            <div class="row m-1 p-0 align-items-center">
+              <div class="td-seat vip-seat"></div>
+              <span class="instructor-label mr-lg-0 ml-1">Ghế VIP</span>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-2 space-div"></div>
       </div>
       <!--      instructor-->
-      <div id="instructor" class="row m-0 p-0 mb-3 justify-content-center">
-        <div class="row m-1 p-0 align-items-center">
-          <div class="td-seat empty-seat"></div>
-          <span class="instructor-label mr-lg-3 ml-1">Ghế trống</span>
-        </div>
-        <div class="row m-1 p-0 align-items-center">
-          <div class="td-seat selecting-seat"></div>
-          <span class="instructor-label mr-lg-3 ml-1">Ghế đang chọn</span>
-        </div>
-        <div class="row m-1 p-0 align-items-center">
-          <div class="td-seat ordered-seat"></div>
-          <span class="instructor-label mr-lg-3 ml-1">Ghế đã có người đặt</span>
-        </div>
-        <div class="row m-1 p-0 align-items-center">
-          <div class="td-seat vip-seat"></div>
-          <span class="instructor-label mr-lg-0 ml-1">Ghế VIP</span>
-        </div>
-      </div>
     </div>
   </div>
-  <div id="btnContinue" class="text-center">
+  <div id="btnContinue" class="text-center mb-5">
     <a routerLink="/employee/sale/tickets">
       <button class="btn btn-outline-primary rounded-pill" type="button">
         <span class="arrow">

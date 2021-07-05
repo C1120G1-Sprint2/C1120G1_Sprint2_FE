@@ -23,7 +23,7 @@
       </div>
     </div>
     <table class="table table-hover">
-      <thead class="theadTable">
+      <thead class="theadTable text-center">
       <th>#</th>
       <th (click)="onSortChange('movie')">Tên Phim <i class="fas fa-sort"></i></th>
       <th (click)="onSortChange('room')">Rạp Chiếu <i class="fas fa-sort"></i></th>
@@ -35,7 +35,7 @@
       <th>Sửa</th>
       </thead>
       <tbody>
-      <tr *ngFor="let movieTicket of movieTickets; let i = index"  class="inputTable">
+      <tr *ngFor="let movieTicket of movieTickets; let i = index"  class="inputTable text-center">
         <td>{{i+1}}</td>
         <td>{{movieTicket.movie.movieName}}</td>
         <td>{{movieTicket.room.roomName}}</td>

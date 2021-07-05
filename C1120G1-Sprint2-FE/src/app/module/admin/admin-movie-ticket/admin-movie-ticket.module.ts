@@ -8,7 +8,10 @@ import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AdminMovieTicketRoutingModule} from './admin-movie-ticket-routing.module';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -20,8 +23,11 @@ import {MatIconModule} from '@angular/material/icon';
         ReactiveFormsModule,
         AdminMovieTicketRoutingModule,
         FormsModule,
-        MatIconModule
-
+        MatIconModule,
+      MatFormFieldModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
+      MatInputModule
     ]
 })
 export class AdminMovieTicketModule { }

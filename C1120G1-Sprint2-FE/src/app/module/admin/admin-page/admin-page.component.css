@@ -41,5 +41,17 @@
   transition: 0.5s;
 }
 
+.dropdown-item {
+  background-image: url('https://img.freepik.com/free-photo/abstract-yellow-brush-stroke-white-background_23-2147835995.jpg?size=626&ext=jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+
+.dropdown-item:hover {
+  border-bottom: #f26b39 solid 2px;
+  transition: 0.5s;
+}
+
 
 

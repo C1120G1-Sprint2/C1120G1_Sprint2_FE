@@ -1,4 +1,6 @@
-<div class="container-fluid" style="background-image: url(https://assets.isu.pub/document-structure/201119095039-81c9c6ee54cf9d84cd37f8bfacda75ea/v1/fa7693daeda883175fba952e4a65047c.jpg);">
+<div style="background-image: url(https://assets.isu.pub/document-structure/201119095039-81c9c6ee54cf9d84cd37f8bfacda75ea/v1/fa7693daeda883175fba952e4a65047c.jpg);">
+<app-main-header></app-main-header>
+<div class="container-fluid mt-5">
   <div class="container">
     <div class="col-xs-12 film-ticket-client">
       <ol class="breadcrumb">
@@ -8,90 +10,77 @@
         <li class="breadcrumb-item active upper-text" style="color: aliceblue;"> Giá Vé</li>
       </ol>
     </div>
-    <div class="row">
+    <div class="row mb-5">
       <div class="col-4">
         <div class="titleFilm">
-          <p class="titleD">Phim Đang Chiếu</p>
-          <input type="date" class="form-control" (change)="onChangDate()" required>
-          <table class="table table-hover">
-            <thead>
-            <th>Tên Phim</th>
-            <th>Suất Chiếu</th>
-            </thead>
-            <tbody>
-            <tr *ngFor="let movieTicket of movietickets; let i = index">
-              <td>{{movieTicket.movie.movieName}}</td>
-              <td>{{movieTicket.showTime}}</td>
-            </tr>
-            </tbody>
-          </table>
+          <p class="titleD">Ngày Chiếu Phim</p>
+          <mat-form-field appearance="fill">
+            <mat-label>Chọn ngày chiếu phim</mat-label>
+            <input value="" id="pick1" matInput (dateInput)="onChangDate($event.target.value)" [min]="minDate"
+                   [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
         </div>
       </div>
       <div class="col-8">
         <p class="titleD">Giá Vé</p>
-        <div class="btnChange">
-          <button (click)="change()" class="btn btn-outline">2D</button>
-          <button (click)="change2()" class="btn btn-outline">3D</button>
+        <div>
+          <button (click)="change()" class="btn {{classButton2D}}">2D</button>
+          <button (click)="change2()" class="btn {{classButton3D}}">3D</button>
         </div>
         <div id="side-a">
           <div class="card">
             <div class="card-header">Giá Vé 2D</div>
             <div class="card-body">
-              <table class="table table-hover">
+              <table class="table table-striped backgroundTable" *ngIf="date !== null">
                 <thead class="theadTable">
-                <th></th>
-                <th >Thứ 2, 4, 5</th>
-                <th >Thứ 3</th>
-                <th >Thứ 6,7, CN</th>
-
-                </thead>
-                <tbody class="backgroundTable">
-                <tr class="inputTable">
-                  <td><strong>Trước 17h</strong></td>
-                  <td>45000</td>
-                  <td>45000</td>
-                  <td>60000</td>
-
+                <tr class="text-dark">
+                <th>Thời Gian</th>
+                <th>Giá Tiền</th>
                 </tr>
-                <tr class="inputTable">
+                </thead>
+                <tbody>
+                <tr>
+                  <td><strong>Trước 17h</strong></td>
+                  <td>{{priceTicketBefor17H() | number}} VND</td>
+                </tr>
+                <tr>
                   <td><strong>Sau 17h</strong></td>
-                  <td>60000</td>
-                  <td>45000</td>
-                  <td>80000</td>
-
+                  <td>{{priceTicketAfter17H() | number}} VND</td>
                 </tr>
                 </tbody>
               </table>
-
+              <p style="text-align: center; color: red" *ngIf="date === null">Không có dữ liệu để hiển thị</p>
             </div>
           </div>
-
         </div>
         <div id="side-b" style="display: none">
           <div class="card">
             <div class="card-header">Giá Vé 3D</div>
             <div class="card-body">
-              <table class="table table-hover">
+              <table class="table table-striped inputTable3D" *ngIf="date !== null">
                 <thead class="theadTable">
-                <th></th>
-                <th>Thành Viên</th>
-                <th>Khách Hàng - Customer</th>
+                <tr class="text-dark">
+                <th>Thời Gian</th>
+                <th>Giá Tiền</th>
+                </tr>
                 </thead>
                 <tbody>
-                <tr class="inputTable3D">
-                  <td><strong>3D</strong></td>
+                <tr>
+                  <td><strong>Trước 17h</strong></td>
                   <td>
-                    95000
+                    {{priceTicketBefor17H() | number}} VND
                   </td>
-                  <td>
-                    110000
-                  </td>
-
                 </tr>
-
+                <tr>
+                  <td><strong>Sau 17h</strong></td>
+                  <td>{{priceTicketAfter17H() | number}} VND</td>
+                </tr>
                 </tbody>
               </table>
-
+              <p style="text-align: center; color: red" *ngIf="date === null">Không có dữ liệu để hiển thị</p>
             </div>
           </div>
 
@@ -100,4 +89,5 @@
     </div>
   </div>
 </div>
-
+<app-main-footer></app-main-footer>
+</div>

@@ -113,7 +113,7 @@ label {
 .breadcrumb > li + li::before {
   padding: 0 5px;
   color: #a0a3a7;
-  font-family: 'Font Awesome 5 Pro';
+  font-family: 'Font Awesome 5 Pro', sans-serif;
   font-weight: 900;
   line-height: 1;
   content: '\f105';
