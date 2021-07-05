@@ -40,15 +40,63 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="user">
+            <div *ngIf="user && role == 'ROLE_MEMBER'">
               <div class="dropdown">
+                <img [src]="user.avatarUrl" alt="" width="20%" height="20%" class="rounded-circle">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                   Xin chào, <span>{{user.name}}</span>
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" routerLink="/logout">Đăng xuất</a>
+                  <a class="dropdown-item" routerLink="/member/info">
+                    <i class="far fa-id-card"></i> Hồ sơ cá nhân</a>
+                  <a class="dropdown-item" routerLink="/logout">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+
                 </div>
               </div>
+            </div>
+            <div *ngIf="user && role == 'ROLE_ADMIN'">
+              <div class="dropdown">
+                <img [src]="user.avatarUrl" alt="" width="20%" height="20%" class="rounded-circle">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                  Xin chào, <span>{{user.name}}</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" routerLink="/member/info">
+                    <i class="far fa-id-card"></i> Hồ sơ cá nhân</a>
+                  <a class="dropdown-item" routerLink="/admin/movie-ticket">
+                    <i class="far fa-calendar-check"></i> Quản lý suất chiếu</a>
+                  <a class="dropdown-item" routerLink="/admin/room">
+                    <i class="fas fa-person-booth"></i> Quản lý phòng chiếu</a>
+                  <a class="dropdown-item" routerLink="/employee/member/management">
+                    <i class="fas fa-users"></i> Quản lý thành viên</a>
+                  <a class="dropdown-item" routerLink="/employee/sale/tickets">
+                    <i class="fas fa-hand-holding-usd"></i> Quản lý bán vé</a>
+                  <a class="dropdown-item" routerLink="/admin/movie/movie-list">
+                    <i class="fas fa-film"></i> Quản lý phim</a>
+                  <a class="dropdown-item" routerLink="/logout">
+                     <i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+
+                </div>
+              </div>
+            </div>
+            <div *ngIf="user && role == 'ROLE_EMPLOYEE'">
+              <div class="dropdown">
+                <img [src]="user.avatarUrl" width="20%" height="20%" class="rounded-circle">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                  Xin chào, <span>{{user.name}}</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" routerLink="/member/info">
+                    <i class="far fa-id-card"></i> Hồ sơ cá nhân</a>
+                  <a class="dropdown-item" routerLink="/employee/member/management">
+                    <i class="fas fa-users"></i> Quản lý thành viên</a>
+                  <a class="dropdown-item" routerLink="/employee/sale/tickets">
+                    <i class="fas fa-hand-holding-usd"></i> Quản lý bán vé</a>
+                  <a class="dropdown-item" routerLink="/logout">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+
+                </div>
             </div>
           </div>
         </div>
@@ -98,3 +146,4 @@
   </div>
 </div>
 
+</div>

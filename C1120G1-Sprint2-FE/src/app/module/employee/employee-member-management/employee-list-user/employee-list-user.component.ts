@@ -213,11 +213,13 @@ export class EmployeeListUserComponent implements OnInit {
   }
 
   search() {
+    console.log("abcd");
     this.memberManagementService.searchUserByPagination(this.keySearch, this.indexPagination).subscribe(data => {
       this.users = data;
       if (this.keySearch == '') {
         this.toastr.warning('Xin vui lòng nhập từ khoá', 'Thông báo');
         this.firstPage();
+
       } else if (this.users.length == 0) {
         this.toastr.warning('Không tìm thấy kết quả', 'Thông báo');
       } else {
@@ -227,6 +229,7 @@ export class EmployeeListUserComponent implements OnInit {
     });
     this.memberManagementService.searchUserBySomething(this.keySearch).subscribe(data => {
       this.usersNotPagination = data;
+      console.log("abc" +data);
       this.totalPagination = Math.floor((this.usersNotPagination.length - 1) / 5);
     });
   }

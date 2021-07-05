@@ -118,7 +118,7 @@
       </table>
 
       <form [formGroup]="createUserForm">
-        <table *ngIf="user === null" class="table table-hover table-personal-info">
+        <table *ngIf="user === undefined" class="table table-hover table-personal-info">
           <thead>
           <tr>
             <td colspan="2">
@@ -212,7 +212,8 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
         <div class="m-0 p-0"
              style="width: 60%;height:50px;font-size: 13px;font-weight: bolder"
-             #paypal>
+             >
+<!--          #paypal-->
         </div>
         <button type="button" class="btn btn-primary" (click)="confirmCreate()">Xác nhận</button>
       </div>

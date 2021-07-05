@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {BookTicketsService} from "../../../../service/member/book-tickets/book-tickets.service";
 import {Ticket} from "../../../../model/ticket";
 import {ToastrService} from "ngx-toastr";
+import {TokenStorageService} from '../../../../service/security/token-storage.service';
 
 @Component({
   selector: 'app-tickets-booking',
@@ -18,11 +19,13 @@ export class TicketsBookingComponent implements OnInit {
   constructor(private bookTicketsService: BookTicketsService,
               private activatedRoute: ActivatedRoute,
               private _router: Router,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private tokenStore: TokenStorageService) {
+    this.username = this.tokenStore.getUser().user.account.username;
   }
 
   ticketBooking: Ticket[]=[];
-  username: string = 'hoangsang123';
+  username: string;
   deleteId: number;
   deleteTitle: string;
 
