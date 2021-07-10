@@ -69,10 +69,10 @@ export class MemberManagementService {
   }
 
   searchUserBySomething(keySearch: string): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL_USER + '/search?q=' + keySearch);
+    return this.httpClient.get<any>(this.API_URL_USER + '/search?q=' + keySearch, this.httpOptions);
   }
   searchUserByPagination(keySearch: string , index :number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL_USER + '/searchPagination?q=' + keySearch + "&&index=" + index);
+    return this.httpClient.get<any>(this.API_URL_USER + '/searchPagination?q=' + keySearch + "&index=" + index, this.httpOptions);
   }
 
   findAllUsers(): Observable<any> {

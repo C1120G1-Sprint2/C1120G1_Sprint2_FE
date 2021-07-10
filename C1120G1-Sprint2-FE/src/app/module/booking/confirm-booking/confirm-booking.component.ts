@@ -46,11 +46,13 @@ export class ConfirmBookingComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
   ngOnInit(): void {
+
     if (this.tokenStorageService.getToken()) {
       this.user = this.tokenStorageService.getUser().user;
-    } else {
-      this.createForm();
     }
+    console.log("abc");
+    console.log(this.user);
+    this.createForm();
 
     if (this.bookTicketsService.listChoseSeat.length != 0) {
       this.listChoseSeat = this.bookTicketsService.listChoseSeat;
@@ -97,32 +99,32 @@ export class ConfirmBookingComponent implements OnInit {
         this.toastrService.warning('Bạn nhập thông tin user không hợp lệ', 'Thông Báo', {timeOut: 2000})
       }
     }
-    this.loadExternalScript("https://www.paypalobjects.com/api/checkout.js").then(() => {
-      paypal.Button.render({
-        env: 'sandbox',
-        client: {
-          production: 'AZMtdrGrR6S5jAMvERXiK365UgLAaNievYYpexl6JnnjoULHkpCH86pCzW5xeB_zHRa0R0vZhSs7M86U',
-          sandbox: 'AZMtdrGrR6S5jAMvERXiK365UgLAaNievYYpexl6JnnjoULHkpCH86pCzW5xeB_zHRa0R0vZhSs7M86U'
-        },
-        commit: true,
-        payment: function (data, actions) {
-          return actions.payment.create({
-            payment: {
-              transactions: [
-                {
-                  amount: { total: '4.00', currency: 'USD' }
-                }
-              ]
-            }
-          })
-        },
-        onAuthorize: function(data, actions) {
-          return actions.payment.execute().then( x => {
-            console.log("PAYPAL : OK");
-          })
-        }
-      }, '#paypal');
-    });
+    // this.loadExternalScript("https://www.paypalobjects.com/api/checkout.js").then(() => {
+    //   paypal.Button.render({
+    //     env: 'sandbox',
+    //     client: {
+    //       production: 'AZMtdrGrR6S5jAMvERXiK365UgLAaNievYYpexl6JnnjoULHkpCH86pCzW5xeB_zHRa0R0vZhSs7M86U',
+    //       sandbox: 'AZMtdrGrR6S5jAMvERXiK365UgLAaNievYYpexl6JnnjoULHkpCH86pCzW5xeB_zHRa0R0vZhSs7M86U'
+    //     },
+    //     commit: true,
+    //     payment: function (data, actions) {
+    //       return actions.payment.create({
+    //         payment: {
+    //           transactions: [
+    //             {
+    //               amount: { total: '4.00', currency: 'USD' }
+    //             }
+    //           ]
+    //         }
+    //       })
+    //     },
+    //     onAuthorize: function(data, actions) {
+    //       return actions.payment.execute().then( x => {
+    //         console.log("PAYPAL : OK");
+    //       })
+    //     }
+    //   }, '#paypal');
+    // });
     this.createTicket();
   }
 

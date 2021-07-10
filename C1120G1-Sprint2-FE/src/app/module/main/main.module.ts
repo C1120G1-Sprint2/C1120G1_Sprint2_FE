@@ -23,6 +23,9 @@ import { MovieCornerComponent } from './movie-corner/movie-corner.component';
 import { MainEventsComponent } from './main-events/main-events.component';
 import { MainInstructionsComponent } from './main-instructions/main-instructions.component';
 import { MainPolicyComponent } from './main-policy/main-policy.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -42,16 +45,19 @@ import { MainPolicyComponent } from './main-policy/main-policy.component';
     MainHeaderComponent,
     MainFooterComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        RouterModule,
-        FormsModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatIconModule,
-      AdminRoutingModule
-    ]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    AdminRoutingModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule
+  ]
 
 })
 

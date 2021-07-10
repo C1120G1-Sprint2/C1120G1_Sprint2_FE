@@ -2,23 +2,23 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <div class="col-md-3" *ngIf="roomDetail">
+        <div class="col-md-2"></div>
+        <div class="col-md-9" *ngIf="roomDetail" style="text-align: center">
           <p class="title">Chi tiết của phòng {{roomDetail.roomName}}</p>
           <p class="title">Tổng số ghế {{roomSeatTotal.length}}</p>
-          <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fas fa-plus-circle"></i>
-            Thêm ghế</a>
-          <a routerLink='/admin/room' class="btn btn-secondary mt-3">Trở về danh sách phòng chiếu</a>
+          <a routerLink='/admin/room' class="btn btn-secondary">Trở về danh sách phòng chiếu</a>
         </div>
-        <div class="col-md-6 mt-3">
-          <button class="btn" style="background-color: greenyellow">Ghế thường</button>
-          <button class="btn ml-4" style="background-color: red; color: white">Ghế vip</button>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-9" style="text-align: center">
           <br>
           <div class="table table-responsive" style="text-align: center">
             <button class="mt-4" style=";padding: 20px 200px 20px 200px;color: gray;">Màn hình</button>
             <table *ngIf="roomSeatList" class="table table-borderless mt-4" style="border: 1px solid dodgerblue">
               <tr *ngFor="let row of rowList">
                 <td *ngFor="let roomSeat of roomSeatList | slice:(row.rowId - 1) * 10 : row.rowId * 10">
-                  <div class="dropdown show" *ngIf="roomSeat.seatStatus.seatStatusId === 1;">
+                  <div class="dropdown show" *ngIf="roomSeat.seatStatus.seatStatusId === 1 || roomSeat.seatStatus.seatStatusId === 2">
                     <a class="btn dropdown-toggle" *ngIf="roomSeat.seat.seatType.seatTypeId === 2; else elseBlock1"
                        style="background-color: red;color: white" id="dropdownMenuLink" data-toggle="dropdown"
                        aria-haspopup="true"
@@ -40,7 +40,12 @@
                 </td>
               </tr>
             </table>
+            <a data-toggle="modal" style="text-align: center" data-target="#exampleModal" class="btn btn-success"><i
+              class="fas fa-plus-circle"></i>
+              Thêm ghế</a>
           </div>
+          <button class="btn" style="background-color: greenyellow">Ghế thường</button>
+          <button class="btn ml-4" style="background-color: red; color: white">Ghế vip</button>
         </div>
       </div>
     </div>
@@ -89,7 +94,7 @@
             </tr>
             <tr>
               <td>
-                <input type="submit" class="btn btn-success"  value="Lưu">
+                <input type="submit" class="btn btn-success" value="Lưu">
                 <button type="button" class="btn btn-danger ml-4" data-dismiss="modal">Hủy</button>
               </td>
             </tr>

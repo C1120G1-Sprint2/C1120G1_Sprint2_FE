@@ -115,8 +115,29 @@ export class EmployeeListUserComponent implements OnInit {
   }
 
   selectPage(selectPageNumber: number) {
+    if (this.keySearch != ''){
+      if (selectPageNumber < 1 && selectPageNumber > this.totalPagination) {
+        this.indexPagination = 0;
+        this.firstPage();
+        this.toastr.warning('Không tìm thấy trang hoặc danh sách đã hết', 'Thông báo', {
+          timeOut: 3000,
+          progressAnimation: 'increasing'
+        });
+      }
+      this.indexPagination = selectPageNumber - 1;
+      this.memberManagementService.searchUserByPagination(this.keySearch,(selectPageNumber * 5) - 5).subscribe(data => {
+        this.users = data;
+        if (this.users.length == 0) {
+          this.toastr.warning('Quá số trang tìm kiếm', 'Thông báo', {
+            timeOut: 3000,
+            progressAnimation: 'increasing'
+          });
+          this.firstPage();
+        }
+      });
+    }
     if (selectPageNumber < 1) {
-      this.indexPagination = selectPageNumber;
+      this.indexPagination = 0;
       this.firstPage();
       this.toastr.warning('Không tìm thấy trang hoặc danh sách đã hết', 'Thông báo', {
         timeOut: 3000,
@@ -192,11 +213,13 @@ export class EmployeeListUserComponent implements OnInit {
   }
 
   search() {
+    console.log("abcd");
     this.memberManagementService.searchUserByPagination(this.keySearch, this.indexPagination).subscribe(data => {
       this.users = data;
       if (this.keySearch == '') {
         this.toastr.warning('Xin vui lòng nhập từ khoá', 'Thông báo');
         this.firstPage();
+
       } else if (this.users.length == 0) {
         this.toastr.warning('Không tìm thấy kết quả', 'Thông báo');
       } else {
@@ -206,6 +229,7 @@ export class EmployeeListUserComponent implements OnInit {
     });
     this.memberManagementService.searchUserBySomething(this.keySearch).subscribe(data => {
       this.usersNotPagination = data;
+      console.log("abc" +data);
       this.totalPagination = Math.floor((this.usersNotPagination.length - 1) / 5);
     });
   }

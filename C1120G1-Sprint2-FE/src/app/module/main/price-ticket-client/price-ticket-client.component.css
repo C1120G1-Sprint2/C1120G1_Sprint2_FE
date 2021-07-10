@@ -4,7 +4,7 @@
 .breadcrumb > li + li::before {
   padding: 0 5px;
   color: #a0a3a7;
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 5 Pro', sans-serif;
   font-weight: 900;
   line-height: 1;
   content: '\f105';
@@ -17,21 +17,25 @@
 }
 .btn-outline:hover {
   background-color: #f26b38;
-  color: aliceblue;
+  color: white;
 }
-.theadTable  th {
-  color: #f26b38;
+.btn-orange {
+  background-color: #f26b38;
+  color: white;
+  margin-bottom: 2%;
+  margin-left: 2%;
 }
+
 .backgroundTable {
-  background-image: url(https://i.pinimg.com/originals/db/02/74/db0274430553df153a88aa3621355373.jpg);
+  background-image: url('http://www.pngmagic.com/product_images/yellow-and-white-background.jpg');
 }
 .inputTable {
-  color: aliceblue;
+  background-image: url('http://www.pngmagic.com/product_images/yellow-and-white-background.jpg');
   align-items: center;
 }
 .inputTable3D {
-  background-image: url(https://yourdream.s3.amazonaws.com/media/cache/50/75/5075b77e8aee2fff80ccd4cc951ddd79.jpg);
-  color: aliceblue;
+  background-image: url('http://www.pngmagic.com/product_images/yellow-and-white-background.jpg');
+  align-items: center;
 }
 .card-header {
   background-color: #f26b38;

@@ -1,13 +1,19 @@
 <div class="container-fluid" id="fluid">
-  <div id="follow-div">
-    <div class="follow">
-      <p class="follow-title">vui lòng xác nhận</p>
+  <div id="follow-div" class="row m-0 p-0">
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">chọn phim</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">chọn ghế</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title" id="active">xác nhận đặt vé</p>
+    </div>
+    <div class="follow col-lg-3 col-md-3">
+      <p class="follow-title">thông tin đặt vé</p>
     </div>
   </div>
-
-  <hr class="d-inline-block"
-      style="width: 99%; height: 1px; background-color: lightgray">
-  <div class="container-fluid row p-0 m-0" *ngIf="movieTicket">
+  <div class="container-fluid row p-0 m-0 mt-4" *ngIf="movieTicket">
     <div class="col-lg-3 col-md-4" id="img-div">
       <p class="movie-picked-title" style="font-size: 1.3rem">Thông tin đặt vé</p>
       <img class="border border-secondary" [src]="movieTicket.movie.posterMovie"
@@ -31,7 +37,7 @@
         </tr>
         <tr>
           <td>Ngày chiếu</td>
-          <td style="color: red">{{movieTicket.showDate | date: "dd-MM-yyyy"}}</td>
+          <td style="color: red">{{movieTicket.showDate|date: 'dd/MM/yyyy'}}</td>
         </tr>
         <tr>
           <td>Giờ chiếu</td>

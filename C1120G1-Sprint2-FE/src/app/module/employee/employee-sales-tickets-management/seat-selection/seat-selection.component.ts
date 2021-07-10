@@ -10,7 +10,6 @@ import {LoadingComponent} from '../../../loading/loading.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../../model/user';
-
 @Component({
   selector: 'app-select-seat',
   templateUrl: './seat-selection.component.html',
@@ -117,5 +116,26 @@ export class SeatSelectionComponent implements OnInit {
     this.salesTicketsService.changeListChoseSeat(this.listChoseSeat);
     this.salesTicketsService.changeMovieTicket(this.movieTicket);
     this.router.navigateByUrl('/employee/sale/tickets/confirmSaleTicket');
+  }
+  totalPriceTicket(listSeat: Seat[]) {
+    let totalPrice = 0;
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < listSeat.length; i++) {
+      if (listSeat[i].seatType.seatTypeId === 1) {
+        // tslint:disable-next-line:radix
+        totalPrice += parseInt(this.movieTicket.ticketPrice.toString());
+      } else {
+        // tslint:disable-next-line:radix
+        totalPrice += parseInt(this.movieTicket.ticketPrice.toString()) * (4 / 3);
+      }
+    }
+    return Math.floor(totalPrice);
+  }
+  priceTicket(seatTypeId: number) {
+    if (seatTypeId === 2) {
+      return Math.round(this.movieTicket.ticketPrice * (4 / 3));
+    } else {
+      return Math.round(this.movieTicket.ticketPrice);
+    }
   }
 }
